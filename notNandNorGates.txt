@@ -1,0 +1,86 @@
+Now that we've seen the N-type and P-type transistors,
+let's put them together into different logic gates.
+We're going to start with an inverter, which is also known as a NOT gate.
+A NOT gate has two transistors, a P-type on the top,
+which is connected to the supply voltage,
+and an N-type on the bottom, which is connected to ground.
+And the input is connected to both gates,
+to both the P-type and the N-type gate.
+Now, there's a connection between two of the terminals
+on the P-type and the N-type transistors,
+and the output is connected to that point.
+Now, a truth table for an inverter is very simple.
+We have two possible values of our input, 0 and 1.
+And the output is just the inversion of that.
+When I have an input of 0, I have an output of 1, and vice versa.
+Let's look at how these P-type and N-type switches
+work when I have the different inputs.
+So first let's look at an input of 0.
+With an input of 0, that closes the P-type switch--
+remember, with a P-type device, if I have a gate
+input of 0, that closes the switch.
+So we're making a connection here for the output up to the supply voltage.
+But with an N-type device, when I have an input of 0 on the gate,
+that opens the switch.
+So I've broken the connection to ground to 0 volts.
+So here, the output is going to be pulled up to the supply voltage,
+so the output will be connected to the supply voltage.
+And that looks like a logic 1.
+Now, when we have an input of 1, the opposite occurs.
+The P-type switch opens, and the N-type switch closes.
+That breaks the connection to the supply voltage
+but makes a connection to ground to 0 volts.
+So the output is connected to 0 volts, or a logic 0.
+Now let's talk about a little bit more complicated gate,
+and that's a NOR gate.
+A NOR gate, you can think of as an OR, and we already understand an OR.
+When any of the inputs is a 1, the output is a 1, also, followed by a NOT.
+So that's going to be just the opposite.
+Whenever I have an input of a 1 with a NOR gate, then the output is 0.
+And when I have all 0s, the output is a 1.
+A NOR gate has four transistors for a 2-input NOR gate.
+So we have our two inputs, A and B. And with a NOR gate,
+we have two P-type devices connected in series up to the supply voltage.
+And we have two N-type devices in parallel, connected to ground.
+So what this means is that in order to get C, the output,
+pulled up to the supply voltage, I have to have both of the P-type
+switches close to make that connection.
+However, on the bottom, I can have either
+of the N-type devices' switches closed in order for C
+to be pulled down to ground.
+Let's look at an example now where I have an input A
+equals 0 and B equals 1.
+So here with A equals 0, the top P-switch is closed.
+But with B equals 1, the bottom P-switch is open.
+So there's no connection now to the supply voltage.
+With B equals 1, one of those N-type switches is closed.
+So I make a connection now of C down to ground, so C becomes a logic 0.
+So here's the truth table for a NOR.
+And again, it's an OR with the output inverted.
+So I have my two inputs, A and B here, four possible values.
+And only when A and B are both 0 do I get an output of 1.
+Otherwise, I get an output of 0.
+A NAND gate, you can think of as an AND followed by a NOT.
+Here the structure is different than a NOR.
+Here, the two P-type devices on the top are in parallel,
+which is the opposite of a NOR.
+And at the bottom, the N-type devices are in series.
+So for the top, so long as either A or B is 0,
+I'm going to make a connection to the supply voltage,
+and C will be pulled up to a logic 1.
+At the bottom, I have to have both A and B to be 1
+to close both of those N-type switches so that C becomes a 0.
+Here's an example where I have A equals 0 and B equals 1.
+With A equals 0, then one of those P-type switches is closed.
+So I make a connection of C to the supply voltage, so C becomes a 1.
+However, with A equals 0, that also breaks the connection at the bottom.
+That opens up the corresponding N-type switch so that I have no connection.
+So here you see that property that we talked
+about with these type of CMOS devices, where
+I have either a connection to the supply voltage or a connection to ground,
+but never having both.
+Here's a truth table for a NAND, with my four possible values of A and B,
+and my output, C. So again, you can see that this
+is like an AND followed by a NOT.
+So only when all of the inputs-- in this case, my two inputs, A and B, are 1--
+do I get a 0, and otherwise I get a 1.

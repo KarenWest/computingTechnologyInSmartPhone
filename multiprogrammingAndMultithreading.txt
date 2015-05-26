@@ -1,0 +1,60 @@
+Let's begin by considering this rather troublesome piece of code
+that doesn't have the ILP that we're able to exploit in a superscalar
+pipeline.
+So this is a five-instruction loop, where every instruction
+is data dependent on the previous one.
+So the ADD writes R1, and the NOT reads R1.
+So there's a data dependence there.
+The NOT subsequently writes R4, which is read by the next instruction, the AND.
+That instruction writes R5, and the ADD instruction reads R5.
+And finally, the branch is data dependent on the ADD,
+because the ADD has to complete before we can check the Z bit.
+So what will happen?
+Well, our superscalar pipeline would send these instructions,
+because of these data dependencies, would have to send them one by one
+through the EX, the MEM, and the write-back stages.
+Now, if we iterated 1,000 times through this loop, then we'd have 1,000 times,
+we would have a single ALU in use, rather than two, only one
+of our two memory ports possibly in use, and only one of our register file ports
+would be in use.
+The others would sit idle.
+So we'd be wasting the instructions, the resources that we have,
+within our superscalar pipeline.
+And we wouldn't get that two-instruction throughput
+that we expect to get out of it.
+Now, how can we get around this problem?
+Well, what if we had a second program to run?
+What if we had in addition to this program
+here, we had another program that was ready to run?
+Now, this leads to the topic of multiprogramming and multithreading.
+Multiprogramming is the sharing of the computer hardware resources
+among multiple active programs.
+So let's assume that you just took a big video,
+and you're using a text message in order to transfer it to a friend.
+So while that text message is active, that messaging program
+is active in transferring, maybe you switch to your web browser
+and look something up.
+So both of those programs are active in your computer at the same time.
+Now, these programs may be time multiplexed, in which
+they take turns using the processor.
+So the operating system may give a chunk of time to your texting program
+and then switch to your browsing program and give it a chunk of time,
+and then go back to the texting program.
+Now, you as a user may not witness or see any change here.
+You may think you're just using your browsing program.
+But in reality, the hardware resources
+are being time multiplexed between these two programs by the operating system.
+Or they can use the hardware at the same time.
+Now, one way to do this is to implement multiple cores.
+And you could think of this is multiple superscalar pipelines on one chip.
+And your smartphone can do this, and we'll see this later on in the course.
+Now, another way to do this is to use the same core at the same time.
+Now, we can do this for multiple simultaneously running programs,
+such as our text messaging program and our browser.
+Or we can do this using multiple threads of the same program.
+Now, your browser may be multithreaded.
+So for instance, if you open up multiple tabs, then each one of those
+may have a thread associated with it.
+Now either way, whether we do this using multiple simultaneously running
+programs or a single multithreaded program,
+we call this type of multithreading simultaneous multithreading, or SMT.

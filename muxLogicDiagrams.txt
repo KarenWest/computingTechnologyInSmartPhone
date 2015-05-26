@@ -1,0 +1,107 @@
+Now let's build a 4 to 1 MUX using AND, OR, and NOT gates.
+So first of all, we have four data inputs,
+and let's just call those A, B, C, and D. So I have A, B, C, and D.
+And I also have two select inputs.
+Let's call those S1 and S0.
+So I have S1 and S0.
+Now, I've labeled my select inputs this way
+to make it clear which one is the right bit
+and which one is the left bit of the select inputs.
+So S0 is in the 0-th position in my 2-bit binary number.
+So that's the right bit.
+And S1 is in the 1 position.
+So S1 is the left bit, and S0 is the right bit.
+Now what we're going to do, similar to a decoder,
+is we're going to have AND gates.
+Specifically, we're going to have four AND gates just like we had for a 2 to 4
+decoder.
+So let's write those out.
+So I have one for A, one for B, one for C, and one for D.
+And we're going to connect each of the data inputs
+to the corresponding AND gate.
+Connect A to this AND gate, B to the second, C to the third,
+and D to the fourth.
+Now what we're going to do is we're going
+to run the select inputs into these different AND gates.
+So I'm first going to draw the select inputs just as wires into my circuit,
+just as we did with the decoder.
+And just as we did with the decoder, we're
+also going to take the complement values of S1 and S0
+by putting those through inverters.
+So we tap off here, put this through an inverter,
+and we send that also up to our AND gates.
+So now we have both the true and complement values available to us.
+Now when S1 and S0 are 0, 0, then we want A to appear at the output.
+So what we're going to do for A's AND gate
+is we're going to grab the complemented values of S1 and S0
+so that that can occur.
+So we grab the inverted value of S1 and the inverted value of S0.
+Now what will be the output of this AND gate?
+So the output of this AND gate will be A if S1, S0 equals 0, 0.
+So you see, it's similar to a decoder, but instead of this output being 1
+when S1, S0 is 0, 0, it's going to be whatever the value of A is.
+So if S1 and S0 are both 0's, then both of these inputs are going to be 1's.
+And so whatever A is will appear at the output.
+So if A is a 1, then we'll have 1, 1, 1 at the input.
+So the output will be 1.
+If A is a 0, then the output will be a 0.
+Now when S1 and S0 are 0, 1, then B appears at the output.
+So we want to grab the inverted value of S1 and the true value of S0
+and feed those into this AND gate.
+Now the output of this AND gate will be B if S1, S0 equals 0, 1.
+And we can do the same thing for the other two AND gates.
+C appears at the output when S1, S0 are 1, 0.
+So let's do that.
+So we grab the true value of S1 and the complemented inverted value of S0.
+So now this output will be C if S1, S0 equals 1, 0.
+And then, finally, we grab the non-inverted values of S1 and S0
+so that this will be D if S1, S0 equals 1, 1.
+Now when the select inputs are 0, 0-- and we
+said that A will appear at the output of the top AND gate--
+but the other three AND gates will have outputs of 0.
+So let's look at B, for instance.
+So when I have 0, 0 on the inputs, the select inputs,
+then this input here to this AND gate is going to be a 0,
+and so the output is going to be a 0.
+The same with C. If I have 0, 0, then this will be a 0,
+and this output will be a 0.
+And then when I have a 0, 0, then my output for the AND gate for D
+will also be 0.
+So again, this has similar properties to a decoder,
+except that instead of only one of the outputs being a 1,
+instead one of the outputs will be whatever
+the data input is to that AND gate.
+So for instance, if I have 0, 0, then I'll have A on the output of its AND
+gate, and the other AND gates will be all 0's.
+Now what we can do is we can collect these AND gate
+outputs into 4-input OR gate.
+So let's do that.
+We take each of these AND gate outputs, and we feed them into a 4-input OR
+gate, and this is our output.
+So why does this work?
+Well, like I said, if I have a certain value of the select inputs,
+again, let's use our example of 0, 0, then one of the AND gates
+will have the output of the data input, and the other ones will be 0.
+So for instance, if I have 0, 0, then I'll have A on this input,
+and the other inputs to my OR gate will be 0's.
+So what will happen is, because these other inputs
+are 0's, then whatever the value of A is, that will appear at my output.
+So if A equals a 1, then my output will be a 1.
+If A equals a 0, then I'll have all 0's as an input to my OR gate,
+so the output will be 0.
+So the output is A if S1, S0 equals 0, 0.
+We just showed that.
+Now if I have S1, S0 equals 0, 1, then this will be a 0, this will be a 0,
+this will be a 0, and this will be B. So then this output
+will be B if this is the value of my select inputs.
+And the same thing with C. It will be C if I have S1, S0 equals 1, 0, and D
+if S1, S0 equals 1, 1.
+So this is how a 4 to 1 multiplexer works.
+Now, if I had a 2 to 1 multiplexer, then I would have two data inputs.
+I would have two AND gates.
+I'd have one select input, and I would have a 2-input OR gate.
+If I had an 8 to 1 multiplexer, then I would have eight AND gates.
+I would have three select inputs.
+And I would have an 8-input OR gate.
+So that's how a multiplexer works.
+Let's move on to other complex functions.

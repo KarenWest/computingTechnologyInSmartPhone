@@ -1,0 +1,32 @@
+We've come a long way, and now we're at the top of the stack.
+So if you remember, we started with transistors,
+and then we moved through digital logic and computer organization
+and instruction sets, and we've just covered assembly language programming.
+Well, now we're at the top.
+We're going to talk about apps, or application programming.
+Now, we're going to use as an example high-level language
+the language C. Now, the reason we've chosen
+C is because it's easy to see the translation between something in C
+and the assembly language code that we've already done.
+Now, if you've never programmed before, we're
+going to get a flavor for the C programming language.
+This is not a full-blown programming course.
+You'd want to take one of those to learn more.
+But what you're going to see is you're going
+to see how easy it is to write in a high-level language
+compared to assembly language.
+And this is the reason that these languages exist,
+because it's just much easier, it's more productive as a programmer,
+to write something in a language like C rather than writing LC-3 assembly where
+you need to worry about registers and memory addresses and all those details.
+Those are all abstracted away in a high-level language.
+Now, if you have programmed before, what you're going to see
+is how your high-level language programs can be translated down to the assembly
+language that we've already seen.
+So we're going to act as a compiler or interpreter in this module.
+We're going to see some high-level language C programs,
+and we're going to translate those down to LC-3 assembly.
+So by the end of this module, you'll have
+the full view of the stack from transistors all the way up
+to high-level languages.
+So let's get into it.

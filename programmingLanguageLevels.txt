@@ -1,0 +1,41 @@
+Let's begin by looking at the different levels of programming.
+So first we have the hardware on which we build our programming systems.
+The hardware is the microarchitecture, the circuits--
+we're moving electrons around.
+And above this we have low-level languages such as machine language.
+This could be ARM, for instance, or we've
+seen LC-3 machine language in this course.
+And remember we also have assembly language.
+This is a human-readable form of machine language.
+And we use an assembler to translate from assembly language
+down to machine language that runs on the hardware.
+Now, above these low-level languages-- and we call them low-level languages
+because at this level we can form addresses, we can see the registers;
+we're very close to the machine; we can see the machine in great detail. But above
+this is where we start to introduce more abstraction.
+And here's where we have high-level languages, such as system programming
+languages like C.
+Now, C is a little bit of a lower-level high-level language, which
+is kind of strange, because it's less abstract than some
+of the other high-level languages that you might have used.
+And we call C a system programming language
+because it's widely used to develop systems such as operating systems.
+In fact, the Unix operating system was developed
+using the C programming language.
+Now, we need to translate—-and we’ve already talked about this-- we
+need to translate from a system programming
+language or any high-level language down to machine language.
+And we do this through a compiler.
+So we do compilation, and that's a piece of software
+that translates from a high-level language like C down to assembly.
+And then the assembler will then translate that down
+to machine language.
+And actually that can be done in one step called the compiler.
+Now, above C, we have more abstract languages,
+such as application languages like Java and scripting languages like Python.
+And these can be interpreted or compiled.
+So we can compile these and create a program,
+an app that we then install on our machine,
+or they can be interpreted-- they can be translated on the fly.
+And we'll talk about these differences between interpretation and compilation
+a little bit later in this section of the course.

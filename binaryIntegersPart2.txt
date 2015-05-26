@@ -1,0 +1,72 @@
+To do unsigned binary arithmetic, we do just like Base 10,
+except we're using Base 2.
+So Base 2 addition is just like Base 10, but we
+have to keep in mind that we're dealing with Base 2 now.
+So all we have is 0's and 1's.
+And the way we do this is just like we learned for Base 10,
+we add from right to left.
+And we propagate a carry, again from right to left,
+from one position to the next one.
+Here are three examples where we have two binary numbers that we're
+adding together.
+And what I've shown in parentheses is the equivalent decimal value.
+Now you should be able to verify for yourself that these decimal values,
+these are the equivalent decimal values for these binary representations.
+Let's start with the first example, which is simple, a little bit simpler,
+because it doesn't have any carries.
+All we do is just like we learned for Base 10,
+is we add the values in each position.
+So we have 0 plus 1, that's 1.
+1 plus 0 is 1.
+0 plus 0, 0.
+Then 1.
+And then 1.
+Now this is the equivalent to the decimal value 27.
+And you should be able to verify that for yourself.
+Let's take an example where we have a carry.
+So here I'm adding 18 plus 11.
+In the first position, I had 0 plus 1, that's 1.
+Now in the next position, I'm adding 1 plus 1, which
+is 2, and in binary, that's one 1, 0.
+So we put a 0 in this position, and now we have a carry
+into the next position of 1.
+Now we add those three values, 1, 0, 0.
+That gives us 1.
+And then we can just add the next two.
+And this is equivalent to decimal 29.
+In the next example, we're going to have a lot more carrying going on.
+Let's start with the right position, as always.
+We add 1 plus 1.
+Again 1 plus 1 is 2.
+In binary, that's 1, 0.
+So I put a 0 here and I carry a 1 into the next position.
+Now here I have 1 plus 1 plus 1, which is 3.
+And in binary, that's one 1, 1.
+So in this position, I have a 1 and have a carry out of 1
+into the next position.
+Now I have 1 plus 1 plus 0.
+So I have a 0, with a carry-in of 1 to the next position.
+Again, the same, 1 plus 1 plus 0.
+0 with a carry-in of 1 to the next position.
+And finally, I have 1 plus 0 plus 0, which is a 1.
+And this is equivalent to decimal 18.
+We need to represent both positive and negative numbers.
+So we need to have signed integers.
+Now with 8-bit, with n bits, I should say,
+we have 2 to the n distinct values.
+Now that gives us the ability to assign about half
+of these to positive integers and about half to negative, keeping in mind then
+we have to reserve 1 for 0.
+So for instance, if n equals 3, then we have eight total values.
+So we can assign about half of those 1 through 3 to positive, and about half
+of them, minus 3 to minus 1 to negative.
+That gives us 6 of our 8.
+That leaves us two values, 1 for 0, and then we have one extra.
+And then what we do with that one extra defines what kind of sign integer
+notation that we're using.
+With positive integers, this is just like the unsigned values, with a 0
+in the most significant bit.
+So every positive integer is going to have a 0 in the leftmost bit.
+So for instance, 00101, this is equivalent to decimal 5,
+just like for unsigned integers.
+The question is, how do we handle negative integers?

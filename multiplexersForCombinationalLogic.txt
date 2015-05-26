@@ -1,0 +1,90 @@
+Another useful logic function is what's called
+a multiplexer, or a mux for short.
+What a mux does is it has several inputs,
+and it connects one of those inputs to the output.
+So we have several inputs, but one output.
+Only one of those is connected to the output at one time.
+Here's a general diagram of an n to 1 mux.
+So I have n inputs-- data input 0 through data input n minus 1.
+And each of those inputs could have multiple bits.
+So I've just shown this generally as having
+b bits for each one of those inputs.
+And only one of those inputs is connected to my data
+output, which also has b bits.
+Now, which one gets connected to the output?
+Well, that depends on another set of inputs, called the select inputs.
+And it's just like it sounds.
+The select selects one of those n inputs to appear at the output.
+Now how many bits do we need for the select inputs?
+Well, of course, that depends on the number of inputs.
+Well, if I have n inputs, then I need the ceiling of log base 2
+to the n select inputs.
+Now let's talk about a couple of examples
+to understand why we need log base 2 n--
+the ceiling of that-- that number of select bits
+for our general multiplexer.
+So let's say that n equals 8.
+Then I need 3 select bits in order to uniquely identify which of the 8 inputs
+I want to connect to the output.
+So if I take a log base 2 of 8, that turns out to be 3.
+Now what if n was 6?
+Well, it turns out that two bits isn't enough.
+Again, I need three bits.
+Now, how do I come up with that?
+Well, I take the ceiling of log base 2 of 6.
+Now, the ceiling, if you remember, rounds up to the nearest integer.
+So my value actually would become between either 2 or 3.
+It would be higher than 2 and less than 3.
+Take the ceiling of that.
+Again, I need three select bits.
+Now, how is this organized?
+How is a b bit mux organized?
+Well, it turns out it's a bunch of single-bit circuits.
+So I create actually b n-to-1 mux circuits.
+So I take each individual bit.
+I pass it through an individual 1-bit circuit,
+and I just duplicate this b times.
+So when I have, say, b equals 4, then I will have 4 n-to-1 mux circuits.
+Here's an example of a 2-to-1 mux.
+So here I have two data inputs, and I'm labeling those d0 and d1.
+I have one output.
+I've labeled this q.
+And I have another input-- my select input.
+And I only need one of those, because n equals 2.
+So I've labeled that s.
+So this selects one of the two bits to appear at the output.
+Now, the way I've labeled the data inputs when s equals 0, then d0
+gets connected to the output q.
+And when s equals 1, then d1 gets connected to the output q.
+So it's useful to label our data inputs in a way that clearly identifies
+what select input makes that connection from that data input to the output q.
+Now, here's a couple of examples where I have just some values.
+I just have some inputs, I should say, just arbitrarily named v and w.
+And what happens when I have my select input of 0?
+Well, then my input w gets connected to my output.
+So w passes through my multiplexer and appears at the output.
+And then, when I have my select input of 1, then v makes the connection.
+The connection is made for v to the output.
+So v passes through the circuit and appears at the output.
+Now if I had, say, 4 bits that I wanted to create multiplexer circuits for,
+then I would have 4 of these.
+So in general I use b of these for b bits,
+and I connect the same select input to all of them.
+So I have 1 select input for b bits, and it connects in this case
+to the s input of all of my 2-to-1 multiplexers.
+Here's a bigger multiplexer called a 4-to-1 mux.
+So this selects 1 of 4 bits to appear at the output.
+And again, I've labeled my data inputs in a way
+that makes it clear what select input is needed to connect that data
+input to the output.
+So d0 gets connected to the output when I have 0, 0; d1 when I have 0,
+1; d2 when I have 1, 0; and d3 when I have 1, 1.
+So here's an example where I have 4 inputs, just calling them
+x, y, z, and w.
+And when I have 0, 0, then that bottom input gets connected to my output.
+So w appears at the output.
+Then, when I have 1, 0, then y here gets connected to the output.
+And again, just like my 2-to-1 multiplexer, if I have b bits, then
+I use b of these circuits, and the same select inputs are used for all.
+I take my 2 select inputs to my circuit, and I connect them
+to all b 4-to-1 multiplexers.

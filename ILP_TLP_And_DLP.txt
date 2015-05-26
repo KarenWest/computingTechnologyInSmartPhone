@@ -1,0 +1,40 @@
+To recap, we've talked about 3 types of parallelism.
+ILP, TLP, and DLP.
+Now, many processors exploit all 3 of these
+because the best performance per watt-- the best way
+to get the performance that we need the most energy efficient manner--
+is achieved with each of these in moderation, rather than taking 1 or 2
+of these to the extreme.
+Let's start with ILP.
+So typically, we have a 2-to-6-way superscalar pipeline
+in our smartphone processors.
+And this is because now, theoretically-- and engineers
+know how to make wider super scalar pipelines--
+but the performance improvement tapers off with wider pipelines.
+Well, the power may increase significantly,
+and the performance improvement tapers off
+because of things such as data dependencies.
+So we may have a 16 way super scalar pipeline,
+but it could be that we can only say, issue four instructions at a time.
+So we're wasting resources, and those resources may burn power.
+So we typically keep ILP to 2-to-6-way superscalar pipeline.
+For TLP, you may see-- and again, this is controversial,
+depends on your smartphone-- you may see support for 2 threads
+because that could require a small amount of additional hardware
+over a single thread superscalar pipeline.
+And this could improve the efficiency of the hardware
+compared to superscalar alone.
+Because some resources that might be otherwise
+idle get to be used by a second thread.
+Now, DLP via SIMD-- there are many applications
+such as graphics and video/audio processing
+that make this worthwhile, that have data level parallelism.
+So what you commonly see-- and we mentioned
+ARM has something called Neon, and Intel has something called SSE--
+you commonly see these processors that run our apps have
+some sort of SIMD support as well.
+So your smartphone processor supports ILP, it supports DLP,
+and it certainly supports TLP.
+And the question is whether it supports it in the single processor itself,
+or whether it relies instead on multicore.
+And that's what we're going to talk about later in the course.

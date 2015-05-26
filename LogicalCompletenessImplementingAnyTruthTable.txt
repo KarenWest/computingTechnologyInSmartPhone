@@ -1,0 +1,118 @@
+Now that we've seen a couple of useful combinational a logic functions, namely
+a decoder and a multiplexer, let's talk about how you can take any logic
+function and create the gates.
+Now sometimes you want to create a custom logic
+function, something that's not a standard function such as a decoder.
+And that custom combinational logic function is defined by its truth table.
+So here's an example here where I have a function which has three inputs A, B
+and C. And this is the function F.
+And here are all the possible input combinations.
+And here I've put zeroes where the function is 0,
+and 1 where the result is 1.
+So this is just an arbitrary function I've created.
+And what we're going to do is we're going to take this,
+and we're going to put down the NOT, AND, and OR
+gates that implement this truth table.
+So first of all, let's talk verbally about what this function means.
+Now, you can do this in two ways.
+You can focus on the zeroes of F, or you can focus on the ones of F. So let's
+focus on the ones.
+So verbally, what this function means is F is a 1 if A is 0, and B is 1,
+and C is 1; or A is 1, and B is 0, and C is 0; or A is 1, and B is 1,
+and C is 1.
+So you can see that we have some inversion.
+So if I have NOT A here in this particular row,
+and then you see we have the ANDing of these different inputs,
+and then we also have an OR, because it's a 1 if any of these combinations
+are seen on the input.
+So what we need to do first of all is we need to create a set of AND gates
+that detect each of these rows where we have a 1.
+And you see that we're going to have to invert some of our inputs
+in order to do that.
+So we're going to do the same thing that we did with decoders and multiplexers.
+We're going to draw this out with the inputs at the top or the bottom.
+You can choose which way you want to do it.
+I'll just put them at the top.
+So I have my inputs A, B, and C.
+And we're just going to run these wires down this way,
+because we're going to tap off of those.
+And then we're going to create the inverted value,
+because we may need that as well.
+So we're just going to take A, we're going to put it through an inverter
+so we have that available.
+And we'll do the same thing with B and C.
+So now I have the true value of A available,
+as well as its complemented value.
+So when A is 0, then this is going to be a 1.
+And obviously, if an A is 1, then this is going to be a 1.
+So let's look at this first row here where we have a 1.
+So I have when A is 0, and B is 1, and C is 1, then I will have a 1.
+So what I need to do is I need to take the complemented value,
+because when A is 0 this is going to be a 1, right?
+So I need to take that complemented value
+and put this into my three-input AND gate.
+So I take the complemented value of A and feed that in.
+And then for B and C I just take them, their true value.
+So I take B from here, and I also take C from here.
+So this AND gate is going to be a 1 if I have 011 on my input.
+And so, we do the same thing for the other two rows.
+So let's take this row here, make another AND gate,
+and here we have A is a 1.
+That's when we go to 1 here, so we're going to take the true value of A.
+And here we have B and C are 0.
+So we're going to take the complemented values of B
+and of C. So again, this output's going to be a 1 when I see 100 in my input.
+And finally, in the last row here, I have when I have all ones.
+So I just take the true value.
+This is my last AND gate.
+So take the true values of A, of B.
+And do this very carefully.
+Sometimes you can make mistakes and take the wrong one.
+So you have to be very careful.
+And C. And here's my last AND gate.
+So you see that because I have three ones in my truth table,
+I have three AND gates.
+And because I have three inputs, then each of these AND gates
+has three inputs.
+Now, what we can do is we can do an OR of this, because remember,
+we said that if we see this input pattern, or this input pattern,
+or this input pattern, then F is a one.
+All we need to do is to add a three-input OR gate that
+collects all of these AND outputs.
+And this is our function F. So you can take a truth table, any truth
+table, any combinational logic truth table--
+and you do this procedure of taking the true and complement values as
+appropriate.
+Feed them to a first level set of AND gates.
+And you have as many AND gates as you have ones in your truth table.
+And then, you have an OR gate which is as wide to collect all of these ANDs.
+And that's how you implement F. And you can do this with any truth table.
+Now, if you recall, with CMOS, we said that we have a NOT,
+we have an inverter, we have a NAND gate, and we have a NOR gate.
+So those are the best gates for CMOS.
+Well, what I have here is I have an AND and an OR.
+But we can convert these using De Morgan's Law into NAND gates.
+So how do we do that?
+Well, first let's convert this into a NAND gate.
+So if you remember the symbol for a NAND gate, this is a NAND.
+I put a bubble here at the end.
+So now I have NAND gates at the first level.
+Let's convert this into a NAND gate.
+If you remember from De Morgan's Law, that an OR with the inputs inverted
+is also a NAND.
+So this is also a NAND gate.
+So I have a NAND gate here and a NAND gate here.
+Why does this work?
+I hope you see that these bubbles cancel out.
+RIght, it's like they're not there.
+Because I'm going to invert this output, and I'm going to invert it again.
+So this is exactly the same function as having the ANDs and the OR.
+So we can build a combinational logic function
+like this using just inverters.
+We're going to keep inverters around because they're very fast.
+There's only 2 transistors here.
+And then, all we have to have here is NAND gates.
+So in CMOS we can build any function using just our inverters, and just
+our NAND gates.
+And we can also do the same thing if we focus on the zeros.
+But we'll end up with just inverters and just NOR gates.

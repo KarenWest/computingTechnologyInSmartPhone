@@ -1,0 +1,128 @@
+The first complex logic function using logic gates
+that we're going to put together is called a decoder.
+Now, a decoder has n inputs and 2 to the n outputs.
+So for instance, if n equals 2, then I have 2 to the 2, or 4 outputs.
+Now, a characteristic of a decoder is that only one output is 1 at a time,
+and all the others are 0.
+And each input pattern, each unique input value, produces a unique output.
+Let's look at an example of what's called a 2-to-4 decoder.
+Now, a 2-to-4 decoder has two inputs and four outputs.
+So let's take our two inputs and just label them
+A and B. I have my two inputs A and B. And I have four outputs.
+Now, I'm going to give them certain names, which
+will be little more clear later on.
+Let's call them Out0, Out1, Out2, and Out3.
+Now, let's look at the different input values and what happens to the output.
+So first of all, if A and B are 0, 0, and let's look at that first gate,
+I have two bubbles.
+Remember, those bubbles represent inverters.
+So I have two bubbles at the inputs to this AND gate.
+So this output will be 1 if A, B equals 0, 0.
+Now, what happens to the other AND gates?
+Well, the second AND gate, the B is non-inverting, and I have a 0.
+So that forces the output to 0.
+The third AND gate, the A is not inverted.
+It's going straight into that AND gate, so that output is also 0.
+And then the last AND gate, where both inputs come in straight in without
+being inverted, they're both 0's.
+So the output's going to be 0.
+So here's that characteristic of a decoder.
+For the inputs 0, 0, the top AND gate has a 1,
+and all the other outputs are going to be 0.
+Now, let's take an example where I have A equals 0 and B equals 1.
+Well, that top AND gate is going to be output of a 0.
+But then the second AND gate is now going to be an output of a 1.
+So here I have a 1 if A, B equals 0, 1.
+And again, all the other three AND gates are going to have an output of 0.
+Now, when I have an input of 1, 0, then the third AND gate becomes a 1.
+So here I have a 1 if A, B equals 1, 0.
+And then, finally, when I have 1, 1, it's
+the last AND gate that becomes an output of 1.
+And the other three AND gates have output of 0.
+So here I have 1 if A, B equals 1, 1.
+Now, how many gates do I have?
+And let's think in terms of basic logic gates of AND, OR, and NOT.
+OK?
+If we look at AND, OR, and NOT gates, how many gates do I have?
+Well, we can just count them up.
+So you can see it's pretty obvious I have four AND gates.
+And each of those bubbles represents an inverter, so I have four inverters.
+And so I have a total of eight gates in the circuit.
+Now, I can do this a little bit differently and actually reduce
+the number of gates.
+And this is going to be kind of a general methodology
+that we use in order to create logic functions.
+So I'm going to redraw this a little bit,
+and you'll see that I can actually get rid of some inverters.
+So we're going to draw it this way with A and B
+coming in from the top of our diagram.
+So I take A and B. I have them come in from the top.
+And I'm just going to draw a long wire for each of those
+because I'm going to make connections to AND gates.
+Now, what I'm also going to do is I'm going to invert A and invert B.
+So I'm going to draw an inverter for each of those.
+So I can make a connection here and draw an inverter,
+and I can also extend that down.
+And for B, I'm going to do the same thing.
+I'm going to draw an inverter and extend that down.
+So now I have available to my AND gates both the true value
+of A, the value of 1, and the complement value.
+When it's 0, then the output of this inverter value will be a 1,
+because it's the true and the complement value.
+Now, let's do the same thing here.
+Let's form our four AND gates from these values of A and B,
+with their true and their complemented values.
+Well, here's my first AND gate.
+Now, in my original diagram, we see that we have two inverters at the input.
+So we're going to grab the inverted values of A and B.
+So we're going to tap off of this point here and tap off of here,
+and this is my output Out0.
+So it's the same function, but I'm just using these inverted values
+that I have going into my circuit.
+Now let's look at the second logic gate, the second AND gate, I should say.
+Here we're using the inverted value of A and the non-inverting value of B.
+So I take the inverted value of A, and I take the non-inverted value of B,
+and this is Out1.
+Let's do the same thing for the last two gates.
+So this one I take the non-inverting value of A,
+and here I take the inverted value of B, and this is Out2.
+And then, finally, in the last gate, I take
+the non-inverted values, the true values, of A and B.
+So I make the connection to the true values, the non-inverting values,
+of A and B, and this is my final output.
+Now, what's the advantage of doing this?
+Well, actually, you see that I've saved two inverters.
+By taking the values from the top and inverting them
+and then sending those down the circuit this way,
+I've eliminated two inverters.
+So I have a smaller circuit and potentially
+a faster circuit than my previous circuit, my original circuit.
+Now that we've seen how a 2-to-4 decoder operates,
+let's draw out the truth table for a decoder.
+Now, our truth table has two inputs A and B, and it has four outputs.
+So let's draw those out.
+I have two inputs A and B, and then I have four outputs, Out0, Out1, Out2,
+and Out3.
+Now, there are four possible values of A and B.
+Let's write those out-- 0, 0; 0, 1; 1, 0; and 1, 1.
+And when A and B are both 0's, then Out0 is a 1, and the other outputs are a 0.
+So I have 1, 0, 0, 0.
+When I have 0, 1, I have 0 for the first output, 1 for the second,
+and then 0's for the last two.
+And then we can just fill in the other rows as well.
+So I have 0, 0, 1, 0, and then 0, 0, 0, 1.
+So this has that property from the truth table.
+You can see that we have this property where only one output is a 1,
+and it's a 1 for a unique combination of the inputs.
+And when that occurs, all the other outputs are a 0.
+Now, I promised you I would let you know why
+I labeled these outputs the way I did.
+Well, you can see that Out0 is a 1 when A and B are 0, 0, or the value 0.
+And Out1 is a 1 when A, B equals 0, 1, or the value 1.
+Out2 is a 1 when we have one 0 or two.
+And Out3 is a 1 when I have 1, 1, or three.
+So that's why I labeled them that way.
+Might seem a little strange at the beginning
+to have an output that has 0 at the end of it,
+but I did it in order to make it clear that this output is
+a 1 when A and B are 0.

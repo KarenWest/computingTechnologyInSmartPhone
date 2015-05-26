@@ -1,0 +1,32 @@
+Now that we've seen numbers, let's talk about the operations
+that we perform on those numbers.
+Now a computer can do arithmetic like addition and subtraction,
+but there are other types of operations called logical operations.
+And these logical operations have their roots
+in what's called Boolean algebra, which was
+introduced in the 1850's by the English mathematician George Boole.
+Now Boolean algebra is a little different than normal algebra,
+where we use addition and subtraction and we have numbers.
+With Boolean algebra, we only have two values, true and false or 0 and 1.
+Now we've heard about 0 and 1, and we're going
+to use those when we talk about logic.
+Now the types of logical operations that you can do in Boolean algebra
+are and, or, and not.
+They're three fundamental operations in Boolean algebra,
+and we're going to define those in this module.
+Now Boolean algebra had been around for many, many years.
+And it wasn't until the 1930's that the American mathematician and engineer
+Claude Shannon, when he was in his early 20's, determined
+that he could take the principles of Boolean algebra
+and apply them to the creation of digital circuits.
+So he introduced what was called switching algebra, a variant of Boolean
+algebra as applied to digital circuits.
+And he realized that you could build computers
+using these digital circuits and these principles of the switching
+algebra using these logical functions and, or, and not.
+So we're going to talk about in this module about arithmetic,
+about addition and subtraction, and another operation called
+sign extension.
+And then we're going to move on to this Boolean algebra, using
+and, or, and not.
+So let's get into it.

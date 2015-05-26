@@ -1,0 +1,72 @@
+Now that we've covered computer organization, microarchitecture,
+and instruction set architecture, we're ready to move on to programming.
+Now, we're not going to just start writing code.
+The first thing we need to do is some problem solving.
+So we need to start with a problem statement
+and understand all the aspects of that statement
+and then break that down into certain well-known constructs
+that we use in our programming languages.
+So that's what we're going to start with in this section of the course.
+Now, we've already actually seen some programs.
+Those were written in LC-3 machine code.
+But we don't write programs in machine code,
+because it's just far too tedious to wrote all those 0s and 1s
+and to remember opcodes and things like that.
+Now, decades ago, we used to write programs
+in what's called assembly language.
+Assembly language is a human-readable form of machine code.
+So we still deal with registers, and we still deal with opcodes,
+but we don't have to remember the numbers.
+Instead, we use symbolic names, such as NOT instead of the opcode for a NOT.
+And so it's much more productive to write using the symbolic names
+and to have labels, for instance, for branch targets
+rather than to calculate offsets.
+And so we can be much more productive writing in assembly language.
+So we're going to see assembly language versions of that machine code
+program in this section as well.
+Now, ultimately we need to have machine code to run the hardware.
+So we're going to talk about the translation process, the assembly
+process, where we take that assembly language program and we translate it
+down to machine code, which runs on the hardware.
+Now, we write our apps in high-level languages.
+We don't write in assembly language anymore.
+And there's some good reasons for that.
+First of all, when we talk about C, the programming
+language we're covering in this course, you'll see how much more intuitive
+it is to express something in C rather than in assembly language,
+because it abstracts away the details of registers and memory modes and all
+those things that you have in assembly language.
+So it's much more productive, actually, to write in a high-level language
+than to write in assembly language.
+So that's why we develop our apps in a programming language like C.
+Now, another advantage of a high-level programming language
+is that it's portable.
+So I can write a program in C, and then I
+can compile it to run on an ARM instruction set or an Intel instruction
+set or another instruction set, LC-3.
+So this one program, this one C program, can
+be run on a variety of different architectures--
+whereas in assembly language, I have a specific assembly
+language for each of those ISAs.
+So I have to write three different versions, for instance, of my program
+if I want it to run in those three instruction sets.
+With a high-level language, I can write one version,
+and then I have something called the compiler that
+compiles that down to the machine code for each of those.
+So, again, that makes this more productive,
+because if we want to write for different architectures,
+we want our app to run on different types of instruction sets,
+then we could write one version of that program,
+and then we can have a compiler, a piece of software that translates that down
+to the machine code.
+And so we're going to see this full software stack
+in this section of course.
+We already have machine code.
+We're going to talk about assembly language, which
+is really about at the same level as machine code;
+it's just a different format.
+And then we're going to move up to high-level languages-- C.
+And these high-level languages are what we use to write our apps.
+And so at the end of this module, or at the end of this section, I should say, you'll see this stack of software.
+And then you'll have the full picture of computer systems,
+all the way from transistors all the way up to apps.

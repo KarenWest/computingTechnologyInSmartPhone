@@ -1,0 +1,184 @@
+Now that we've generally covered operators, now
+we're going to get into a lot more detail.
+First of all, there are three things we need to know about operators.
+First is what is the function-that's the operation that is carried out.
+And second is precedence.
+And that's the order in which the operators are combined.
+So here's an example-- a times b plus c times d.
+Now, what we've learned is that multiplication
+has a higher precedence than addition.
+So this is the same as putting parentheses around a times
+b and c times d, because those are done first, and then we have the addition
+after that.
+Then there's associativity, which is the order in which the operators
+of the same precedence are combined.
+So, for example, a plus b minus c is the same as putting a plus b
+in parentheses and then doing minus c, because we associate add and subtract
+left to right.
+So we do the addition first, followed by the subtraction.
+Now we're going to go through the different operators in c.
+And the first is the assignment operator.
+Now, this changes the value of a variable.
+Let's look at this example of x equals x plus 4.
+So the first thing that we do is we evaluate the right-hand side.
+So we take x, and we add 4 to it.
+Then the second thing that we do is we set the value of the left-hand side
+variable to the result.
+Now let's discuss the arithmetic operators.
+So in this table, on the left-hand side, we're
+showing the symbol; in the middle, the operation associated with that symbol;
+and then an example of usage in the right-hand side.
+So we have multiply, divide, addition, subtraction, just as we used to.
+We also have modulo.
+Now, if you haven't seen this before, x modulo y means take x, divide by y,
+and the remainder is the result, the modulo.
+Now, all of these associate left to right, but multiply, divide,
+and modulo have higher precedence than addition and subtraction.
+So let's look at an example, 2 plus 3 times 4.
+Now, again, we're going to do the multiplication first here and then
+do the addition, because multiplication has higher precedence.
+But that will give us a different result than if we put 2 plus 3 in parentheses
+and multiply by 4.
+So if that's what we intend, if we want to do the addition first,
+then we have to put that in parentheses.
+Next we have the bitwise operators in C.
+And here's a table of those.
+The first three, bitwise NOT, bitwise AND, and bitwise OR,
+are the same as we saw previously when we
+had Boolean operations in the digital logic part of the course.
+So, for instance, NOT x means take all the bits of x and invert them.
+And x AND y means take the associated bits of x and y and AND those.
+So, for instance, I take the rightmost bits of x and y
+and AND those and then the next bits and the next bits, et cetera.
+And I do the same with bitwise OR.
+Now bitwise XOR is we do the XOR on the associated bits.
+Now, XOR is different than OR in that when we have 1, 1, the result is 0.
+So x XOR y is a 1 if x is a 1 or y is a 1, but not both.
+Now, the last two operations are left shift and right shift.
+Now, these bitwise operations operate on variables bit by bit.
+So these are like the LC-3 AND and NOT instructions
+that we've seen previously.
+Now let's look at some shift operation examples.
+So x equals y left shift 1 will shift y left 1 position.
+Now, this is the same as doubling-- as multiplying by 2.
+So if you think about it, if I shift all the bits left 1 position,
+then I'm essentially doubling the value of y, or I'm taking y
+and I'm shifting left by 1, assigning that to x, in this example.
+Now the next example, z equals w right shift 5,
+will shift w right 5 positions.
+Now, this is sign-extended, which means that if the left bit is a 0,
+then I'm going to shift zeros in from the left-hand side.
+And if that bit is a 1, then I'll be shifting in 1.
+So I'm preserving the sign of the original value.
+And then a equals b left shift c shifts b left c positions.
+So here we have a variable c rather than a constant value in our other examples.
+Next we have the C logical operators, which sound similar to the bitwise
+operators but operate differently.
+Exclamation point means logical NOT, such as NOT x.
+The double ampersand symbol means logical AND, such as x AND y.
+And the double bar means logical OR, and here's an example-- x OR y.
+Now, these treat the entire variable or value
+as either true-- and that's anything that's nonzero;
+so if you have a nonzero result, we treat that as true,
+and if we have a 0 result, we say that's false.
+And if it's true, we say that this is a 1; the result is a 1.
+And if it's false, then the result is a 0.
+Now, let's look at this example, where first we assign x the value 15, y
+the value 0, and now we're going to do a printf, an integer value,
+with the logical result of x OR y.
+Now, x is true, and y is false, so the result
+is going to be true of that logical OR operation.
+And so what we're going to print here is the value 1.
+Now let's compare bitwise versus logical operators, where
+we have 1 with a bitwise AND of 8.
+Now, that's going to be 0.
+Now let's look at the boolean values for those, the binary values of those.
+So if we have, say, 8-bit values, then 1 is all 0s and 1.
+And we're going to AND that with 00001000.
+And when we do bitwise AND of those two, we're going to get 0,
+and that's why we get the result of 0.
+Now, what if we do 1 logical AND and 8?
+Well, 1 is true.
+It's nonzero.
+And 8 is also true.
+So if we do true and true, then the result is true,
+so that's why we get 1 rather than 0 with the bitwise operator.
+Now let's look at the C relational operators.
+Now, the first four are comparison operators.
+So, for instance, this symbol we would recognize as greater-than.
+So, for instance, we're testing for x greater than y.
+If we follow that with an equal sign, then that’s
+testing for greater than or equal.
+And we have similar for less than and less than or equal.
+Then we have the test for equality, and that's a double equal sign.
+So if we have x equals y, where we have a double equal sign,
+we're testing for x being the same as y.
+And then we can test for inequality by putting an exclamation
+point followed by an equals.
+So if we're testing for x not equal to y, we do it this way.
+Now, the result is either going to be a 1
+if it's true, if it's nonzero, or 0, which means false.
+A common error when learning C is to confuse assignment and equality.
+Let's look at a piece of code, and let's see what it does.
+So first of all, we're assigning two integer values, x and y,
+the values 9 and 10.
+The next statement, we're doing an if x with a double equals of y.
+Now, if that's true, we're going to print the string "not executed"
+followed by a line feed.
+Now, the next one is different.
+Here we're doing if x with a single equal sign y.
+And then we're going to printf the values of x and y.
+Now, if you look at this code, what will be printed, if anything?
+Will we do either of these printf statements?
+Well, let's look at the first one.
+So here we're testing for equality.
+We have the double equal sign.
+And because x and y are not equal, we're not going to print that string.
+Now, with the second one, what we're doing here is we're assigning x—
+we’re assigning x the value y.
+That's what we said to do.
+We said x equals y.
+So x will equal 10, and the result of that assignment will be true.
+It will be nonzero.
+So that if statement will turn out to be true,
+and then we're going to print the values of x and y.
+Now, what's going to be printed out?
+Well, we're going to print out 10 and 10,
+because we just assigned x the value of y, which was 10.
+So this may not have been what we intended when we wrote this code.
+Now, the compiler is not going to catch this.
+The compiler assumes that you wrote this code,
+and this is what you wanted to happen.
+So this will be executed just the way we said,
+even if you intended something different.
+Finally, we'll cover the two C special operators, double-plus
+and double-minus.
+Now, these increment or decrement the value of a variable
+before or after its value is used in an expression.
+Now, here are the four possible uses of those.
+Post-increment, such as x++, will increment the value of x after its use
+in the expression.
+And post-decrement will decrement the value of x, again, after it's used.
+Now, pre-increment, ++x, will first increment the value of x and then use
+it in the expression.
+And the same with pre-decrement-- we'll first decrement that value
+and then use it.
+So pre-increment or pre-decrement will increment or decrement the variable
+before we use its value, and post-increment or decrement
+will increment or decrement after we use its value.
+Now let's look at a couple of examples, the first using post-increment
+and the second pre-increment.
+In the first example, we first assign x equals 4,
+and then we do y equals x++.
+So what will be the result of x and y?
+Well, we'll see that y is assigned the value of x first,
+because it's a post-increment.
+So then y will get the value of 4.
+And then after that, x will be incremented to take on the value 5.
+So after this, we'll have x equals 5 and y equals 4.
+Now, in the second example, we first assign, again, x equals 4,
+and then we do y equals ++x.
+So you see that we're doing the pre-increment here.
+So first we will increment x, so x will become 5,
+and then we'll assign that to y.
+So both y and x will take the value 5.

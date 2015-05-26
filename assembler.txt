@@ -1,0 +1,70 @@
+Now that we've seen an assembly language program,
+let's talk about how an assembler, which is a piece of software,
+converts the assembly language program, which is in a file--
+and in LC-3 that file ends in .ASM-- into an executable file,
+into the machine code that the hardware can understand.
+And that executable file in LC-3 ends in .OBJ.
+Here's a block diagram of the process.
+We start with an assembly language program-- that's a file--
+and the assembler makes two passes through this program.
+In the first pass, it creates a symbol table.
+In the second pass, it uses the information in that symbol table
+to create the executable image, the 0s and 1s, the machine code
+that the hardware can understand.
+In the first pass, the assembler scans the program file from .ORIG to .END.
+It finds all labels and it inserts them with their corresponding addresses
+into the symbol table.
+Now, in the second pass, we can take that symbol table information,
+and we can convert the instructions to machine language using
+the information that's in that table.
+In the first pass, the assembler constructs the symbol table.
+It does this by first finding the .ORIG statement.
+This indicates the address of the first instruction.
+And it uses that address to initialize the location counter,
+or LC, which the assembler uses to keep track of the current instruction.
+Then it goes through each non-empty line in the program.
+If the line has a label, it puts the label and location counter pair
+into the symbol table.
+So now we know, in the second pass, when I
+see a label, what the corresponding address of that label is.
+It then increments the LC.
+Now, if the statement is a .BLKW or .STRINGZ statement,
+then we need to increment the LC by the number of allocated words.
+Because it could be a number of different words.
+Now, a line with only a comment is just completely ignored.
+And we do this until we reach the .END statement,
+which indicates the end of our program.
+In the second pass, the assembler uses the symbol table information
+to generate the machine code for our program.
+For each assembly language statement, the assembler
+will first generate the machine language instruction.
+And also, if the operand is a label, it will
+look up the address from the symbol table and calculate the correct offset.
+Now, this is for load and store instructions as well as
+branch instructions.
+Now, the assembler will also check for potential assembly errors.
+And these can take different forms.
+The first is an improper number or type of arguments.
+And here are three examples of that.
+So here's a NOT instruction where we have an immediate value, which
+is not allowed in LC-3.
+So it would flag that as an error.
+Here's an ADD instruction with only two operands
+rather than three, which is what we have in LC-3.
+And here's another ADD instruction with a label, which is also disallowed.
+So the assembler will find this as an error.
+Now, we also need to look at immediate arguments
+and make sure that they're small enough to fit into five bits.
+And if they're too large, we'll also flag that as an error.
+So here's an example of an ADD instruction
+where we have an immediate value of 1023,
+which is too large to fit into five bits that we have available in LC-3.
+Now, we also need to check addresses associated with labels
+and to make sure that they're within the range that's allowed
+within PC-relative addressing mode.
+So for PC-relative addressing mode, we have a total of 512 memory locations.
+Now, that's a 2’s complement number.
+We have 9 bits, which is a 2’s complement number.
+So the range is minus 256 locations to plus 255.
+So if we have a range that's larger than that,
+then we need to also flag that as an error.

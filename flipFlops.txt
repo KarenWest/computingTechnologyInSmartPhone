@@ -1,0 +1,123 @@
+Now, before we talk about flip-flops, we need to cover the clock.
+The clock is a very important input to a sequential logic
+circuit that changes the values of that circuit at a specified rate.
+And it's a periodic input that looks like this.
+You can see that it goes from 0 to 1, and stays 1 for awhile.
+It goes back to 0, then back to 1, then back to 0.
+And it does this 0 to 1 change and 1 to 0 change for as long
+as we have power to our circuit.
+So what I'm showing here is time progressing from left to right.
+So as time progresses from left to right,
+the clock just periodically goes up and down.
+Now the clock period is the time between successive transitions
+in the same direction.
+For instance, from 0 to 1, or 1 to 0.
+And here's an example here where I have a clock period,
+and this we call also as having one cycle of our clock.
+Now, the clock period can be, for instance, one millisecond, two
+nanoseconds, 250 picoseconds.
+Those are some examples of clock periods.
+And the clock frequency is 1 over the period.
+Now, when you buy your smartphone, you might
+be able to look into what the frequency is of the processor.
+Now that is 1 over the clock period.
+So if I take that 1 millisecond, 2 nanoseconds, and 250 picoseconds,
+and I invert those, then I get a clock frequency
+of 1 kilohertz, 500 megahertz, and 4 gigahertz.
+The triggering edge is the transition of the clock, 0 to 1 or 1 to 0,
+that captures input data in flip-flops.
+And a clock tick is what we use to talk about the occurrence of a triggering
+edge.
+Now that we've seen the clock, let's talk about a flip-flop.
+A flip-flop samples the input on the triggering edge of the clock.
+And when that's the rising edge of the clock, when it goes from 0 to 1,
+we call that a positive edge triggered flip-flop.
+And those are the type we're going to talk about in this course.
+You can also capture on the falling edge of the clock,
+and we call that a negative edge triggered flip-flop.
+And a D flip-flop can be designed in a number of ways.
+The simplest way to design it, which is the way we're going to do it,
+is to put two D latches back to back.
+Now, a D flip-flop is similar to a D latch, in that it captures the input D.
+But with a D flip-flop, it's different, in that
+captures it based on the clock input.
+Now, a D flip-flop has two D latches back to back.
+And I'm representing a D latch by this symbol here.
+So here we have our first D latch, which captures the input D.
+And that output Q of that D latch feeds a second D latch.
+And then the output of that D latch is the output of our D flip-flop.
+And just like with the D latch, we can have outputs Q as well as Q prime.
+Now, the write enable are controlled for these two D
+latches are controlled by the clock.
+What we do is we take our clock input, and we pass that through an inverter,
+and then we feed that to the first D latche’s write enable.
+And then we invert that again, and we feed that to the second write enable.
+Now that we see how we design a D flip-flop, let's talk about how
+it operates.
+And we're going to do this by use of a timing diagram.
+Now, you've already seen a timing diagram when I showed you the clock.
+So we could see how the clock changes its value
+as time progresses from left to right.
+We're going to draw a more complicated diagram, where
+we have all of our inputs and our outputs,
+as well as the internal signals Q1, CLKL1, and CLKL2.
+So let's draw this timing diagram.
+First, let's start with our clock.
+So let's assume that our clock is initially 1 and it goes to 0,
+and 1 and 0 to 1.
+It progresses in that periodic fashion.
+Now CLKL1 is the inverted value of clock.
+So let's draw that.
+And then CLKL2 is inverted again, so it looks like our original clock.
+Now, let's look at this CLKL1 and CLKL2.
+Now, what you'll notice is, when we understand the operation of a D
+latch here, when the write enable is a 1, that opens the latch.
+So you see when CLKL1 is a 1, then latch 1 is open.
+But at that time, CLKL2 is a 0, so that latch is closed.
+So when we get a change in the input, D, that will appear at the output Q1
+because latch 1 is open.
+But we won't see the change in latch 2 at the output Q, because that's closed.
+It's not until we see the clock going from 0 to 1,
+and CLKL2 going from 0 to 1, that we're going to open that D latch,
+and then the value of the output Q will change.
+So this is what we mean by a D flip-flop triggers on the change of the clock.
+When we get from 0 to 1 on the clock, that's
+when we see the change in the output Q. It's only at that point
+that we see the change.
+Now, D will keep its value of 1 for a full clock period or clock cycle.
+But then it may change again.
+Let's assume that it changes to a 0.
+Now, again, our latch 1 is open.
+So Q1 will change after some delay.
+But latch 2 is closed, so Q is not going to change at that point.
+It's only when the clock goes from 0 to 1, the triggering
+edge, that latch 2 will open.
+At that point, we're going to see Q go from 1 to 0.
+So you can verify for yourself, when you change D from 1 to 0 and 0
+to 1, that the output, Q, is not going to change until we
+see that clock triggering edge.
+Until we see it go from 0 to 1.
+Now that we've seen how a D flip-flop works,
+we're ready to draw the truth table.
+We have two inputs, D and CLK, and two outputs, Q and Q prime.
+Now when D equals 0, it's only when we see a change in the clock,
+from 0 to 1, that triggering edge, does Q change.
+So we're going to represent it this way.
+We're going to show the symbol of the clock changing from 0 to 1.
+That's when the output Q goes to 0, and Q prime goes to 1.
+Now when D equals 1, again, we see that triggering edge of the clock.
+Then Q will change to 1, and Q prime will change to 0.
+Now, what happens when our clock is a 0?
+A steady value?
+Well, it doesn't matter what the value of D is.
+And when we say it doesn't matter, sometimes we
+call that don't care, in digital logic.
+And we represent that as an X in our truth table.
+So D doesn't matter, because when the clock is 0,
+we're going to keep the present values of Q and Q prime.
+And the same is true when the clock is steady at a value of a 1.
+It doesn't matter what D is, we're going to retain the values of Q and Q prime.
+Now, instead of drawing these D latches and inverters,
+we're going to represent a D flip-flop by this symbol.
+So we're going to go now into variations in the D flip-flop,
+and we're going to assume that we have this basic circuit.

@@ -1,0 +1,108 @@
+Let's begin by talking about multiprocessing and multicore.
+So multiprocessors are a computer system with more than one processor.
+Now a computer with one processor is called a uniprocessor.
+And multicore takes the idea of multiprocessing
+and puts it onto a single chip.
+So where those multiprocessors in older systems-- and this idea
+is decades old-- under those older systems
+maybe on separate chips or even separate boards.
+Well, the multicore, the processors are all integrated on a single chip.
+There are a number of advantages of multiprocessing.
+And one of those is exploiting thread-level parallelism
+by splitting a task among multiple processors.
+Now this is very useful for things like scientific programs, for databases,
+for media processing, web browsers, games.
+There's all kinds of applications of this.
+Now this also provides tolerance to failures in higher-end systems.
+So if one processor fails, well I have these other processors that I can use.
+Now the system may not have the same performance, but it's still usable.
+It doesn't have to just be taken down completely.
+It still can be available to us.
+And another advantage-- and this is really the drive
+to multicore-- is power efficiency.
+So several modestly superscalar processors
+can be more power efficient than one very aggressive processor
+design that tries to-- very wide superscalar,
+lots of out of order execution, lots of threads.
+That's not as power efficient as taking several modestly designed cores
+and putting them on a single chip.
+And this is the major incentive that we have
+multicore chips in our smartphones.
+However, multiprocessing is not without its challenges.
+One is that parallel programming-- writing
+a parallel version of a program-- can be difficult and can be error prone.
+And some programs are just not easy to parallelize.
+They just don't lend themselves to be made into a multithreaded program.
+Now here Amdahl's Law also applies.
+And Amdahl's Law, as applied to this particular case,
+says that the serial part of a parallel program
+will limit the performance improvement.
+So every parallel program has a serial part
+where there's just one thread that's running, and we
+don't have multiple threads running.
+And that can limit the overall performance improvement.
+Also there's a nontrivial cost of communicating and coordination
+among these different threads.
+And we're going to see that we have to communicate
+when we talk about, later on, we’ll talk about cache coherence.
+Here's a general block diagram of a shared memory
+multiprocessor or SMP for short.
+Here we have a number of different processors
+with their individual caches.
+And those are connected to each other as well as
+to a single memory and a single I/O. So all processors
+share the same memory and I/O devices.
+It's visible to all of them.
+Now processors can share data by reading and writing to memory.
+So if processor one wants to communicate with another processor,
+it can do this through normal loads and stores to memory.
+And this is widely used in multicore chips.
+Our multicore chips use this type of shared memory multiprocessing.
+Now multicore is multiprocessing on a chip.
+So let's look at a typical multicore chip organization.
+We have a number of processors with their pipelines
+and their individual caches.
+Now what we've shown here is that we've grouped those together.
+And they share another level of cache called a level 2 or L2 cache.
+Now that's the second level of cache, which
+is bigger than the level 1 caches.
+Now we've changed those in the pipeline to show those as L1 or level 1 caches.
+Now those are the small caches, which are
+associated with instructions and data.
+Now each of those processors share a second level of cache called level 2.
+And this might be bigger.
+So whereas the level 1 cache is maybe, say 16 kilobytes or 32 kilobytes,
+for instance,
+the level 2 cache may be a megabyte in size.
+So it's bigger.
+Now it's slower, but now if we miss in the level 1 caches,
+we don't have to go all the way out to those slow DRAM.
+We can go to the level 2 cache and look up there
+to see whether we have our instruction or data.
+So it's going to be slower to access this level 2 cache,
+because it's a little bit bigger.
+But it's not going to be as slow as main memory.
+And what we typically do-- and this isn't always the case in our chips--
+what we typically do is we have a shared level 2
+cache among multiple processors and their level 1 caches.
+Now each of those level 2 caches connects to an interconnect
+where we connect to a memory controller.
+And that memory controller is also on our chip.
+And that memory controller connects to a DRAM, which
+is a separate chip that may be integrated
+in the same package as our processor chip,
+but it wouldn't be on the same chip as our processors.
+We also have a set of I/O controllers that
+connect to our shared interconnect.
+And those can be accessed by all of the processors.
+The registers associated with each of the I/O controllers
+are accessible to all the processors.
+So they share the I/O as well.
+And those I/O controllers connect to I/O buses for things like our display,
+our touchscreen, or separate chips that control communication to the internet
+or to Bluetooth.
+Now just as with pipelining and other advanced performance techniques,
+it's really not this easy.
+We have some challenges associated with designing multicore chips.
+Now we're going to talk about one of the main challenges,
+and that's cache coherence.

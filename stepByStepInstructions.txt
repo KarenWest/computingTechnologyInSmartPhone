@@ -1,0 +1,77 @@
+Now, in order to end up with LC-3 code, we
+need to convert our problem statement into a step-by-step description
+of subtasks.
+Now, this is like a puzzle or word problem,
+where we need to know what the starting state of the system
+is, what's our desired ending state, and how do we move from one state
+to another?
+Now, there are certain words that are key words that correlate
+to the three basic constructs.
+For instance, if I said do A, then do B, you
+should recognize this as sequential, because there's no condition attached.
+I'm going to do A, and then I'm always going to do B.
+But if I had if G, then do H, you should recognize
+that as conditional, because I had this condition-- if G. Now
+what if I had for each X, do Y?
+We should recognize this as iterative.
+I'm going to repeatedly do Y. Also do Z until W, that's also iterative.
+I'll do Z repeatedly until I see the condition W.
+Let's revisit our example of counting characters
+and progressively break it down to smaller and smaller subtasks
+until we end up with LC-3 code.
+Here's a flow diagram of the overall picture of our program.
+Once we start, then we input a character; we scan a file,
+counting the occurrences of that character;
+and, finally, we display on the monitor the number
+of occurrences of the character.
+And we put a restriction on this program--
+we would have no more than nine occurrences.
+Once we've done that, then we're done.
+Now we can break this down into smaller subtasks.
+So first subtask is A. So this is where we initialize,
+so we need to have some initialization of values.
+Then we input a character and we set up a pointer
+to the first location of the file that will be scanned.
+We get the first character from the file,
+and then we have to zero the register that holds the count.
+In subtask B, we scan the file, location by location,
+and we increment the counter every time we have a character match.
+Now, we repeatedly do subtask B until we reach the end of the file.
+At that point, we move on to subtask C, where
+we display the count on the monitor.
+At that point, we're done.
+Now, the next step is to take each of these subtasks A, B, and C
+and break them down further until we get to LC-3 instructions.
+Let's look in particular at refining subtask B.
+Here's subtask B again.
+We scan the file, location by location, and we increment the counter
+whenever we have a character match.
+Now, we should recognize this as an iterative construct,
+because we will repeatedly go back and read the file
+and do this comparison and increment the counter.
+Here's a flow diagram of B broken down into an iterative construct.
+First, we test our condition to see if we're done,
+if we've reached the end of the file.
+So long as we haven't reached the end of the file, we're going to do subtask B1.
+Here we test a character.
+If there's a match, we increment the counter,
+and then we get the next character and we go back to the test condition.
+Once we've reached the end of the file, we know that we're done,
+and we end this subtask.
+We can break subtask B1 into two sequential subtasks, B2 and B3.
+In B2, we test the character, and we increment the counter
+if there's a match.
+Subtask B3 involves getting the next character in the file
+and then going back to the test condition.
+Now we're at the point where we can describe B2 and B3 in terms
+of register values and operations.
+Here's B2 broken down even further.
+To test the character, we check if register 1 equals register 0.
+If so, then we increment the counter R2.
+If not, we skip that step.
+B3 involves two sequential subtasks.
+The first is to increment our file pointer R3,
+and the second is to get our next character in the file.
+Then we go back to our test condition.
+Now we're at the point where we can translate this flow diagram directly
+into LC-3 instructions.

@@ -1,0 +1,52 @@
+Your digital design knowledge can be applied in a lot of ways.
+So for instance, if you're going to look at the communications
+part of your smartphone, to Bluetooth, to the internet,
+you'd find digital logic.
+You'd find multiplexers, decoders, finite state machines,
+registers, all the things you just learned.
+Now in this computer organization part of the course,
+we're going to apply our digital logic skills to the design of a computer.
+Now, this part of the course is broken up into two main pieces.
+The first is what's called the micro architecture.
+You could think of this as the hardware design of the machine.
+So this is going to make wide use of our digital logic skills.
+We're going to use registers and multiplexers and adders.
+All of these things we're going to put together
+now to make a working computer, a piece of hardware that can execute programs.
+Now, this is the second part of our course which involves programs,
+but specifically it involves what's called the instruction set
+architecture.
+So this is the interesting part of a computer
+where the hardware and the software come together.
+So the instruction set architecture defines the instructions
+and how we address memory and a bunch of other things
+that tell the hardware what it needs to do.
+So for instance, if we have an add, the hardware is going to do an add,
+it needs to know how it recognizes an add instruction.
+So the instruction set architecture has all of these definitions that
+tells the hardware what it needs to do.
+If I have this type of machine such as an ARM machine or an Intel machine,
+it defines very specifically the hardware design
+for those types of machine, for those types of instructions.
+So the instruction set architecture tells the hardware how to operate,
+but it also makes a link to the software,
+and that link is through what's called a compiler or an interpreter.
+The compiler or interpreter takes a program written in a high-level
+language, such as Java or C, and then it either interprets or compiles that
+down to the instructions defined by the instruction set architecture.
+So the instruction set architecture is kind of a contract,
+we think of it as a contract between the hardware and software.
+It tells the hardware what it needs to do to support this instruction set
+whether it be an ARM instruction set or an Intel instruction
+set or another kind, and it also tells a compiler or interpreter
+how to translate a high-level language program to the instructions
+that the hardware can operate on.
+So that's a very important component that we're also going to cover.
+So first we'll start with the micro architecture,
+you'll build a working computer, and then
+we're going to talk about the instruction set architecture, where
+the hardware and software come together.
+And once you're done with the section, you'll
+know how to design a working computer hardware
+and also you'll be prepared to work on the next part of the course, which
+is programming.

@@ -1,0 +1,85 @@
+Let's begin by seeing exactly how pipelining has broken our program.
+So here's our pipeline diagram showing different clock cycles.
+And in specific clock cycles, showing which instructions
+are in which pipeline stages.
+So first of all, let's look at clock cycle 5.
+So clock cycle 5 is where the ADD instruction writes the value of R1
+into the register file.
+Now up to that point, the register file has the old value of R1.
+Well if you look back at clock cycle 3, that's
+the cycle in which the NOT instruction has read R1.
+So it has read the old value of R1 because the new value is not
+updated until 2 clock cycles later.
+Also in clock cycle 4, we see that the AND instruction again
+has read the old value of R1.
+Our intention in writing this program is for both of those instructions
+to read the updated value that was produced by the ADD instruction.
+But that didn't happen.
+And also in clock cycle 5-- so it's not until the end of clock cycle 5
+that the new value of R1 gets clocked into those flip-flops.
+But during the beginning of clock cycle 5,
+the LDR is reading the old value of R1 again.
+So even in that cycle, we're getting the old value of R1 rather than the new one.
+Now, what about the last add instruction?
+Well as you see in clock cycle 5, R1 gets overwritten.
+And in clock cycle 6, one cycle later, is when that ADD instruction reads R1.
+So that one will work properly.
+It's getting that updated value of R1.
+But the previous three are not.
+And so what will be the result is that our program won't operate correctly.
+You'll actually get the wrong result out of your program because of pipelining.
+And the fundamental problem here is that we
+have a data dependence between the NOT, AND and in the LDR and the ADD instruction.
+Those instructions depend on the ADD instruction for their value of R1.
+But due to pipelining, they're going to read an old value of R1 instead.
+The situation that we have here is called a Data Hazard.
+This occurs when a register is read before the write back of a value
+to that register.
+Here's the situation, in the write back stage the ADD
+instruction is updating register 1.
+But two cycles previously in the ID stage for the NOT instruction
+is reading an old value of R1.
+And one cycle before that write back stage,
+that AND instruction is again reading an old value of R1.
+And even in the same cycle that the write back occurs,
+the LDR is reading the old value of R1 in its ID stage.
+So what should happen here is the first instruction
+calculates a new value of R1.
+And the second, third, and fourth instructions use a new value.
+That's what we intended when we wrote this program.
+But what actually is going to happen is the reverse.
+The second, third, and fourth instructions
+will first read the old value of R1.
+And then the first instruction will write the new value into R1.
+Now fortunately, we don't have to throw pipelining away completely.
+We can solve this problem with some additional hardware.
+What we're going to do is what's called forwarding or bypassing.
+And it's based on an observation.
+The observation is that when is the value of R1 available to our pipeline?
+Well, it's after we do the ALU operation.
+After we do the ALU operation, we actually have in our pipeline
+the correct value of R1.
+The updated value of R1 that we want to pass to the subsequent instructions.
+So what we can do is right after the ALU stage,
+at the beginning of the MEM stage when we have that updated value of R1,
+we can forward it or bypass it to subsequent instructions.
+In this case, to the NOT instruction.
+So we can pass that value in clock cycle 4
+to the NOT instruction that's about to do the ALU operation.
+So before it can do that ALU operation, we're
+going to substitute this value of R1 that's in the MEM stage
+for the value that was previously read by the NOT instruction
+from the register file.
+In the same way in clock cycle 5, we can forward the value
+that we're about to write to the register file for the ADD instruction.
+We can forward that to the AND instruction.
+In this case, the AND has R1 as the second source operand.
+So we can forward that to the bottom ALU input.
+So we have that value in clock cycle 5, and we're
+going to substitute that in the pipeline for the bottom ALU input for the AND
+instruction.
+And also we're going to solve the LDR instruction at the same time.
+The LDR instruction just read the old value of R1.
+And we're going to substitute this value from the ADD that's
+right in the register file for the value that we just
+read from the register file.

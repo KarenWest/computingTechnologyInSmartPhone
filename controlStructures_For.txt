@@ -1,0 +1,116 @@
+Now that we've covered conditionals in C, let's move on to iteration.
+In particular, we're going to look at the for construct.
+So here's a general outline of for code.
+So we have for, and then we have an open parentheses.
+And then we have some initialization, typically
+initialization of a loop variable.
+Then we have a semicolon followed by a test,
+and this tests to see whether we jump out of the loop or whether we do the loop.
+Then we have another semicolon, and then we have some reinitialization.
+And this again may have to do with the loop variable.
+And then we have a close parenthesis.
+And then we have the loop body.
+So this is the actions that we take within the loop.
+Now, we do this initialization first, as shown in this flow diagram.
+The first thing we do is we initialize.
+And that's usually initializing a loop variable.
+And then we do this test.
+And so before we enter the loop for the first time,
+we are testing to see whether this condition is true or false.
+And if it's true, we're going to then enter the loop body.
+And then we do some reinitialization.
+And this is associated, usually, with the loop variable.
+And then we go back and we do this test again.
+And we continue to iterate and do this loop over and over again so
+long as the test condition is met.
+And when it's not, then we jump out of the loop.
+So, again, note that the test is evaluated
+before we execute the loop body.
+So we may fail that test initially and never execute the loop body
+and just fall out.
+Now let's look at how we generate the LC-3 code for a particular for loop.
+So here's an example.
+We’re first outside of the for loop, before the for loop.
+We initialize x to 0.
+And then we have this for loop where the initialization is i equals 0.
+So i is our loop variable.
+We initialize that to 0.
+And then the test is i is less than n.
+And then the reinitialization is i++, is incrementing i.
+And then within the loop we have a single statement, which
+is x equals x plus i.
+So in the end, x will be the summation of all of the integers from 0
+to n minus 1.
+Now let's look at how we compile this C code to LC-3 assembly language
+instructions.
+Now, we have three variables, n, i, and x.
+And we're going to assume that R4 is the address of variable n
+and that R4 plus 1 points to i and R4 plus 2 points to x.
+So those are stored in three consecutive memory locations.
+After we initialize x, we load the variable n into R1.
+We then form the negative value by first NOTing R1 and then ADDing 1 to it.
+So this forms the 2s complement.
+Then we do the initialization part of our for loop, where we set R2 to 0,
+and that's our variable i.
+Next is the test.
+Here we need to test whether i is less than n.
+The way that we'll do this is we'll do i minus n,
+and then we'll see whether the N bit is set.
+If that's true, that means that i is less than n
+and we should enter the loop body.
+If that's not true, then instead the Z or the P bits will be set.
+That means that i is greater than or equal to n,
+and we're going to exit the loop and go to the label DONE.
+Assuming that the test is met-- that is, i is less than n--
+then we'll do the operation x equals x plus i.
+Then we do the reinitialization, which is to increment i.
+Then we have a branch always, which brings us back
+to the beginning of our loop, where we do the test again.
+We'll continue to execute this loop, the loop body and the reinitialization,
+so long as the condition is met.
+Once that condition is not met, then we move to DONE.
+Here we're going to store the variables i and x
+to the respective locations in memory.
+The LC-3 code that we just generated has two branches within the loop.
+We can generate some alternative code which is functionally the same
+but has only a single branch within the loop.
+So if we look at our original flow diagram, the first branch in our loop
+is this test.
+And the second branch is an unconditional branch
+after the reinitialization back to the test.
+So every time we iterate on this loop, we will do two branches.
+Now, we can do this a little bit differently and only
+have one test within our loop.
+And here's what that flow diagram looks like.
+As before, we have the initialization and then the initial test
+before we enter the loop body.
+Now, once we enter the loop body and we do the reinitialization,
+then we only have one test at the end to see, again,
+whether the condition is met.
+So now on each iteration of the loop, we only
+have a single conditional branch test rather than two
+that we had in our previous example.
+So what this means is that each loop iteration will
+execute fewer instructions, and so we'll have fewer cycles
+to execute our program.
+Now let's generate the LC-3 code for this new for flow diagram.
+Now, you notice that the first seven instructions are exactly the same
+as we had before, except now we've moved our LOOP label down two instructions
+to the ADD instruction, which is the loop body.
+So if the first branch is taken, then we'll just skip the loop altogether.
+If not, then we enter the loop, we do the loop body, the reinitialization--
+but at the end of our loop, we have a test to see whether i is less than n.
+If that's true, the N bit will be set, and we will branch back
+to the top of the loop.
+And then we will continue to iterate through these
+four instructions in our loop until the test condition fails.
+Then we do the same two stores that we had in our previous example.
+Now, if you compare the two examples, you
+notice that we've actually added one more instruction to our code.
+But now we've shortened our loop to be only four instructions rather
+than five.
+So, for instance, if we do this loop 100 times, in our previous example,
+we'd execute 500 instructions.
+Here we do 100 less.
+We'd only do 400.
+So we'd end up with faster code when we execute it.

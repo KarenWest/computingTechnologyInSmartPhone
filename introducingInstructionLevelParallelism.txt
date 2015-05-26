@@ -1,0 +1,55 @@
+Pipelining is one form of parallelism, where
+we perform multiple operations in the same time, in the same clock cycle.
+Now in our pipeline, in one clock cycle we
+have five instructions that are in different stages of execution.
+Now in this module we're going to expand our pipeline,
+and make it a superscalar pipeline.
+In a superscalar pipeline, each of those pipeline stages
+can hold more than one instruction.
+So for instance, we can fetch two instructions in our program
+at the same time.
+We can decode those two instructions, we can execute those two instructions,
+and we can have each of our five pipeline stages
+be able to accommodate two instructions, rather than one.
+And this is exactly what your smartphone does.
+It has a superscalar pipeline, which may even be wider
+than two instructions, may be able to say execute four instructions, or even
+six instructions.
+Now our superscalar pipeline, though, is
+going to be limited by the properties of our program--
+in particular, whether it has instruction level parallelism, or ILP.
+So instruction level parallelism is the independence
+between different instructions in the same program.
+And what that implies is there's no data dependences between instructions.
+So for instance, if I fetch those two instructions,
+and there's a dependence between them-- so if the first instruction writes a
+register that the second instruction reads-- then when I get to execute,
+I can't execute them at the same time, because I
+have to complete the first instruction, and have that result
+feed into the second instruction.
+That limits our superscalar pipeline, in terms of the parallelism
+that we can achieve.
+So what we're going to start with is we're
+going to start with a piece of code that has
+a lot of ILP, where the instructions are independent of each other.
+And we'll see how that proceeds through our pipeline,
+and how we're able to get two instructions completed every cycle,
+rather than just one in our existing pipeline.
+Then we're going to introduce some data dependences in our code.
+And we're going to see two techniques for getting around those data
+dependences.
+The first is using the compiler.
+So if we have a smart compiler, we can potentially
+reorder instructions in our code, and get around these data dependences
+and still complete two instructions in a cycle, while
+having correct, functional code.
+So sometimes we can have a compiler that does this.
+But your smartphone may be able to do this dynamically, in the hardware
+itself.
+So it may be able to take that original piece of code,
+with its data dependences, and dynamically
+reorder those instructions in what's called out of order execution.
+So we'll start with a very simple piece of code with no data dependences.
+We'll make it a little more complicated, introduce these dependences,
+and then we'll see how the compiler or the hardware can get around these.
+So let's get into it.

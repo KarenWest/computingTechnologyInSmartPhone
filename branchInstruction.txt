@@ -1,0 +1,182 @@
+Let's discuss an LC-3 branch instruction.
+So first we're going to discuss the format of the instruction,
+and then, once we understand that, we're going
+to make the changes to our LC-3 microarchitecture
+in order to support it.
+So, first of all, it has opcode all zeros.
+It has three condition bits, N, Z, and P, and then it has a 9-bit PC offset.
+Now, with a branch instruction, a condition has to be met in order
+to change the PC.
+Now, we'll see other instructions, such as jump, where we always change the PC.
+There's no condition attached.
+With the branch, there's a condition attached to changing the PC.
+And if that condition is not met, then the PC
+remains unchanged at its incremented value, the value
+that we changed during instruction fetch of this branch.
+Now, how do we know what the condition is?
+How do we, the software, tell the hardware what condition to check for?
+Well, it's these three bits, N, Z, and P, where N means negative, Z means 0,
+and P means positive, which in this case means greater than 0.
+So, for instance, if we want to tell the hardware to check for a condition of 0,
+then we'll make this bit 0, the Z bit, a 1 and the P bit also a 0.
+So this is telling the hardware check for a condition of 0.
+Now, we can check for other conditions as well-- for instance, greater than
+or equal to 0.
+Well, we make the N bit 0 and both the Z and the P bits be a 1.
+That tells the hardware to check for that condition.
+So there's the checking for the condition part,
+and then if the condition is met, we need to change the PC.
+And we're going to change it to something
+other than its incremented value.
+Now, we may want to move backwards in our program,
+or we may want to move forwards in our program.
+So if we’re at, say, our branch is at address 100, maybe we
+want to move back to address 50 or we want to move to 110.
+So whether we move backwards or forwards depends on the sign of the PC offset.
+So this is a 2s complement signed number.
+So if bit 8 here is a 1, that means we want to move backwards in our program.
+And if this is a 0, that means this is a positive offset,
+so we want to move forward.
+Now, this offset is relative to the incremented PC.
+Now, remember, during instruction fetch of this branch instruction,
+we've incremented the PC.
+So, for instance, if our branch was located at address 100,
+then the PC now is at 101.
+It's pointing to the next instruction to be fetched.
+So we have to make sure that this offset is relative to this incremented PC
+when we're calculating how far we want to go back
+or how far we want to go forward.
+OK?
+So we have to have two things that we need to do in our hardware.
+We have to first check for a condition.
+And if that condition is met, we need to change the PC.
+And what we're going to do is we're going
+to add the PC to this offset in order to determine the new PC.
+Now let's talk about our LC-3 hardware.
+So I've drawn out what we know so far.
+And I haven't included everything, like the register file, but a lot of this
+should be familiar.
+So, for instance, here's the incremented PC, and here's our bus, over here.
+Now, down here, we have this logic and this NZP.
+Now, this is the LC-3 condition code register.
+Now, N stands for negative, Z for 0, and P for positive.
+So when we have an instruction that changes
+one of the general registers, R0 to R7, then this condition code register
+gets updated.
+So, for instance, if I have a load instruction, say,
+an LDR, while that instruction is coming from memory
+and getting loaded into the register file,
+this logic is checking to see whether that value is negative, 0, or positive.
+And then it will set one and only one of these bits, depending on that value.
+So, for instance, if I load a 0, the value of a 0, into a register,
+then the Z bit is going to be set.
+So the finite state machine control updates
+the condition code register for every instruction that writes to one
+of our general-purpose registers.
+Now, that's seven instructions.
+That's all the operate instructions-- the three
+of those-- as well as the four load instructions, including LEA.
+So whenever one of those instructions is encountered,
+then the condition code register gets updated.
+So, for instance, let's say we want to load a register
+and we want to branch one way if that register value is a 0
+and go another way if it's not 0.
+So we want to check for the condition 0.
+Well, then, our branch instruction will have the Z bit set.
+We'll set this to be a 1, and these two will be a 0.
+Now, if we just did a load instruction followed by a branch
+and that load instruction actually had a value of 0 that
+got put into a register, then the Z bit will be set in the condition code.
+And we're going to match these three bits
+in the instruction against these three bits in the condition code register.
+And so in this case, we'll have a match, because we'll
+be saying we're checking for 0-- we have the Z bit set--
+and indeed, we did load a 0, so this Z bit will be set.
+So the condition will be met in that case.
+If we loaded some other value, such as 10, then
+the Z bit here would be 0, because it's a positive number,
+and we would have a mismatch.
+There would be no match.
+And so we wouldn't change the PC.
+We would just go with the incremented PC.
+That would be the next instruction that we fetch.
+So we loaded a 0.
+So the Z bit is set in the condition code register.
+We said we're checking for that condition in our branch.
+The condition will be met.
+And that tells the finite state machine control
+to change the PC to our new value, the place
+we want to jump to in our program.
+So we need to have some logic.
+We need to add some new logic here that compares
+the value of this condition code register with these three
+bits in our instruction.
+So let's put that in.
+We're going to add some additional logic here.
+We're going to take the three bits from our condition code register.
+Now, this is our instruction.
+So we have that in our instruction register.
+So these three bits here are bits 11, 10, and 9, so we need to take those.
+And with this logic, we're going to compare those.
+As I said, we're going to compare, bit by bit, these bits,
+and if there's a match-- in this case, the Z bit is set; that's a 1;
+the Z bit is set here-- then we're telling our finite state machine
+control that the branch condition is met.
+So we need to feed the output of this logic
+to this finite state machine control.
+Now, we're going to call this branch enable, or BEN.
+And you're going to see this come up later on when we talk
+about our finite state machine control.
+So this tells the finite state machine control whether the condition was met
+or not.
+So, for instance, if we were checking for 0
+and actually we loaded 10, then what will happen is the P bit will be set,
+the Z bit will not be set-- it will be 0-- and N will be 0.
+So we'll have a mismatch here.
+So BEN will be a 0, and the finite state machine control
+will not change this PC.
+It'll keep the incremented PC.
+So that's step 1.
+We check for the condition and tell the finite state machine control
+whether that condition is met.
+Now, step 2 is to form the new PC-- the new PC that we're
+going to load into the PC register if the condition is met.
+Now, that's what this PC offset is for.
+So we take this offset-- it's a 2’s complement number--
+and we sign-extend it, because we're adding it to our 16-bit PC.
+Now, we already have the necessary hardware to do this, as it turns out.
+Because if you recall for an LD or store instruction, ST instruction, which
+are PC-relative memory instructions, we take the 16-bit PC,
+and we add a 9-bit sign-extended offset in order
+to get our address that we go to memory with.
+So we already have here the necessary hardware,
+because we've done the load and the store instructions, LD and ST
+specifically.
+So all we need to do is to take this result.
+So, again, we have to make sure the finite state machine control is going
+to make sure that this mux takes the PC to the adder rather than-- remember,
+this value comes from the register file for base plus offset addressing mode.
+So we have to make sure the finite state machine will make sure
+that this PC selects this input-- that this mux has this input selected--
+and also that this sign-extended input will be selected to this mux.
+We'll add them together, and now we have our new PC.
+Now, all we need to do is we need to load that into our PC register.
+We already have the necessary load signal,
+but we don't have a connection here.
+So all we need to do is to make a 2-to-1 multiplexer here.
+So let's do that.
+And let's call this PCMUX.
+And now we have a new control signal from our finite state machine control.
+So for a branch instruction, what will happen
+is we will take these three bits from our instruction register.
+We will do this bit-by-bit comparison with the condition code.
+That will tell us our branch enable.
+And then our finite state machine control
+will ensure that this multiplexer picks the PC,
+this multiplexer picks the proper sign-extended value--
+we want a 9-bit sign-extended value here-- through this multiplexer,
+and this addition will happen.
+And then this load signal will be a 0 if the condition is not met,
+and it will be a 1 if branch enable is a 1.
+And then we'll have everything that we need now
+for supporting a branch instruction in LC-3.

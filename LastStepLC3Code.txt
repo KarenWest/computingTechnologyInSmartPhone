@@ -1,0 +1,40 @@
+Now we can translate our final flow diagram into LC-3 instructions.
+Now we're going to use comments in order to separate modules
+and also document our code.
+First we need the code to test the condition.
+What we're doing here is we're subtracting 4 from R1.
+Remember 4 is the character, the ASCII character,
+that indicates the end of the file.
+And the way we're doing subtraction is we're adding minus 4 to R1.
+Now if the result of that subtraction is 0, the z bit will be set.
+And that means we've reached the end of the file.
+That's why we have a branch instruction--
+you see the opcode of all 0s-- with the z bit as a 1
+in order to test to see whether we've reached the end of the file.
+Now we haven't yet filled in the PC offset
+because we don't know how many instructions will follow this branch.
+So that's a step that we take at the very end,
+once we have all of our instructions written down.
+The next step is to check for a match with R0.
+That holds the character that we receive from the keyboard.
+In order to do that, we're going to subtract R1 from R0.
+What we need to do is to form, first, the 2's complement of R1,
+and then add that 2's complemented value, the negative value of R1, to R0.
+That 3 instruction subtract operation is followed by a branch instruction.
+Now here we're checking for whether we don't have 0 as the result.
+So the n and the p bits are set, but the z bit is 0.
+So we're checking for no match between R1 and R0.
+If there is no match, we're not going to increment our counter
+and we skip that instruction.
+Now again, we don't know the PC offset, until we've
+written down all of our code.
+If there is a match between R1 and R0, then the branch will not be taken,
+and we will increment R2.
+The last two steps are to increment our file pointer
+and get the next character.
+We increment the file pointer by adding 1 to R3.
+To get the next character, we do an LDR instruction with the base register of R3,
+and an offset of 0.
+And we load that value into register 1.
+Now once we fill in our PC offsets, then we'll have the complete machine code
+program for subtask B.

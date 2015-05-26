@@ -1,0 +1,55 @@
+We'll begin this first module on programming
+by discussing how we solve problems using a computer.
+Now, you can't just go and start writing code.
+You have to have a methodology, a systematic way
+for creating computer programs that properly perform the desired function.
+Now, this is a form of problem solving.
+We want to determine what to tell the computer to do.
+And we start with a clear problem statement,
+and we convert that into an algorithm using
+what's called stepwise refinement.
+Now, once we have this algorithm, we convert that
+into LC-3 machine instructions, which is ultimately
+what we need in order to tell the hardware what to do.
+Now, a very important part of this is also debugging.
+So this determines why the program didn't work.
+And most programs don't work the first time;
+we have to do some form of debugging in order to get them to work correctly.
+Let's discuss stepwise refinement, which is also
+known as systematic decomposition.
+Here we start with the problem statement,
+and we move carefully through a series of steps
+and end up with LC-3 instructions.
+Now, we need to do this very carefully so
+that we avoid debugging time later on.
+We want to try, as much as we can, to get our program right the first time.
+Now, we start with a problem statement.
+And here's an example problem statement.
+This is one that you should be familiar with,
+because we did an example earlier in the course where we did this problem.
+Once we start with this problem statement,
+we can decompose this task into simpler subtasks.
+We don't just want to have one big task.
+We want to break this down into very clear subtasks.
+And then we further decompose those subtasks into smaller subtasks
+and to even smaller subtasks until we have
+our heads around each of these small subtasks to the extent
+that we can now write LC-3 instructions.
+Now, problem statements are written in English or whatever language
+you're most comfortable with.
+Because it's written in a language, it's sometimes ambiguous or incomplete--
+or both.
+So, for instance, let's go back to the problem we just talked about.
+We need to know where the file is located, how big it is,
+and how do we know that we've reached the end of it?
+We also need to know how should the final count be printed?
+Do we want a decimal number?
+Or do we want to represent in some other way?
+And also if the character is a letter that we get from the keyboard,
+should we count both uppercase and lowercase occurrences,
+or one or the other?
+Now, how do we resolve these issues?
+We need to talk to the person who wants the problem solved.
+We want to know what their intention is.
+And then once we understand that, we make decisions about these questions.
+And then we document this very carefully.

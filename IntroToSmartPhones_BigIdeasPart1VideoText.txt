@@ -1,0 +1,75 @@
+﻿Now let's discuss a couple of big ideas in computer systems,
+and the first is the idea of a universal computing device.
+And what this says is that all computers can compute exactly the same things
+given enough time and memory.
+So for instance, if we have a problem that we're solving on a supercomputer--
+one of the fastest computers in the world-- well,
+given enough time and given enough memory
+we could also solve that problem on a laptop or even on your smartphone.
+Now it may take a lifetime to get the answer on a smartphone
+that may take a few days on a supercomputer,
+but if we can wait that long we can solve that same problem,
+and assuming that we also have enough memory
+to hold the data that's needed to solve that problem.
+So while these different systems, a supercomputer, a laptop, a phone,
+and other systems that you may have seen,
+while they may differ in their implementation
+all computers can be programmed to solve the same problems.
+All computer systems are designed under different engineering objectives
+in engineering constraints.
+And the job of a computer designer is to make engineering trade offs
+among different criteria.
+And here a few of them.
+Well, the first is performance.
+So for instance, for our smartphones, we want them to be responsive.
+We want a short response time between the time
+say that I press a key on my keyboard and I see that appear in the screen.
+For higher end system such as servers, that we have in the cloud,
+then we're concerned with throughput.
+So we want to get a lot of work done within a given amount of time.
+So for instance at Google, we might want to be able to do a lot of web searches
+within a given period of time.
+Now all systems are constrained by power and this takes different forms,
+and the first is heat.
+So your smartphone chip dissipates heat.
+And the amount of heat that dissipates will influence, for instance,
+how big the system has to be.
+We may need some airflow.
+For a system that dissipates a lot of heat,
+we might have to introduce a fan, which is going to make
+this have to be put in a bigger box.
+With our smartphones, we're concerned with battery life.
+And then there's things like the electric bill and cooling costs, which
+come into play in servers in the cloud.
+Where those can be a large cost of running a data center.
+Now we also have the issue of reliability.
+So we don't want to have our smartphones fail after two weeks of use.
+And this is also a concern in other computer systems
+such as these servers in the cloud.
+So if I have a transaction that's running and my system fails,
+I'd like to be able to recover that and be able to complete that transaction.
+I certainly don't want to lose customer data.
+And then if the system goes down then that reduces the throughput,
+and so I'd like to get that system replaced or back up
+and running in a short time.
+So service time can play a role.
+And then with all these systems there's the issue of cost.
+And this of course, is a major constraint
+when we're designing systems like smartphones.
+And that's the initial cost, but in large systems
+that can be the maintenance cost.
+And so we look at the design of a supercomputer verses
+a laptop versus the smartphone.
+What we're looking at is different engineering tradeoffs.
+So with a supercomputer, performance's power is paramount.
+That's what our major concern is and cost is a lesser concern.
+Where that comes into play, much more in our smartphones,
+cost is very, very important.
+And so the designers of a supercomputer have no more ingenuity
+than the designers of your smartphone.
+In fact, it's pretty ingenious to design a product
+like a smartphone that has the performance that it
+has that gives us our battery life and is not going to fail to quickly
+and has this low cost that we have.
+So we're just looking at different engineering tradeoffs
+when we're design these different systems.

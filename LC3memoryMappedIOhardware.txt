@@ -1,0 +1,51 @@
+Now let's revisit the LC-3 microarchitecture.
+We're going to look at the memory in more detail, as well
+as the memory-mapped I/O hardware.
+First of all, let's put down our memory and our memory data register
+and memory address register.
+Now, remember that the memory data register connects to the bus
+through this tri-state driver.
+Now, we also have a keyboard data register, a keyboard status register,
+a display data register, and a display status register.
+Now, what we need is some new control logic.
+We need to know when we see a specific address, what
+is the target of that address?
+Is that memory?
+Or is that one of these other registers associated with input/output?
+So let's add that block.
+Now, the memory address register connects to our memory
+but also to the address control logic, because it
+needs to know whether the address is associated with memory
+or one of the I/O registers.
+The address control logic also receives the enable
+from the processor that tells it to do an operation.
+The address control logic, in turn, will-- depending on the address,
+and assuming that it’s enabled-- will enable the memory-- so we need a memory enable
+from the address control logic-- or the keyboard status register
+or the display data register or the display status register.
+So we need enables for each one of those.
+Now, the output of the memory data register goes to memory,
+but it also may go to the keyboard status register or the DDR or DSR.
+So let's make those connections.
+Now we have a way to take an address and to take data
+and to send that to the appropriate place-- either memory,
+the KBSR, the DDR, or the DSR.
+Now let's talk about how we read those different locations.
+We may be reading information from the memory, the KBDR, the KBSR, or the DSR.
+So we need a 4-to-1 mux in order to select one of those four.
+So let's put that in.
+And the select input to that is controlled by the address control
+logic.
+This mux takes as inputs the memory, the keyboard data register,
+the keyboard status register, and the display status register.
+Now, the MDR can receive data from that mux, or also from the bus,
+when we're storing data into memory or into one of the registers.
+So we need to add a 2-to-1 mux that has one input from the bus
+and the other input from that 4-to-1 mux.
+And we need another select input that's controlled by the address control
+logic.
+And the last piece that we need is a signal
+that tells us whether we're reading or writing.
+So let's put that down.
+Now we have the complete microarchitecture
+for our memory system, as well as our LC-3 input/output devices.

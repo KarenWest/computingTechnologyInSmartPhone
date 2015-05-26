@@ -1,0 +1,92 @@
+Our out-of-order superscalar pipeline allows us to exploit parallelism
+within a single program.
+Now we have limitations, though, in terms of what
+we can do because of data dependencies.
+So data dependencies can limit the amount of parallelism
+that we can find within a single program.
+Now this is particularly problematic in certain situations-- for instance,
+with load instructions.
+Now, we've been assuming so far that our data
+memory works as fast as our pipeline, that we can access data in one cycle.
+In reality, memories are far slower than processors.
+It may take many, many cycles to read data from memory.
+Now later on in the course, we're going to introduce caches.
+Caches allow us to bridge the gap between that slow memory
+and our fast processor.
+But our cache is a smaller subset of all of the data that's in our memory,
+so we may not find what we want in the cache when we do a load instruction.
+If we do find we want, we can get that in one cycle.
+But if we don't find what we want, then that load has to go out to main memory
+and that can take a long, long time.
+And if we have a lot of data dependent instructions following that load,
+then we're just going to stop our program.
+We're not going to be able to proceed.
+So all of the resources that we have in our superscalar pipeline
+are just not going to be used, and we're just going to be wasting cycles.
+We're just going to be halted until that data comes back from memory
+and then we're able to proceed.
+So the way that we can get around this is what's
+called thread level parallelism or TLP.
+And this exploits the fact that usually in smartphones and other computers,
+we have multiple tasks to perform at the same time.
+So for instance, you may be texting, and you
+may be sending something to a friend.
+And then you may switch to a browser or maybe to your email.
+So you may switch between different programs.
+And those different programs are both simultaneously resident
+in memory and both, perhaps, executing at the same time
+or ready to execute at the same time.
+So those two programs are independent, and they're
+able to execute and use processor resources at the same time.
+Now, your web browser also may be multithreaded.
+So your web browser is one program, but that program
+may consist of threads-- kind of subprograms,
+subpieces of an entire program-- that could also run simultaneously.
+So if I open up multiple tabs and I'm loading from multiple web pages,
+then those may be independent little pieces of my web browser
+that can operate simultaneously.
+So we can exploit this parallelism that we
+have by having multiple threads or multiple programs
+active at the same time and get around, in effect, these data dependencies.
+Now one way we're going to see that we do this later on in the course
+is called multicore.
+With multicore, we have multiple superscalar pipelines-- each of which
+can run independent programs or independent threads.
+Or I should say, threads of the same program-- such as a web browser.
+So that's one way that we exploit this thread level
+parallelism in our smartphones.
+Now another possible way that we're going to talk about in this module
+is called simultaneous multithreading.
+And the idea here is to take a single superscalar pipeline
+and to allow multiple threads or multiple programs to simultaneously
+share those hardware resources.
+So for instance, in the case where I have
+a load instruction that has to go off to memory, that thread may be delayed.
+But if I have another thread to run, then that
+can make use of the hardware resources in the pipeline at the same time
+while that other thread is stalled.
+So we're going to see in this part of the course and in this module
+this idea of simultaneous multithreading.
+Now what's interesting about this topic is
+that it's a bit controversial among commercial vendors.
+So your smartphone may or may not use this technique,
+because there's a little bit of controversy
+among different manufacturers on whether this
+is an appropriate technique from a power perspective for smartphone processors.
+We see this in higher end machines, but in smartphones, it
+really depends on the type of smartphone that you have.
+There are some manufacturers that believe
+that doing thread level parallelism within a single core--
+in the way we're going to talk about in this module--
+is not the most efficient way to do it, that we should just
+do it in multiple cores.
+And there are other vendors that believe that it is a power efficient way
+to do thread level parallelism.
+So the technique that we're going to talk about in this module,
+you may or may not have in your smartphone.
+It really depends on the type of vendor.
+But it is a well-known technique, and it is something
+that we really should understand.
+And later on, when we see multicore, we're
+going to see another way to exploit thread level parallelism.
+So let's get into it.

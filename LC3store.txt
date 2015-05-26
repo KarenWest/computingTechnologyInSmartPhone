@@ -1,0 +1,4 @@
+Finally, in the store result phase, that added value gets put on to the bus
+and gets loaded into the destination register in the register file.
+If we have a load instruction, the data that's to be put into the register file
+comes instead from the MDR and gets put into the destination register.

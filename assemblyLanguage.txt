@@ -1,0 +1,117 @@
+Now, our programs have consisted of 0s and 1s,
+because that's what computers recognize.
+Now, you've probably found it laborious to look at those 0s and 1s
+and having to look up opcodes and things like that.
+So we humans prefer symbols.
+So let's take this example.
+Here's ADD R6,R2,R6.
+Now, that meaning is probably pretty clear to you
+that this is an ADD instruction, and the three registers
+are the source registers and the destination register.
+And the only ambiguity, perhaps, is which one is the destination register.
+Now, we've also followed this by a comment,
+as indicated by a semicolon, that says increment index register.
+So this is much more clear and easier to understand than
+the equivalent 0s and 1s.
+So this assembly language is a symbolic representation of machine code.
+And it's specific to a particular ISA, whether it be Intel or ARM or LC-3.
+And each machine instruction has an equivalent assembly language
+representation.
+Now, what's also useful is that branch targets and memory locations
+have these symbolic names.
+So we have labels attached to them so that we
+don't have to do things like calculate branch target offsets.
+Here's an example of an assembly language program.
+At the top, we have some semicolons.
+That denotes that we have a comment.
+Now, we have this assembler directive, and we'll talk about these directives
+soon.
+.ORIG.
+This tells us where our program starts in memory.
+Now, after this, we have some things that should look familiar to you.
+So, for instance, we have two LD instructions
+followed by an AND instruction.
+And then we have some register values, and we also have some labels.
+And we also have a constant value, an immediate value.
+Now, that AND instruction is followed by a comment,
+as indicated again by the semicolons.
+Now, after this, we have another commented area,
+and this is telling us what this part of the program does.
+This is the inner loop.
+Now, this starts with a label, again, and two ADD instructions,
+followed by a branch instruction.
+Now, we recognize this by BR, but we've also put a p here,
+and that tells us what the branch condition is.
+The condition is whether the P bit is set.
+Now we have our label again.
+So this tells us where we branch to if the condition is met.
+We branch to the first ADD instruction.
+And, again, we have a couple of comments for the last two statements
+in this part.
+Now, the last instruction is HALT.
+Now, this is, again, a symbolic representation
+of the HALT trap instruction.
+At the bottom, we have a couple of labels as well as a couple of other
+assembler directives, followed by .END, which tells us this is the end
+of our program.
+Now that we've seen the general program structure,
+let's look at the LC-3 assembly language syntax.
+Now, each line of a program is one of the following.
+It's an instruction, an assembler directive, which is also
+called a pseudo-op, or a comment.
+And whitespace and case are ignored.
+It doesn't matter whether you use uppercase or lowercase.
+And comments that begin with a semicolon are also ignored.
+Now, an instruction has this general format, where we have,
+optionally, a label followed by a mandatory opcode and operands
+and then optional comments.
+Let's discuss LC-3 opcodes and operands.
+Opcodes are reserved symbols that correspond to LC-3 instructions.
+And all of the LC-3 instructions are given
+in detail in appendix A of the book if you have it.
+Here are some examples, and these are familiar to us-- ADD, AND, LD, and LDR.
+These are instructions we've already seen.
+In terms of operands, we can have a register value.
+And that's specified by Rn, where n is the register number.
+Or it could be a constant value, an immediate value.
+And this is indicated by a pound sign for decimal, an x for hex,
+or a b for binary values.
+We could have a label, which is a symbolic name of a memory location.
+And operands are separated by commas.
+Here are four examples of LC-3 opcodes and operands.
+Here's an ADD instruction.
+We have R1,R1,R3.
+Now, the leftmost register is the destination register,
+and the two rightmost are the source operands.
+Here's another ADD instruction where we have an immediate value.
+And it's a decimal value, because it has the pound symbol.
+Here's a load instruction where the destination register
+is R6 and number is a label of a location in memory
+where we go to get the value.
+Here's a branch instruction where we test for the Z bit being set.
+And LOOP is a label elsewhere in our program
+where we go if the branch is taken.
+Now we'll go over LC-3 labels and comments.
+Labels are placed at the beginning of a line,
+and it assigns a symbolic name to the memory address
+corresponding to the line.
+So here's an example where I have a label LOOP before this ADD instruction.
+Now, that ADD is followed by a branch that
+also has the label LOOP, so that tells us that we branch back to the ADD
+if the P bit is set.
+Now, anything after a semicolon is a comment.
+And this is completely ignored by the assembler.
+This is the piece of software that takes your assembly language program
+and creates the machine code.
+And this is used to document and understand our programs.
+Now here are a few tips for useful comments.
+You don't want to overuse comments.
+You don't want to restate the obvious, such as decrement R1, that
+can be pretty apparent from the assembly language itself.
+Now, you want to provide additional insight,
+such as accumulate the product in R6.
+That's a very descriptive comment that could
+be useful to someone who's reading your program.
+And we also use comments to separate major portions of our program.
+That indicates to the reader that this is
+what this particular piece of the program does.

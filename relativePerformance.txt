@@ -1,0 +1,53 @@
+Now we're going to cover two important performance concepts--
+relative performance and Amdahl's law.
+Relative performance is useful to compare the performance of machines.
+So if I have two machines and I want to see
+how much faster one is than the other, I can use relative performance.
+I can also find this useful as an architect to determine the performance
+benefit or loss of adding or subtracting a feature.
+So I may have some great idea, and I want to put it into my smartphone chip.
+And I need to know what's the benefit of doing that.
+Now you might ask, why might I want to know the loss of subtracting a feature?
+Why might I take out a feature?
+Well, it turns out that if I can make my chips smaller, then I can reduce cost.
+So sometimes architects, at the end of a project, find that the chip is too big,
+and they need to take features out in order to meet the cost target.
+So sometimes you have to look at what's the cost-- the loss of performance--
+if I take out a feature.
+And I can use relative performance to measure that as well.
+Here's the equation for relative performance
+where X and Y could be two different machines.
+Or, for example, X could be an enhanced version of machine
+Y. Performance X over Performance Y is the inverse ratio of their execution
+times.
+Now if X is an enhanced version of Y, then it
+will have a smaller execution time, and this ratio should be greater than 1.
+So I get some kind of speedup, a performance improvement.
+The second performance concept is Amdahl's law.
+Amdahl's law tells us how much improvement I
+get with some sort of enhancement.
+And what it says is that the improvement that I get-- the improvement that's
+possible-- with some enhancement is limited by the amount of time
+that the enhancement is used.
+So here's the equation for Amdahl's law.
+Execution Time enhanced-- this is with my enhancement-- equals the Execution
+Time affected by the enhancement over the Amount of improvement
+plus the Execution Time that's unaffected.
+So what this tells us, if I have this great improvement idea
+but it only affects a small number of instructions.
+So for example, let's say I have an enhancement to a square root.
+I have this great idea for a square root.
+Well, we don't use square root perhaps too much in our programs,
+so we expect to have a very small improvement in execution time.
+Let's take an example of a multiply.
+Let's say that a feature improves a multiply operation by a factor of 10,
+and that the total execution time of my program
+is 100 seconds, and that multiply operations consume
+5 seconds of this 100 seconds total.
+Well then, Amdahl's law says that the enhanced execution
+time is going to be 5, which is the amount of time that's
+affected by multiplies, over 10, which is the factor of improvement,
+plus 95, which is the time that's unaffected-- or 95.5 seconds.
+So although I've improved multiply operations by an order of magnitude,
+a factor of 10, I've only shaved off 4 and 1/2 seconds out
+of my total 100 seconds of execution time.

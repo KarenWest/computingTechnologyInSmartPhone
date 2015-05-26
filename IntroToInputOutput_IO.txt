@@ -1,0 +1,45 @@
+An important component of a von Neumann machine that we've largely
+ignored so far is input/output or I/O. Now, this is the interface to the user
+and it's the primary way that we experience our smartphones.
+So, for instance, if I touch an icon to open up an app,
+or I type on my keyboard, well, that's input.
+When I see that app opening or I see my keystrokes, well, that's output.
+If I send a message to a friend-- a text message-- over the network.
+Well, that's using the input part of that network.
+And the output part of the network is when I receive a message from a friend.
+If I take my permanent storage, which is where I store my apps
+and I open up an app and I read that app from permanent storage
+into memory, well, that's input.
+When I update my operating system or I have a new app
+that I load on my permanent storage, well, that's output.
+So permanent storage is also an important input/output device.
+And we have these in other computer systems
+as well, such as laptops and servers and all these kind of systems.
+Now, input/output spans multiple layers of the computing stack.
+So, first we have microarchitecture.
+So we have an input/output controller, which
+is an important piece of hardware that connects the processor and the memory
+to the input/output device.
+For instance, permanent storage or the network.
+Now, that input/output device controller has special registers
+that are used for the CPU or the processor
+to interact with the input/output device.
+And the instruction set architecture comes into play because we need a way,
+we need instructions or some other means,
+in order for the processor to read and write those registers.
+And there are a couple of important ways to do that.
+And we'll cover that in this module.
+And finally, there's software.
+There's a software layer here.
+We need software routines that allow the CPU, the processor,
+and the memory and the I/O device to interact with each other.
+And we're going to write assembly language LC-3 routines for input/output.
+So at the end of this module you'll see all of those layers of the I/O stack.
+We'll update the LC-3 microarchitecture with the details of input/output,
+and at the same time we're also going to fill out
+the details of our memory system so you see how all this fits together.
+Then we're going to talk about the LC-3 enhancements
+to the instruction set architecture in order to support input/output.
+And finally we're going to develop LC-3 assembly language
+routines for input/output devices.
+So let's get into it.

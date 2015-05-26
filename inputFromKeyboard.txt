@@ -1,0 +1,71 @@
+Now let's cover how we get input from the keyboard.
+We'll first go over the hardware, and then we'll
+design a software routine in order to get a keyboard input
+and put it into an LC-3 register.
+Now, when a key is pressed, its ASCII code is placed into bits 7
+through 0 of the keyboard data register.
+And then the ready bit, the leftmost bit of the status register, is set to 1.
+And the keyboard is disabled at this point.
+So any typed characters are ignored until we can
+read that character from the screen.
+Now, fortunately, the LC-3 or any computer
+would be able to read that ASCII code much faster than even
+the fastest typist could type.
+So here is the keyboard status register and the keyboard data register.
+With the keyboard data register, the rightmost 8 bits
+are written with the keyboard character, it's ASCII code.
+And then the leftmost bit of the KBSR is set to 1.
+That's the ready bit.
+Now, when the keyboard data register is read,
+then the I/O controller resets the leftmost bit of the KBSR, bit 15, to 0.
+And then the keyboard is reenabled so that it can receive another key.
+Now we can design a keyboard input routine
+using LC-3 assembly language that puts the ASCII value of the character
+into register 0.
+Here's a general flow diagram of that routine.
+First of all, we need to check to see whether we
+have a new character from our keyboard.
+Now, this is called polling, because we're repeatedly
+checking the keyboard status register over and over again
+until we see that bit 15 go to 1.
+Now, once that happens, once we read bit 15 being a 1,
+we can then read the character from the data register.
+Now, here is how that looks in LC-3 code.
+We have a loop where we have a label POLL.
+Now, the first instruction in our loop is an LDI instruction.
+Now, if you remember, for an LDI instruction,
+we go to a memory location.
+From that location, we get an address, and then we
+use that address to get the actual data.
+Now, our LDI instruction loads R2 with the result.
+And it uses this label KBSRPTR, or keyboard status register pointer.
+Now, if we look at the bottom of our program,
+we see a .FILL directive with that label.
+And the result of that .FILL is the address of the keyboard status register
+in memory-mapped I/O in LC-3.
+So this allows us to go to that label, to read that address-- which is xFE00.
+We'll then go to that address, the keyboard status register,
+and read that result into R2.
+Now, this allows us, using LDI, if we want to change the location
+of the status register later on, all we have to do is change the value of this
+.FILL.
+Now, once we've read that and we find that the result of the leftmost bit
+is a 1, then we'll go and we'll load the data register into R0.
+So we have a branch which has the Z and P bits being a 1.
+So so long as the result is 0 or the result is positive--
+that means the leftmost bit, bit 15, is a 0--
+we're going to continually poll, continually read, that status register.
+And we'll do that until bit 15 becomes a 1.
+At this point, the branch won't be taken, because the Z and the P bits
+will be 0, because this will be a negative result.
+Leftmost bit will be a 1.
+Then we're going to fall out of that polling loop,
+and we're going to load the actual ASCII code into R0.
+Here again we're using an LDI instruction, with .FILL being xFE02.
+That's the memory-mapped location of the keyboard data register.
+So this is a complete routine now, a complete software routine,
+for continually polling the keyboard status
+register and then, once we have a keyboard
+code that's in the data register, when that bit becomes a 1,
+reading that into R0.
+And then we can process that as we please.

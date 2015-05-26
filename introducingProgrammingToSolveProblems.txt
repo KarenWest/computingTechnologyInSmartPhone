@@ -1,0 +1,33 @@
+We need to take a systematic approach to writing programs
+so that they're easy to understand by someone else,
+so that they operate correctly, and, of course,
+so that they meet the problem statement-- the specifications.
+And that's the subject of this module.
+We're going to start with a problem statement, a high-level description
+of what we need to do; we're going to make
+sure we understand the specifics, the assumptions behind that statement;
+and then we're going to go through a series of refinement steps
+where we start with this high-level statement
+and we break this down into subtasks and then to further subtasks
+and continually do this refinement until we're
+at the point where it's easy to just write out the machine code.
+Now, you may have programmed before, and you may have seen this topic before,
+and some of the constructs that we're going to talk about
+may be familiar to you.
+Now, they're familiar to you from a high-level language perspective,
+but I encourage you to follow this module anyway.
+Because we're going to talk about this in terms of machine code,
+in terms of LC-3 machine code, and how we refine a problem statement
+and get all the way down to machine code.
+So you're going to see the constructs that you may be familiar with,
+such as conditional or iterative-- or maybe you haven't seen these before,
+and that's just fine.
+But if you have seen those before, you've
+seen them in a high-level language.
+But we're going to understand how they translate into LC-3 machine code.
+So we'll start with a problem statement, we'll
+go through a series of refinements, and the problem that we're going to have
+is something that we've already seen, which is our character count program.
+But now we're going to see how we take this
+and we get down to the 0s and 1s of a machine code program.
+So let's get into it.

@@ -1,0 +1,69 @@
+Now we'll go through an example of a direct mapped cache with our processor,
+including registers and some load instructions.
+Now, we're going to keep the example pretty simple
+so you see how this all fits together.
+So our block is only going to be 16 bits.
+So we have no word offset field within our address.
+And we're going to assume a very small cache that only holds four blocks.
+And our memory is also pretty small.
+It only holds 16 blocks.
+So our memory address consists of four bits.
+There are two bits for the index and two bits for the tag,
+And our cache looks like this.
+We have four locations, each of which has a valid bit, a tag, and the data,
+which in our case is 16 bits.
+Here's our example system.
+Now, what we've shown here is our processor,
+which has, let's assume, only four 16-bit registers, R0 to R3.
+And what I'm showing here are different load instructions within our program.
+So for instance, the first instruction goes to memory address 0
+and loads that data into register 1.
+Here's our cache where we have our four locations.
+And here is our memory, which has 16 blocks.
+And I've just put some decimal values in each of those locations.
+Now, let's go step by step through all of these six load instructions.
+Initially, our cache has all valid bits of 0.
+So the first load instruction we're going to look up in location 0
+and find that the valid bit is 0, so we're going to miss.
+We then go to location 0 in memory, where we have the data 100.
+We bring that into the cache, and then we set our tag to 00,
+because our memory address is all zeros.
+The last thing that happens is that we load the value 100 into register 1.
+The second load instruction also results in a miss.
+We go to memory location 1.
+We retrieve the value 110 and put it into the data field of the cache.
+Our tag is again 00.
+We load that into the cache.
+We set the valid bit, and then we load register 2 with the value 110.
+The next instruction has index 00.
+So we go to location 0 in the cache.
+Now the tag of the address is 01, whereas the tag in the cache is 00.
+So that results in a mismatch, or a miss.
+So we go to location four in memory, we retrieve the value 140,
+and now we overwrite that cache location with the value 140 and with the new tag
+01.
+And then finally that value 140 gets loaded into register 3.
+The next instruction has index 11, where the valid bit is 0 again, so we miss.
+We then go to location 7 in memory, retrieve the value 170,
+put it into the data field of the cache, and we make the tag 01.
+Lastly, we set the valid bit and we overwrite register 2
+with the value 170.
+The fifth load instruction has index 10, which results in a miss.
+We go to location 0110 in memory, retrieve the value 160,
+put it into that cache location, change the tag appropriately,
+and set the valid bit.
+And we overwrite register 1 with the value 160.
+Now the last load instruction results in a hit.
+The index is 01.
+We retrieve the tag of 00 from that location,
+which matches the tag in our memory address.
+The valid bit is also set, so that indicates a hit.
+Now in this case, we can simply retrieve the value 110 from the cache.
+We don't need to go to memory.
+And we can overwrite register 1 with that value.
+Now, it's taken a while for us to warm up our cache from its initial state.
+And once we've done this now, presumably we'll
+get some hits because of the principal locality.
+We'll go back to these data locations over and over again,
+and we can very quickly access that data from our cache
+and not have to pay that slow main memory access time.

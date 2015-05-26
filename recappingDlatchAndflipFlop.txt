@@ -1,0 +1,8 @@
+Let's review a D latch and a D flip-flop.
+With a D latch, the output follows the input when the write enable is a one.
+That's when the latch is open.
+Now when the latch is closed, that means a write enable is zero,
+then the input is captured.
+And we use a D latch as a building block for memories.
+With a D flip-flop on the other hand, the output
+changes only on the triggering clock edge.

@@ -1,0 +1,34 @@
+Multiprocessing and multicore have several challenges, and one of those
+is what's called the cache coherence problem.
+So here, multiple copies of the same data
+may exist in different processor caches and in memory, and a write by one
+processor to its cache makes the other copies stale or out of date.
+So the caches are no longer coherent.
+They no longer have the same version of the data.
+Let's look at an example of how this can occur.
+So processor 1 first reads a particular block--
+let's call that block A-- from memory into cache.
+And processor 2 reads also block A from memory into its cache.
+Now, when processor 1 writes block A in its cache then processor 2 in memory
+now holds stale copies.
+They're out of date.
+So processor 2 is going to read an old value of that block,
+rather than the up-to-date value that sits in the cache of processor 1.
+Now let's discuss the solution to the cache coherence problem that's
+found in our smartphones.
+What we do is we take each block in the cache
+and we give it state bits that indicate the ownership of the block.
+So instead of having one valid bit, we'll
+have multiple bits that indicate the state of the block.
+Now, before writing to a block, the cache controller
+will invalidate-- it'll get rid of the other cache
+copies-- to make sure that it has an exclusively owned copy.
+So it's going to go off to that processor 2 and say, get rid of your copy,
+because I want to have an exclusive version of that.
+Now, all caches will snoop.
+We call this cache snooping.
+They monitor the shared interconnect to determine
+when they should invalidate their copy of a block,
+when another cache wants to have exclusive ownership.
+Or they may have to provide their copy of the block instead of memory
+to a requester if that cache has the most up-to-date version.

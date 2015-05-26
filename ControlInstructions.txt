@@ -1,0 +1,56 @@
+The next group of instructions are control instructions.
+These alter the fetching of sequential instruction flow
+by changing the PC to something other than PC plus 1.
+So without control instructions, all we'd be able to do
+is just walk sequentially through our program to successive memory locations.
+Now, there are times where we want to alter that.
+If you've done any kind of programming-- and it's OK if you
+haven't-- you're familiar with things like loops and conditionals.
+So control instructions support those high-level programming constructs.
+Now, one type of control instruction is called
+an unconditional branch, or a jump.
+These always change the PC.
+There's no condition attached.
+It's unconditional.
+So we're always going to change the PC when we have one of these instructions.
+With a conditional branch, we have a condition attached.
+The branch is taken if a specified condition in the instruction itself
+is true.
+And we take this branch by adding a signed offset to the PC
+to yield a new PC that changes to something
+other than the incremented PC.
+Now, if the condition is not met, the branch is not taken,
+and we don't change the PC, it's already pointing
+to the next sequential instruction.
+Remember, we changed that when we did instruction fetch.
+We incremented the PC, and so we just leave it alone and get
+the next instruction after the branch.
+We also have a trap instruction.
+Now, a trap instruction is used to call an operating system service routine.
+So we sometimes need the operating system
+to do privileged operations that we users don't have the ability
+to do in most machines, including our smartphones.
+So a trap instruction will change the PC to the address of a specific operating
+service routine.
+Now, after this routine is completed, we return control
+to the next instruction following the trap.
+So we go back to our user program to the instruction immediately following
+the trap.
+In order to support conditional branch instructions,
+the LC-3 has what's called condition codes.
+And it has three condition code bits.
+Now, this is a special register, which is loaded under specific conditions
+by the finite state machine control.
+And the three bits are N for negative and Z for 0 and P for positive.
+Now, these are affected by instructions that
+write to the general-purpose registers, R0 to R7.
+And these are seven instructions in the LC-3--
+the three operate instructions as well as all the load instructions,
+including LEA.
+Now, exactly one of these condition codes would be 1 at any time.
+These are mutually exclusive.
+You can't have something that's both negative and positive.
+Now, this is going to be based on the last instruction that
+altered these registers.
+So whenever we have an instruction that alters the registers,
+then the condition code will be updated by the finite state machine.

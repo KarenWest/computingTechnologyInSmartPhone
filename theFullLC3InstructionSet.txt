@@ -1,0 +1,17 @@
+Here's the complete LC-3 instruction set.
+We've covered the operate instructions, ADD, AND, and NOT;
+the memory instructions, load and store; and the control instructions, branch,
+jump, and trap.
+We haven't covered JSR, JSRR, RET, and RTI,
+but you can read about those in the Patton/Patel textbook.
+Now, the value for source register 2 is always bits 2 through 0.
+But for source register 1, it differs depending on the instruction.
+For the operate instructions, that's bits 8 through 6.
+But for the store instructions, that's bits 11 through 9.
+Those bits for store denote the location of the value
+that we're going to put into memory.
+That means we need to add another multiplexer to our LC-3
+micro-architecture, one that picks 1 of those source register values or another
+in order to send that to the register file as SR1.
+And the finite state machine control will pick 1 value or the other
+depending on the type of instruction.

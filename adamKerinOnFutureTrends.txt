@@ -1,0 +1,64 @@
+So I want to talk a little bit about where you see the future going.
+So what new capabilities are you seeing on the horizon for SoCs
+like Snapdragon?
+And what are some of the technical challenges that
+are facing designers of future SoCs?
+So as far as the future of these processors go,
+I think it's more where they're going that's going to be
+one of the challenges for designers.
+So much like the processors and CPUs move from your desktop
+into a phone in your pocket, now these mobile SoCs in your smartphone
+are finding their ways into wearables, whether it's
+a smart watch on your wrist-- they're being pushed into smart cards.
+Your car and your refrigerator are going to potentially
+be communicating to one another in the internet of things.
+So we're talking about even smaller thermal budgets in some cases
+than what you have in your smartphone.
+And another different aspect is you're not
+designing as much a general purpose processor as one chip that
+does one thing very well.
+And that can be either in performance or in power.
+But it's not as all-encompassing, which can be easier,
+but also a challenge since you have to do that one thing so well.
+Another aspect I think is because most of these chips
+now are doing something very enabling an experience where it's not necessarily
+the floating point performance that matters.
+Whereas when you're first creating these chips,
+years ago you could design to that spec benchmark, and everything else
+would fall into place.
+But now designing for a use case-- the user experience, why
+a user should actually care-- it usually isn't measured
+in terms of some synthetic benchmark.
+So being able to simulate a synthetic benchmark is very easy.
+Being able to simulate how a user is using this device
+is much more complicated.
+So it takes a very different mindset.
+And I think it's a bit more challenging for the architects in the earlier
+stages to determine what tradeoffs they need
+to make in order to hit that user experience as opposed
+to hit a given benchmark score.
+So I want to ask you one more follow up question about that.
+So are there are other places-- we think of Snapdragon being used in smartphones
+and tablets-- so are there some other more interesting places
+where you find Snapdragon SoCs besides on your phone or in your Tablet?
+Oh yes.
+So today, for example, in most of the Android Wear watches
+that are available, they have one of our lower end Snapdragon chips inside.
+They also sell chips to the embedded space.
+If you look at I think one of our keynotes last year,
+there's robots roaming around the stage with Snapdragon inside.
+So this is all outside of your pocket and smartphone
+and into more specialized equipment.
+Some of it's wearable.
+Some of it's embedded.
+And automotive is also something that's I think in the future for many chip
+makers now that these-- whether it's smart driving cars,
+whether it's being able to have communications
+integrated inside, even built-in infotainments.
+As opposed to just a DVD player in the head seat, now
+you have a full embedded computer potentially.
+So there's many different places for Snapdragon
+and these sort of products to go in the future.
+Adam Kerin from Qualcomm.
+Adam, thanks you for joining us.
+Thank you for having me.

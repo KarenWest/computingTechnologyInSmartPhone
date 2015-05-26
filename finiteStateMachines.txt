@@ -1,0 +1,48 @@
+Let's bring back our stack diagram which shows
+the layers of computing technology.
+Now, we're still in digital design, but we're getting near the top.
+We almost have all of the techniques and building blocks
+that we need to build our computer.
+The last thing that we need to cover is finite state machines,
+which is going to allow us to control the sequencing of executing
+each instruction in a program.
+Let's get into that right now.
+Now we're going to put together combinational logic and D
+flip-flops in order to form sequential logic circuits.
+Now, many logic functions require information about the past in addition
+to the current inputs.
+For example, when we design our computer,
+we're going to need a control unit that allows
+us to sequence through a series of steps to execute
+each instruction in our program.
+Now, these sequential logic circuits are implemented
+using two things we already know, combinational logic and storage.
+And a very important sequential logic circuit
+is called a finite state machine, or FSM.
+Now, here's a general diagram of a finite state machine.
+We have combinational logic and we have state,
+in this case, a set of D flip-flops.
+Our inputs to our a combinational logic are inputs
+as well as our current state, the outputs of the D flip-flops.
+And then the outputs of the combinational logic
+are the outputs of our machine as well as
+the next state, which are the D inputs to our D flip-flops.
+Now, the state embodies the condition of the system at this particular time.
+And the combinational logic determines the output of the system
+as well as the next state values.
+Now, the output values may depend only on the current state,
+or they may depend on the current state in the input values.
+And this really depends on the type of finite state machine that we have.
+Here are all the elements of a finite state machine.
+We have a finite number of states, of inputs, and of outputs.
+Now, we also need a specification of all of the state transitions.
+We need to know how we pass from one state to another.
+And finally, we need to know a specification of the output values,
+when are the outputs 1, and when are they 0?
+Now, this can all be described by what's called a state diagram.
+A state diagram shows us how the inputs in the current state
+trigger state transitions.
+How we move from one state to another.
+It also shows us how output changes are triggered
+by changes in either the current state or the current state in the inputs,
+and this depends on the type of FSM that we have.

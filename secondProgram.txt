@@ -1,0 +1,50 @@
+Our second program is going to make use of these trap routines.
+This program is going to count the occurrences
+of a particular character in a file.
+In the first step, we're going to read the character that we
+want to check for from the keyboard.
+Then we're going to load each character from the file, one by one,
+and test to see if that file character equals the character that we
+got from the keyboard.
+If so, we're going to increment a count of the number of occurrences
+of this character in the file.
+Now, the end of file is going to be indicated by a special ASCII value,
+x04.
+And at the very end, once we've reached the end of the file,
+we're going to write the number of occurrences of the character
+to the display and halt our program.
+Now, our assumptions are that our program starts at memory location x3000
+and the address of the start of the file is at memory address x3012.
+Now, that's not the file itself; that's a pointer
+to where the file is located in memory.
+And we're also going to be assuming, for simplicity,
+that there are less than 10 occurrences of the character in the file.
+Here's the overall flow chart of our program.
+First, we initialize our count register to 0.
+And we're going to say that R2 holds our running count.
+We need to create a pointer to the first file character.
+Now, we're going to have that pointer in register 3.
+Remember, the pointer to the first file character,
+the address of the first file character, is located in memory address x3012.
+Then we're going to input our character from the keyboard,
+and that's using a trap instruction.
+x23 is the trap code.
+Then we're going to load our first character from the file,
+and then we're going to enter a loop.
+We're going to test to see whether we've reached the end of the file.
+That's to check for x04.
+If that's true, then we're going to be done,
+and we're going to do our final steps.
+If not, we're going to check for a match between the character
+from the file and the character that we received from the keyboard.
+If we have a match, we're going to increment our count.
+If not, we're going to skip that step and load the next character.
+And we'll continue to do this loop until we've reached the end of the file.
+When we've done that, we need to convert our integer count
+to the equivalent ASCII value.
+Now, the way that we do that is we add the value x30.
+If we take an integer value and we add hex 30 to it,
+we get the ASCII code for that integer.
+Then what we can do is we can print that to the monitor.
+We do that with trap code x21.
+And then, finally, trap code x25 tells us to halt our program.

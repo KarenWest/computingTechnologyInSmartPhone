@@ -1,0 +1,49 @@
+Now that we've introduced this assembly line of instruction processing
+called pipelining, we're going to get higher throughput, higher performance.
+And that's great.
+Unfortunately, our program is not going to work correctly.
+If you look carefully at that code, you'll
+notice what are called data dependencies.
+So the first instruction writes register 1.
+And the instructions after that read register 1.
+So our intention in writing in this program
+is for the first instruction's result to be used by the subsequent instructions.
+Well, what happens in our pipeline?
+Well, when does that first register get written?
+It's not until the fifth cycle, the fifth pipeline stage.
+And what happens to the instructions after that?
+Well, they've already read the register file.
+So what does that mean?
+They've read the old value of that register
+rather than the new one, which is what we intended when we wrote that program.
+So our pipeline is going to cause our code to operate incorrectly.
+We're not going to get the correct result.
+If we had a non-pipelined implementation,
+we did one instruction to completion, followed by the next instruction,
+it would work correctly.
+But our pipeline has broken our program.
+We're not going to get the right result.
+Now, this is called a data hazard.
+And fortunately, we can make some modifications to our pipeline diagram,
+to our pipeline microarchitecture, in order to fix this problem.
+And we're going to see how we do that in this module.
+Now, the other problem that's introduced with pipelining
+is called a control hazard.
+So here, we have a branch instruction, and the outcome of that branch,
+the result of the branch instruction, is not known until a full cycles
+into execution.
+Now, what's happened is we fetch the next instructions after the branch.
+Well if the branch has taken, those are not the right instructions.
+We should have fetched instructions at the target.
+So we've wasted cycles of execution, we've
+worsened our performance by fetching those incorrect instructions.
+Now fortunately, we have a technique called branch prediction,
+which is used in your smartphone.
+It's a very interesting prediction technique
+that we're going to talk about in this module, which
+can fix these control hazards, as well.
+So at the end of this module, we're going
+to have a fully functioning pipeline which
+is going to give us the performance that we need,
+as well as correct pipeline operation.
+So let's get into it.

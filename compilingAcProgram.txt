@@ -1,0 +1,47 @@
+Now that we've discussed a compiler in general,
+let's look at the actual process of compiling a C program.
+So here's a high-level block diagram of all the pieces.
+And this piece in the middle we call the compiler,
+but this entire process, this entire mechanism,
+we usually refer to as the compiler.
+The first step is to do some preprocessing
+of these high-level language files.
+This includes macro substitution, where the preprocessor substitutes
+one text for another; conditional compilation-- we're depending
+on a particular statement; we'll compile the code one way or the other,
+so, for instance, with debugging and without debugging--
+and then transformations that we make at the source level
+before we generate the machine code.
+After this step, we move on to the step called the compiler.
+This is the step where we generate the actual machine code.
+First, the compiler analyzes the source code
+to perform, for instance, optimizations like we saw previously.
+It then creates the target code, the actual machine code for the target
+instruction set architecture.
+In the process, it uses a symbol table similar to what
+we saw with the assembler.
+At this point, we have an object file of our high-level language program.
+This is the machine code version of that program.
+Now, it could be that we have other object files that
+were developed by other programmers, or we
+have library files, such as input/output that we'll see later.
+A linker takes all of these object files and combines them
+into one executable program.
+So at the end of the linking process, we have the executable file
+that can run on the hardware.
+A compiler has two main pieces-- a front end and a back end.
+The front end does the source code analysis.
+So first it parses the program to identify its different pieces--
+for instance, variables, expressions, statements, and functions.
+Now, this depends on the high-level language.
+We're not worried about the ISA at this point.
+That's the concern of the back end, where we do code generation.
+This generates the machine code from the analyzed source program.
+Now, this is the step where the compiler may optimize the code,
+as we saw earlier, to make it run more efficiently.
+And this is very dependent on the ISA.
+Here we're generating the 0s and 1s, the machine code,
+that's specific to the ISA.
+Now, we make use of a symbol table similar to what
+we saw with the assembler.
+Here we have information regarding the symbolic names in our source program.

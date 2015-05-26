@@ -1,0 +1,74 @@
+Here again are our five phases of instruction processing,
+where I'm showing the result of one phase, going into the next one.
+Now, if we do all of these five phases in a single clock cycle,
+then our CPI will be one.
+Every instruction will take one cycle.
+However, our cycle time would be really long.
+We'd have a very low frequency if we did it that way.
+Now, an alternative is to have each phase take
+one clock cycle-- that will reduce our cycle time--
+but now we'll have a CPI of five.
+So every instruction will take five cycles.
+With pipelining we can get the best of both of these.
+Here's the basic idea.
+We insert a set of flip-flops, a register,
+between each of the pipeline stages.
+So as information passes from the instruction fetch phase into ID,
+it first gets clocked into the IF/ID register
+at the rising edge of the clock.
+In the same way, for instruction to move from ID to EX,
+it first gets clocked into the ID/EX register.
+However, we're going to operate this like an assembly line.
+So when an instruction moves from IF to ID, we fetch the next instruction
+and bring it into IF.
+When the first instruction moves from ID to EX,
+then the second instruction moves into ID behind it,
+and then we fetch our third instruction.
+Now that our assembly line of instruction processing
+is complete, then every clock cycle we'll be finishing an instruction.
+So we've increased the rate of instruction execution
+over both of our previous scenarios.
+In one case, we're doing all five phases in one long clock cycle.
+So that has a slower rate.
+In the second case, we wait five cycles before we start a next instruction.
+So that also has a slower rate.
+So pipeline forms a nice balance between cycle time, CT, and CPI.
+We're able to have a low cycle time because we only
+do one portion of instruction processing within one clock period,
+and we're also able to have a low CPI because once the pipeline is filled,
+then we're completing an instruction in one cycle.
+We can compare non-pipelined execution with pipelined execution
+to see this advantage.
+Here's the example of our five phases done in a single clock cycle.
+So we do all five phases within clock cycle one for instruction one,
+and then we do all five phases for instruction two during clock cycle two.
+Now, here's the same example with pipelined execution.
+During clock cycle one we fetch instruction one.
+During clock cycle two we decode it, and then we fetch instruction two.
+In clock cycle three our first instruction is in the ALU phase,
+in execute, the second is in ID, and the third is in IF.
+In clock cycle five our entire pipeline is filled with instructions.
+And now in every clock tick, we're going to output an instruction in each cycle.
+Now let's see how pipelining improves performance.
+Each of our instructions is going to take five cycles.
+But once the pipeline is filled, an instruction
+has completed every cycle, every tick of the clock.
+Now, this can dramatically reduce our CPI.
+Here's an equation for CPI using a pipeline processor.
+If N is the number of instructions in our program,
+then CPI is the number of cycles to perform those N instructions over N,
+the number of instructions.
+Now, in the first four cycles we're filling our pipeline.
+And after that, we can complete an instruction in every cycle.
+So the number of cycles is N plus 4.
+And our CPI is N plus 4 over N. A program can execute
+millions or billions of instructions.
+So N is very large.
+So this is approximately equal to 1.
+So with pipelining, we can get, in theory, a CPI of 1.
+Well, is it really this simple?
+Is pipelining really this beneficial?
+Unfortunately, it's not.
+We have two types of hazards that we need to deal with,
+both data and control hazards.
+And we're going to see both of these in the next module.

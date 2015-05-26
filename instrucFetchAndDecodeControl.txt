@@ -1,0 +1,60 @@
+Before we get into the specifics of particular instructions,
+we need to cover instruction fetch and decode.
+These are phases that we carry out for every instruction.
+Now within this state diagram within each bubble,
+we have a high level notation for the operations
+that are carried out within each state.
+In reality, these translate into the control
+signals that we have in our micro architecture diagram.
+In the first state of instruction fetch, we transfer the PC
+to the memory address register and we increment the PC.
+Let's look at this in our micro architecture diagram.
+First the PC is put out on the bus.
+And that's done by the control unit asserting the gate PC signal
+and making sure that the other gate signals are 0.
+Then that gets loaded into the MAR, and we do this
+by asserting the load signal for that register.
+At the same time we increment the PC and we
+load the new value of the PC-- the incremented value--
+by asserting that load signal for that PC register.
+Now, also we have to control the MUX so that the incremented value passes
+through and gets loaded into the PC.
+Now in the second state of instruction fetch,
+we read the instruction from memory and put into the MDR register.
+Now you notice we have this signal R, which
+you can think of as standing for ready.
+Our memory may be slower than our processor,
+it may take several cycles to read an instruction or data.
+So we have to make sure that the finite state machine doesn't leave
+this state until the memory is ready.
+Meaning the memory has done the operation, has fetched the instruction
+and put it into MDR.
+So the finite state machine will stay in this state
+potentially for multiple cycles, depending on the speed of our memory.
+Let's now look at our micro architecture diagram
+and see how we carry out this step.
+The memory takes the address from the memory address register,
+it's told to do a read, and it reads the instruction at that location,
+and it gets loaded into MDR.
+So the finite state machine will assert that load signal
+so that that operation takes place.
+In the third stage of instruction fetch, the instruction in MDR
+gets transferred into the IR register.
+Here's how that step is carried out in our micro architecture.
+The finite state machine makes the gate signal for the MDR register,
+the driver associated with the MDR register, to be a 1,
+makes the other gate signals to be a 0, that allows the instruction in MDR
+to be put onto the bus, and then the load signal for the IR register
+is also a 1 so that that instruction gets placed into IR.
+Now that we've completed instruction fetch,
+we're ready to move to the decode stage.
+In instruction decode the branch enable signal is generated
+and the opcode is decoded by the finite state machine control.
+Here's the instruction decode step in our LC-3 micro architecture.
+We take the three condition codes, as well as bits 11
+through 9 from the instruction register,
+and use those to generate the branch enable signal.
+We also send the opcode to the finite state machine control
+so that it can be decoded.
+Now that we've covered fetch and decode, we're
+ready to look at specific instruction examples.

@@ -1,0 +1,41 @@
+We're going to illustrate the usage of branch instructions
+by going over our first program.
+Now, this program is going to compute the sum of 12 integers.
+Now, here are some assumptions about our program.
+First of all, where are our numbers located?
+Well, let's assume that they're located beginning at hex location x3100.
+That's where our first number to be added up is.
+And our program, let's assume, is stored starting at location x3000.
+Now, here's an overall flow diagram that shows what this program needs to do.
+First of all, we need to initialize some values.
+Let's assume that register 1 is going to hold
+the starting location of our numbers.
+So we need to load register 1 with the number x3100.
+Our sum is going to go into register 3, so we need to initialize that to 0.
+And the register 2 is going to tell us how many numbers we need to add up.
+So it's going to keep count on whether we've reached the end,
+we've added all 12 up.
+So we're going to initialize that with the number 12.
+Now, here's the main loop in our program.
+First of all, we check to see whether R2 is 0.
+Have we added up all of our numbers?
+If so, then we're done.
+We've done the complete addition.
+If not, then we're going to do a number of things.
+First of all, we're going to get the next number.
+And remember that R1 is going to point to the number that we're going to get.
+Now, we're going to get that number from memory,
+and then we're going to put it into register 4.
+Then we're going to add that to our running total.
+Remember, R3 holds our running total.
+So we're going to add R4 to R3 and put that back into R3.
+Now what we need to do is we need to increment
+our pointer to our next number.
+So we take R1-- remember, that points to the next number to get,
+and we add 1 to it, and we store that back into R1--
+and then we decrement our count of the number of numbers to add.
+Remember R2 is initially 12.
+Now, once we've added our first number, we're
+going to decrement that and say that we have 11 left.
+And we continue to do this loop until R2 reaches 0, which tells us
+that we've added up all of our numbers.

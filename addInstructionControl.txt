@@ -1,0 +1,44 @@
+Let's discuss the specifics of an LC-3 add instruction.
+Here's the format of an add instruction.
+Remember, we have two types.
+One is the register type, where you have two register values that we add.
+And the second is the immediate type where
+we add our source register to a sign-extended immediate.
+In both cases, we have a single state for our add instruction,
+after instruction decode.
+We do the actual add operation, and bit five
+will determine whether we use the immediate value or the other source
+register value.
+And then we put that value into the destination register.
+Now this is done all in a single clock cycle
+even though there are several steps that we need to follow.
+The other thing that we do is because we update the register file,
+we need to update the condition code as well.
+Now let's look at the different phases of an add instruction
+in our LC-3 micro-architecture.
+Now remember, we have a single state for the add instruction,
+so all this is done in a single clock cycle.
+We're going to read out our registers, do the operation,
+put the result on the bus and store it in the register file--
+and at the same time, update the condition codes.
+The first step is operant fetch.
+We read our two source register values.
+We also form our sign-extended immediate.
+And then depending on the type of add that we had,
+we'll feed one or the other to the other input of the ALU.
+And we're ready to move on now to the execute part.
+In the execute phase, the finite state machine control
+tells the ALU to do the add operation.
+In the store-result phase, the finite state machine control
+asserts the gate signal for the ALU so that that value
+can be put on to the bus.
+We use the DR field from the instruction to pick a particular destination
+register.
+And then the finite state machine control
+also makes the load signal for the register file to be a 1
+so that we overwrite that register value.
+At the same time that we're updating the register file,
+we also update the condition codes by asserting the load signal
+for the condition code register.
+So there's a complete add instruction.
+All of these phases occur in a single clock cycle.

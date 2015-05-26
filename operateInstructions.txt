@@ -1,0 +1,61 @@
+Now we'll cover each of the LC-3 instruction types.
+Let's start with the operate instructions.
+There are three of those, ADD, AND, and NOT.
+And the source and destination operands are either register
+values or immediate values.
+Now in the immediate version, one of the operands
+is actually embedded in the instruction as a constant.
+So we're adding a value from a register to a constant.
+Now the result of these operations gets written to a register.
+So these instructions do not touch memory.
+We're always dealing with register values, or constant values,
+and not going to memory here.
+Here is a NOT instruction.
+It has opcode 1001.
+And there's only one source register.
+And that's bits 8 through 6.
+We read that out of the register file.
+We send that to the ALU.
+We tell the ALU to do a NOT, which means that every bit gets inverted.
+And the result gets written to the register that's denoted by bits 11
+through 9.
+That's the destination register.
+Now the source and the destination register could be the same register.
+We could say read R2.
+We could NOT those bits, invert them all and write them back to R2
+if we want to.
+The ADD and AND instructions are identical
+except for the operation performed by the ALU.
+With both of these in the register mode, we read two source operands
+from two registers, and that's denoted by bits 8 through 6,
+and the second by bits 2 through 0.
+We do the operation, either ADD or AND.
+And then we write the result to the destination register
+indicated by bits 11 through 9.
+Now bit 5 is a 0.
+That tells us that this is register mode.
+That tells us that both of our source operands
+are coming from the register file.
+In the immediate version of these instructions,
+the second source operand is an immediate value, a constant
+that's in the instruction itself.
+So here we have bit 5 being a 1 instead of a 0.
+That indicates that our second source operand is an immediate value.
+Now that's indicated by the rightmost 5 bits of our instruction.
+Now because we're going to add that to a 16-bit value from a register,
+we need to sign extend that value.
+We need to duplicate bit 4 eleven times to get an equivalent 16-bit value
+that then we can add to the other source registers.
+And the result, of course, goes into the destination registers
+indicated by bits 11 through 9.
+Now let's go back to our LC-3 microarchitecture
+and add support for register in immediate modes.
+What we're going to add is a multiplexer we call SR2 mux.
+So this indicates the second source operand for those instructions.
+Now in register mode, that's going to come from our register file.
+So that's one input to the mux.
+In immediate mode, that's going to be the sign extended immediate.
+So that's the other input.
+And then the finite state machine control
+is going to pick one or the other, depending on the type of ADD
+and AND instruction we have.

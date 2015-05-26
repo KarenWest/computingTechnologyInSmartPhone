@@ -1,0 +1,147 @@
+Now you've had considerable success in designing with your students.
+You've designed and built and tested a large number of chips and asynchronous
+chips.
+I don't know if you'll have time to talk about all of them,
+but one of them you designed was you call it
+SNAP, which is an asynchronous processor for sensor networks.
+That showed a huge advantage in power over a synchronous counterpart.
+Then, another is field programmable gate arrays, or FPGAs, programmable logic
+where your research led to a startup Achronix.
+So can you talk about those two applications and why doing things
+asynchronously has an advantage over doing things synchronously?
+Sure.
+I've talk the sensor network domain first, the SNAP chip that we did.
+We looked at this problem.
+It's kind of funny now to think about it, looking back.
+The late 1990s is when we started looking at this problem.
+Sensor networks weren't even a thing back then.
+But we had faculty members in ECE at Cornell
+who were interested in wireless communications
+and they could see the writing on the wall
+that you could build systems like sensor networks.
+So there's a collaboration that came out from that.
+That's when [INAUDIBLE] and I designed this processor.
+So that is sort of interesting in and of itself.
+But what ended up happening was we looked
+at what people were using in the commercial world
+in the space at that time.
+Everybody was essentially trying to take the desktop model and make it small.
+The problem with that really was that the application domains had some very,
+very different characteristics.
+The first one which is, the obvious one of course-- now it's obvious--
+was that actually, these little sensor nodes
+were doing very little useful work.
+How about temperature sensor I'm computing something of the running
+average of the temperature.
+I'm getting samples every 50 millisecond if I'm really, really aggressive.
+Temperature don't change on any timescale
+that we worry about at electronics.
+We're worried about nanosecond time scales.
+Right, and these are very, very, very long.
+On my phone, I look at the temperature once an hour.
+So I mean so that's one thing.
+There was actually very little it work being done.
+The problem was that all the conventional systems
+were being designed in a way that waking up
+was a very expensive operation, because most of the time you're
+busy doing useful computation.
+So it OK to have expensive wake up and then you can do useful work.
+So there's all this overhead involved in the full system on there.
+So what ended up designing was-- In the asynchronous domain on the other hand,
+normally the system is waiting for inputs.
+As soon as inputs arrive you start computing and you produce the output.
+Then, you go back to waiting for inputs.
+That's a very natural way applications look like the sensor network.
+So there's a very good match between what
+an application looks like in the sensor domain
+and then how we design our circuits.
+So we said we should be able to design a processor like this
+and have it be very efficient.
+In fact, it was when we first did the comparison, if I looked at the time
+it took for inputs to arrive on that IO pins of the processor
+to when the processor woke up, did the computation and went back to sleep,
+most commercially available microcontrollers hadn't even, you
+could even start executing yet because you had to wait for everything to power
+up.
+So it just shows you we had a very different design
+point as a result of that.
+So the asynchronous circuits make this very, very easy because it's
+very direct relationship between the way our circuits worked
+and what application domain really needed at the time.
+So that was that example.
+Then on the FPGA domain, this was research project
+that what happened in some ways as an accident, which
+is that as you were saying, my group was designing all these chips.
+It's a lot of work to design a chip.
+What he said was why don't we just use FPGAs like everybody else does.
+You don't have to design the chip.
+You could use an FPGA instead.
+Maybe it's not as good, but at least you get your proof of concept design.
+When we looked at that problem, it turns out
+that because the way FPGAs were designed commercially,
+they're designed for synchronous logic.
+So they're very, very good at that.
+But it turns out that there's a huge mismatch
+between the resources available there the asynchronous domain.
+So the mapping was really terrible.
+You couldn't learn anything about how good your design was
+by mapping it to an FPGA.
+So mapping a design into the programmable component?
+Right.
+So what we decided to do was build our own FPGA.
+That was more suitable for what we were doing.
+That's what we did.
+Then when we realized that actually having
+it be asynchronous led to a number of interesting speed advantages.
+The reason is because the FPGAs were-- in fact
+even today-- FPGAs are slow because the programmablilty of the FPGA
+means that the wires are actually much, much worse
+than you might think because the wires have to be programmable.
+So there's lots of circuitry in the way so it becomes very expensive.
+Of course, the way you solve this problem in a normal synchronous design
+is you put pipeline stages and all sorts of things to make the wires faster.
+But you can't do that because somebody's already given you the design to map
+to the FPGA.
+So it not very easy to add those pipeline
+stages automatically with software.
+In fact, researchers tried to that and they weren't very successful.
+Now in the asynchronous domain, it turns out
+that because the data tells you when it's there, so to put in pipline stages
+is easy.
+Just do it.
+Nobody cares because the data will still tell you when it arrives.
+So what you can do is you can design an FPGA
+but all the pipelining is built in.
+And if the logic is structured in a way that you can exploit the pipelining,
+then it runs really, really fast.
+Of course, if your logic isn't, it's not going to run any better.
+So that's what happened.
+We ended up having FPGAs where we could map things like DSP operations
+that ran in some cases on over a gigahertz throughput on an FPGA,
+which is unheard of.
+At the time, that was a very, very high frequency
+compared to what you could do in the synchronous domain.
+Absolutely.
+It was hundreds of megahertz in the synchronous domain.
+Right, I talked to somebody was an expert
+at a company who was basically hand optimizing their filters that DSP
+blocks to run on commercial FPGAs.
+I gave a talk at his company and he came to me afterwards
+and he was very upset because I showed him we could get gigahertz performance.
+He said he was running at 1/5 that throughput and he was
+doing the full design manually, which is an enormous amount of effort.
+Optimizing to the nth degree.
+Everything.
+It took him two years to do this And here we could do this in 5 minutes
+by using it.
+He was very nice about it, but it was clearly a shock.
+So that was basically the idea that you could actually
+run a lot faster because of this inherent data driven
+nature of asynchronous logic.
+So in terms of SNAP it was really a power advantage, energy advantage.
+It was more energy efficient.
+In terms of the FPGA, there's a speed advantage.
+Throughput.
+Throughput.
+I should say throughput.
+Yes, exactly.

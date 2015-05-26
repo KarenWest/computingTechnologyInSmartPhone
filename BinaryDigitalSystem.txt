@@ -1,0 +1,89 @@
+Let's discuss how we represent data in a computer.
+Now, a computer operates by controlling the flow of current using billions
+of tiny switches called transistors.
+And the digital circuits that are comprised of these transistors
+produce only two values, either the presence of a voltage,
+and we call that a 1, or the absence of a voltage, which we call a 0.
+So these digital circuits, all they have to do
+is either connect to the supply voltage, whatever that may be,
+whatever voltage is supplied to the circuit,
+or connect to ground, or 0 volts.
+So here's an example where our supply voltage is 3 volts.
+So if we have 3 volts, then we say that's a logic 1.
+And if we have 0 volts, then we call that a logic 0.
+Now, the nice thing is that 0 and 1 don't have to be precise.
+I can have a range of voltage for each state.
+So for example, in our system with 3 volts as the power supply,
+then we might recognize anything that's greater than 2.2 volts, greater
+than or equal to 2.2 volts, as a 1.
+So we don't have to have exactly 3 volts, so long as we have at least 2.2.
+Then we could recognize that as a 1.
+For a 0, perhaps, if we have anything that's at least as low as 0.8 volts,
+we can recognize that as a 0.
+So the transistors actually can recognize voltages
+within these ranges as 0 and 1s.
+That's how they're designed.
+Now, if I have something in the middle, it's actually neither a 0 or 1.
+Now, these circuits will transition from no voltage to full voltage.
+We'll see transitions from 0 to 1, and 1 to 0, as the system operates.
+But if we're looking for the value of 1 or 0,
+we have to make sure that it's in these ranges,
+or we won't recognize as either a 0 or a 1.
+Now, these electronic circuits don't have to be perfect.
+And that's really nice, because every digital system is going
+to have some disturbances, some noise.
+So it could be that my 3.3 volts gets a little bit of noise,
+and so it becomes 2.3 volts.
+Well, in this system, that's just fine, because we
+can recognize that 2.3 volts-- we can still recognize it as a 1.
+Now, a computer is what we call a binary digital system.
+It's a digital system because it has a finite number of symbols,
+and it's a binary system because we use base 2,
+rather than what we're familiar with, which is base 10.
+It's a base 2 system.
+So it only has two values or two states-- 0 and 1.
+With base 10, we have 10 values for each position.
+With base 2, we only have two, 0 and 1.
+And the basic unit of information is what we call a binary digit,
+or for short, we call it a bit.
+And each bit only has these two values, either 0 or 1,
+either no voltage or the presence of a voltage.
+Now we need to represent more than two values.
+We want to represent large numbers.
+So we use multiple bits to get more than two values.
+Just like in our base 10 number system, if we want to represent large numbers,
+we have a lot of different positions.
+So in order to get more than two values, we
+might say, use a 2-bit binary number.
+Now, a 2-bit binary number has four possible values-- 00, 01, 10, and 11.
+A 3-bit binary value or binary number will have 8 possible values,
+ranging from 000 to 111.
+And in general, an n-bit binary number has 2 to the n possible values.
+For example, if n is 5, then we have 2 to the 5, or 32 total number of values
+that we can represent.
+Let's discuss computer data, which takes many, many forms.
+Well, first we have numbers, and computers manipulate numbers.
+And those can be signed numbers.
+So they can be positive or negative.
+They can be unsigned numbers, which are just positive numbers,
+and of course, 0.
+They can be integers, which are whole numbers.
+They can be floating point numbers, and this you
+can think of as equivalent to scientific notation in a computer.
+They can be text.
+So we want to represent characters.
+We also want to represent strings, which are combinations of characters.
+For example, when you write a document, then that's
+a string of characters, including spaces and other special characters.
+We have images.
+We want to represent pixels.
+Those are little dots on your computer screen which are colored,
+that represent some color as part of an image.
+We have shapes and images.
+And then we have instructions.
+So all computers run programs, which we'll talk about later in the course,
+and those programs are comprised of instructions.
+And this is just a form of computer data.
+Now, a data type has both a representation as well as operations
+that we perform on that data type within the computer.
+So let's start with numbers.

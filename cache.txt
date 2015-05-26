@@ -1,0 +1,86 @@
+Now let's transform our pipeline to include caches for the instruction
+memory and for the data memory.
+So here's what we do.
+We still have our main memory, and that has an MDR and
+an MAR register, just as before.
+But now in instruction fetch, we've introduced an instruction cache.
+And in the MEM stage, we have a data cache.
+Now, the main memory is going to be composed of that DRAM.
+We can put a lot of it.
+We can put a lot of it on a chip.
+It's very dense, and it's inexpensive.
+So most of our instructions and data will sit in main memory.
+And a subset of our instructions and data
+will fit into these caches, which are in IF and MEM.
+So not all of our instructions will fit there.
+We'll have only a subset.
+But so long as we find our instructions in the cache-- these are SRAM,
+so they're very, very fast.
+So we can keep up with the speed of our pipeline.
+The same with the data cache.
+We may not find always the data that we want there, but when we do,
+we can run at the speed of the pipeline.
+A cache is a small SRAM memory that permits rapid access to a subset
+of our instructions or data.
+Now if the data is in the cache-- and we're
+using "data" generally here to infer to either instructions or data.
+So if the data is in the cache, then we call that a cache hit.
+And we can retrieve it without slowing down the pipeline.
+Now if the data is not found in the cache, we call this a cache miss.
+And we just now go to the main memory and retrieve it from there,
+so that may take longer.
+But we're hoping that most of the time, we're
+going to have hits-- we're going to find what we want in the cache.
+Now the hit rate is the fraction of memory accesses
+that are found in the cache.
+And we define the miss rate as 1 minus the hit rate.
+For caches to be effective, the hit rate has to be pretty high.
+Now typical caches are pretty small.
+They're only, say, a few 100,000 bytes, whereas memory
+may be a gigabyte in size.
+So we're only holding a small fraction of our instructions or data
+in our caches.
+Well, it turns out that hit rates also are pretty high,
+over 90%-- even over 95% in many cases.
+How does this work?
+How could that be?
+Well, it turns out that there are properties
+of our programs called locality, specifically
+temporal locality and spatial locality.
+Now temporal locality says, if memory location X is accessed,
+then it's likely to be accessed again in the near future.
+Now think about some of the things we've already talked
+about in our program, such as a loop.
+If I have instructions in a loop, then I'm
+going to revisit those instructions over and over again
+as I iterate through my loop.
+So I access one particular instruction, and then I'm
+going to access it again in the near future when I iterate on that loop.
+Now, caches exploit temporal locality by keeping a reference instruction or data
+in the cache.
+This also happens when we talk about data.
+So for instance a loop counter, a loop variable, is a piece of data
+and w’ll be incrementing that counter over and over again.
+So that also has temporal locality.
+Now, we also have spatial locality in our programs.
+So if memory location X is accessed, then locations near X
+are likely to be accessed also in the near future.
+So if you think about instructions.
+Typically, we go sequentially through our instructions in memory.
+So if I'm accessing an instruction at location 100,
+then it's likely that I'm going to access 101 in the near future because
+of spatial locality.
+Now we also have this with data.
+When we have things like arrays, when we do things like matrix multiply,
+for instance, then we're revisiting the same rows and columns of our matrices
+over and over again.
+So data also has spatial locality.
+And caches exploit spatial locality by bringing
+in what's called a block of instructions or data into the cache on a miss.
+So if I miss an instruction at the instruction located at 100,
+I might bring in that and maybe the next seven instructions
+after it, anticipating that I'm going to walk sequentially through my program
+and get to those instructions next.
+So because of that property of spatial locality
+and because we bring in a whole block of instructions into the cache, then
+we can get these very high hit rates.

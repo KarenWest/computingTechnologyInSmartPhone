@@ -1,0 +1,117 @@
+In order to design the combinational logic,
+we're going to make use of a transition/output table.
+This shows the next state and the output values for each combination
+of the current state and the inputs.
+We're going to call our current state S, and our next state S prime.
+Now, don't confuse S prime with naught or inversion.
+Now from this table, we can derive the next state
+in the output combinational logic.
+And we're going to use two versions of this table.
+The first one that we're going to build is going
+to use our descriptive state names.
+The second version is going to replace those state
+names with binary encodings.
+Let's create the first version of our transition output table.
+Here, I have my state diagram.
+And here's the table that we're going to fill in.
+Now, let's first look at the structure of this table.
+On the left, I have my current state.
+And I have four rows, because we have four states.
+And over to the right, I have a column for my output.
+Remember, this is a Moore machine, so the output
+is going to be determined just by the current state.
+Now, in the middle, I have my next state.
+And I've broken that up into two columns.
+My next state is going to be one value, depending on the input being a 0,
+and another value when the input is a 1.
+So let's fill in this table.
+First, let's start with the left side, where we have my current state.
+I have four states, so I'm just going to fill those in from my state diagram.
+My first state is called Init; my second, Got1; my third, Got11;
+and my final state, Got111.
+Now, I can fill in the output based on these currents states.
+So in my initial state, Init, my output you see in the bubble is a 0.
+So let's just fill that in on that row.
+We have a 0 here.
+For Got1, we also have a 0.
+For Got11 is a 0, and for Got111, we have a 1 for our output.
+Now, let's derive the next state, the transitions.
+So for input equals 0, when I'm in my initial state,
+we can see from our state diagram that we stay in state Init.
+Now, when the input is a 1, then we move to Got1.
+And we can do the same for the other states.
+When we're in Got1, and we get initial input of 0, we move to Init.
+And with an input of 1, we move to Got11.
+When we're in Got11, again, we move to Init with an input of 0.
+And with an input of 1, we move to Got111.
+And then, when we're in our last state, again, we
+move to Init, with an input of 0.
+And we stay in Got111 when our input is 1.
+So now, we have a completed first version of our transition output table.
+Let's now move to the second version.
+First of all, if we look at the state diagram,
+I've put in each bubble the binary values
+that we're assigning to each state.
+So Init is going to be State 00, Got1 01, Got11 10, and Got111 11.
+Now, you might be wondering about reset.
+I've kind of ignored reset up to this point.
+Well, what we can do is we can implement our D flip-flops
+with a reset capability that we've talked about previously.
+That means when reset is a 1, then D flip-flops are going to go to 0.
+So by assigning 0,0 as the binary value for my initial state, all I have to do
+is send the reset signal to the reset input of my D flip-flops.
+And then, when that signal is a 1, I'll go into my initial state automatically.
+So that's how we can handle reset.
+Now, if we look at the transition and output table, what we've done here
+is we've replaced our labels from our first version
+with their equivalent binary values.
+So for instance, everywhere we had Init in our first version, we've put 0,0.
+And we've done this for every state assignment.
+Now let's design the hardware for our finite state machine.
+First of all, we have to state bits.
+So we need to have two D flip-flops.
+So let's put those down.
+Now, let's feed the current state, the Q outputs of those flip-flops,
+up into our circuit.
+So we're going to create both the true and the complement values,
+because we might need those.
+Now, we also have our input.
+So let's show that.
+And again, let's have an inverter.
+So we have our true and complement values for our input available to us,
+as well.
+Now the first thing we're going to do is we're going to design our output logic.
+Now, if we look at our table, we see that Out is a 1 in only one row.
+That's when our state is 1 and 1.
+So we just need a single AND gate.
+And feeding in the true values of the state bits into that AND gate,
+and that's our output.
+Now let's look at the combinational logic for our next state.
+If again we look at this table, we see that we only have a 1
+for our state bits, when n equals a 1.
+So for all of our AND gates, n is going to be a 1.
+Now, let's first look at the rightmost bit.
+Now, we have three 1s in our table.
+This is when, again, n equals 1.
+And when we have different values of our current state bits.
+So let's draw three AND gates.
+And those are going to be three input AND gates.
+And the first one, in the first row, has n equals 1.
+So let's grab that.
+Then we have the inverted values of our current state.
+So when s equals 0,0, that's when the next state bit becomes a 1.
+So we need to take the inverted values of those.
+Now, let's look at the third row for our third AND gate.
+Now here again, n equals 1.
+So let's grab that.
+And now, the leftmost current state bit is a 1.
+So we need the true value of that.
+And the rightmost state bit is a 0, so we need the complement of that.
+So that's our second AND gate.
+Now our third AND gate, the bottom row here, has n equals 1,
+and our current state is 1,1.
+So we just grab the true values of those, and that's our third AND gate.
+Now, we need to feed those into a three input OR gate.
+So let's draw that.
+Here's our three input OR gate.
+And this now feeds into D flip-flop for this state bit.

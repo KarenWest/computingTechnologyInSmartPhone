@@ -1,0 +1,66 @@
+Now that we've seen the general format of an instruction,
+let's talk some details about the LC-3.
+First we're going to go through the general organization of an LC-3
+instruction and then go into specifics about two instructions.
+First of all, every LC-3 instruction is 16 bits in length.
+And the leftmost 4 bits, bits 15 through 12, specify the opcode.
+This is the operation to be performed.
+Now we have eight registers, R0 through R7,
+so we need 3 bits to represent each source, which are inputs,
+and every destination, which are result operands.
+Here's the format of an LC-3 ADD instruction.
+So first let's look at just the general format
+then we'll actually fill in the bits, the binary numbers
+for each of these fields.
+So first of all, the leftmost 4 bits are the opcode
+and that's going to represent an ADD.
+Now we have two source registers, so the source of an ADD instruction
+are registers.
+So the first source is bits 8 through 6, and the second source
+is bits 2 through 0.
+Now, we need a destination register, a place
+where the result is going to be stored and that's bits 11 through 9.
+Now, we have 3 bits which are unused and we're just going to make those 0's.
+So every instruction is going to be 16 bits even
+if we don't need to use all the bits.
+Now let's fill in the binary numbers for each of these.
+So first of all, ADD, the binary code, the opcode for an ADD is 0 0 0 1.
+So in order to recognize an ADD, the hardware would see 1 in those 4 bits.
+Now, here's a specific example where we have a destination of 1 1 0, which
+is R6, and we have our two source register numbers, which are 0 1 0,
+which is R2, and 1 1 0, which is R6.
+So what does this specific instruction mean?
+It means add the contents of R2 to the contents of R6
+and store the result in R6.
+So you see that R6 here in this example is both the source and a destination
+register.
+Now, let's move on to a load specifically in LC-3, LDR instruction.
+Remember a load instruction reads data from a specific memory location
+and puts that into a register.
+Now, the LDR instruction uses what's called
+base plus offset addressing mode.
+We add an offset, this is a value that's in the instruction,
+to a value in a base register to form the address.
+Now, the base register is a specified one of our eight registers
+and this holds the base.
+Now, this could be, for instance, let's say you have a list of numbers
+that you want to add up.
+So the base register might point to the very first number
+in your list in memory.
+So what we're going to do is, we're going to load from a specific memory
+address into a destination register.
+So here's our general format and we need a destination register
+and that's bits 11 through 9.
+The base register, the register we're going
+to read from the base address, that's bits 8 through 6,
+and then the offset that we're going to add to that value
+is the right-most 6 bits.
+So here's a specific example.
+So the opcode is 0 1 1 0 and we have a destination register
+in this example of 2, and our base register is 3,
+and our offset is the value 6.
+So what this says is we're going to add the value
+6 to the contents of register 3 and that's
+how we're going to form our memory address.
+We're going to go to that location in memory and read that value
+and we're going to put the result into R2.

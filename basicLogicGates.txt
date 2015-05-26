@@ -1,0 +1,41 @@
+Now that we've seen NOT, NOR, and NAND, and previously we saw OR and AND,
+these are what we call logic gates.
+These are building blocks that we're going
+to use to build more complex digital functions later on in the course.
+Now we're going to put these together-- a lot of these in some cases--
+and it can get kind of tedious to draw all of those transistors.
+So in order to avoid that, we have some handy symbols
+that we can use in place of those transistors.
+Let's talk about those.
+The first is the symbol for a NOT.
+It looks like this.
+I have my input, A, on the left.
+And you can draw it the other way if you want, as well.
+But typically logic diagrams flow from left to right.
+And on the right, I have my output which is the inverted value of the input.
+Now I've shown this as a bar.
+There's a couple of other ways that we represent inversion.
+We can represent it also as a prime if we like.
+Or we can put a slash in front of the A. So all three of these
+represent a NOT gate.
+Now let's talk about an OR gate.
+Here's the symbol for an OR.
+I'm going to draw a 2-input OR.
+I have inputs A and B. Now you can extend this to other number of inputs,
+as well.
+So I can have 32 inputs going into this OR gate.
+And my output is represented with a plus sign between them.
+Now don't mistake this for addition.
+This looks like addition, but here we're representing the logical function OR.
+Let's now look at AND.
+An AND looks like this.
+Again, I assume I have two inputs, but I could have any number of inputs.
+And my output, I represent as A dot B.
+And a dot, we can also represent as multiplication.
+Again, don't get confused here.
+We're talking about the logical function AND.
+Now just like with multiplication, sometimes we leave the dot out.
+So if you have two inputs, A and B, and you see AB,
+that also represents logical AND.
+Now we're going to use these basic NOT, OR, and AND
+later on in the course when we create these more complex logic functions.

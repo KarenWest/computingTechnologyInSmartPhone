@@ -1,0 +1,81 @@
+A sequential program consisting of a single thread--
+now, we're going to see multithreaded programs later in the course--
+has what's called Instruction-Level Parallelism, or ILP.
+Now, let's look at this program segment, this group of six instructions.
+And what do we notice about these six instructions?
+Well first of all, there are no data dependencies
+between the destination of one register and the source of other registers
+from other instructions.
+So for instance, let's look at the ADD instruction.
+It writes register 1, but none of the other five instructions
+read register 1.
+The same with the NOT instruction.
+It writes R4, but we don't see R4 as any of the source registers.
+And the same holds true for R5, R6, R7, and the last instruction,
+the LDR writes R2.
+Now, what do you notice about R2?
+Actually, there's a little bit of complexity here.
+And that you notice the ADD and the AND read R2.
+And later on the LDR is going to update R2.
+So we have to make sure if we're looking at the ordering of these instructions,
+we have to make sure absolutely that the ADD and the AND
+read R2 before the LDR writes R2.
+But otherwise these are independent instructions.
+So I can actually do these instructions in a different order.
+Or I can do groups of instructions and pass them through the pipeline
+together.
+And that's what a superscalar pipeline does.
+It exploits ILP, this property of independence
+that we see in this instruction group, by duplicating the pipeline hardware.
+Here's a two-way superscalar pipeline for exploiting ILP.
+And what you'll notice is we've duplicated the resources
+in every pipeline stage.
+Let's start with instruction fetch.
+So here we see we have two outputs from the instruction memory.
+So we're fetching the first two instructions in our program,
+and then the next two, and then the next two.
+So we're fetching two instructions at a time.
+Now when those pass into ID, you'll notice
+that we're reading four operands from the register file, two
+for each of those two instructions.
+In EX we've added a second ALU so that we
+can do two operations at the same time.
+Each ALU can handle the LC-3 operate instructions,
+or they can be used to calculate an address for a load or store.
+In the MEM stage we have what are called two ports for the memory.
+So we can either write two values, or it can read two values,
+or write one and read another.
+Finally, in the write-back stage, we have the ability
+to update two destination registers, one for each of our two instructions
+in our pipeline.
+Now let's see how our six-instruction sequence
+executes in our superscalar pipeline.
+So here are the six instructions that we have
+stored in sequential locations in the instruction memory.
+So now we're going to fetch two instructions, the ADD and the NOT.
+Now we're going to fetch the next two as the ADD
+and NOT move into instruction decode.
+The ADD will read R2 and R3, and then NOT at the same time will read R4.
+Now we'll do both the ADD and the NOT operation
+using the two ALUs in the EX stage, while we read the source
+operands for the AND and the ADD, and we fetch the AND and the LDR instructions.
+Now our instructions move two at a time through the remaining stages
+of our pipeline.
+The ADD and the NOT, because they're operate instructions,
+skip the data memory stage.
+The AND and the ADD do their operations in the EX stage.
+And the AND and the LDR instructions read their source operands.
+In the next tick of the clock, the ADD and the NOT
+write their registers, R1 and R4, the ADD and the AND bypass the data memory,
+and then the AND does the AND operation, and the LDR
+forms the address in the EX stage.
+In the next clock cycle the AND writes R5 and the ADD R6 to the register file.
+The AND bypasses the data memory stage, while the LDR instruction reads
+the data at the calculated address.
+Finally in the last cycle, the AND writes R7 and the LDR
+writes register 2.
+Now with our two-way superscalar pipeline,
+we've doubled our instruction throughput, or doubled our performance.
+Now we can extend this even further.
+In fact, your smartphone even has wider superscalar pipelines
+that allow it to even get more performance than this.

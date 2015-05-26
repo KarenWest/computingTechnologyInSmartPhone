@@ -1,0 +1,25 @@
+Our control unit orchestrates these phases of execution
+and that's implemented as a finite state machine.
+Here's a simplified state diagram which we're going
+to expand on later on in the course.
+The first three states are instruction fetch,
+and those happen over three cycles of execution.
+In the first phase, we take the contents of the PC
+and we load that into the MAR register.
+We also increment the PC and update the PC with that incremented value.
+In the next state, the next clock cycle, we read the memory
+at that address that's in the MAR and we put that instruction
+into the MDR register.
+Then the third step, the third cycle of instruction
+fetch, we take the contents of MDR, we transfer it over the bus
+and that gets loaded into the IR register.
+Now that we have our instruction, we're ready to decode it and then determine
+the next sequence of steps and that's done in the decode stage
+when we look at the leftmost 4 bits, the opcode,
+and that tells us what to do subsequently.
+Now that you can see that after decode, we go through a set
+of steps that are specific to the type of instruction
+and then finally we go back to the first step and fetch the next instruction.
+Now we have a foundation that we can build on
+to fill out the rest of our LC-3 instruction set,
+which we're going to do in the next few modules.

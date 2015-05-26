@@ -1,0 +1,45 @@
+Let's now discuss how we read and write a direct map cache.
+For reading, we first use the index bits to retrieve the tag and data.
+We compare the tag from the address with the retrieve tag.
+Now if we have a match, a hit, and the validate bit is also set,
+then we select the desired data using the word offset field.
+Now, if we have a mismatch or the valid bit is 0, then we go off to memory
+and we bring the block into the cache.
+We store the tag from the address with the block.
+Then, we select the desired data using the word offset field from the address.
+Let's talk about how we write to a direct map cache.
+Well, first we have to check to see whether we
+have a hit, whether the memory block that we want to overwrite
+is located in the cache.
+We use the index bits to retrieve the tag.
+We compare the retrieve tag with the tag field from the address.
+We check the valid bit.
+If we have a hit, then indeed the memory location we want to overwrite,
+the memory data from the location we want to overwrite
+is located in the cache.
+So then it's safe to overwrite that data.
+Now, we have 64 bits in our example for a cache block.
+We're only get overwrite the desired 16 bit quantity.
+We write that data into the cache location.
+Now, if we have a miss, then there are several options available to us.
+Now, one option that's very popular is to bring the block from memory
+into the cache just like we do on a read.
+We store the tag from the address with the block.
+Then, we store the 16 bits that we want, we
+overwrite that 16 bits within the 64-bit cache block.
+Now, we'll review the breakdown of our memory address.
+First of all, the rightmost bits are the offset bits.
+So we have B word offset bits.
+In an LC3, those point to the desired 16 bits that we want to read or write.
+Then, we have i index bits.
+This points to the desired location in cache, the desired block.
+The remaining bits, which are n minus i minus b, where n is the address size,
+then those are used for the tag.
+Now, let's look at how these translate into the parameters of our cache.
+So for instance, the size of each block with LC3 would be 2 to the 2b bytes,
+because every location is 16 bits or two bites .
+We have a block size of 2 to the 2b bytes in LC3.
+The number of blocks that we have is 2 to the i.
+We have i index bits, so we have 2 to the i blocks.
+So the total cache size is 2 to the 2 b plus i bites.
+That's the total cache capacity that we have.

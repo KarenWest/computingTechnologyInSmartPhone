@@ -1,0 +1,65 @@
+Let's design an FSM called a pattern detector.
+A pattern detector monitors the input, and outputs a 1 whenever
+a specified input pattern is detected.
+And in our example, we're going to output a 1 whenever 1 1 1
+is detected on the input over three back-to-back clock cycles.
+Now, we're specifying this to also detect overlapping patterns.
+So for instance, if we see 1 1 1 1 on the input, then we'll have 1 1
+in the output.
+It will detect both of those 1 1 1 sequences.
+So we have one input in, an output out.
+And reset causes the FSM to start in an initial state.
+And in our state diagrams, we're not going to show the clock input,
+but of course it's always there.
+Now, let's build the state diagram for our 1 1 1 pattern detector.
+Let's start with an initial state, we'll call that init.
+And in our initial state, that's where we're starting from,
+our output is going to be 0.
+We haven't seen any inputs yet at this point.
+Now, reset-- we said that reset causes us to go into our initial state.
+So let's draw that as an arc and label that reset.
+Now, let's look at the transitions, the arcs
+from state-to-state in our initial state when we
+have the different values of our input.
+Now, when our input is 0, then we stay in our initial state.
+We're waiting to see our first 1.
+When we get our first 1, when we have an input of 1,
+then we're going to transition to our second state.
+And I'm going to label that with a descriptive name saying Got 1.
+That means I got a pattern of a 1.
+Now, in this state my output is still 0.
+I've only detected one 1.
+And let's look at now how we transition from the second state.
+Now, if my next input in the next clock cycle is a 0,
+well, then I have to start all over again.
+So I go back to my initial state as shown by this transition here.
+If I get another 1, a second one in a row, then I go to my next state.
+And we'll call that Got 1 1.
+So I got 1 1 in the input.
+Now, here my output is still 0 because I haven't seen three 1's yet.
+So let's label that here.
+Now, let's look at the transitions out of this third state.
+Again, if I get an input of 0, well, then I have to start all over.
+So I go back to my initial state.
+Now if I get a third input of a 1, I go to my fourth state.
+And I'm going to call that Got 1 1 1.
+So this is where we've detected our 1 1 1 pattern,
+and our output now becomes a 1.
+Now, what happens in this fourth state?
+Well, again if I get an input of 0, I go back to my initial state,
+I have to start over.
+But we said we were going to detect overlapping patterns.
+So if I get my next input, a fourth 1, then I stay in the state
+and I also output a 1.
+And so as long as I keep getting 1's, I'm
+detecting those overlapping patterns, I'm going to get an output of 1.
+Until I get an input of 0, then I'll go back to my initial state.
+Let's review our FSM design procedure.
+Well, we've done steps 1 and 2.
+We've determined the problem statement, the inputs and outputs.
+We've drawn our state diagram.
+Now, how many D flip-flops do we need?
+Well, we have four states, so we need two D flip-flops
+to represent those four states.
+Now let's move on to step 4, where we're going
+to implement the combinational of logic for the outputs in the next state.

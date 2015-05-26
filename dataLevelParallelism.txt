@@ -1,0 +1,123 @@
+Let's begin our discussion of data level parallelism
+by looking at this C program.
+First of all, we have three short arrays, where short is a 16-bit number.
+And each of these arrays-- you could think of this as each of these
+are one-dimensional arrays.
+Each of these have four 16-bit values, stored in successive memory locations.
+So a has four values, stored in four locations.
+Same with b and c.
+Now what we're doing with this loop is we're taking each element of b and c,
+and adding those together and then storing the result into a.
+So for instance, we take b[0], and we add c[0],
+and then we store the result in a[0].
+And we do this for all four elements of b, c, and a.
+Now these arrays, a, b, and c, contain four data elements, a[0], a[1], a[2],
+and a[3] for array a.
+And the same operation in this piece of code is done for each data element.
+And these are all independent operations,
+so the operation on b[0] and c[0] is independent of b[1] and c[1].
+There's no data dependences here.
+We have complete parallelism in this piece of code.
+So we can replace these four add operations in the loop
+by one instruction, which is called the SIMD add instruction.
+Now SIMD stands for Single Instruction and Multiple Data.
+If you noticed in our code example, we're
+doing the same operation on multiple pieces of data.
+So all we need, really, is one instruction,
+so long as we can do the same thing in that instruction
+on multiple pieces of data.
+So these are special instructions for what are called vector data.
+And you can think of these as arrays.
+And the identical operation is performed on each of the corresponding data
+elements.
+That's the kind of fundamental feature of this type of instruction.
+And the data elements are stored contiguously,
+so one load or store can potentially read or write all the elements at once.
+And we assume, using these kind of instructions,
+that the register file is wide enough where we can chain multiple register
+values together, in order to hold all of the elements in a single register,
+or maybe in a couple of registers chained together.
+Now let's see how we implement this for loop, using SIMD instructions.
+Now we need to make a little bit of an assumption here.
+So right now our pipeline is 16 bits wide.
+So we have an LC-3 is a 16-bit machine.
+We're going to assume a wider machine.
+We're going to assume a 64-bit machine, like we have in some of our cellphones,
+some of our newer cellphones use 64-bit registers.
+We're going to assume that now for the LC3.
+So if we assume that, then what we can do
+is we can do one load instruction to get all of b.
+If b is four 16-bit elements, then that's 64 bits total.
+And we're assuming that we can do 64-bit transfers from memory
+into a 64-bit register.
+So we can do one LDR, in order to get b.
+And we're assuming here in this code that R4 is the address of the first
+element of array b, of b[0].
+And so we could just do one load, and we can get b[0] through b[3].
+And we can do a second load, assuming R5 points to the first element of c.
+We can do another 64-bit load, to get all of c imported into Register 1.
+Again, we're assuming Register 0 and Register 1 are 64 bits wide.
+So we've get all four 16-bit elements, stored in one register.
+Now we need to introduce a special add instruction.
+This is a vector add.
+So we're calling this ADD.V. And what this does is this reads R1,
+and reads R0, and breaks those up into 16-bit chunks,
+and does 16-bit additions.
+So it does these four individual 16-bit additions, and one instruction.
+And then that 64-bit result, those four 16-bit adds, are then stored into R2.
+So with this one instruction, with this one new instruction
+that we've introduced, we've done all four of these 16-bit adds in parallel.
+Because of this property of data level parallelism,
+we can do them all at the same time, because they're all independent.
+And then finally, we assume we have a 64-bit store instruction.
+So we can do an STR, and we assume that R3 points to a[0],
+and we can store all four results, all four result of a, a[0] to a[3].
+We can then store that into memory.
+Now we have just four instructions, two 64-bit loads, a vector add instruction,
+and then a 64-bit store to implement that entire loop.
+Now let's see how we modify our ALU design, in order
+to support this SIMD instruction, this ADD.V instruction.
+Well again, we're assuming that now we have a 64-bit machine,
+so our ALU does a 64-bit operation.
+Now what we can do is we can take that 64-bit ALU,
+and we can break it into four 16-bit ALUs.
+Now we can still do a 64-bit operation by allowing the carry out
+of each 16-bit element to propagate as the carry in to the next one,
+and we can do a full 64-bit operation that way.
+Or we can break that carry chain, and that's
+why we've introduced this carry logic here.
+And what we're doing is we're allowing the carry
+to propagate for a 64-bit add, but for the SIMD instruction,
+for this ADD.V instruction that we introduced,
+we're not going to allow that carry to propagate.
+So we're going to have 16-bit individual add operations here,
+rather than a full 64-bit add.
+So now we can do a 64-bit add, four 16-bit adds,
+or we could do two 32-bit adds.
+We can group two of the 16-bit ALUs together,
+and then the other two together, and we can break the carry chain between them.
+And this way now, we have parallelism with two 32-bit values.
+We can do two 32-bit operations at the same time.
+So this gives us another option.
+We can do now a 64-bit operation, two 32-bit operations,
+or four 16-bit operations.
+Well, how do we do this in your smartphone?
+Well, if you have an ARM processor, ARM has something called Neon.
+That's their name for their SIMD instructions.
+And here's an example of a Neon instruction.
+VADD.I16 Q0, Q1, and Q2.
+OK, so V stands for vector, so this is a vector add.
+This is a SIMD operation, where we're taking multiple pieces of data,
+we're doing the same operation on them in parallel.
+And I16 means that each of these pieces of data is 16 bits wide.
+And Q stands for quadword-- so in ARM, that means 128-bit quantity.
+Because what you'll notice here is we have two quadwards, Q1 and Q2,
+and they're 128 bits wide.
+And we're breaking those into eight 16-bit chunks.
+And we're doing eight 16-bit addition in parallel, on these two quadwords.
+And then we're storing that result in parallel, to register Q0.
+So here we're doing in parallel in this, using this ARM Neon instruction,
+we're doing eight data operations, all the same.
+They're all additions between two different register values.
+And we're doing them all in parallel, and writing them
+all in parallel to the destination register.

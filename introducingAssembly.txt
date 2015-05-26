@@ -1,0 +1,33 @@
+Ultimately it's a machine language program that runs on our hardware.
+All those zeros and ones are what it understands.
+But you probably found it pretty tedious as a human being
+to write programs using machine code.
+You have to look up the opcodes and all this kind of stuff.
+Well, fortunately, we have something called assembly language,
+and assembly language was created to be just a human readable
+format of machine code.
+Because when we want to write programs, we want to be productive.
+We don't want to have to look up or memorize opcodes, numbers.
+We want to use symbols.
+So machine code has numbers, but assembly language has symbols.
+So for instance, if you want to do an add instruction LC-3,
+you can write down the opcode 0001.
+Or in assembly language you can just write add-- the word add.
+Much easier to remember.
+Much more intuitive.
+So in this module we're going to cover assembly language.
+And assembly language is not really another language so
+to speak, as in a higher level language.
+It's really an equivalent to machine code, but it's
+a human readable format that's easier for us as programmers to deal with.
+It makes us more productive as programmers
+to use this assembly language rather than to use machine code.
+Now what we're going to do is we're going
+to talk about first of all, our character count program again.
+We're going to create an assembly language equivalent to that.
+And then we're going to act like the assembler.
+The assembler is a piece of software that
+converts-- kind of like a compiler-- it converts some high level language.
+And assembler converts from assembly language down to the machine code
+that ultimately runs on our hardware.
+So let's get into it.

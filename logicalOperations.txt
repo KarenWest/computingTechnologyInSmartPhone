@@ -1,0 +1,115 @@
+Now that we've talked about arithmetic, let's move on to logical operations.
+Now, these are operations that occur on logical TRUE or FALSE.
+Now, we only have two states here.
+TRUE, we're going to represent with a 1.
+And FALSE, we're going to represent with a 0.
+Now, there are three main logical operations-- AND, OR, and NOT.
+And we're going to define those with the aid of something called a Truth Table.
+What a Truth Table does is it enumerates,
+for all possible values of the inputs, what the value of the output is.
+Let's take an example here, where I have two inputs--
+A and B. And let's write out all of the possible values of those two inputs.
+And then let's then write down what the AND of those values is.
+Here's the start of my Truth Table, for A and B,
+where I'm getting the AND result of A and B. With A and B, with two values,
+we only have four possible values of those-- 0 0, 0 1, 1 0, and 1 1.
+Now, the definition of the AND is I have a 1 for an AND
+only if all of the inputs are 1.
+So you can see here, with A and B, that only in the last row of my Truth Table
+am I going to put a 1 for A and B because that's the only example where
+I have all inputs being a 1.
+So I have 0, 0, 0.
+And then finally, in my last row of the table
+is where I have a 1 because all of the inputs-- in this case, two-- are a 1.
+Now, we can extend this AND definition to any arbitrary number of bits.
+So if I have, say, 32 bits, then only when all 32 are 1 am I going to get a 1
+for the AND.
+Now, OR is different in that if any of the inputs is a 1,
+then the OR is defined to be a 1.
+So again, let's look at a Truth Table, for A and B,
+for a two-input OR function.
+Again, I have four possible values of A and B. And now wherever I see a 1,
+then the OR is going to be a 1.
+So, in the first row, I don't have any 1s.
+So the OR is 0.
+But in the last three rows, I have at least one.
+So OR is a 1.
+Now, like the AND, we can extend the OR to any number of bits.
+So if I have 23 bits, if any of them is a 1, then the OR will be a 1.
+So only when they're all 0 will I get a 0.
+Let's move on to the last function, which is NOT.
+Now, NOT has only one input.
+We're showing this as A in our Truth Table.
+And NOT is just the opposite of our input.
+So when A is a 0, then the NOT is a 1.
+And when A is a 1, then the NOT is a 0.
+So I have 0 and 1-- two possible values of A.
+And NOT is just the opposite-- 1 0.
+Now, we can treat an n-bit number as a group of n logical values.
+And what we do is we apply the operation on each of those bits independently.
+So let's go do that.
+Here's an example where I have two 8-bit values,
+and I want to AND those together.
+What I do is I AND the corresponding bits that line up here.
+Now, you can start anywhere.
+You can start on the left, on the right.
+You can start in the middle because they're all independent of each other.
+I'm just going to start on the right, like we do for arithmetic.
+I start with the rightmost bits.
+And I have 1 and 1.
+And the AND of those, 1 and 1, is 1.
+The next two bits, I have 0 and 1.
+That's 0.
+1 and 1 again-- I have a 1.
+And I just do this for all of the remaining bits.
+Now, AND is useful for clearing bits.
+Now, sometimes, we just want to use a certain number
+of bits of our total value.
+So for example, if I have a 16-bit value and I only
+want to focus on the right 7 bits because, let's say, that's
+a representation for ASCII, then I might AND the leftmost 11-- or 9 bits,
+I should say-- with 0s.
+And then all I'll have, in that 16-bit value,
+is a 7-bit-- equivalent of a 7-bit ASCII value.
+Now, that works because when I AND with 0, then I clear the bit.
+I force the bit.
+No matter what it is, I force it to 0.
+If I AND with 1, then I have no change.
+So in our example of wanting to take a 16-bit value
+and only focus on the right 7 bits, then I have 0 for the leftmost 9 bits,
+so that those would be cleared, those would be 0s.
+And then I would put 1 for my rightmost 7 bits, AND those with the value
+that I have-- the 16-bit value.
+And that will make sure that I have a 7-bit ASCII value.
+Now, let's talk about OR, when we're doing an OR on 8-bit values,
+just like we did for AND.
+We do the same procedure for these 8-bit values,
+except now we're talking about OR rather than AND.
+I'm just going to start from the right, just like I did before.
+1 OR 1 is 1.
+0 OR 1 is 1.
+So wherever I see a 1, in either the top or the bottom value, then I put a 1.
+Otherwise, I put a 0.
+1 1.
+Here, I have two 0s, so the OR is a 0.
+Again, a 0.
+1 1.
+And this is the OR of these two 8-bit values.
+Now, this is useful for setting bits, for forcing them to 1.
+So if I OR a bit with 1, then that's going to force that value of that bit
+to a 1.
+If I OR with 0, then I'm just going to retain the value.
+So this does the opposite of what the AND does.
+The AND is useful for forcing values to 0.
+The OR is useful for forcing values to 1.
+Let's now talk about how we do NOT on a multi-bit value.
+Again, we'll do it on an 8-bit value.
+Now, this is easy.
+All we do is flip every bit.
+Here's an 8-bit value.
+The NOT is wherever you see a 1, you make a 0.
+Wherever you see a 0, you make a 1.
+I have 01011100.
+Again, you can start from the left or start from the right,
+start from the middle.
+It really doesn't matter because you're doing each bit independently.

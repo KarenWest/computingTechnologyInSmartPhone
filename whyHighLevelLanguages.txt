@@ -1,0 +1,91 @@
+So why do we have high-level languages?
+Why not just program in assembly, for instance?
+Well, it's easier to program in these high-level languages than in assembly,
+and there are a number of reasons for this.
+First is we can use symbolic names for values.
+We don't need to know anything about these registers or these memory
+locations.
+We can just use higher-level symbolic names, which makes it easier
+for us to program that way.
+We can provide abstraction of the underlying hardware.
+So the operations that we write in our high-level language
+don't depend on the instruction set.
+So, for instance, I can write a equals b times
+c even though LC-3 doesn't have a multiply instruction.
+And it's the job of the compiler to take that statement
+and translate that into the appropriate series of LC-3 instructions.
+But myself, as a high-level language programmer,
+I don't need to worry about those details.
+It provides expressiveness.
+So we can use meaningful symbols, and we can use simple expressions
+for common control patterns.
+And it's also much easier to read a high-level language program
+than an assembly language program.
+Assembly language program, you've got to know
+what people are doing with different registers and things
+like that-- for instance, in a multiply routine it would be much easier to read,
+a equals b times c, than the series of LC-3 instructions
+that would be needed to construct that code.
+And we can safeguard against bugs by enforcing rules or conditions
+during the compilation and also during execution of the program.
+In addition to being easier to program, high-level languages are also portable.
+So I could write one program in C or Python or Java,
+and then I can have it compiled to run on LC-3, ARM, or Intel, for instance.
+So I just write one program, and the compiler
+will compile that down to the machine code for those different architectures.
+Now, there are some disadvantages of high-level languages
+versus assembly language.
+Generally they're slower and larger programs
+compared to the equivalent program written in assembly.
+So I can write something in assembly that's
+probably more efficient than a compiler can take a high-level language program
+and compile that down to assembly language code.
+So as a human, I could write a more efficient program in assembly
+than writing a program in a high-level language.
+Also, I cannot manipulate low-level hardware such as specific registers.
+So all operating systems have some assembly in them in order
+to do these low-level functions.
+Now, there are two ways to translate high-level language programs.
+One is interpretation, and the other is compilation.
+So if we look at interpretation first, we
+have a software program called an interpreter.
+And that program executes program statements on the fly.
+So it directly interprets the program on the fly.
+Now, that makes your code very portable, but it makes it slow,
+because we have this interpretation process that we have
+to go through when executing our program.
+Now, it also makes it easy to modify, to debug, and to view
+intermediate results of our program.
+And some examples of interpretive programming languages
+are BASIC, Python, Java, and MATLAB.
+Now, compilation, on the other hand-- we have a compiler,
+another piece of software that translates statements
+into machine language.
+And then we store that machine language, that machine code, onto the machine.
+For instance, you might store your app onto the machine
+as a series of 0s and 1s.
+Now, this creates an executable program, which is nonportable.
+It's specific to the instruction set architecture.
+But it's very, very fast, because we have the 0's and 1's immediately
+that the hardware can understand.
+And we can perform optimizations, now, over multiple statements.
+So the compiler has the full view of your entire program
+when it creates that machine code, whereas the interpreter may be
+looking at a statement one at a time.
+Now, these are also harder to debug, and a change requires recompilation.
+And some languages that are compiled are C, C++, Java, and Fortran.
+To see how a compiler can optimize a program compared to an interpreter,
+let's look at an example.
+Let's look at this following algorithm.
+Now, it's pretty inefficient in terms of the code,
+but it'll give you an idea of how a compiler can
+optimize compared to an interpreter.
+So first we get W from the keyboard, then we form X equals W plus W
+and then Y equals X plus X and then Z equals Y plus Y.
+And then finally we print Z to the screen.
+Now, an interpreter that's looking at this program line by line
+would perform these three arithmetic operations.
+But you can look at this program as a compiler, and you can say well,
+I really only have to do one.
+And so a compiler can optimize this program
+and just create a single arithmetic operation.

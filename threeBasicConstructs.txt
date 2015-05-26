@@ -1,0 +1,52 @@
+In programming, we have three basic constructs, or three basic ways
+to decompose a task.
+The first is sequential-- so this is very simple.
+We do subtask 1, and then we move on to subtask 2.
+With conditional, we do a subtask or another subtask,
+or maybe just one subtask depending on a condition.
+So we have some kind of test condition, and if it's true,
+we might do one subtask.
+If it's false, we might do another.
+And finally, we have the iterative construct
+where we do the same subtask over and over
+again until a test condition is met at which point
+we go on to the next subtask.
+In a sequential construct, we do subtask 1 to completion,
+and then do subtask 2 to completion, and just
+go through a series of subtasks in sequence.
+Here's an example.
+So this is the big picture of our example program
+where we're going to count and print the occurrences of a character in a file.
+Now we can break that down into three sequential subtasks.
+First, we get the character input from the keyboard.
+Then we examine the file and count the number of characters that match,
+and then we move on and print the number to the screen.
+So we're always going to do subtask 1-- get the character.
+Followed by subtask 2-- examine the file and count the number of characters.
+And then finally subtask 3, where we print the number to the screen.
+In a conditional construct, we have a condition that we evaluate.
+If that condition is true, we'll do subtask 1.
+If it's not true, then we may skip that subtask
+or potentially do another subtask such as subtask 2.
+Our test character subtask is an example of a conditional subtask.
+Here we test the character, and if there's a match,
+we increment the counter.
+Now we can express this as a conditional in a flow diagram like this.
+First, we check to see if the file character equals the input character
+that we got from the keyboard.
+If that's true, then we will increment our count.
+If not, we will skip that step and move on to the next subtask.
+The iterative subtask, like conditional, has a condition as well.
+But here we're going to repeatedly do the same subtask so long
+as the test condition is true.
+Here's an iterative subtask from our example program.
+Here we're checking each element of the file
+and counting the characters that match.
+And here's a flow diagram of that as an iterative subtask.
+First, we check to see if we have more characters to check.
+That means we haven't reach the end of the file.
+If that's true, then we check the next character and count if it matches.
+Now that check next character subtask is the conditional subtask
+that we just talked about.
+So that is embedded within this iterative subtask
+of reading all the characters in a file and checking them.

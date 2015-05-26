@@ -1,0 +1,107 @@
+The most popular way to represent signed values is using Two's Complement
+Representation.
+This is used in every smartphone, this is
+used in laptops, servers in the cloud.
+This is used throughout computer systems.
+The reason that it's so popular is it simplifies
+the design of the electronic circuits, including the addition
+of positive and negative numbers.
+Now the nice thing about Two's Complement
+is the procedure for addition is the same regardless
+of the signs of the numbers.
+Whether they're both positive, both negative, a positive and a negative,
+you do the exact same procedure in the computer.
+Here are two examples where we have the value 5.
+Now you should be familiar with this as an unsigned number.
+This is the unsigned representation of 5.
+It's the same in Two's Complement and signed representation.
+It has the same value.
+And here's the two's complement representation of minus 5.
+And you'll learn why this is the case in a second.
+Now if we add these together using the same procedure of adding each position,
+and the carry is moving from right to left,
+we're going to end up with 0 which is the right number.
+We add 5 to minus 5, we should get 0.
+Now we're going to get a carry out of the most significant position,
+but we can just throw this away and represent this
+as a 5-bit value which is 0.
+Here's another example where I have 9, positive value 9.
+And I'm adding to that negative 9.
+And this is the Two's Complement representation of negative 9.
+When I add those together, I again get 0.
+I get the same result as I got on the left hand side.
+I get a positive number, adding the equivalent negative number,
+and I get 0, which is what I should get.
+Let's talk about how we represent Two's Complement numbers.
+If the number is positive or 0, it's exactly the same as unsigned binary.
+It's exactly the same that we just learned.
+To form the negative representation of a positive number
+is first we start with the positive number.
+We invert every bit, so every 0 becomes a 1 and every one becomes a 0.
+And then finally, we add 1 to that number.
+So let's take this number five, 00101.
+The first thing we do is we invert all the bits.
+All the 1's become 0's, and the 0's become 1's.
+Then finally we add a 1.
+So we add in the rightmost position a 1, and we get 11011.
+This is Two's Complement for minus 5.
+Here's our number 9, our number positive 9.
+Again, we invert all the bits.
+We add 1, and we get 10111.
+And that's minus 9 in Two's Complement.
+Here's a handy shortcut for converting from a positive to a negative number,
+or a negative to positive in Two's Complement.
+We copy bits from right to left up to and including the first one,
+and then we invert the remaining bits.
+You'll find sometimes when I do this procedure of inverting all the bits
+and then adding 1 is I get this long carry from right to left.
+So it takes me a while to do that.
+And here's an example where that happens.
+I take this 8-bit value-- it's actually a 9-bit value--
+and I invert all the bits.
+Then when I add 1, you'll find that you have a lot of carrying to do.
+So it takes you a while to get the equivalent Two's Complement value.
+If we use the shortcut, then we take all of the 0's-- those four
+0's on the right-- as well as the first one that we encounter,
+and we just copy those down.
+And then we take the remaining bits, and we just invert them.
+All the 0's become 1 and all the 1's become 0,
+and we get the same values we have on the left.
+Let's talk about how we form the decimal equivalent of a Two's Complement
+signed integer.
+In Two's Complement, the MSB-- the leftmost bit--
+has a negative weight, which is different
+than we had in unsigned values.
+Remember, with unsigned values all the weights were positive.
+With Two's Complement, the leftmost bit has a negative weight,
+has weight negative to the n minus 1.
+All the other weights are positive, just like with unsigned values.
+Now the range of an n-bit number, meaning the total possible range
+of values that we can represent, goes from minus 2 to the n
+minus 1 through to the n minus 1 minus 1.
+So that means we actually have one more negative number in Two's Complement
+than positive numbers.
+Here's a table now of all the Two's Complement numbers
+of four bits and their decimal equivalent.
+Now the left hand side, we have all of the positive numbers.
+Now you notice that the leftmost position, which has a negative weight,
+has value 0.
+So that negative weight doesn't come into play.
+We can just think of the rightmost 3 bits
+and do the same procedure that we did for unsigned values
+to get the equivalent decimal value.
+Now on the right hand side we have a 1 in the leftmost position.
+So that has negative weight.
+So we do the same procedure as we did for signed values,
+except we take into account this negative weight.
+So the leftmost position here we have a 1, and that has weight minus 2
+to the third or minus 8.
+The rest of the values are 0, so this is Two's Complement for decimal minus 8.
+The next value again has a 1 in the leftmost position.
+Every negative number in Two's Complement will have a 1 there.
+Now we have a 1 in the rightmost position, so this is minus 8 plus 1
+or minus 7 in decimal.
+Finally, the last value here is all 1's, so that's minus 8 plus 4 plus 2 plus 1,
+or minus 1.
+So no matter how long the binary value, if it's all 1's in Two's Complement,
+that's minus 1.

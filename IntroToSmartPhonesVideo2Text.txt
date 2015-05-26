@@ -1,0 +1,67 @@
+Now let's discuss what you're going to learn in this course.
+So the course is broken up into three big chunks, and in the first part
+we're going to learn the operation of computer systems hardware and software
+and how they interact.
+Now, we're going to learn everything from transistors to logic gates
+to the way computers are organized to instructions to software.
+And very importantly, we're going to discuss how the hardware and software
+interact, how they come together in what's called the instruction
+set architecture.
+Now, the second big part of the course is advanced performance techniques.
+Once we've got the fundamentals of hardware and software behind us,
+we're going to be prepared to look at the techniques
+that computer architects use to make your smartphone run so fast.
+And then the last part of the course, once we've learned this,
+is to look at the design of actual smartphone processors.
+And we're going to look at the Qualcomm Snapdragon processor, which many of you
+carry around with you every day.
+After we take a look inside a smartphone and cover a couple of big ideas
+in computing systems, then we're going to move step-by-step
+through the computing technology stack, and here's a picture of that.
+So this is broken up into three big pieces, digital logic,
+computer organization, and programming.
+And we're going to start at the bottom at transistors and gates
+and also talk about numbers.
+And then we're going to move through digital logic, which will give us
+some skills that we can then apply to the design of a computer,
+and that's the computer organization part of the computing technology stack.
+After that, we're going to move on to programming.
+We're going to see software, and we're going
+to see how these all fit together in the end.
+After we've learned about the hardware/software stack,
+we'll be prepared to cover advanced performance
+techniques that computer architects use to make our smartphones work so fast.
+And there's a number of techniques that we're
+going to cover including pipelining, where we use an assembly
+line of instruction execution; superscalar,
+where we execute multiple instructions at the same time;
+multithreading, where we may execute multiple programs within our processor
+at the same time; SIMD, or Single Instruction Multiple Data,
+which is a way to get data-level parallelism, which
+is very important in particular applications;
+chases, which make our memories fast; and then multicore,
+which is putting multiple processors on a single chip.
+Then we'll be prepared to go into the details of actual smartphone
+processors.
+Now, we're going to focus on the Qualcomm Snapdragon, which
+is used in many Android phones.
+So if you have an Android phone, there's a pretty good chance
+you've got a Snapdragon chip in there.
+Now, here's a diagram of the System On Chip, or the SOC,
+for the Snapdragon 805.
+Now, we're going to go over this SOC in a little bit of detail,
+but we're going to go into great detail on the apps processors.
+These are the main processors that run your apps.
+Then we'll go into the details of the Krait processor that's
+found in Snapdragon chips.
+Here's a block diagram.
+Now, this may be very complicated to you now,
+but after you've completed the course, you'll
+have a detailed understanding of the hardware design of this apps processor.
+Now, we're also going to do a lot of engineering design in this course.
+In the first part, we're going to design digital logic.
+Things like adders and multiplexers and registers and finite state machines.
+Then we'll put those components together to create a working computer,
+and you're actually going to verify that your computer works properly
+by running programs on it.
+Now that we've seen an overview of the course, let's look inside a smartphone.

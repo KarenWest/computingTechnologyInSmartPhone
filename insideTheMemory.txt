@@ -1,0 +1,44 @@
+Now let's move on to talking about memory.
+Now, memory should be familiar to you, because we covered it in digital logic.
+So to review, a memory is a 2 to the k by m array of stored bits.
+Now, in this case, this is going to hold instructions and data for a machine.
+If you remember, the address is a k-bit identifier of location.
+Now, in this example, I have a 4-bit address to identify 1 of 16 locations,
+and the contents are an m-bit value that's stored in location.
+Here I have 8 bits in every location.
+Now there are two operations that we're going to do to our memory.
+One is called a load.
+Here we're going to read a value from a memory location.
+In our case, we're going to read that value,
+and we're going to put it into one of the registers in our processing unit.
+We can also go the other way.
+We're also going to take a value from a register,
+and we're going to store it into memory.
+We're going to take it from that register,
+and we're going to write it into a particular location in memory.
+The memory interface defines how the processor communicates with the memory.
+Now, our processor needs to read and write memory.
+And so first of all, we need a place to hold the address--
+the location that we want to read or write.
+And we do that through a Memory Address Register.
+So the processor can send the address, and load it
+into the Memory Address Register.
+Now, the Memory Data Register holds the data
+that we're either going to load or to store.
+Let's first talk about how we do a load.
+So to load from a location-- let's just call it A--
+that's our address-- we write the address, this A, into the Memory
+Address Register, the MAR.
+We then tell the memory that we want to read,
+because the memory needs to know are we reading or are we writing.
+So we send a read signal to the memory.
+And then the memory gets the data from the address location,
+and then puts that into the MDR.
+Now, when we do a store, we go the other way.
+Here we have a value X that we're getting from a register.
+And we're going to put it into the location A.
+So first, we write the data X to the MDR, to the Memory Data Register.
+We also write the address A into the Memory Address Register.
+We tell the memory to write, so we send a write signal to the memory.
+And then the memory has the address and has the data,
+and puts that data into that location in memory.

@@ -1,0 +1,74 @@
+Now a multi-bit latch or a register, which is a set of flip-flops,
+those are one dimensional structures in that they
+can store only a single piece of data.
+With the memory, we have a two dimensional structure
+that can store multiple pieces of data.
+Now we can think of this as a k by m array of stored bits.
+Now we need an address to pick which location in our memory
+we're going to read or write.
+Now if we have n address bits then that gives us two to the n locations.
+In our example, we're saying that's k.
+Now the address space is the number of locations
+in our memory, which is usually a power of two,
+because we're dealing with binary numbers for our address.
+In this case, we have k locations.
+And the addressability is the number of bits that we store in every location.
+And in this case, that's m bits.
+Here's an example of a four by three memory.
+Here we have four locations and each one of those stores three bits.
+Now this has a lot of pieces to it, but these are all pieces
+that we've already covered in the course.
+Let's first start with each of the locations,
+each cell in the memory, which is where we store a bit.
+In this example, in this type of memory that we're going to talk about,
+we have in each cell a D latch.
+So you should recognize this as a D latch.
+Here's the write enable and here's the D input to our D latch.
+And each one of these locations, each one of these 12 locations,
+here is identical.
+We have a D latch.
+Now we have a column of data that feeds into each location.
+So in this case, we have 3 bits in every location.
+So you see that we feed in a data bit into each of the columns.
+We have the same data bit going to each of the four cells in each column.
+Now we need to be able to select one of these rows.
+We're going to select one row of three bits in this memory.
+And the way we do that is by using our address.
+So because we have four rows, we need two address bits
+to identify the row that we want to read or write.
+And the way we do that is with these NAND gates and these bubbles.
+Now you should recognize this as a two to four decoder.
+Remember, with a two to four decoder, we have two inputs
+and we have four outputs, and one of those outputs is a one
+and the other are zero.
+So this allows us to select one and only one row with our address bits.
+Now the outputs of the decoder are used to pick one of these rows.
+Now let's look at the data output of the top row.
+So when our address is zero, zero, then the output of the top decoder
+will be a one, and we're going to have a one
+at the input of each of those AND gates for the data coming out.
+So what's that going to do?
+That's going to allow the data that's out of each of those cells
+to pass through their NAND gates in order to go to the output.
+Now what's going to happen to the other NAND gates
+in the rows that aren't selected?
+The bottom three decoder outputs will be zero.
+And so the remaining nine AND gates for the data output will be zero
+and so the three left inputs to each of the bottom OR gates
+are going to be zero.
+So what's that going to do?
+That's going to allow our data from the first row
+to appear at the output queue.
+Now let's talk about how we write the first row.
+We need to have again our address be zero, zero in order
+to be able to select those top three cells.
+But now our write enable input is going to be a one.
+Previously when we read, we had that be a zero
+so that we didn't overwrite anything in those cells.
+With the write enable being a one and the output of the decoder being a one,
+then we will have the write enable input for each of the three cells
+in our selected row will be a one.
+That’ll allow us to take the data coming into those cells
+and to overwrite the data that's in those three d latches.
+Now we're going to use memories like this
+later in the course to hold instructions and data when we build our computer.

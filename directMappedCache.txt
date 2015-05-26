@@ -1,0 +1,81 @@
+Now we're going to get into the microarchitecture of caches.
+And we're going to start with the simplest form of cache,
+which is called a direct mapped cache.
+With this type of cash each block in memory
+is mapped to exactly one cache location.
+To see how this works, let's take a simple example.
+Here we have a memory which can hold 32 blocks.
+Each of these blocks may have multiple words them.
+And our cash can hold eight of those.
+Because our cache is direct mapped, then every location in memory maps
+to a single location in cache.
+For example, let's look at the block that's located at address 1 in memory.
+Well, that's going to map into location 1 in our cache.
+In fact, every block in memory whose rightmost bits are 001 are going to go
+into location 001 in the cache.
+Now, there are four blocks in memory that map to that location,
+block 1, block 9, block 17, and block 25.
+What that means is one and only one of those four blocks
+can be in the cache at one time.
+The same holds true, for example, for cache location 5.
+There are four blocks in memory, shown here, that map to that location.
+And one and only one of those four blocks can be in the cache at one time.
+Now, there are other types of caches we'll
+see later on which have more flexibility in terms of block placement,
+but they're not as fast as a direct mapped cache.
+And that's really the advantage here.
+It's very quick to look up to see whether we
+have the block in the cache in a direct mapped cache.
+Here's an example of a direct mapped cache where we have 1,024 cache blocks.
+Now, we can break the cache into three main sections.
+First is the data.
+This is the actual memory data that we're holding.
+And that data could be instructions for an instruction cache
+or data for data cache.
+We also have what's called the tag.
+These are the bits that allow us to distinguish among the different memory
+blocks that can map to each of the cache locations.
+Finally, we have a valid bit associated with each location.
+And this tells us whether the contents of that location are valid.
+Now, when we power up our machine all of our data instructions are in memory,
+so we don't have any valid contents in cache.
+So our cache just contains random data.
+So initially, we set our valid bits to 0 to ensure
+that we don't read that incorrect data, that we go to memory
+first to get our instructions or data when we first
+start loading our program.
+When we bring data from memory into the cache, then we set the valid bit.
+We also set the tag to the address associated with that memory location.
+Now let's see how the 16-bit LC-3 address that's formed in the EX stage
+is used to access the cache.
+In this cache example, we assume that each block contains 64 bits.
+Now, that's four LC-3 words.
+So we need some bits in the address to pick one of those four words
+to transfer into the pipeline.
+So we need two bits of the address to pick the specific instruction
+or data that we want to access.
+Those two bits go to a selector that pick the desired 16
+bits out of the 64-bit block.
+The next 10 bits of the address are called the index.
+These are the bits that pick one of 1,024 locations in the cache.
+We need 10 bits because 2 to the 10 is 1,024.
+Using those 10 bits, we read out the valid bit, the tag, and the data
+from the desired location.
+We already see how the data goes to the selector.
+Now, the tag is compared with the remaining bits of the address.
+In this case, we have a 16-bit address, so there are four remaining bits.
+Now, a 4-bit tag indicates that 16 memory locations
+map to each cache location.
+We compare the 4-bit tag of the address with the 4-bit tag that's in the cache.
+We need to do this because it could be that the block that we want
+is not there, but rather one of the other 15 memory
+blocks that map to this location is located there instead.
+Finally, we AND the result of that comparison with the valid bit
+from the cache.
+The valid bit has to be 1 in order for us to have a cache hit.
+If the valid bit is a 1 and the tag in the cache
+matches the tag in the address, then we have a cache hit.
+In that case, the processor will use the 16 bits
+that are output from the selector.
+If not, then the processor has to go to memory
+to get the desired instruction or data.

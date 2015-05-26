@@ -1,0 +1,64 @@
+This is a quick demo of how to use Jade to enter schematics and simulate circuits.
+In this example, we'll build a gate-level schematic for a simple logic function involving
+two inputs, A and B.
+We're going to build the function A'B' + AB. It's composed of two 2-input AND gates, followed
+by one 2-input OR gate. We'll need a couple of inverters as well.
+The instructor has already set up the module with a schematic, icon, and test tabs, the
+icon and test are provided and marked read-only.
+The parts bin on the right has the gates we are going to use: a 2-input OR gate, a 2-input
+AND gate, and an inverter.
+The appropriate input and output ports are already present in the schematic. We'll provide
+the rest of the circuit.
+Let's start by placing the AND and OR gates.
+Click the AND gate in the parts bin and without releasing the button, drag it onto the schematic.
+When it gets where we want it, release the  button and the AND gate will stay put.
+Repeat for the process for the second AND gate.
+Repeat again with the OR gate, placing it between the AND gate.  
+Let's hook up our AND gate outputs to the OR gate inputs.
+Look at the open circle on the right hand side of the AND gate. This circle indicates the output
+of the AND gate.
+Click in the circle, and holding down the mouse button, drag to create a wire, releasing
+the button when we get to the input of the OR gate, like so. A wire is created.
+Repeat for the second AND gate, connecting to the second OR input.
+Now we need to connect the output of the OR gate to the output terminal, Z.
+We could draw a wire to connect the OR gate to the Z output.
+However, we can instead move the terminal so it'll connect to the OR gate without the
+need to draw the wire.
+We click and hold the terminal, then drag it such that the open circle lines up and disappear.
+This indicates that they are connected.
+Now let's talk about our inputs, A and B.
+For circuits where we need both the regular and inverted version of an input, it's common
+to create wires that run down the entire schematic for each version. We'll do that now.
+We click the open circle of terminal A and click and drag to create a wire running down the entire left side.
+Repeat for terminal B.
+To create the inverted versions with these signals, we want to place the inverters right next to these wires.
+To do so, we'll click and drag to bring an inverter on to the schematic. We want the inverters to be oriented top down
+up and down so that they line up with the wires. To do so, click the rotate button  right here.
+Now click and drag to bring the inverter next to our signals
+a repeat of the second inverter
+Now we connect the inputs of our inverters to the signals like so. Then we connect the outputs
+and create the wire that goes down the length of the schematic, like so.
+We now have our regular and inverted signals ready to connect them to our gates.
+To connect our first AND gate, which handles the A+B part of our function, we click and
+drag from the open input terminals to the desired
+signal lines.
+Since we want the regular versions of the signals for this AND gate, we click and drag
+past all the other signals to the desired ones.
+For B, we do like so.
+Note that we create the connection a black connection dot appears.
+Note that when 3 or more connections are made at a point Jade will mark the connection with
+this dot, following a common convention used when drawing schematics.
+Important to note is that the other vertical wires that cross the horizontal wires, without
+the dot, are NOT connected.
+Now that we have our AB gate wired up, let's wire up our A'B' gate.
+We need to use the other inverted signals to hook up to this and gate. To do so we click
+and drag to the desired signals.
+Now that we're done, we can run the supplied test by clicking the green checkmark on the toolbar, like so.
+Jade runs a simulation and plots the requested waveforms and verifies that the output terminal
+Z has the correct value for each of the tests given.
+Taking a quick look at the test tab, we can see that the instructor provided 4 test vectors, 1,2,3,4
+which test all possible logic values for the 2 inputs.
+Once we've passed, to record that we've passed in edX, we'll have to click the "check button"
+right here.
+If all is right, a green checkmark should show, like so
+and edX will know that we've successfully completed the problem.

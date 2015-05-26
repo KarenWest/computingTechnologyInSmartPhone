@@ -1,0 +1,28 @@
+Here's our LC-3 microarchitecture so far.
+We have support for operate instructions, for loads and stores,
+and for control instructions.
+Now, we need to focus on the finite state machine control.
+We have all of these loads for registers.
+We have multiplexer controls and all of these other control signals,
+and we need to understand how those are produced.
+Our control unit includes a finite state machine
+that orchestrates the phases of instruction execution.
+And here's a simplified state diagram.
+The first three states have to do with instruction fetch.
+We transfer the PC to the memory address register
+and increment the PC in the first state.
+Then on the next tick of the clock, the next clock cycle,
+we retrieve the instruction from memory and put it into the MDR register.
+And then in the final state of instruction fetch, we transfer that
+to the instruction register.
+Then we have one state of instruction decode, where we look at the opcode
+and determine where to move next.
+And then we have a series of states, a series
+of steps, that are specific to the type of instruction that we have.
+Now, here's a more detailed diagram of our control unit FSM.
+Now, it has all of the states that we need to execute,
+all the instructions that we've talked about so far.
+And this looks rather intimidating.
+There's lots of states here.
+We're going to walk through a couple of examples so you understand how those work,
+and then you'll be able to understand the whole thing eventually.

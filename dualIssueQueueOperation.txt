@@ -1,0 +1,56 @@
+Now let's walk step by step through issue
+queue operation with our four example instructions.
+First, you'll notice a difference from our previous example, where here we
+have now two comparators for each source register.
+Here now we're assuming that we have dual issue capability, that two instructions
+can move into EX at the same time.
+Let's now look at the values of each of the fields of each issue queue entry
+for each of our four instructions.
+The ADD instruction has source registers R2 and R3.
+Now, we've said that the ready bits are set
+to yes, that could be represented for instance by a 1,
+under the assumption that those values were available in the ID stage.
+So the contents of R2 and R3 are stored in this issue queue entry.
+The destination register is R1, so we have a 1 in the field for DR.
+We have an ADD for the op field, and then we
+have nothing in the immediate field.
+We're representing that by an X because this is not an immediate instruction.
+The NOT instruction has a data dependence
+related to R1 on the ADD instruction.
+So its source operand is not ready, so we represent
+that as an N in the ready field.
+For the second source operand field, there's
+nothing because this has only a single source operand.
+For the DR field, we have 4.
+The operation is a NOT.
+It's not an immediate instruction, and we don't have
+the values of our source registers.
+And we don't have the values of our source registers
+because we need that to be bypassed by the ADD instruction.
+For the AND instruction, like the ADD, we
+assume that our two source values-- R2 and R3-- were available during decode.
+So our ready bits are set, and those values
+are stored in our issue queue entry.
+The ADD instruction has a data dependence
+involving R5 on the AND instruction, so it's ready bit is not set.
+Because it's an immediate instruction, it has no other source operand.
+But we have a 2 in the immediate field for this instruction.
+Now let's assume that the selection logic has selected the ADD and the AND
+instructions for execution.
+In the first cycle then, those instructions
+are sent into the EX stage.
+At that time, the destination registers for the ADD and the AND-- namely 1
+and 5-- are sent back into the issue queue for comparison
+with the source registers of the other issue queue entries.
+That will mean that for the NOT and the ADD instructions
+that their ready bits will transition to a yes at the end of this cycle.
+Now in cycle two, the NOT and the ADD instructions are now ready to issue.
+Assuming that the selection logic chooses
+these two out of all of those available to issue,
+then those will be sent into the EX stage right
+after the previous two instructions.
+In this way, the hardware has dynamically
+resolved these data dependencies,
+finding in the issue queue instructions that
+are independent and can issue together and keeping
+our two way superscalar throughput.

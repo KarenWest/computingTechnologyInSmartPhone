@@ -1,0 +1,38 @@
+Now that we've seen the detailed operation of a direct-mapped cache,
+let's talk about associative caches.
+With associative caches, we have more flexible placement of blocks.
+With a direct-mapped cache, a memory block can only go in one place.
+With a set associative cache or a fully associative cache,
+we can provide more flexible placement.
+Now with these types of caches, each set in the cache contains one block.
+Now a set, you can think of as a row in the cache,
+and a block can be stored anywhere within that set.
+Now to find a block, we search all of the blocks in a set in parallel.
+Now when we increase the associativity, the advantage
+here is that we increase the hit rate.
+By adding that flexibility, that flexible placement,
+we introduce fewer conflicts between multiple memory blocks
+that want to share the same location.
+The problem, though, is it takes longer to search,
+so this increases the hit time-- the time to check for a block
+and to retrieve that block from the cache.
+There are two main types of associative caches.
+The first is called fully associative.
+Here, a block can go in any location, so we have complete flexibility
+in terms of block placement.
+Now with this cache, all entries are searched at once.
+We searched the entire cache at the same time,
+so we need a comparator per entry.
+Remember with a direct-mapped cache, we only needed one comparator.
+With a fully associative cache, we need a comparator
+for every entry in the cache.
+So it's more expensive than a direct-mapped cache.
+The second type is called an n-way set associative
+cache where each set contains n entries, which we call ways.
+So a 2-way set associative cache, for instance,
+would have 2 ways-- two places to store a block within every set.
+Now the block number determines which set we access,
+and then all ways in the selected set are searched at once.
+Now this has n comparators, which is less expensive than a fully associative
+cache-- but a little more expensive than a direct-mapped cache, which
+only has one comparator.

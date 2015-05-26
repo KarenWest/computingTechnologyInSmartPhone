@@ -1,0 +1,48 @@
+Now we need to talk about how we do subtraction.
+Fortunately, we don't have to build an entirely different circuit
+to do subtraction.
+Let's start by reviewing two's complement subtraction.
+Remember, what we do with two's complement subtraction
+is we negate the second operand, and then we do addition.
+Let's take an example where I have 104 and I'm subtracting 17.
+What I do is I take 104 and then I add that to minus 17.
+So I form the two's complement of 17, I create the minus 17,
+and I add that to 104, and then I get my result, 87.
+Remember, this is the nice thing about two's complement arithmetic.
+It doesn't matter whether it's positive or negative,
+they add together just like normal binary addition that we've learned.
+Now, we can leverage the full adder that we've designed,
+as well as what we know about two's complement arithmetic,
+to build a subtractor.
+First thing we need to do is we need to take the second operand,
+and we need to negate it.
+We need to form the two's complement.
+So here's how we do this in hardware.
+We have four inverters, one for each bit in order
+to form the complement of each of those bits,
+and then we need to add 1 in the right-hand side.
+Let's take our adder now and convert it into a subtractor.
+So the difference here is first of all instead of feeding the b's in directly,
+we're going to negate those.
+So let's place inverters there.
+So now we have the inversion that we need for two's complement.
+Now, how do we add the 1?
+Well, it's convenient that we have a carry-in in the right position,
+because instead of feeding a 0 there, we can
+feed in a 1, which is the same thing as adding 1 to our negated b.
+So our two's complement is formed by these inverters
+plus forcing a 1 into the carry-in in the rightmost position.
+So here we have a subtractor.
+It's very similar to an adder.
+All we've done is we've inverted all the b's, and we forced the carry-in
+in the right position to be a 1 rather than a 0.
+Now, the adder and subtractor are very similar,
+so we can leverage the same hardware that we used for both
+and create one design that adds and subtracts.
+So here are the two designs that we have.
+We have an adder at the top, and we have a subtractor at the bottom.
+And what you see as the difference, of course, as I just mentioned,
+is that the b's are inverted and we force a 1 rather than
+a 0 on the right-most position.
+So with a little bit of additional combinational logic,
+we can have one design that can add or subtract.

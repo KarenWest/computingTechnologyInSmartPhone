@@ -1,0 +1,71 @@
+Unsigned integers have no negative values, they're either 0 or positive.
+And they're integers, so their whole numbers.
+Now before we talk about how we represent
+unsigned integers in a computer, let's recall the weighted positional notation
+that we learn for decimal numbers, for Base 10 numbers.
+Here's an example where I have the number 329.
+Now each of those positions has different weights.
+So the rightmost position has weight 10 to the 0, or 1.
+The middle position has weight 10 to the 1, or 10.
+And the leftmost position has weight 10 to the second, or 100.
+So this number represents 3 times 100, this
+is the value 3 in that position times the weight, 10
+to the second, which is 100.
+Plus the weight, the value I should say, 2 times the weight of 10.
+Plus the value in the rightmost position,
+which is 9 times the weight of 1, so this is why we have the number 329.
+We use a similar weighted oppositional system for binary.
+It's similar to Base 10, in terms of how it works, except now we're
+using Base 2 instead of Base 10.
+Let's look at an example of a binary number 101.
+Now because it's binary, we only have 2 possible values
+in each position, 0 or 1.
+And now the weights are going to change, because we're talking about Base 2.
+So the rightmost position has weight 2 to the 0, or 1, just like in decimal.
+The middle position has weight 2 to the 1, or 2.
+And the leftmost position has weight 2 the second, or 4.
+So let's write out the decimal equivalent of this binary value, 101.
+We start with the leftmost position, where we have a 1, and we take that
+and we multiply that by the weight.
+That means we have 1, which is our value, times our weight, which is 4.
+Then we add the middle position, where here we have a value of 0,
+and we multiply by 2, which is our weight in the middle position.
+And then finally, we have a 1 in the rightmost position.
+And we multiply that by the weight of 1.
+And that gives us our decimal equivalent, which is 5.
+So 101 in binary is equivalent to 5 in decimal.
+Now we have a special name for the rightmost position,
+for the rightmost bit.
+We call this the least significant bit, or LSB for short,
+because it has the least significance in terms of our final result.
+Now the leftmost position has the most significance,
+in terms of our final result, so we have a special name for that also.
+We call that the most significant bit, or MSB for short.
+An n-bit unsigned integer represents the total of 2 to the n values.
+Starting from 0, we have no negative numbers here, all the way
+to the value 2 to the n minus 1.
+So for instance, if n equals 3, then we have everywhere from 0 to the value 7.
+Let's form a table of all of the possible values of 3 bits,
+and let's write out the equivalent decimal value.
+Let's put the weights for each position.
+So the leftmost position, we have a 2-bit value here,
+it is 2 to the second weight.
+The middle position has weight to the 1.
+And the rightmost position has weight 2 to the 0.
+Now let's write out the decimal value for each
+of these 8 binary numbers of 3 bits.
+Well, the first is 000, which we know is 0, because we have no 1s here.
+So that must be 0.
+The next one is 001.
+Now I have only one 1, and that's in the rightmost position,
+which has weight 1.
+So this is the decimal value 1.
+010, again only one 1.
+Now in the middle position of weight 2, so this is 2.
+011.
+Now I have two 1s, so I have 2 plus 1, or 3.
+100, which is 4.
+101, which is 5.
+110, 6.
+And finally, 111, well, I have a 1 in every position, so I have 4 plus 2
+plus 1, which is equivalent to decimal 7.

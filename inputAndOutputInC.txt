@@ -1,0 +1,84 @@
+Fortunately, as programmers we don't have to write our own input and output
+routines.
+Those are included in the C Standard Library.
+Now, to make use of this library, we have
+to have a preprocessor directive to include the standard IO.header
+file in our program.
+Now, in our example code, we saw two of these input and output routines.
+One was printf and the other was scanf.
+And this is what we had for our printf.
+We have printf, we had in quotes "%d backslash n",
+and then we had this counter.
+So what does this mean?
+Well, the string contains the characters that we
+want to display to the standard output.
+Now, that could be, for instance, the screen in your smartphone.
+And it also includes formatting directives for the variables,
+and the variable is the counter that we have in that parentheses.
+Now, what this call says is we want to print the variable counter as a decimal
+integer-- that's what the %d means-- followed by a line feed, backslash n--
+if you remember from ASCII, when we looked at ASCII--
+means we want to have a line feed or a carriage return.
+Now let's look at the scanf statement that we had.
+This has, in quotes again, "%d" and it has an & and startPoint.
+Now, the & refers to a pointer.
+We're going to have time to talk about pointers,
+but you can think of this as pointing to the address of startPoint.
+Now, the string also contains the formatting directions for the input.
+So we're getting something from standard input, which
+could be, for instance, a keyboard.
+And what this call says is we want to read the decimal integer--
+we have %d again-- and assign it to the variable startPoint.
+Let's talk a little more about output, about this printf routine.
+Now, we can print arbitrary expressions, not just variables,
+so let's look at this statement.
+Here we're actually doing a subtraction of two variables within the printf
+statement, and that value, the result of that subtraction,
+is what's going to be printed.
+We can also print multiple expressions with a single statement.
+So let's look at this statement where we have "%d space %d backslash n",
+and then we have counter, and then we also have the statement,
+the subtraction statement.
+So what we're going to do here is we're going to print the value of counter
+as decimal, we're going to have a space, and then
+we're going to print the value of that subtraction,
+and then we're going have a line feed, we're going to have a carriage return.
+Now, there's a wide variety of different formatting options for printf.
+So here's three examples.
+So we've already seen %d, which represents a decimal integer.
+We can take a hexadecimal integer and print it, and we use %x for that.
+If we have a character, an ASCII character, then we say %c.
+Let's look at specific examples of printf.
+Let's look at this code.
+We have four printf statements.
+So take a moment to see if you can figure out what
+the result, what would be the output, of these four statements in our program.
+OK, let's take a look at the answers and see how you did.
+In the first statement, we have %d, so we're taking the value 43
+and representing it as a decimal value.
+So we would substitute that, and this would be the result of our printf.
+Because of backslash n in the first statement,
+then the next statement is going to start
+at the beginning of the next line.
+In the second statement, we're going to print the result of the addition
+in place of %d.
+Again, we have a new line, so the third statement will begin
+at the beginning of the third line.
+Now, the third statement says to print the result of the addition
+as a hexadecimal value, so that's why we have 66.
+That's the hexadecimal equivalent of decimal 102.
+In the fourth statement, we want to represent the result as a character.
+102 in decimal is equivalent to hexadecimal 66,
+which, if you look up in your ASCII table,
+you'll see that's the character f, so that's why we print it this way.
+Now let's turn to some examples of input using scanf.
+With scanf, many of the same formatting characters that we saw with printf
+are also available.
+Let's look at this statement.
+Here we're saying to read a single character, %c,
+and store it in the variable nextChar.
+With this statement we're reading two decimal integers, we have %d--
+and these are separated by white space, and we're reading these from standard
+input.
+And now we store the first one in the variable length,
+and the second one is the variable width.

@@ -1,0 +1,53 @@
+Now let's move onto data movement instructions.
+These are loads and stores.
+Now a load, remember, we're getting data from memory
+and putting into a register.
+In a store, we're going the other way.
+We're taking data from a register and we're storing it into memory.
+Now for both of these, we have different ways to form the memory address.
+Let's first talk about a load.
+So again, with a load we're reading data from memory into a register.
+With LDR, which we've already touched upon earlier, we use base+offset mode,
+where we have a register value that comes as a base register.
+And we add an offset from the instruction
+to that to form the address.
+With LD, this uses what's called PC-relative mode.
+Here we're adding the offset to the PC, rather than to a base register.
+But then LDI uses what's called indirect mode, where they're actually
+several steps in order to get the data.
+First, we get an address.
+And then we use that to get the data.
+Now a store has the same type of addressing modes,
+except we’re going the other way with the data.
+We're writing data from a register to memory.
+Now the last type of data movement instruction
+actually doesn't do any movement of data.
+It's called load effective address.
+So here we compute an address, and we save this into a register.
+So it's a way of forming an address and saving it away in a register.
+And it only uses immediate mode.
+And again, this does not access memory.
+In base+offset addressing mode, we specify a register that holds
+the 16-bit base address.
+We then take the signed offset that's embedded in the instruction.
+We sign extend that, and we add that to the base address
+in order to get the address.
+Here's the format of an LDR instruction, which uses base+offset addressing mode.
+It has opcode 0110.
+The first thing that we do is we read the base register.
+The register that we read is indicated by bits 8 through 6.
+We take the rightmost 6 bits and sign extend those.
+And then we add those two together.
+And that gives us our memory address, which we send to the MAR register.
+The memory then reads the data at that location
+and puts it into the MDR register.
+And then the last step, the contents of the MDR register,
+are stored into the register file at the location indicated by the destination
+register.
+That's bits 11 through 9.
+With STR, we form the address in the exact same way
+and put it into the MAR register.
+But the difference here is now we're storing data from a register
+into memory.
+So the data from the source register gets put into MDR,
+and then the memory writes that data into the address indicated by MAR.

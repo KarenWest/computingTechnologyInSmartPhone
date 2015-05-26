@@ -1,0 +1,63 @@
+Now if you walked into a factory where smartphones
+are being built, what you won't see is one station
+with one person or one robot that's assembling an entire smartphone.
+Instead what you'll see is an assembly line, where at each station
+a small piece of your smartphone is being built.
+And then passed onto the next station where the next step is performed.
+The next piece is assembled.
+Now this dates back to Henry Ford and the building of automobiles,
+where instead of having one large bin where
+an automobile was built, than a small piece of an automobile
+was built step-by-step.
+And at the end of the assembly line, we had a complete automobile.
+Now, this is much more efficient than just assembling a smartphone at one
+station, or an automobile in one big bin.
+We get higher throughput in this way.
+Once we have our assembly line filled with automobiles or smartphones
+in various stages of assembly, then every time we now move the assembly
+line forward, we're putting out an automobile,
+we're putting out a smartphone.
+So we get a higher rate of completion of automobiles or smartphones
+by using this assembly line approach.
+Now, we do the same thing with computers.
+Instead of doing all of the phases of instruction execution in one big clock
+period or in several clock periods, but just
+waiting until we do all of those clock periods
+before we introduce a new instruction, we build an assembly line.
+And we have a name for this, we call this a pipeline.
+So in this module, we're going to talk about the idea of pipelined LC-3
+processor.
+And here we're going to build up an assembly line of various stages
+of instruction execution.
+So first we'll start with the very first stage, which
+is instruction fetch, where we simply, in one clock cycle,
+we read an instruction from memory.
+Then we'll move on to the next stage, the next assembly line
+process, which is decoding that instruction, which
+also involves reading registers.
+Then the next stage will be execute, where we do the execute operation,
+or we form an address, and so on and so forth.
+And so we'll have a 5 stage assembly line,
+a 5 stage pipeline with instructions in different phases of instruction
+execution.
+Now, what this means is that our clock cycle
+is going to be faster than if we had one big clock period to do everything.
+And once our assembly line is filled with instructions,
+then every tick of the clock-- and on every tick of the clock,
+we're advancing our assembly line.
+So at every rising edge of the clock, an instruction moves from instruction
+fetch into decode.
+And behind that, we fetch the next instruction.
+So we're going to fill our instruction assembly line.
+And once that's filled, then every tick of the clock,
+we're getting an instruction completed at the end of our assembly line.
+So just like an automobile assembly line or a smartphone assembly line,
+we're going to get a higher rate of completion
+of automobiles or smartphones.
+We're going to get a higher rate of completion
+of throughput using pipelining.
+So we're going to have higher instruction throughput, a higher
+number of instructions completed in a given clock period.
+And that's also going to result in a lower CPU execution time.
+So let's talk about these principles of pipelining.
+Let's get into it.

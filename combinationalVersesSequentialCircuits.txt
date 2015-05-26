@@ -1,0 +1,39 @@
+Now we've seen combinational logic circuits where the outputs depend only
+on the current values of the inputs.
+So when an input changes after some delay,
+and it takes some time for those transistors to switch,
+then we'll see a change in the output.
+Now, sequential circuits also have combinational logic.
+Those are an integral part of a sequential circuit,
+but they also have this idea of state, of storage.
+And in many sequential circuits, there's also feedback.
+So the output depends on the current values
+of the inputs plus the past history, which is embodied in the state.
+So the state saves some information from the past,
+and it saves that information using a periodic signal called the clock.
+Now, what you'll notice is that as the combinational logic circuit advances,
+as the outputs change, the state also may change.
+That gets captured, and that feeds back in as an input to a combinational logic
+circuit.
+And that in turn may change the value of the next state as well as the outputs.
+So we have combinational logic, just like the circuits we've seen before,
+but now we have this idea of state, of storage, of keeping some past history,
+and feeding that back in as an input.
+So in sequential circuits the outputs depend on the inputs,
+just as with combinational logic, and also on the state variables.
+And these state variables capture what has
+happened to the circuit in the past.
+Now, storage elements are a key element of sequential circuits
+because they're used to hold the state variables.
+And we also have a key input called a clock,
+and a clock is a periodic signal which advances the circuit.
+Now let's talk about these storage elements.
+Computers need to save data for later use.
+In your smartphone, you have storage, and you have permanent storage
+and you also have memories, and these memories store information,
+such as data and instructions, which are used by the processor.
+And we're going to see these memories later in the course.
+We're also going to see this data and instructions.
+Now, some memories use latches or flip-flops as the storage element.
+And these flip-flops are also used to store the state in sequential logic
+circuits.

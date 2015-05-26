@@ -1,0 +1,76 @@
+Now that we've reached the top of the stack-- we understand
+the functionality of computers from transistors all the way up to apps--
+we're ready to move on to discuss how we make our smartphones so fast.
+Now, there are a number of ways that we can do this,
+and it spans the stack, as well.
+So we can make faster transistors.
+We can make faster circuits.
+We can do microarchitecture things.
+We can make instructions, new instructions.
+We can make software routines in a special way that are faster.
+We're going to focus on the microarchitecture layer,
+and we're going to see the actual techniques that
+are used in your smartphone to make them so fast.
+So before we can go into those techniques though,
+we need to understand how we measure computer performance.
+So how do you know whether you have a faster machine?
+And how do you know how much faster you've made it?
+So we're going to talk about that first.
+Then we're going to go through a number of different techniques
+that computer architects use to make your smartphone so fast.
+And the first is pipelining.
+Now, pipelining you can think of as an assembly line for your instruction.
+So just like an assembly line at a factory, where at each station
+we do a small component of the overall product,
+and we pass that onto the next station, and we
+make each of those stations balanced in time to take
+about the same amount of time, we can do the same thing with an instruction.
+So we have these different phases of instruction processing,
+and we can do those in separate clock periods.
+Now, what this does is this moves instructions through our assembly line
+so that they get out at a fast rate, which is exactly what you
+do in a factory assembly line.
+You may not get one piece of an automobile, say, an entire automobile done in faster time.
+But when you get to the end, you get the whole pipeline filled,
+then you get them out at a fast rate.
+And that's the exact same idea behind processor pipelining.
+Now, once we have that, we can do a number of other enhancements.
+One of them is called superscalar.
+Now, instead of having one instruction that I fetch,
+say, I might fetch four instructions.
+So I get parallelism.
+I'm doing four instructions at one time within my pipeline.
+We're going to see a couple of other techniques.
+One is called multithreading, where you can
+think of this as running multiple programs
+in this pipeline at the same time.
+And then there's something called vector parallelism,
+which has to do with making data operations performed in parallel.
+Now, all this is great if we can keep up with our memory.
+Now our memory right now is going to be actually too
+slow to keep up with this fast pipeline, because it
+uses a certain technology which will take many, many clock cycles to get
+one instruction or one piece of data.
+So we're going to introduce the idea of a cache.
+And a cache is a small amount of memory that we
+have on the smartphone processor chip, where
+we hold a subset of all the instructions or all the data in the program.
+And this takes advantage of a principle of your program called locality,
+where-- if I think about instructions-- if I fetch an instruction,
+I'm probably going to want the next instruction.
+So I can bring in a block of instructions into this cache,
+and then I can go through them very, very quickly.
+And so we'll see how caches also enhance performance.
+Now, we're also going to introduce permanent storage.
+We've kind of left that topic off of input/output,
+because here we're going to talk about how
+it fits into this idea of performance.
+And then finally, we're going to talk about multiprocessing and multicore.
+So your smartphone chip has multiple processors.
+It doesn't just have one.
+It has multiple processors on the chip.
+And those work together in order to make your programs faster.
+And we'll see how we have this in actual smartphone chips.
+In fact, at the end what we're going to do
+is we're going to tie all of these performance techniques
+together and see how they fit on your smartphone chip to make it run so fast.

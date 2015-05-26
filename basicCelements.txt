@@ -1,0 +1,47 @@
+Now that we've seen the general structure of a C program,
+we're ready to cover some basic C elements.
+The first is variables.
+So these are data items with both a name and a type
+such as integer and character.
+And then there are operators.
+These are actions which are predefined by the language that
+are performed on these data items.
+And we combine these with variables to form expressions and statements.
+Let's go into a little more detail on operators.
+Now, programmers manipulate variables using
+the operators that are provided by the high-level language.
+And these variables and operators are combined
+to form expressions and statements which denote
+the work that is done by the program.
+Now, each operator may correspond to many machine language instructions.
+So for instance, the multiply operator would
+require multiple LC-3 add instructions in order
+to carry out that multiplication.
+An expression is a combination of variables, constants, operators,
+and function calls.
+And every expression has a type which is derived
+from the types of its components.
+And this is according to the rules specified by the C programming
+language.
+Let's look at a couple of examples.
+The first is counter greater than or equal to STOP.
+And the second is a little bit more complicated.
+It's x and z plus 3, or 9 minus w minus minus.
+A statement is an expression of a complete unit
+of work within our program.
+And these statements are executed in the sequential order in which they appear.
+Now, simple statements end with a semicolon.
+So let's look at an example of a couple of simple statements back to back.
+So the first says z equals x times y and it ends in a semicolon
+and is followed by a comment.
+And the second statement says y equals y plus 1, also ending in a semicolon.
+And the comment says that we're going to increment y after the multiplication.
+And that's true because this statement occurs after the previous statement.
+So first, we're going to do the multiplication involving x and y.
+And then after that, we're going to increment y.
+Now, we can also express that using a compound statement with braces.
+Now, this is equivalent to the simple statements above.
+So here's an expression, the same as the above, with a compound statement.
+So we're going to, again, do these in series.
+We're going to do the first one involving z and the second involving y.
+But we're expressing this on one line and we're enclosing it in braces.

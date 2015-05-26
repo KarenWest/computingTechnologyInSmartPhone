@@ -1,0 +1,109 @@
+So what forthcoming trends do you see in the field and challenges
+that are facing designers of these very, very
+complex SOCs that we see in our smartphones and tablets
+and other applications?
+So I think what's happening is-- so I'd say in the '90s,
+we got very comfortable.
+And what do I mean by that?
+I mean that progress in sort of the fundamental manufacturing
+technology and devices, and so on and so forth, was just giving us performance.
+It's like everything got better.
+It's amazing.
+Nobody-- when you design something, you can't make everything better.
+You pick some subset of things that you made better.
+And other things are not as good.
+That's just the way life is because the previous design was also
+done by smart people.
+But manufacturing technology, we had this amazing run
+where not only could you get more complex designs,
+they could be lower powered.
+They would also be faster and, amazingly enough, cheaper to manufacture.
+Astounding.
+It's sort of driven the semiconductor industry for decades.
+It's astounding.
+But that's coming to an end.
+And everybody has recognized this.
+And so unfortunately, because this trend was there for so many years,
+we all got very comfortable, because we had
+to just do sort of the obvious thing, and things got better.
+So I think part of it is now we need to sort of wake up again in some ways.
+But you've got to get people excited again
+about doing design because I think there's a huge opportunity
+to do new things.
+Because now, finally, people are receptive.
+If I were at a major company, I would say, why bother?
+There's risk here.
+This is a predictable path.
+I can do better.
+But now that's no longer the case.
+So I think there's an opportunity.
+I think that there are a lot of challenges,
+though, because the thing that we've been spoiled so far
+is we managed to make microprocessors really, really good.
+And what's nice about that is they're general purpose.
+We can do anything with microprocessors.
+And this is nicely coupling between the design of the processor and software.
+There's this nice ISA contract, Instruction Set Architecture contract.
+This is very, very clean.
+And everybody can make improvements and make contributions.
+But it's to change the underlying architecture dramatically.
+Even an SOC is actually already a dramatic change.
+It's very, very hard to take advantage of the hardware at the software level.
+So I think we need to go back to a world where
+both the hardware designers and the people writing software
+work closer together.
+But we're sort of not used to that because there
+was this very clean separation that we all went our separate ways.
+In fact, it's funny.
+Now it's like people almost don't even speak the same language.
+And so I think that's a big challenge that we're facing,
+that we need more people who can bridge that gap because that's
+where the benefits have to come from.
+Because we can't just rely on doing nothing at one level,
+the software level, and seeing improvement.
+Those days are over.
+So I think that's a big challenge.
+And we don't know what to do about it right now.
+And people are working on lots of different techniques.
+But the embedded systems community, which
+has been around for a very long time, I would argue
+that they haven't solved this problem.
+They've been grappling with this problem because they
+built these sophisticated devices that are all very specialized.
+And you have this block that does image compression and this block that
+has a processor.
+But then there's image compression.
+There may be cryptography.
+There might be video processing, all sorts of things in a single chip.
+And you have to sort of handcraft your application
+to exploit all of these features.
+And that's very time-consuming.
+There's a reason we don't get a new phone every six months,
+an upgrade to all the hardware in the phone.
+It's a lot of work to map things to an architecture that looks like that.
+And that's where we are today.
+And I think we need to sort of move away from that and get back to a world
+where the software can be decoupled from the hardware
+but have some sort of contract so you can exploit the features of an SOC.
+So if I'm a hardware designer, and I say, hey, I have this great idea.
+I could do-- I don't know-- image recognition in this new way,
+way more efficient from a hardware and power perspective.
+And I put this block down.
+Well, it should now be used automatically.
+We don't know how to do that, whereas in a microprocessor,
+I add more ALUs, and--
+Everything just automatically gets faster
+without the software having to do anything.
+Everything just gets better.
+It's amazing.
+It's a wonderful place to be.
+And it would be great if we were back there in the new world.
+And I think that's a very difficult question.
+And I think a lot of people are working on it.
+But it's a hard problem.
+But I think that's probably the biggest challenge is getting to a place
+where we can once again write technology and get improvements in performance
+without having to say it takes 10 years to rewrite some piece of software.
+Professor Rajit Manohar from Cornell University.
+Rajit, thanks for joining us today.
+Thanks very much, Dave.

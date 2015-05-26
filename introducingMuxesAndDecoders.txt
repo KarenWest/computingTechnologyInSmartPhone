@@ -1,0 +1,56 @@
+In this module, we're going to cover combinational logic.
+In combinational logic circuits, the outputs
+depend only on the present value of the inputs.
+Now, this is different than the sequential logic circuits
+that we'll cover later on which have some sense of state or storage.
+Now, you may have a couple of lingering questions at this point in the course,
+and one of those could be what are these AND, OR, and NOT
+gates, which are actually combinational logic circuits in themselves,
+what are they good for?
+Well, in this module we're going to use those as the building
+blocks for some very useful functions.
+In fact, any combinational logic circuit can be
+built by just using AND, OR, and NOT.
+Now, the two circuits that we're going to talk about in this module
+are decoders and multiplexers.
+A decoder is useful for recognizing a particular pattern of 1's and 0's,
+a particular bit pattern.
+Now, that can be useful in a wide variety of contexts.
+Here's an example.
+Your program is comprised of a number of different instructions,
+and the computer hardware needs to recognize and distinguish
+between the different instruction types.
+And the way that we do that is we give each instruction type,
+such as an ADD and an AND, a different bit pattern
+that recognizes, that identifies, what type of instructions those are.
+And the computer hardware uses a decoder to recognize
+I have an AND rather than an app.
+Decoders are also widely useful in memories,
+which we'll see later on in the course.
+Now, the second logic function, a multiplexer or mux,
+you can think of as a selector.
+It takes a number of different inputs and selects one of those
+to appear at the output.
+And we're going to see these multiplexers throughout our computer
+design.
+Here's one example.
+At the input of my adder, I may want to add a constant value,
+or I may want to add some value that's already stored away.
+So I may actually have two different types
+of add instructions, one that adds a constant, one
+that adds the stored value.
+Well, I can use a multiplexer to select between those two
+depending on the type of add that I have.
+Now, the second lingering question you may have
+is that when we talked about CMOS, we said
+that we have NOT, NAND, and NOR gates.
+Now what I just said is that I can build any combinational logic
+circuit from NOT, AND, and OR, but we didn't mention AND and OR
+when we talked about CMOS.
+Well, as it turns out instead of using NOT, AND, and OR,
+we can build the same circuits from just NOT and NAND or NOT and NOR.
+So we actually don't need the AND and OR circuits.
+We can build combinational logic from NOT, NAND, and NOR.
+OK.
+Let's talk about combinational logic.
+Let's get into it.

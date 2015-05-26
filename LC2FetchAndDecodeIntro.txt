@@ -1,0 +1,10 @@
+Here's our first phase instruction fetch,
+which is carried out over several clock cycles.
+In the first cycle, the PC is sent over the bus to the memory address register.
+Then that's sent to the memory, and the instruction, the desired instruction,
+is put into the MDR register.
+Finally, the contents of the MDR register are sent over the bus
+and loaded into the instruction register.
+In instruction decode, the opcode is decoded
+by the finite state machine, which tells it the subsequent steps
+to be carried out.

@@ -1,0 +1,17 @@
+Let's start with the instruction, which is the fundamental unit of work
+in a computer.
+And a computer program contains many, many instructions.
+Now, an instruction has two important groups of bits, which we call fields.
+And the first field is the opcode.
+This tells us the operation to be performed,
+whether it be an add, an and, or a load.
+And the second field is the operands field.
+This holds the actual data we're going to operate on
+or the locations of data in our registers for the operation.
+Now, this is encoded as a bunch of bits.
+It's simply just a bunch of 1s and 0s just like data.
+And an instruction may have a fixed length, such as 16 bits or 32 bits.
+In LC-3, each instruction is 16 bits.
+Now, the control unit interprets each instruction,
+and it generates a sequence of signals to carry out
+the operation depending on the type of instruction that we have.

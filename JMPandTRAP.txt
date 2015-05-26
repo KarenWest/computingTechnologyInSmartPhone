@@ -1,0 +1,54 @@
+Now we'll continue with other types of control instructions--
+like a JMP instruction, which is an unconditional branch which
+is always taken.
+In a JMP, the target address is the contents of a register.
+Here's the format of an LC-3 JMP instruction.
+It has opcode 1100, and it has a base register
+field which is bits 8 through 6.
+And what we do is we go to that base register, read the value,
+and load the PC with that value.
+Now let's modify our LC-3 micro architecture
+to support a JMP instruction.
+What we need is we need a path from the register file to the PC.
+Now the way we're going to do this is we're
+going to allow a value from our register file to pass through our ALU unchanged.
+Now our ALU can do our operate instructions.
+It can do a "NOT".
+It can do an "AND".
+And it can do an "ADD".
+But we're also going to have a pass through mode where we take source one,
+and it just passes through the ALU, unchanged.
+And we can put that out onto the bus.
+Now that we have it on our bus, we need a way to put it into our PC.
+Now we're going to take our PCMUX, and we're
+going to expand it further to have a third input.
+And that input is going to come from the bus,
+and that's going to be the value from the register file for our JMP
+instruction.
+So our control unit will set the select input
+to that PCMUX to take the value off the bus when we have a JMP instruction.
+Now this pass through mode for our ALU is also
+useful for our STORE instructions.
+With our STORE instructions, we need to get a value from the register file
+to the memory, and we do it the same way as we got a value out
+of the register file for the JMP instruction.
+We allow the ALU to pass that value through it
+and out onto the bus to the memory data register.
+So this pass through mode is handy both for STORE instructions as well as
+JMP instructions.
+Here's the format of an LC-3 TRAP instruction.
+It has an opcode of all 1s and a 8-bit trap vector.
+This trap vector tells us which service we want the operating system
+to perform.
+With LC-3, we have 3 vector values.
+x23 says we want to input a character from the keyboard.
+x21 says to output a character to the monitor.
+And x25 says to halt the program.
+Now when the routine is done-- when it's completed,
+when one of these three operations has been performed--
+the PC will point to the next instruction following the TRAP
+so that our user program can continue.
+Now we need to add a 2 to 1 multiplexer called the memory address register
+MUX, or MARMUX for short, to take either the 0 extended trap
+vector or the address for a load or STORE
+and to put those out onto the bus.

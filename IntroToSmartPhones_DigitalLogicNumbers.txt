@@ -1,0 +1,70 @@
+Now we're going to start at the bottom of the stack, specifically,
+digital logic.
+Now let's look at that phrase digital logic.
+First, let's talk about the digital part.
+Well, electronic circuits are inherently analog,
+because they produce a continuous range of voltages.
+But in a digital system, we're only concerned
+with the discrete range of values.
+And in a binary digital system, which is built a round the base two number
+system, which is what's used in our computers,
+we're only concerned with two voltage values.
+One to represent a one and the other to represent a zero.
+Now let's look at the logic part.
+So logic refers to the logical operation's AND, OR, and NOT.
+So for instance, not x, or x and y.
+And we bring these two ideas together in digital logic.
+This idea of using a discrete range of values,
+specifically associated with the binary number system, .
+And then this idea of these logical operations.
+And we bring these together to form what's called logic gates.
+These are digital circuits that can perform these logical operations.
+Now these circuits are constructed from what's called transistors
+and there are many, many little transistors
+within your smartphone chip.
+These you can think of as just little switches and using these switches
+we can school we can construct these digital logic functions.
+Now from there we can build up the digital logic stack.
+And we can use these logic gates to create
+useful functions such as a multiplexer and you could
+think of a multiplexer as a selector.
+So it selects one of a number of values to appear at the output.
+And this becomes very useful later on we talk about the computerization
+part of our course.
+Now from here we could also build up storage.
+Now all computer systems have storage.
+And we'll see that we can construct these storage devices also using
+these basic logic gates.
+Now once we have the storage, we can construct
+a very important class of digital circuits called sequential logic
+circuits.
+Now these have a clock and you may have shopped for a computer system,
+and you've noticed the frequency of that system.
+That refers to how quickly the clock ticks
+and we'll talk about that also in this section of the course.
+Now a very important class of sequential logic circuits
+is what's called a finite-state machine.
+Now you can think of this as a controller,
+and we're going to make use of this later
+on when we design our computer system.
+Now the last thing we need to be concerned with is what's called timing.
+Now digital logic is great in that allows
+us to abstract a way the details of voltage and current levels,
+but we need to be concerned with the concept of time.
+Because, when we switch these transistors
+and we move information between them, well,
+that doesn't happen instantaneously, it takes some time.
+And those delays can affect how quickly we can run our clock,
+how fast we can clock our system.
+And so on the last part of this of this section,
+we're going to talk about how we analyze our digital logic system to determine
+how fast we can run our clock.
+And so at the end, you'll have the full range of the stack of digital logic,
+and you'll be able to apply this in a range of settings.
+So we encounter digital logic every day.
+So our cars have digital logic.
+An ATM machine has digital logic.
+If you play games, your game controller has digital logic.
+It's found throughout our lives.
+And we're going to apply digital logic in the next section,
+specifically to the design of a computer system.

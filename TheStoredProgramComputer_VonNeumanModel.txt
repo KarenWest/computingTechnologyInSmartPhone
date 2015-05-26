@@ -1,0 +1,58 @@
+Let's begin with the stored program computer, which is historically
+attributed to John von Neumann.
+John von Neumann wrote a report on this concept, on the stored program concept,
+and this was known as the first draft of the report on EDVAC.
+Now, this report was obtained and widely circulated
+and so the proposed structure became known as a von Neumann machine.
+Now, the components of the von Neumann machine are first of all a memory
+and the memory holds both data as well as instructions.
+It has a processing unit for performing arithmetic and logical operations
+and then a control unit, which orchestrates the operation
+and interprets instructions.
+Here's an overall depiction of the von Neumann model.
+In the center, we have the processing unit.
+This is where the processing takes place.
+Here we have an arithmetic and logic unit
+or ALU where we do arithmetic and logical operations
+as well as this block called Temp.
+This is where we have temporary storage of data
+that we're going to use for doing operations.
+We also have a memory, and the memory holds
+both the instructions for our program as well as the data
+that that program operates on and has two registers,
+one called the memory address register, the second memory data register
+and we're going to cover those in just a second.
+It also has input and output, so input are things like a keyboard
+and mouse, could be a scanner, could be a hard disk.
+And the output could be things like a monitor, printer, LEDs.
+It could also be a hard disk and a hard disk is both an input device
+-we read information from a hard disk-as well as an output device-
+we store it there.
+And then we finally have the control unit.
+A control unit orchestrates the operation,
+orchestrates the flow of an instruction through these different units.
+And it has two main components, one, the PC or the program counter
+and second is the instruction register.
+The program counter points in memory to where
+the next instruction is to be obtained and the instruction register
+holds that instruction.
+Let's start with the processing unit.
+The processing unit has two components.
+The first is the arithmetic and logic unit or ALU.
+So this performs arithmetic and logical operations.
+Now for the LC-3, this is the computer that we're
+going to build in this course where LC stands for little computer and 3 is
+the third version of that.
+We have three operations, ADD, AND, and NOT, which are used by the ALU.
+Now, the second component are registers.
+This is a small amount of temporary storage for holding data.
+This is both input data for operations, for instance,
+two pieces of data we want to add as well as
+the results of those operations.
+And for LC-3, we have 8 registers, call them R0 through R7,
+and those are 16 bits each.
+Now, this brings up the topic of a word size.
+A word size is the number of bits that the ALU can process in one instruction.
+It's also the width of our registers.
+And for LC-3, we have 16-bit registers, and our ALU can handle 16-bit data,
+so LC-3 is a 16-bit machine.

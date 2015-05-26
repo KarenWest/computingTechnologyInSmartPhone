@@ -1,0 +1,125 @@
+Now that we've seen the LC-3 instruction set architecture,
+let's cover a little bit about the ARM ISA.
+Now, this is the dominant ISA for smartphone processors.
+So if you have a smartphone, it's likely you have an ARM chip inside it.
+Now, this is also used for a variety of other products, such as tablets.
+So if you have a tablet, there's a good chance
+you have an ARM chip in that as well.
+For e-readers, music players, for game consoles, and then
+things like TVs and cameras-- even disc drives and network routers
+might have an ARM chip in them.
+Now, a company called ARM Holdings licenses the ARM architecture,
+the instruction set architecture, as well as intellectual property,
+or IP, cores to companies that want to develop these processor products.
+So if you want to develop a smartphone chip and you want to use ARM,
+then you need to get a license from ARM to use the instruction set.
+Then you can choose to use one of their own cores that they've designed.
+You can take that core-- and they have a variety
+of cores that have different performance and power points and area costs,
+for instance.
+So depending on the application, you can choose a core,
+and then you can create a chip using that core.
+Or you could potentially modify that core.
+Or you can develop your own core using the ISA.
+So there's a variety of different ways you
+can use the ARM architecture to develop a smartphone chip.
+Now, the ISA has been expanded many times over the years.
+Now, we're going to explore the high-level characteristics of what's
+called ARMv7-A. And this is used in a lot of smartphones.
+Now, if you have a newer smartphone, you may have an ARMv8-A chip,
+and we'll talk a little bit about that as well.
+The ARMv7-A instructions come in two main types, ARM and Thumb.
+Now, ARM instructions are always 32 bits in length.
+This is in contrast to LC-3, which are 16-bit instructions.
+Now, Thumb instructions can be either 32- or 16-bit.
+Now, the reason to have 16-bit instructions
+is you have higher code density.
+That means in a given amount of memory, you
+can fit more 16-bit instructions rather than 32-bit instructions.
+But these 16-bit instructions are more limited in their capability.
+Now, you can intermix these ARM and Thumb instructions in the same program,
+and there's a very rich set of operations.
+There's arithmetic and logical operations, just as we saw with LC-3,
+but also things like comparison instructions, shift instructions,
+move instructions.
+Now, it also has load instructions, just like LC3-.
+It's what's called a load store architecture, where
+we operate our instructions in registers and we load those and store those
+to and from memory.
+Now, it has a base and offset mode and a PC-relative mode, also like in LC-3,
+but it has a number of other addressing modes, such as auto-increment.
+So if you remember from our character counting program,
+we had to increment our file pointer every time we
+had a new iteration of the loop.
+Well, with auto-increment, that automatically
+gets incremented as part of the instructions.
+So you have one less instruction if you use an auto-increment instruction.
+But that complicates the microarchitecture a bit
+to support that.
+It also has branch and jump instructions, just like in LC-3.
+And then it has what are called single-instruction,
+multiple data, or SIMD, instructions, which we'll get to
+in the performance part of the course.
+It also has floating point instructions.
+Now, we've talked about integer instructions; floating point
+instructions, which are numbers that have an exponent to them-- it
+has a whole bunch of operations for those type of data as well, as well
+as a number of other types of instructions.
+Let's look at the integer data types and integer
+registers in ARMv7-A. We have a number of different integer data types.
+And the smallest quantity that we can address in memory is a byte, or 8 bits.
+Now, this is in contrast to LC-3, where the smallest quantity is 16 bits.
+And there's some advantages to this.
+So, for instance, if we're using ASCII to represent characters,
+you may have noticed that ASCII is 7 bits,
+but in LC-3, we have to represent that as 16 bits,
+whereas in ARM, we could represent that as 8 bits.
+It's a lot less wasteful.
+We can put two ASCII characters in 16 bits, rather than one with LC-3.
+Now we also have a half-word, which is 16 bits; a word, 32 bits;
+or a double word, which is 64 bits.
+And these can be unsigned or signed binary values.
+For integer registers, these are 32 bits wide,
+which is different than LC-3, where they're 16 bits.
+And we have 13 of these, R0 through R12.
+And we actually have an R13, R14, and R15,
+but those are used for special purposes, such as the program counter.
+Now, 16-bit Thumb instructions, most of them
+are limited to only accessing R0 to R7.
+And that's because they're 16 bits, and we have a smaller field
+for registers than 32 bits.
+Now, each of these registers, you can think of them
+as holding a single word of 32 bits, two 16-bit half-words, or 4 bytes.
+And we can individually address those, potentially, that way.
+Now, these are 32-bit, so a double word of 64 bits
+requires us to use two of these registers.
+Now, we also have a program counter and condition codes, just like in LC-3,
+and we have some other special registers as well.
+Now let's take a look at the ARMv7-A memory model.
+In terms of its address space, we have 32-bit integer registers,
+so we can address up to 2 to the 32 memory locations.
+And, again, each one of those addresses a byte, or 8 bits.
+So that gives us a total of 4 gigabytes of memory
+that we can address using those 32-bit registers.
+Now, this is divided up, just like in LC-3, into different regions
+for user programs, for the operating system, as well as for I/O devices.
+A newer version of the ARM ISA, ARMv8-A, was announced at the end of 2011.
+And this is used in some of the newer smartphones.
+So if you have the latest version, you may have a chip
+that supports ARMv8-A rather than v7-A.
+Now, instructions are 32 bits, just as with v7-A. But now we
+have 31 general-purpose integer registers, as opposed to 13 with 7-A.
+So we have more registers that we can deal with if we're writing code
+or for compiling to the ARM ISA.
+And each of these now is 64 bits wide, which is expanded from 32 bits in v7-A.
+Now, one of the advantages of this is that our memory addresses now
+are 64 bits, because an integer now is 64 bits wide.
+This allows us to easily expand beyond that limit of 4 gigabytes, 2 to the 32,
+that we had with v7-A. So we can put in a lot more memory in our smartphones
+and address it very easily.
+Now, we also have 64-bit integer arithmetic instructions
+in v8-A, as well as enhanced SIMD support.
+So they've enhanced the SIMD architecture
+to make it more higher-performance.
+And there are other differences with ARMv7-A that you
+can go off and read about on your own.

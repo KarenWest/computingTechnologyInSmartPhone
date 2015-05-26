@@ -1,0 +1,20 @@
+When we think of computers, we think of computation, of arithmetic.
+In this module, we're going to build an adder and a subtractor.
+Now, the adder or subtractor that we're going to build
+is what's called a ripple carry adder, and it's
+built using what's called modular design where we start with a basic hardware
+building block and we replicate that as many times as we
+need to build our adder.
+And the basic building block we're going to start with
+is what's called a full bit adder.
+You could think of this as a complete adder for 1-bit position.
+And what we're going to do is once we've designed
+that, we're going to replicate that as many times as we
+need to make our complete adder.
+Now, it turns out that a subtractor is very similar,
+and this is due to the properties of two's complement arithmetic.
+Remember, with two's complement what we do instead of doing subtracting
+is we form the two's complement first, and then we do addition.
+So our adder and subtractor are going to be very, very similar.
+We're going to have just one design that does both.
+So let's get into it.

@@ -1,0 +1,58 @@
+Assembler directives are also called pseudo-operations.
+Now, unlike instructions, these are not executed by the program when it runs.
+They're only used by the assembler in the process
+of translating your assembly language program into machine code.
+Now, these look like instructions, but they start with a dot,
+and that's how we know that they're directives rather than instructions.
+Now here's a table of the LC-3 assembler directives.
+The first is .ORIG.
+That's the opcode.
+And it has operand, which is an address.
+This tells us the starting address of our program.
+.END tells us the end of the program-- when we've reached the end,
+the last piece of it.
+.BLKW has an operand of n.
+This tells the assembler to allocate n words of storage.
+So this gives us space in memory for storing data.
+Now, .FILL is similar.
+It also has an operand of n.
+Now, this also allocates storage.
+It allocates one word.
+That's 16 bits in LC-3.
+But this initializes it with the value n.
+So this is a way to store a constant into memory.
+And .STRINGZ has an n-character string as the operand.
+Here we allocate n plus 1 locations in memory, each 16 bits,
+and we initialize this with n characters-- a particular string.
+So you might want to say HELLO and have that
+be a constant value that's in memory.
+Now we need a last location.
+We need n plus 1 locations, because we end it with the null terminator--
+that's ASCII 00-- that tells us when we're at the end of our string.
+Now, if you remember trap instructions, we had a code for each type of trap.
+Now, fortunately, we don't have to remember those trap codes,
+because the LC-3 assembler provides pseudo-instructions
+for each one of them.
+Here's a table of the LC-3 pseudo-instructions for traps.
+The pseudo-instruction IN represents trap 23.
+And the operation is to print the prompt on the console,
+to read an echo back to the monitor, one character from the keyboard,
+and the character is stored in the rightmost 8 bits of register 0.
+With GETC-- that's trap 20-- we read a character from the keyboard,
+and the character is stored, again, in the rightmost bits of R0.
+Now, in this case, we don't print a prompt,
+and we don't echo the character.
+Now, OUT goes the other direction.
+And this is trap 21.
+Here we have a character in the rightmost 8 bits of R0,
+and we write that character to the console.
+With PUTS, we write a null-terminated string to the console
+and the address of the string is in register 0.
+Now, this goes with the .STRINGZ directive that we talked about
+previously.
+So if we, for instance, create a .STRINGZ directive of HELLO,
+then we can use PUTS to write HELLO to the screen.
+And HALT, which is trap 25, halts execution
+and prints a message to the console.
+Now we have enough of a background in assembly language
+where we could look at a specific program.

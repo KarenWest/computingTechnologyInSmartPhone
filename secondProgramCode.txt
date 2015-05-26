@@ -1,0 +1,54 @@
+Here's the machine code of our program.
+It starts at address x3000.
+In the first step, we initialize our counter R2 to 0
+using an AND instruction.
+And we AND—
+we do an AND immediate with the constant value 0.
+The next instruction is an LD instruction using PC-relative mode.
+The offset is such that we will go to location x3012
+and load that value into register R3.
+Now we have a pointer in R3 to the first character in our program.
+Now we're ready to input our character from our keyboard.
+And we do this using trap code x23.
+Now, by definition, with the LC-3, that puts the ASCII character
+from the keyboard into register 0.
+In the next instruction, we load our first character from our file into R1.
+The next two instructions test to see whether we've
+reached the end of the file.
+If this is the case, then we can exit our loop
+and go to the final steps in our program.
+If not, then we need to test whether the character from our file
+matches the character from the keyboard.
+Now, R1 holds the character from our file,
+and R0 holds the character from our keyboard.
+So we're going to subtract the two to see whether those are equal.
+In order to do that, we need to form the 2’s complement of R1-- that's these two
+instructions-- and then add that to R0.
+Then we're going to have a branch instruction.
+Depending on the result, we're going to increment our count or not.
+So we need a branch instruction.
+If those are not equal, then the result will be that the N or P
+bits will be set rather than the Z bit.
+In that case, we want to branch around the instruction
+that increments the character count.
+That's the instruction at location x3009.
+If the N or P bits are set, we're going to jump around the next instruction
+and not increment the count.
+Otherwise, we'll increment our running count
+of the number of occurrences of the character.
+Next, we increment our pointer to the next character in the file.
+We then load that from memory into R1.
+And then we go back to the beginning of our loop and do it again.
+Once we've reached the end of the file, we're
+going to load into R0 a constant value that's located at location x3013.
+Then we add that constant, x30, to the integer
+count in R2, which will convert that integer
+count to its ASCII-equivalent value.
+Now, R0 has the ASCII value of our count,
+and we'll use a trap instruction to display that onto the screen.
+That's trap code x21, which, by definition, takes the ASCII code in R0
+and displays it on the monitor.
+Our final instruction is a HALT instruction, which ends our program.
+The last two values in our program are constants.
+The first is the starting address of our file,
+and the second is the constant x30, which we use to convert to ASCII.

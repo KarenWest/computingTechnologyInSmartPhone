@@ -1,0 +1,263 @@
+Now that we've gone through the detailed operation of a direct map cache
+and we've gotten the general idea of the organization of set
+associative and fully associative caches,
+we're ready to go into a detailed example.
+So we're going to compare these different cache organizations.
+for the example that we've already seen when we did a direct map cache.
+And in that example, we had 16 blocks in the memory,
+and the cache at any given time could hold four of those,
+so the cache capacity was four blocks.
+And within each of those blocks, we had four words, four 16-bit words.
+So let's first look at our address.
+So our address looks like this, because we have four words per block.
+Then the rightmost two bits are the block offset.
+So those pick one of the four when we access the cache.
+And then the remaining four bits that we have here
+are used to pick one of these 16 memory blocks.
+All right, so let's go over, first, the direct map cache.
+We've already seen this, so I'm going to go over this kind of quickly.
+So we have a direct map cache.
+And we have the valid, the tag, and the data fields.
+And because we have four blocks, then we have four sets of these.
+And we use the index bits, and that's these bits here, bits 3 and 2.
+And we need two of them because we have four locations.
+So we use these index bits to pick one of these four locations in the cache.
+And then we simultaneously read out the valid, the tag,
+and the data from that selected location and we bring them out of the cache.
+We access those out of the cache.
+And we take the tag field, and we compare
+that with the tag from the address.
+Now the tag from the address is going to be the remaining bits after the index,
+and that's bits 5 and 4.
+So we have two bits here, bits 5 and 4.
+And we have two bits from the tag, and we compare those.
+And if those match and the valid bit is a 1, that says we have a hit.
+And then we can take the data.
+We can send it up to the processor, to the selector,
+and we could pick one of the four 16-bit quantities to send to the processor.
+So that's a direct map cache.
+Now let's design a two-way set associative cache
+using the same capacity of 4 blocks.
+Now with two-way set associative, I have two places
+that I can put every cache block.
+Now that's different than direct mapped, where I have no flexibility.
+Every memory block has to go in one and only one location.
+With two-way set associative, I have the flexibility
+to put a memory block into one of two places.
+And so what that means is I'm going to have half as many rows.
+And we call these sets.
+Each one of these rows is a set.
+But I'm going to have two blocks in each one of those sets--
+or we call those two ways.
+It's a two-way set associative, so we're going to have two ways for every set.
+So let's draw that out.
+So as before, we have a valid bit.
+But now we've cut the number of sets in half.
+We only have two of those.
+I have a tag.
+And I have data.
+But now I have two of these.
+I have two ways.
+I have way 0, and I have way 1.
+And way 1 will have the exact same thing-- have valid, tag, and data.
+So I have the same capacity here.
+I have two blocks here and two blocks here.
+So I still have four blocks.
+I've just arranged the cache differently.
+So now I need an index, as before, an index bit.
+And you notice I said bit because I need only one now,
+because I need to pick only one of two sets.
+And so this line here is going to move to the right.
+So I'm only going to have bit 2 now as my one index bit.
+And then the remaining three bits are the tag.
+So this tag has expanded from two bits with direct mapped
+to three bits, in each one of these, for two-way set associative.
+Now I'm going to access this the same way, except I'm
+going to access both of these ways-- way 0 and way 1-- at the same time.
+So I'm use the index to pick one of these two sets.
+And then I'm going to read out the information from all of them
+at the same time.
+And just as before, I'm going to do a tag comparison.
+So I'm going to take the tag.
+I'm going to send that to a comparator, and I'm
+going to do that for both of these.
+So I may have another comparator over here.
+And so I take the tag field from my address,
+and that's these three bits-- 5, 4, and 3.
+And I do this comparison here.
+And I also do a comparison here.
+And just as before, we have to have the valid bit to be set to have a hit.
+And so we take the valid bit from each of the two ways,
+and we do a comparison.
+like this.
+And so if the data that we want is located over here,
+then this bit will be a 1.
+We'll have a hit over here.
+And if it's located over here, then we'll have a hit here.
+We'll have this bit be a 1.
+Now we're never going to have both of these
+going to be 1, because we're are going to store the data in one location.
+So either we'll have a 1 and a 0, a 0 and a 1, or both will be 0.
+In that case, we haven't found what we wanted in either of the two ways.
+So now, in order to determine whether we have a hit,
+we need to OR these two together.
+So we send these through an OR gate.
+And that's our hit signal.
+So we read these simultaneously.
+We do the tag comparison simultaneously with these three bits from the address.
+We find out whether we have a hit over here or a hit over here, or neither.
+And then the signal will tell the processor
+whether we had a hit in the cache.
+So that's the hit detection.
+Now we also have the data from both ways.
+And if we have a hit over here, then we're going to use this data
+and send that up to the processor, actually
+up to the selector, because we still need to pick one of the four words.
+And if we have a hit over here, then we're
+going to send this data up to the processor.
+So you may have figured this out by now, that I need to add a 2 to 1 MUX,
+to pick either this data or this data.
+So let's do that.
+So we're going to have a 2 to 1 MUX now in our design.
+And this is going to be the data that comes out of our cache
+and goes to that selector.
+All right.
+So we need to have a select signal here.
+And because we have a 2 to 1 MUX, we've learned that we need one select signal.
+Now if you remember back to a multiplexer, what
+we do with that select signal is we take it in and we have a true value of it,
+and we also generate a complemented value.
+We also put it through an inverter.
+So we break that up into two pieces, its original value and its complement,
+its inverted value, because we want to select either this data to go through
+or this data to go through, depending on whether the selected bit is 0 or 1.
+Now if you think about it, that's exactly what we have here and here.
+So this is like the true in the complement values
+that we create within our multiplexer normally.
+So if this is a 1, this is going to be a 0.
+And then I will select this data to appear out here.
+And if this is a 0 and this is a 1, then I'm going to select this data.
+So this is, in effect, our true and complemented values
+of our select input to our multiplexer.
+So we can feed both of these into our multiplexer to indicate that.
+So we're going to take this value here and feed this into here, this value
+here, and feed this into here.
+And so when this is a 1 and this is a 0, we're taking this data
+and passing that to the processor.
+And if this is a 0 and this is a 1, then we're going to select this data
+and send it to the processor.
+So this is our two-way set associative cache.
+Now the advantage here is that because I have flexibility
+of where I put data compared to a direct map cache,
+then I can increase the hit rate.
+So a two-way set associative cache, or a set associative cache in general,
+will have a higher hit rate than a direct map cache.
+So that's a real advantage here.
+The flexibility that I add increases the hit rate.
+More often I'm going to find what I want in a two-way set associative
+cache compared to a direct map cache.
+But the disadvantage here is that it's not as fast as a direct map cache.
+A direct map cache is really quick.
+All I do is I pick these bits, I read them out, and then I'm done.
+You see, we've added some additional logic here in terms of the comparison,
+in terms of the hit.
+And also, we've added this 2 to 1 multiplexer now for the data.
+So accessing a two-way set associative cache
+takes longer than a direct map cache.
+So that's kind of the engineering trade off.
+We have a fast cache over here, but we're going to have a lower hit rate.
+We're going to miss more often over here then
+in this two-way set associative cache.
+And engineers make trade offs between these two
+when they're designing a particular cache.
+Now we can take this flexibility further with a fully associative cache.
+With a fully associative cache, then I can put a block
+in any location in the cache.
+So that flattens this even further.
+We've gone from four sets to two sets, and here we're
+going to have just a single set.
+So we're going to have a valid bit, a tag, and data.
+Now we're going to have this four times.
+So again, we have valid, tag, data.
+I'm kind of running out of room here.
+Valid, tag, and data.
+And you may have noticed, I've actually drawn this data as not very
+proportional, because this has a lot more bits than what we have in the tag.
+But I just made this more compact.
+So this is our fully associative cache now.
+So how many index bits do we have?
+Well, the answer is 0.
+We have no index bits, because we're not selecting any set.
+We're reading the whole thing out at one time.
+So now all we have are tag bits.
+So now we've increased our tag to be 4 bits now.
+And so what we're going to do is we're going to read all of these out
+simultaneously, so all of these get read out.
+All of these get read out at the same time.
+We're searching the entire cache for our cache block.
+And so we need to have all of these comparators for each of the tags.
+So now we've increased the number of comparators to 4.
+And then we need to have four AND gates.
+So we take our tag and we take our comparator result-- excuse
+me, our valid bit and our comparator result.
+And we do all of these ANDs.
+And now we need a wider OR gate to collect
+all of these possible hit signals.
+And this tells us whether we have a hit.
+And again, we're going to have a block in only one of these four, if any.
+We could have a miss.
+And so one of these four signals is going to be a 1,
+and the other's going to be a 0.
+Or they'll be all 0, if we have a miss.
+And now we need to also have a multiplexer for our data.
+But now it has to be four-way, because we have four ways now, in this case.
+It's fully associative, so we have four locations where our data could reside.
+So this is our data out.
+And then, remember, we would have two select bits,
+and we would have true and complemented values of those.
+So that's like these bits here.
+So we can feed all of these bits now to our multiplexer.
+So these are the select signals that we would have for a 4 to 1 multiplexer.
+So the advantage here over two-way set associative
+is now I have maximum flexibility.
+I can put a given memory block in any one of these locations.
+So total flexibility, so I'm going to have a higher hit rate.
+It's more likely that I'm going to find my data here.
+If I manage this flexibility, now that you may have been thinking about this,
+you need some way to manage this flexibility.
+So when I replace a block in the cache and I bring in a new block,
+I have to choose which block to replace.
+We don't have time to go over that in this course.
+But if you go over into another course in computer organization,
+you'll see different replacement algorithms.
+There's choices if I have all these blocks occupied with data.
+I'm going to have a new block I want to bring in.
+I have to choose one of those four to replace.
+So there are different replacement algorithms
+to try to manage this flexibility in the best way.
+So you can maximize the hit rate.
+But if I can do that, then I'm going to have a higher hit rate
+here, because I have more flexibility than I had over here.
+But you see, I've slowed down the cache even more.
+So the more associativity that I had, so if I go to more associativity,
+here from two-way to fully associative, then I've got more this logic here.
+And I've widened now this to a four bit, four input OR gate,
+and now I widen my multiplexer.
+There's going to slower circuits.
+So this is going to be slower to access, but I have a higher hit rate.
+So now we have three choices, given I have a cache design.
+I could make a very fast direct map cache.
+And I'm going to have a lower hit rate, though.
+I could have this total flexibility over here,
+where I have the highest hit rate, but it's
+going to be much slower than a direct map cache.
+Or I can pick this in between point, this set associative cache,
+where I have faster access than fully associative and better hit
+rate than direct map.
+So it kind of forms an in between point.
+So what you have really depends on the type of design that you have.
+So you might have direct mapped, or small set associative
+caches in the pipeline.
+But other caches, and we'll see in our designs
+that we have other levels of cache, we may have more wider,
+in terms of set associativity, in order to reduce the hit rate.

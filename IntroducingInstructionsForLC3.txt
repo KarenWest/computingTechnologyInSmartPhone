@@ -1,0 +1,19 @@
+Now that we’ve seen the general organization of a stored program
+computer, we're ready to get into the details.
+Now, I mentioned we have two main topics in this section of the course.
+One is microarchitecture.
+And the other is instruction set architecture.
+And we need to move fluidly between these two
+in order to understand the whole picture.
+So in order to understand microarchitecture,
+we have to have some idea of what instructions are.
+So in this module, we're going to cover basic instruction formats
+and look at a couple of specific LC-3 Instructions.
+Now, that's going to allow us to get a general idea of what
+the hardware needs to do.
+And we're going to end with the overall phases of instruction processing
+that the microarchitecture needs to perform in order
+to execute those instructions.
+Now once we've done this, get this general idea of what the hardware needs
+to do, in the next module, we're going to get very deep into the details.
+So let's get into it.

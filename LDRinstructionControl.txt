@@ -1,0 +1,42 @@
+Now let's discuss an LDR instruction, which
+requires three states to complete.
+In the first state, we form the address, and then
+we transfer that into the MAR register.
+Now, that's done in one state, so that takes one clock cycle.
+Here's how we carry out the evaluate address
+state in the LC-3 microarchitecture.
+We set the ADDR1MUX select input to pick the value from the register file,
+and the ADDR2MUX select input to pick the sign
+extended rightmost 6 bits of the instruction.
+Those get added together, we pass that through the MARMUX,
+we set the gate signal to be a 1 to allow that to be put out onto the bus,
+and then we assert the load signal associated with the MAR register.
+The second of our three states is operand fetch.
+Here we read the data from the address associated with the MAR register,
+and we put that result into the MDR register.
+Now, just like with instruction fetch, the memory may take multiple cycles
+to read that data, so we use a ready signal
+to tell the finite state machine control when the operation has been done.
+Here's the operand fetch state in our LC-3 microarchitecture.
+Now, it should look familiar because this is one of the steps
+that we took for instruction fetch.
+And we do the same thing here.
+The memory takes the MAR register value and reads the data at that location,
+and then puts it into MDR.
+Now, the finite state mission control will assert the load signal
+when it receives the R signal from the memory.
+That indicates that the data has been read and is ready to be loaded into MDR.
+In the last state, which is store result,
+we transfer the data from the MDR register into the destination register,
+and we also set the condition code register.
+Here's our microarchitecture diagram showing the store results state.
+The finite state machine control sets the gate signal to be a 1
+so that we put the MDR contents out into the bus.
+Then we use the DR field from the instruction
+register, as well as asserting the load register signal,
+in order to write that result into the register file.
+At the same time that we're updating the register,
+we also update the condition code register.
+This completes the execution of our LDR instruction.
+This is carried out over three states, which means three ticks of the clock
+is what's required in order to execute this instruction after decode.

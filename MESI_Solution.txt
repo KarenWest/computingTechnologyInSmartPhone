@@ -1,0 +1,41 @@
+One popular cache coherence solution uses what's called the MESI protocol.
+Here, each block in the cache is in one of four states.
+It can be invalid, just like having a valid bit of zero; it can be shared,
+so another cache may have the block but the copy in memory
+is the same as in the cache; exclusive, which
+means that no other cache has the block but the copy in the memory
+is also the same; or modified.
+That means that there's no other cache with the block and the copy in memory
+is stale.
+It's out of date.
+So the only valid, up to date copy is in the cache.
+Now, a cache obtains an exclusive copy of a block before it writes to it.
+That's one of the rules of the MESI protocol.
+And a cache with a modified copy of a block
+has to provide that block upon request instead of the memory.
+That's another rule.
+We have to make sure that the most up to date copy
+gets sent to another requester.
+Let's see how we solve this problem using the MESI cache coherence
+protocol.
+First of all, let's go over our previous problem.
+So first, processor one reads block A from memory into the cache.
+Now, processor two also reads block A from memory into its cache.
+Now, processor one writes to block A, and now
+the copies in processor two in the memory are stale.
+They're out of date.
+Now let's see how the MESI protocol solves this problem.
+So processor one and processor two have each read block A into the cache.
+Now, before processor one does its write,
+it first sends a message, invalidate A on the shared interconnect.
+So this is a special command that tells all the other caches that may
+have A to change the state to invalid.
+Now, processor two will see this command and will mark its block A as invalid.
+Now, processor one does its write and marks its block as modified.
+Processor two will now miss when it wants to read A again.
+It'll see that it's marked as invalid.
+And now processor one will provide its copy.
+Because it has the most up to date copy, it's going to provide its copy of A
+to processor two instead of memory.
+So now we've ensured that the most up to date copy
+is being propagated to other processors that require it.

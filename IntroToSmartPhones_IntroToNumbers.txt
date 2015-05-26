@@ -1,0 +1,53 @@
+In this module, we're starting at the bottom of the stack.
+We're going to start with numbers.
+Your smartphone can do a lot of things-- take pictures, send emails.
+But what it's doing is it's manipulating numbers.
+It's storing numbers.
+It's doing arithmetic on numbers.
+Let's talk about numbers a bit.
+We're all familiar with numbers.
+We use numbers every day.
+Our number system is based on the number 10.
+That's the base that we say for our number system.
+Well, computers are a little different.
+They actually use 2 instead of 10 as the base.
+Now you say, why is that?
+Why does a computer do something different than what we humans do?
+Why does it use base 2 rather than base 10?
+Well, the answer is when you're designing a system, a computer system,
+around base 2, you only have two values in each position.
+You only have 0 or you have 1.
+With base 10, you've got 0 through 9.
+And it makes it a lot easier to represent just two values
+in electronic circuits than ten values.
+All you have to do is you either have to produce a voltage,
+and every electronic circuit receives some voltage,
+either represent a voltage as a 1.
+So when I have a voltage, then that means I have a 1.
+And when I have no voltage, when I have 0 volts, that means I have a 0.
+So the circuits only have to do one of two things,
+either make a connection to the voltage, or break that connection
+to make a connection to 0 volts, to what we call ground in a computer system.
+So those circuits are very simple with base 2.
+They're much, much simpler than if we had to design a circuit for base 10.
+Here we would have to produce 10 different voltage values.
+The circuitry would be far more complex than for base 2 where all we have to do
+is represent two.
+Now you're saying, I can hear you saying,
+that well you know I need to have more positions in my system,
+in my number system, for base 2 than base 10
+to represent the same number of values.
+And you're absolutely correct.
+For base 10, if I'm representing 0 through 9, I just need one position.
+For base 2, for binary, I will need 4 positions to represent 0 through 9.
+So I have more circuits.
+I have to have four of those circuits rather than just one in base 10.
+But the circuits are far simpler than the base 10, that single base 10
+circuit.
+So when you're looking, if you're an engineer
+and you're looking at the trade-offs between performance and power and cost,
+having more of those simpler circuits in base 2
+wins out over having that single complex circuit in base 10.
+So that's why computers use base 2, the binary number system.
+And now we're going to get into this in more detail.
+So let's get into it.

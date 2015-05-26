@@ -1,0 +1,35 @@
+Hi, I'm Dave Albonesi, and I want to welcome you to the computing
+technology inside your smartphone.
+Over the course of the next eight weeks, we're
+going to explore the layers of computing hardware and software found
+in your smartphone, the techniques that computer architects use
+to make our smartphones so fast, and then we're
+going to take a look inside one of the leading smartphone processors
+that many of you have inside your own smartphone.
+Now, I'm thrilled to have the opportunity
+to offer this class, which is based on one that I created here
+at Cornell for Engineering freshmen.
+And I'm excited to teach you about how this amazing little computer that we
+carry around with us works.
+After you've completed the course, you'll look at your smartphone
+with an abundance of technical knowledge about what
+is going on underneath the covers.
+Now, the beauty of this course is that you don't need a technical background
+to succeed, yet those of you with a technical background
+will still learn a lot because we'll cover a wealth of topics
+from transistors to software to performance to real smartphone chips.
+And this course will also serve as a springboard to dive
+more deeply into various other technical subjects.
+Now, engineering usually involves design, and a feature of this course
+is that it's not just about watching videos and doing homework.
+You will use a logic design tool to gradually create a working computer,
+and you're going to run programs on your computer to see that it works.
+And for those of you who want to dive really deeply into the subject,
+we're going to organize hackathons that will give you the opportunity
+to enhance your own design even further.
+Finally, you're going to hear from a number of special guests, professors,
+students, people from industry, to talk about their research, their careers,
+the challenges involved in designing smartphone processors,
+and a look into the future.
+Now let's talk about what you will learn and what
+you will design in this course.

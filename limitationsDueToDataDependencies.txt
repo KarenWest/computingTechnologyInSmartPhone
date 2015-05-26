@@ -1,0 +1,56 @@
+Now, if you recall when instructions have data dependencies,
+that means that one instruction writes a result that's
+used by a subsequent instruction.
+Let's look at the data dependencies in these four instructions.
+We have a data dependence between the ADD and the NOT involving R1.
+The ADD writes R1 while the NOT subsequently reads that value.
+We also have a data dependence involving R5
+in the third and fourth instructions.
+The AND writes R5 and the ADD then reads that value.
+What this means is that the ADD and the NOT, and the AND and the ADD,
+cannot execute at the same time.
+They have to go back to back through our EX stage
+and then through the remaining stages of our pipeline.
+This is how it happens.
+We can fetch the ADD and the NOT together.
+We can then move those into decode together while we fetch the next two
+instructions.
+Now, however, when we go into EX, we can't send the ADD and the NOT
+together because of this data dependence.
+We first send the ADD instruction, and then
+in the next cycle when we're able to bypass R1 back to EX,
+we then send the NOT instruction.
+In the meantime, the AND and the ADD have to stall.
+They have to wait in the IF stage until the ADD and the NOT have proceeded.
+After the NOT proceeds into EX, then the AND and the ADD
+can move together into decode.
+However, because of the data dependence with R5,
+we have to send those also serially through the remaining pipeline stages.
+First, the AND moves into EX.
+Then when it moves into the MEM stage, we're able to bypass R5 to the ADD
+as it moves into EX, and then those instructions move serially
+through the remaining pipeline stages.
+Now, a smart compiler can help us in this situation.
+First of all, it can observe that the NOT and the AND
+are independent of each other.
+The AND does not depend on the value of R4 produced by the NOT.
+So a smart compiler can reorder those two instructions
+without breaking the functionality of this program, so let's do that.
+If we reverse the AND and the NOT, now what we see
+is that we have two independent instructions, the ADD and the AND,
+that can flow together through the pipeline.
+There's no data dependence between those two.
+Now, as those move into EX, we can have the NOT and the ADD move
+together into the ID stage.
+Then as the ADD and the AND move into MEM,
+they can bypass their values to the NOT and the ADD as they proceed into EX.
+So with a smart compiler, we may be able to retain our two way super scaler
+throughput.
+However, this isn't always the case.
+First of all, we may have to ask the compiler, by specifying
+a particular optimization level, to do this reordering,
+or it may not be able to find that reordering due to things
+such as branches.
+And so we can rely also on the hardware in order
+to dynamically find this parallelism at run time,
+and that's what we're going to talk about right now.

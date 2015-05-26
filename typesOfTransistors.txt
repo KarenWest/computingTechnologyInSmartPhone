@@ -1,0 +1,67 @@
+Now there are two types of transistors, an n-type and a p-type.
+Let's start with an n-type.
+The n means negative because it uses electrons.
+The way this works is when the gate-- that's a certain input--
+has a voltage-- and we call this a 1-- then
+there's a short circuit created between the other two terminals, 1 and 2.
+So there's three terminals, the gate, terminal 1 and terminal 2.
+And when the gate is 1, then the switch between 1 and 2
+is closed so the current can flow between those two terminals.
+When the gate has no voltage-- so when it's input
+is a 0-- then that opens the switch between 1 and 2.
+So there's no connection.
+And no current can flow.
+Here's the symbol for an n-type transistor.
+We have, again, three terminals.
+We have the gate, which comes in from the side here.
+And then we have the other terminals, 1 and 2.
+And again, when the gate is a 1, then we're going to close the switch.
+When the gate is a 0, then that opens the switch and no current can flow.
+Now, I've shown here terminal 2 as being connected to what's called ground,
+or 0 volts.
+And in our circuits that we're going to talk about, our digital circuits,
+we're going to have a connection to ground in all the circuits.
+Now, it's going to be useful for us later on
+to see why we make this connection to ground for this n-type transistor.
+Now, let's talk about the p-type transistor,
+where p stands for positive, because it uses positively
+charged carriers called holes.
+Now here the behavior is the opposite from the n-type.
+When the gate has a voltage, a 1, then that's when the switch is open.
+We have an open circuit between 1 and 2.
+And no current can flow.
+Now when the gate has no voltage, a 0 in the input,
+that's when we close the switch.
+That's when we have a short circuit between terminals 1 and 2.
+Here's how we're represent a p-type MOS transistor.
+You can see it looks like the n-type, except we
+put this bubble on the gate input to distinguish it from the n-type.
+Now here the behavior again is different.
+When the gate has an input of a 1, then I open the switch.
+With an n-type, that's when we closed it.
+And when the gate is a 0, that's when I close the switch.
+Whereas with an n-type, it would be open.
+Now what I've done here is I've connected terminal 1 to 2.9 volts.
+We're using that as an example of our supply voltage.
+So we're going to see why it's useful later on
+to connect that terminal 1 to the supply voltage for our p-type transistor.
+Now that we've seen n and p-type transistors,
+let's put them together in what's called a CMOS circuit.
+Now CMOS stands for complementary metal oxide semiconductor-- metal oxide
+semiconductor because those are the three types of materials
+that we use to construct the circuit, and complementary
+because it takes advantage of the complementary properties
+of the n and p-type transistors.
+So we use both of these types.
+And the p-type transistors, we have a connection to the supply voltage
+as we showed you earlier.
+And what that does is that will pull the output voltage up to a 1
+for particular inputs.
+With the n-type transistors, we connect the output to ground.
+So we have this connection.
+One of the terminals is connected to ground, like we saw earlier.
+And so this allows us to pull the output voltage down to 0
+for particular values of the inputs.
+Now, it turns out that for this type of circuit, for every combination of input
+values, the output is either going to be connected to ground or to the voltage,
+but never to both.

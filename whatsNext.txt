@@ -1,0 +1,29 @@
+Now let's recap what we've covered in the last eight weeks.
+We've gone through the computing technology stack, the hardware
+and software layers of a computer system, and their interaction.
+Then we learned the advanced performance techniques
+that computer architects use to make our smartphones so fast.
+Then we went into the details of Snapdragon SOCs,
+and we went into very deep detail on the Crate CPU.
+And we also did a lot of design.
+We designed digital logic, and finally we designed a working computer.
+Now let's discuss next steps-- so where you can go from here with the knowledge
+you've gained in this course.
+Well, first of all, you might want to fill out your knowledge
+through additional online education.
+You can take a full blown digital logic design course.
+After that, you can look into a computer architecture course.
+If you're interested in doing programming
+and you haven't done programming before, you could take a programming course.
+You can go one layer lower in the stack, and investigate
+circuits, microelectronics, and VLSI-- Very Large Scale Integration,
+or chip design.
+Or you can investigate embedded systems where
+you use a microprocessor or a microcontroller
+to build a system, for instance, to control a robot.
+Alternatively, you can learn all of these topics
+by pursuing a Computer Engineering Bachelor's degree.
+If you've enjoyed this course, then recommended it to a friend.
+Now, please fill out the survey so we get your feedback
+and make this course better the next time we offer it.
+And finally, I want to thank you for joining me these last eight weeks.

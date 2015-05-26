@@ -1,0 +1,87 @@
+Now, let's discuss how the hardware processes an instruction.
+Specifically there are six phases of instruction processing,
+and we carry those out over a period of clock cycles.
+So here they are.
+First of all, we fetch the instruction from memory.
+Remember, this is a stored program computer,
+so our instructions are stored in memory,
+so we need to get the instruction from memory.
+We need to decode the instruction.
+We need to figure out what kind of instruction we have.
+Then for a load or store instruction, we evaluate the address.
+We then fetch the required operands that we're operating on.
+We execute the operation and then we store the result.
+We put it away.
+Here's the first phase, instruction fetch.
+We read the instruction from memory at the location specified by the PC,
+the program counter.
+That tells us the instruction that we're going
+to read from memory, the address of that instruction.
+And we bring this into the instruction register, the IR.
+So what we need to do is several steps.
+First of all, we copy the contents of the PC into the MAR.
+That's the memory address register located in memory.
+We then tell the memory to read.
+That's what we want to do.
+We want to fetch the instruction.
+We then copy the contents of MDR.
+That's the instruction that gets read out of memory into the IR register.
+Then what we need to do is a very important step.
+We need to increment the PC.
+We need to add 1 to the PC.
+So that it points to the next instruction in sequence,
+the next location in memory where the next instruction is
+located that we're going to then fetch.
+So the PC becomes PC plus 1.
+Now, that we have the instruction in the instruction register,
+we need to decode it.
+What that means is to identify the opcode.
+Now with the LC-3, it's always the left four instruction bits.
+That's the opcode.
+So we can use a decoder.
+So now we're starting to see some of our digital logic come into play here.
+So we need a 4 to 16 decoder can identify one of the 16
+possible instructions that we have.
+Now, based on the opcode, we're going to identify other instruction information,
+other fields in the remaining bits.
+So for instance, if we had an LDR instruction,
+then we need to use the last 6 bits as the offset.
+If we have an ADD instruction, then the last 3 bits
+is the second source operand.
+So how we interpret the rest of the bits in the instruction
+will depend on what type of instruction we have.
+Now, if we have an instruction that accesses memory, a load or a store,
+we need to evaluate the address.
+We need to form the address.
+So for instance, if we have an LDR, in this step,
+we add the offset that's in the instruction
+register to the base register from the register file.
+If we have an ADD instruction that's not a memory instruction,
+we just do nothing in this step.
+Now, we're ready to fetch the operands.
+Here we obtain the source operands needed to perform the operation.
+So again, if we have an LDR, that means we load the data from memory.
+If we have an ADD instruction, then we read the data from the register file.
+In execute, we perform the operation using the source operands.
+So if we have an ADD instruction, then we need to send the operands to the ALU
+and we tell the ALU, remember the ALU can do multiple types of operations,
+we tell it to do addition.
+Now for memory operations, for loads and stores, here
+there's no execution to be done.
+We're not doing any kind of arithmetic, so in this step,
+we don't do anything for those instructions.
+Finally, we store the result.
+We write the result to the destination and this is either a register or a location
+in memory.
+Now, for an ADD or LDR, the result is placed in the destination register.
+Now, we haven't talked about a store yet,
+but we also have a similar instruction to LDR where we store, an STR.
+Here the data is stored in memory and the steps
+that we do is, we write the address to the MAR just like we do for LDR.
+Now, we write the data.
+Now, we're putting the data from a register
+into memory, so we put that into the MDR.
+And then we tell the memory to write.
+We assert a write signal.
+So this is the store result phase for an STR instruction, which
+we're going to see very, very soon.

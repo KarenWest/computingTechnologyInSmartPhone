@@ -1,0 +1,88 @@
+An I/O controller is a piece of hardware that connects or interfaces
+the processor and, potentially, the memory to the actual device that's
+being controlled.
+Here's a general diagram of an I/O controller.
+It has some registers, control and status registers, as well as a data
+register, as well as some specific electronics
+that are used to control the actual device, such as a flash
+memory or a keyboard, for instance.
+Let's talk about the control and status registers.
+The control register is the way for the processor
+to tell the device what to do.
+So we'll write to the control register, we'll change some bits,
+and those bits will make the I/O controller take specific actions
+to the device.
+Now, there's also a status register.
+And this is a way for the I/O controller to tell the processor its status--
+so, for instance, whether it's completed the task that the processor asked
+it to do.
+Now, the data registers are used for data transfer.
+So, for instance, for a keyboard, the data register
+may hold the ASCII code of the key that was pressed.
+And for a display, it may hold the ASCII character of the text character
+that we want the I/O controller to display on the screen.
+Now, the device electronics perform the actual operation-- for instance,
+writing pixels to a screen, to take characters from the keyboard,
+or to transfer data to or from the flash memory in your smartphone.
+Now, that's the picture of the I/O controller, the I/O hardware.
+Let's now talk about how the software interacts
+with the input/output hardware.
+There are two main ways to do this.
+One is to have special I/O instructions in our instruction set architecture.
+And another way is called memory-mapped I/O. Let's start with I/O instructions.
+Here we have designated opcodes for input/output.
+And the register and the operation are encoded in the instruction.
+Let's take an example of how we might do this for LC-3.
+Remember we have a reserved instruction opcode for LC-3.
+There's one opcode that we don't use.
+Now, we could assign that to I/O. We could say that this opcode is
+for I/O instructions.
+So we might have 4 bits for that reserved opcode that we use for I/O.
+Now, we can use the rest of the bits to designate which
+I/O device we want to communicate with.
+Is it the keyboard, the monitor, touchscreen,
+flash memory drive connection?
+So the device could be encoded in a certain number of bits.
+And then the operation that we want to perform on
+that device could be encoded as well.
+Now, another way to do this that doesn't require any additional instructions
+is to do what's called memory-mapped I/O. Here
+we assign memory addresses to each device register.
+So we reserve a part of our memory space of our memory addresses to I/O devices
+and not to memory.
+So here we use normal data movement instructions, loads and stores.
+That's the advantage.
+We don't have to add any new instructions.
+We use normal loads and stores.
+But we go to specific addresses that are designated for input/output devices.
+And the hardware has to recognize now that these addresses are
+for I/O rather than memory.
+Now, for LC-3, this shows a portion of the LC-3 memory map.
+So this shows how memory is used in LC-3.
+And you notice that we have a block of memory that
+are assigned to user programs, but the very last memory addresses for LC-3
+are reserved for these input/output devices, for device register addresses.
+Here's the specification of the memory-mapped I/O
+locations for the LC-3.
+At location xFE00 is where the keyboard status register is located.
+So when I do a read of that location, I'm
+going to actually be reading the keyboard status register and not
+the regular memory.
+Now, here is the function of the keyboard status register.
+So bit 15 is a 1 when the keyboard has received
+a new character from the keyboard.
+So this tells the processor that there is a keyboard code in the keyboard data
+register, which is at location xFE02.
+So bits 7 through 0 contain the last character
+that was typed in the keyboard, the ASCII code for that character.
+Now, we also have a couple of locations for the display-for output.
+And that's xFE04 and xFE06.
+In the first one we have the display status register.
+And here bit 15 is a 1 when the device is
+ready to display another character on the screen.
+So that's when it has processed the current character that
+has been written by the processor to the display data register, which
+is at the other location.
+This is the character written to bits 7 through 0.
+It's an ASCII code written by the processor that
+tells the display what character to write to the screen.

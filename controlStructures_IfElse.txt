@@ -1,0 +1,50 @@
+With the if-else conditional, we start out just like with if.
+We test a particular condition.
+And if that's true, we're going to do an action, and let's call that action if.
+Now, we're also doing an action if the condition is not true,
+and that's the else action.
+So if the condition is not true, we're going to do action else.
+So here's how it looks in a flow diagram.
+We have a condition that we're testing.
+If it's true, we're going to do one action-- that's action if.
+And if it's false, we're going to do a different action, action else.
+And in both cases, we'll continue with the code after this if-else.
+So this else allows us to have a choice between two mutually exclusive actions
+without having to retest this condition.
+So here's an example if-else code.
+We first test for the condition x.
+That means x being nonzero, being true.
+If that's the case, then we will do z equals z plus y++.
+If x is not true, if the result is 0, then we will do z equals z plus --y.
+Now we'll see how we can generate LC-3 code for the if-else conditional.
+In our example, we have three variables, x, y, and z.
+And we're going to assume that R4 points to the location of x and that y and z
+follow in sequential memory locations.
+So the first thing we do is that we load the value of x into register 0.
+Now, that's going to cause a change in the condition code register,
+depending on the value of x.
+If the z bit is set, meaning that x is 0 is false,
+then we're going to do the else part of the if-else.
+So we have a BRz instruction to the label ELSE.
+If x is not 0, then we're going to do the if part,
+and that's the code that follows this BRZ instruction.
+The first thing that we do is we load y into R0 and z into R1.
+Now, since we're doing a post-increment of y,
+we first perform the operation associated with z,
+and that is to add z and y together.
+And we put that back into R1.
+Then we store that value in R1 to the memory location
+associated with variable z.
+At that point, we do the increment of y, and then we
+store that value into the memory location associated with variable y.
+Now we've completed the if conditional part.
+And so we want to skip the else part.
+And so we have a branch, which is always true,
+because we have the N, Z, and P bits that we're testing, to the label DONE.
+If x was initially 0, then we would have branched at the top to this ELSE label.
+Just as with the if action we first get the values of y and z, now,
+because we're doing a pre-decrement of y, we do that first,
+and then we store its result into the location associated with variable y.
+Then we can do the operation associated with z, where we add the value of z
+to the newly pre-decremented value of y.
+Once that ADD is complete, then we can store this new value of z into memory.

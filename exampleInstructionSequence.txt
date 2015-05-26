@@ -1,0 +1,92 @@
+Now that we've got the general idea of pipelining,
+we're going to go through a specific code example.
+Here's our pipeline diagram where we have five different stages,
+and we have a set of registers-- a set of flip-flops--
+that separate those stages.
+So on every rising edge of the clock, every tick of the clock,
+an instruction moves into the next stage of pipelining.
+Now we're going to replace that diagram with an abstract representation that's
+a little more descriptive of what happens in every stage.
+Let's look at this diagram.
+Here we have, in the instruction fetch stage,
+we have a block which is labeled IM for instruction memory.
+So this is indicating to us that we're reading the instruction
+from instruction memory.
+Now we may have only one memory that holds both instructions and data,
+this is just showing that we're reading the instruction from memory.
+In the ID stage, we have a depiction of our register file,
+because this is the stage where we read our source registers.
+Now we've shaded the right hand part of this register file
+to indicate that we're reading values from that register file.
+In the EX stage, we're showing our ALU-- and this ALU, again,
+is used for operate instructions, but also for calculating addresses
+for loads and stores.
+And in the MEM stage, we have a block that's called DM, or data memory.
+So this is where we do a load operation or a store operation.
+Now we also showed this bypassing path, because for non loads or stores--
+such as an add or an and-- we just do nothing in this stage except just pass
+through.
+And finally, in the writeback stage, again we've shown our register file,
+but we've shaded the left hand side to show that we're writing,
+rather than reading.
+Now don't get confused here to think that we actually
+have two register files.
+We only have one, but we're shading the right hand side in ID
+to show that we're reading, and the left hand side in WB
+to show that we're writing.
+Let's look at an example instruction sequence.
+A little snippet of an LC program.
+Specifically five instructions that are stored in sequential memory locations.
+Now what we're going to do is we're going
+to see how our pipeline operates as we go through these five instructions.
+In the first cycle our PC points to the add instruction,
+and that's fetched from memory.
+Now on the next tick of the clock, the add
+moves into the decode stage, where R2 and R3 are read from the register file,
+and the not is fetched from memory.
+In the next tick of the clock, those instructions
+advance to the next stage-- the add to the execute stage, where
+the add operation is done, and the not to the decode stage where
+R1 is read from the register file.
+In the same cycle, the and instruction is read from the instruction memory.
+In the next cycle, the add goes into the memory stage
+where it just bypasses and does nothing in that stage.
+The not does the not operation, the and reads R2 and R1 from the register file,
+and the LDR instruction is fetched from memory.
+In the next tick of the clock, our pipeline is filled.
+The add is writing R1, the not is doing nothing in the data memory stage,
+except bypassing that stage, the and is doing the and operation using the ALU,
+the LDR is reading R1, and the add instruction
+is being fetched from memory.
+So now we have a filled pipeline, where every tick of the clock
+now will complete an instruction.
+In this diagram, we're showing as time passes where each of our five
+instructions exist in the pipeline.
+So in clock cycle one, at the very left side of our diagram,
+we simply fetch the add instruction from instruction memory.
+In clock cycle two, that instruction moves into decode,
+and the not instruction is fetched from memory.
+In clock cycle three, we now have three instructions in our pipeline--
+the add is in execute, the not is in decode, and we've just fetched the and.
+In clock cycle four, we have four instructions.
+We've now fetched the LDR instruction, and the other instructions
+have advanced.
+Now in clock cycle five, our pipeline is filled.
+The add instruction is writing R1, the not instruction
+is bypassing the memory, the and instruction
+is doing the and operation in the execute stage, the LDR is reading R1,
+and we've just fetched the add.
+After clock cycle 5, for each subsequent tick of the clock,
+we're completing an instruction.
+In clock cycle six, we complete the not, in seven the
+and, clock cycle eight the LDR, and finally in clock cycle nine,
+the add instruction completes.
+Now this seems too easy, and unfortunately it's not this easy.
+Pipelining has actually broken our program.
+You'll find in the next module, that we're
+going to get the incorrect result with pipelining than if we
+didn't have pipelining at all.
+Now fortunately, what we'll also see in the next module
+is that we can make some changes to our pipeline to fix this problem,
+so that we can get the high performance of pipelining,
+but also correct operation of our program.

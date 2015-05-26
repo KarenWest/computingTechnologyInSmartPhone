@@ -1,0 +1,93 @@
+Here's the general form of a finite state machine.
+We have inputs and outputs.
+We also have our current state.
+This is the state that this FSM is in at this given clock cycle.
+Now the combinational logic takes the inputs in the current state,
+and that produces a potential change in the outputs
+as well as a change to the next state.
+This is the next state that we're going to move to in our finite state machine.
+Then on the rising edge of the clock, the triggering edge, that next state
+becomes the current state.
+Now we've progressed from one state to another.
+Now there are two types of finite state machines.
+The first is called a Moore machine.
+Now with a Moore machine, the outputs depend only on the current state.
+Let's look at a diagram.
+Now I've broken up the combinational logic
+into the output combinational logic and the next state combinational logic.
+Now what you'll notice about that output combinational logic
+that the inputs to that block are only the current state.
+So the outputs only change when the state changes.
+Now the next state changes as a function of the inputs as well
+as the current state.
+So the outputs depend only on the current state value in a Moore machine.
+The other type of FSM is a Mealy machine.
+Now a Mealy machine is different in that you'll notice now in this block diagram
+that the output combinational logic has the current state as well as the inputs
+to our circuit as inputs to that block.
+And so the outputs depend on the input values and the current state values.
+Now there are pluses and minuses of both of these types of machines.
+We're going to focus on Moore machines in this course.
+Now that we've seen the general structure of an FSM,
+let's talk about how we design one.
+The first step, and this is a very important step,
+is that we need to understand what we're supposed to do.
+What's the problem statement?
+And that can take some back and forth with the person who's designing it.
+Or perhaps you're designing this and then
+you have a question about, what if I have this combination of inputs?
+What should happen?
+So you have to have a clear description of the problem statement
+and what the inputs and the outputs are to the circuit.
+Once you've done that, the second step is to identify the states that you need
+and to create a high level extraction of this finite state machine
+called the state diagram.
+From the state diagram you can then determine the number of required D
+flip-flops to hold the state.
+At that point you implement the combinational logic for the outputs
+in the next state.
+You can tie that all together with your D flip-flops.
+Finally, a very important step is to simulate the circuit
+to test its operation.
+It's very rare that you take a complex FSM and it works right the first time.
+It's often easy to make mistakes, so you have to simulate to make sure
+that it's functionally correct, that it's
+operating the way that you specified.
+Let's assume that you understand the problem statement and the inputs
+and outputs and move on to the state diagram.
+The state diagram is a visual specification of an FSM.
+It's an abstract diagram.
+It doesn't show circuits or anything like that.
+It gives you a high level view of what you're trying to design.
+Now an FSM has a bubble, has a circle for every state.
+And it has arcs between these states that shows the transitions.
+And we put the input values on the arcs, and the output values
+can go in one of two places.
+For a Moore machine we put them within the bubbles,
+within the states, because remember with a Moore machine,
+the output depends only on the current state.
+So we put those inside those state bubbles.
+With a Mealy machine, the output depends on the current state as well as
+the input, so we put those output values on the arcs.
+Now with a state diagram we don't bother showing the clock, but remember,
+it's always present.
+It's always there to advance those state flip-flops.
+Here's an example of a Moore state diagram.
+We have one input, one output, and three states.
+And each of those states is represented by a bubble.
+I've also put a label within each state, S0, S1, and S2.
+Now the arcs represent state transitions for each input value.
+For instance, if you look at S0 we have an arc with the 1 labeled on that.
+That means when the input is 1 that I stay in state 0.
+I also have an arc showing a 0.
+That means when my input is a 0, then I transition from S0 to S1.
+Now we also have the output values shown within the bubbles.
+So for S0, my output is 0.
+Also for S1 it's 0.
+But for S2, my output is a 1.
+Now I've also shown this arc with reset, so this
+shows that when I have a reset signal-- and every sequential circuit
+has a reset signal.
+When you power up you want to get your state machines into a particular state,
+for instance.
+So this says that I will start at S0, my initial state when reset is asserted.

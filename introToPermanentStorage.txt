@@ -1,0 +1,48 @@
+An important input/output device on our computers is permanent storage.
+This is where we permanently store our applications.
+Now, in our smartphones this takes the form of flash memory.
+Now, flash memory has some advantages.
+It's pretty cheap.
+It's pretty dense.
+Also, like any permanent storage, it's non-volatile.
+That means that when we turn off the power,
+we don't lose the contents of our apps.
+Those zeroes and ones are stored permanently in our flash memory.
+Now, this is different than the memory that we use for main memory.
+If we turn off the power, we lose the contents of our main memory.
+So our main memory is only used to store part
+of the apps which are ready to run in our smartphones at any given time.
+Now, we've saved the discussion of flash memory, of permanent storage,
+for this part of the course because although it has these advantages,
+it's painfully slow.
+It can take tens of thousands, if not hundreds of thousands of cycles,
+to access our flash memory.
+Now, this is a serious performance problem.
+Just like we had with main memory, where we bridge the performance gap
+with caches, we need to have some kind of solution
+to this very, very slow flash memory.
+And that's the subject of this module.
+We'll talk about how we get the operating system involved when we need
+to access something from flash memory.
+Now initially, we'll load part of our program,
+and that's going to take some time.
+But later on when we want to get more of our program
+and bring it in from flash memory into memory,
+we need to do something to try to hide that tens of thousands
+and now hundreds of thousands of cycles of latency.
+And one way we do this is we switch to another program.
+So the operating system may temporarily suspend the running program
+while that transfer takes place and run something else
+that we want to run in our smartphones.
+And while that's happening, the hardware will automatically
+be doing this transfer.
+It'll be transferring the required data from flash memory
+into main memory in parallel.
+So this is another form of parallelism that we have in our smartphones.
+And another thing that we'll do is, similar to what we've done in caches,
+is we'll bring in a large page from flash memory, a large quantity of data,
+typically kilobytes of data, from the flash memory into our main memory
+because we have locality in our programs.
+So we'll talk about this whole subject of flash memory
+and how we get around these performance problems in this module right now.
+So let's get into.

@@ -1,0 +1,46 @@
+Sometimes when we do addition something called overflow can occur.
+Now if the operands are too big, than the sum can't be represented
+as an n-bit two's complement number.
+We have too many bits that we need to represent for the result.
+We can't fit it in n-bits, which is number of bits
+that we have in our machine to store our result.
+Let's look at a couple of examples.
+Here's an example where I have the number 8, and I'm adding 9 to it,
+and let's see what happens.
+We do our addition just as normal starting from the right
+and moving to the left.
+The first position we get a 1 and we get a 0, a 0.
+Now here we have 1 plus 1 so we get 0 with a carry
+into the next position of a 1.
+And then finally, we get our result, which is 1 0 0 0 1.
+Now what number does this represent in two's complement?
+Well, it represents minus 15.
+It turns out if we had another zero that we
+could put on the left hand side, one more zero,
+then we can get the right result.
+But because we have only five bits in this example,
+we don't have enough bits to represent our result, which is supposed to be 17.
+Instead, we're getting minus 15.
+Let's take another example.
+We're adding two negative numbers, minus 8 and minus 9.
+Again, we do the same procedure and add those together.
+We get 1 and we get 1 1 1.
+Now the last position, we add 1 plus 1 and we get 0,
+and we happen to get to carry out here.
+The last position is a one.
+Again, I don't have enough bits to represent this number.
+I need that other one, that last one of the last position,
+but I've only got five bits.
+So instead of getting our result, which is suppose to be minus 17, instead,
+we get plus 15, which of course, is the wrong answer.
+Now overflow occurs in these examples you see that the signs of both operands
+are the same, but the sign of the sum turns out to be different.
+In the first example, we have two positive numbers
+and the result is negative.
+In the second example, we have two negative numbers
+and the result turns out to be positive.
+So we've got overflow.
+Now another test that you can do, which is easy to do in hardware,
+is to check if they carry into the most significant bit does not
+equal to carry out.
+If that's true, then we also have overflow.

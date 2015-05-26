@@ -1,0 +1,108 @@
+Now that we've seen basic logic gates, let's talk
+about a very important property called DeMorgan's Law.
+What DeMorgan's Law allows us to do is to convert from AND to OR, or from OR
+to AND with some help from NOT.
+Let's look at an AND gate where we invert the inputs and the output.
+So two input AND gates.
+So I have two inputs, let's call them A and B. Now
+what do we have here at the output?
+Well, first of all we've inverted both of our inputs.
+So we have NOT A and NOT B. We've AND'd those.
+We have an AND gate here.
+So we have an AND.
+And then finally, we've inverted the output.
+Let's put a bar over that.
+Now let's draw a truth table starting with A and B, and derive this output.
+We start with A and B. And we're going to have lots of columns here.
+First of all, we have four possible values of A and B.
+Let's write those down.
+Now the first thing that we do is we invert A and B. Let's do that.
+We have NOT A and NOT B.
+So here we'll invert A. So we get 1 1 0 0.
+Here we're going to invert B. So we get 1 0 1 0.
+Now the next thing we're going to do is an AND.
+Let's AND these.
+So we have NOT A, NOT B. And we're AND'ing them.
+So we can look at these and we can form the AND.
+So here we have 1 and 1.
+So that's a 1.
+In the remaining rows we have at least one 0.
+So these are going to be 0.
+Now the final thing that we do is we invert this result.
+So let's do that.
+So this is going to be NOT A and NOT B. And the whole thing inverted.
+So we can take this and just invert them.
+So we get 0 1 1 1.
+So what do we have here?
+This is our final output.
+We've had an AND.
+We've inverted the inputs and the output.
+And what do we end up with?
+Well, this is an OR.
+So you can take an AND gate and you can invert the inputs and the outputs,
+and then you end up with an OR.
+And you can do the same thing starting with an OR gate.
+So you can take an OR gate, and you convert the inputs and the output,
+and if you do the same exercise here, you'll
+find that you end up with an AND.
+So DeMorgan allows us to convert to start with 1 gate,
+like an AND or an OR, and using inversion of the inputs and outputs
+to convert to the other type of gate.
+Now we can do lots of different transformations of different gates
+using DeMorgan.
+So let's do a few of those.
+So first let's write down the two that we know.
+We have an AND gate with the inputs and the output inverted.
+And we said that's the same as an OR gate.
+And then we can take an OR and we can invert the inputs and the output,
+and we say that that is an AND.
+OK.
+So we're starting from these.
+Now let's take this gate.
+We have an AND.
+And we put a bubble on the output.
+So you can think of this as an inverter.
+So inverting the output of an AND.
+Well this has a special name called a NAND gate.
+And you can see where the name derives, because we have an AND followed by NOT.
+This is a NAND gate.
+Now what is the equivalent OR function of this NAND gate?
+Well we can look down here.
+Here's an AND gate.
+And this would be the equivalent in the OR, of an AND gate.
+But we have something a little bit different.
+So we have this inverter here.
+So first of all, let's start with an OR.
+And let's invert the inputs and the outputs.
+So we're taking the AND part of this, and we're
+creating an equivalent OR gate.
+But we have this bubble here, this additional inverter,
+so we need to do this to get the equivalent of this NAND gate.
+Now what you should be able to see is these two inverters cancel each other.
+So if I take a 0, and I invert it to 1, and I invert it again, I get a 0 again.
+So we can just throw these away.
+And what we get instead is an OR gate with just the inputs Inverted, but not
+the output.
+So this is a NAND.
+This is how we can draw a NAND.
+But we can also draw a NAND like this, as an OR gate with the inputs inverted.
+We have another special type of gate called a NOR.
+And you can see why it has the name.
+We have an OR with a NOT after it.
+Let's look at the equivalent AND gate for this.
+So we know from an OR-- if we have just an OR-- then
+we can have an AND with the inputs and outputs inverted.
+So let's do that.
+We get the OR part here by inverting the inputs and output of an AND.
+But again, we have this extra bubble here.
+So we have to do this at an inverter to get the equivalent function.
+But just like in this case, these two inversions cancel each other.
+So a NOR is equivalent to an AND with just the inputs inverted.
+So we can form a NAND by taking the AND gate with an inversion,
+as you would normally think about it.
+An AND with a NOT.
+Or you can do it this way.
+You have an OR with the inputs inverted.
+If we have a NOR gate, it can be represented this way,
+or it can be represented this way.
+These are both the same thing.

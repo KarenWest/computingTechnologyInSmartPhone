@@ -1,0 +1,76 @@
+Now that we understand operators, we're ready to cover control structures.
+And also to translate to compile some C code down to LC-3 instructions.
+Now just like with assembly, we have conditional and iterative control
+structures.
+With conditional, we determine which code to execute
+based on the evaluated expression.
+Now with C, we have if, if-else, and switch.
+We're going to cover the first two in this course.
+You can cover switch in a full course on programming in C. With iterative,
+we execute the code n times, where n depends on the evaluated expression.
+Now we're going to cover for.
+There's also while and do-while, which, again,
+you can cover in a full course in programming in C.
+Let's begin with the if conditional, which looks like this.
+If (condition), and we close that in parentheses, then action.
+So we perform the action if the condition evaluates to true.
+Here's a flow diagram of an if conditional.
+And we've seen this before when we did assembly language.
+First we test the condition.
+If that evaluates to true, we do the action.
+If false, then we just skip that step.
+The condition is a C expression that evaluates to true (nonzero) or false
+(zero).
+An action is a C statement that may be simple or compound.
+If it's compound, then it's enclosed in braces.
+Now let's look at two example if statements,
+the first where the action is simple, and the second where it's compound.
+In the first one we have if z equals 0.
+Now we have double equals sign here because we're
+testing for equality with 0.
+And if that's true, then we're going to do the action y equals x plus 5.
+In the second we have a compound action where, again, we're
+testing for equality with 0 with z.
+And now we have two statements.
+We have y equals x plus 5, and the second, z equals y over 3.
+And both of those will be done if z equals 0.
+Here's some more examples of the use of the if conditional.
+In the first we're testing if x is not equal to z.
+And if that's true, then y will be assigned the value of 5 times x.
+In the second example, we're testing the variable age
+to see if it's greater than or equal to 13
+and-- we have a logical AND here-- less than 20.
+If that's true, then the age is in the teen range.
+And so we're going to increment our variable teens.
+In the last example, again, we have both the logical operators
+and the relational operators.
+Here we're testing, is month equal to 4, or equal to 6, or 9, or 11?
+If that's true, we have a month that has 30 days.
+And we're going to print that statement.
+Now let's look at how we can compile an example of C code
+into LC-3 instructions.
+So here's our statement.
+If x is not equal to 5, then we'll assign y the value of 8.
+And here's the equivalent LC-3 instructions for that C code.
+Now we're going to assume that R4 points to the variable x and that
+right after that in memory, at R4 plus 1,
+is where we want to store the result for y.
+The first thing that we do is we use an LDR
+instruction to load x into register 0.
+Then we're going to do an add immediate.
+We're going to subtract 5 from R0.
+And that will set the z bit if x equals 5.
+So we have a BRz to the label NOT_TRUE.
+So what we're doing here is if actually x equals 5,
+we're going to skip the assignment of y.
+If the z bit is not set, that means that x is not equal to 5.
+And we're going to do the assignment of y in the next three instructions.
+First we're going to do an and immediate of R1 with 0,
+which will force R1 to be the value 0.
+Then we're going to do an add immediate with 8 to make R1 equals 8.
+And the last instruction is a store, where
+we're storing the value of 8 in R1 to the memory location associated
+with the variable y.
+So now we see the link between our C program and LC-3
+code, how we can compile that C into the LC-3 instructions that
+can run on our machine.

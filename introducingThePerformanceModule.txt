@@ -1,0 +1,60 @@
+Before we get into the details of these performance techniques,
+we need to understand what it means to have good performance, how
+we measure performance.
+And also if we have a performance enhancement, then what kind of impact
+we might have on the overall performance of our system.
+So let's look at an example of a highway system.
+So one way that you can improve performance
+is by increasing the speed limit.
+So if I increase the speed limit, it will take less time from a car
+to move from one point to another.
+So if I took a stopwatch, and I measured the time
+it took you to get from one point to another,
+with the older speed limit versus the new speed limit,
+I should see less time.
+So that would be a performance improvement.
+Now another way that we can do this is by adding more lanes to our highway.
+So we might keep the speed limit the same--
+so any given car won't get to its destination any faster--
+but I have more cars on my highway that I can accommodate.
+So I have a higher-- what's called a-- bandwidth or throughput.
+I have more cars passing through a certain stretch of my highway system
+in a given time.
+So that's also a way that we can measure the performance of our highway system.
+Now in computer systems, we have similar measures.
+So we have one, what's called execution time.
+So this is the time to run a single program.
+And that's of course an important measure,
+so I want to run my programs fast on my smartphone
+so I get a fast response as a user.
+But another metric that we can use is bandwidth.
+So if I have a data center in the cloud--
+if I have more computers handling transactions
+such as search transactions at Google, then I have higher throughput.
+I'm getting more of those transactions happening at the same time.
+I'm getting them done in the same unit of time.
+So we have both execution time and throughput
+as measures of performance in computer systems.
+Now an important law in computer performance is called Amdahl's Law.
+And what Amdahl's Law says is the performance
+that I get over an enhancement is really dependent on how much
+that enhancement is used.
+So for instance, let's go back to our highway system.
+If I improve the speed limit-- if I increase the speed
+limit over a short stretch of highway, say a
+couple of miles or a couple of kilometers, then
+that's going to have only an impact on the cars that
+are on that stretch of highway.
+The rest of the highway is unaffected.
+And so the performance improvement I will get
+will be limited by the number of cars that use that stretch of highway.
+And Amdahl's Law says the same for computer systems.
+So if I have an enhancement to say a multiply instruction,
+well the overall performance improvement that I get
+will be dependent on how much we use that multiply instruction
+in our programs.
+So at the end of this module, you’ll understand
+these aspects of computer performance, how
+we measure computer performance, how we look at relative performance, what
+kind of improvement that we get, and also this concept of Amdahl's Law.
+So let's get into it.

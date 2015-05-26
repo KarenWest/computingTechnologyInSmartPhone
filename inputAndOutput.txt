@@ -1,0 +1,53 @@
+Let's return to our Von Neumann model of a computer system.
+We've already talked about the processing
+unit, the control unit and the memory.
+But with a machine like a smartphone, input and output are essential.
+We need some way to input our information into the machine,
+as well as to receive output, to receive information from the machine.
+Now we're going to talk about those two pieces of the Von Neumann model.
+Input/output, or I/O for short, is our way
+to connect the machine to the outside world.
+So so far we've covered about how we compute with values and registers,
+how we move data and instructions between memory and the processing unit--
+but we need a way to interact with the user.
+We also need some permanent storage.
+So the memory that we have is temporary storage for our instructions
+and our data for running programs, but we
+need a way to store our apps permanently on our smartphone.
+There are many examples of input/output devices in computer systems.
+Let's talk about a few.
+For user input, we have, for instance, a touchscreen.
+That's one of the main ways that we provide input to our smartphones.
+We also have a microphone that provides audio input and a camera that
+may provide a video or a photo to our smartphone.
+Now, in other computer systems you may have used, such as a laptop,
+you might have a keyboard.
+You may have a separate mouse.
+Or you may have a touchpad.
+For a game machine, you may have a game controller.
+That's also a user input device.
+For user output, our touchscreen also provides visual output to us,
+and we may have a speaker also, and we get audio output as well.
+And for other machines you may have used, like a laptop,
+you may have a display, for instance.
+Or you may have a printer attached to your laptop.
+That's also an output device.
+Now, we also have permanent storage in our computer systems.
+For a smartphone, that's primarily flash memory.
+Flash memory is a special type of memory that we'll
+talk about later on in the course where we permanently hold our apps.
+Now, if you have a laptop, you may have a solid-state drive or a disc drive,
+or you may have a CD or a DVD drive.
+We also have communication.
+We have a network.
+We may have multiple networks.
+We may have a Bluetooth network, or we may have a connection to the Internet.
+And that's both an input and an output.
+Just like, actually, permanent storage provides both input and output,
+a network also provides both input and output.
+Now, we also have sensors.
+So we may have a motion sensor or an accelerometer in our smartphones
+that provides sensor input.
+And so we have all of these different types of input/output devices.
+And the ones that we have are specific to the type of computer system
+that we're using.

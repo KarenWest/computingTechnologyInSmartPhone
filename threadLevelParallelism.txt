@@ -1,0 +1,75 @@
+Thread-Level Parallelism, or TLP, refers to the parallelism
+among different threads.
+Now a thread is a path of execution within a program.
+Now each thread uses its own registers, but they share memory.
+Now this is in contrast to two separate programs,
+such as our texting program and our browser program,
+which again have their own registers, but they
+have their own dedicated memory.
+So in either way, we have thread-level parallelism between them.
+Let's consider two different threads that are ready to run.
+First of all, Thread 1 is our loop program, where we don't have any ILP.
+And Thread 2, you see the same thing.
+It's a different program, but again because of data dependences
+we don't have ILP.
+Now later when we consider multicore, we'll
+be able to run these threads on their own individual superscalar pipeline.
+What we're going to do instead is we're going
+to create a superscalar pipeline, a single pipeline,
+a single core that can run them both at the same time.
+Here's our superscalar pipeline, which has
+been transformed to be a two-way, multi-threaded pipeline.
+First of all, you'll notice that we've duplicated the PC.
+We now have two PCs.
+That's because we have two threads that each require their own PC.
+We also have shown the register file is divided into two register files.
+That's because each of the threads has its own independent registers.
+Now in actuality, these two threads can share many of the pipeline resources.
+Although we've shown in EX that each ALU is dedicated to one thread,
+in a real design both ALUs may be available to a single thread,
+if it needs to use them.
+That's also the case for the memory stage.
+Although we've shown the data memory's resources being separated among the two
+threads, in actuality we may allow one thread to use all of the ports.
+The key feature here is that each of the threads
+has its own PC, and its own independent set of registers.
+Now again, the register file could be combined into one,
+and we may dynamically allocate registers to one thread or the other,
+but the threads won't interfere with each other.
+Now this is one example of multithreading
+which is called simultaneous multithreading, or SMT, because each
+of the threads simultaneously share the resources of the pipeline.
+Now let's see how the first three instructions in each of our two threads
+progress through our multi-threaded pipeline.
+First of all, we use the two PCs to fetch the first instruction
+in each of the two threads.
+Then as those pass into decode, we fetch the next two instructions
+in each of the threads.
+Now in decode, each of the add instructions
+is going to read the registers of its respective register files.
+In the next cycle we perform the two ADD operations for each of the two threads,
+and then we read the registers for the NOT from Thread 1,
+and the ADD from Thread 2.
+At the same time, we're fetching the third instruction
+in each of the two threads.
+In the next clock tick, the ADD instructions move into the MEM stage,
+the NOT and the ADD instructions perform their ALU operations,
+and then the AND and the AND instructions, one from each thread,
+read their respective registers.
+Next, Register 1 for the first thread, and Register 7 for the second thread
+are updated.
+The NOT and the ADD progress through MEM, and in the EX
+stage we perform two AND operations, one for each of the two threads.
+Now in the next cycle, we're writing R4 and R4.
+Now these are two different writes to two different registers,
+because the first is the Thread 1, and the second is the Thread 2.
+Remember that the two threads have their own independent sets of registers.
+At the same time, the two AND instructions progress to the MEM stage.
+In the last cycle, again we have two writes to R5,
+but again these are not the same register.
+One is for Thread 1, and the second is for Thread 2.
+Using SMT, we're able to get around these data dependences
+with individual threads.
+We're going to see later on in the course
+when we use multi-core that we can also get around this
+by assigning each of the threads to a separate superscalar pipeline.

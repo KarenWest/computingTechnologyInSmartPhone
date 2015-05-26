@@ -1,0 +1,285 @@
+So one of the ideas that you mentioned is your work
+in asymmetric chip multiprocessors, which probably people
+know more about as multicores and heterogeneous multicores.
+Those are all the right buzz words.
+Right, so why is it important to have cores that are not alike,
+cores that have different capabilities on a chip?
+So I've been talking about heterogeneous for a long time now.
+I came up with the notion-- I probably wasn't the first one--
+but in fact, it hit me in a talk I gave at Illinois back in 2002,
+so that's 12 years ago, that you really want heterogeneous cores.
+And at that time, in fact, up until a couple years ago,
+all the multicore chips-- multicore, as you know, a core is a processor.
+In the old days, the chip had one processor on it.
+So it was a single core.
+They didn't call it cores then, they called it processors.
+And in fact, I don't know why they call it cores,
+but we seem to be stuck with that in our lexicon.
+We then went to 2 cores, 2 processes on a chip, and 4 and 8.
+And it's easy to do if, in fact, they're identical because when
+you do the design, you do one design.
+Then you go boop, boop, boop.
+It's like making cookies with a cookie cutter.
+They're all identical.
+So it's cheaper because you only have to design it once.
+If you do heterogeneous, if each one them are different,
+then it's not so easy because you have to have
+a design team doing one and a design team doing another and a third one.
+And you say, well, does that make sense?
+Well, I've got a couple of analogies for you.
+Many people have a machine shop in their basement
+where they do carpentry and fix things and fix your car and all that.
+And you need a set of wrenches.
+Well, you don't really need a set of wrenches.
+You could have just one wrench, an adjustable wrench, right?
+And then you just set the adjustable wrench to whatever setting you need.
+What if that bolt is rusted on?
+The adjustable wrench with slippage, you'll never get it off.
+But with a set of wrenches, each wrench has an individual size opening,
+and you need the one of the wrenches for the particular bolt.
+And there are many different bolts, and so you need many different wrenches.
+You could get away with a single wrench that's adjustable,
+but it wouldn't work as well.
+And that's always the case, that if you have
+something that is designed for a specific task,
+you'll do much better on that task.
+The problem is, of course, you can't do any other tasks with that.
+So the wrench that has an opening of 1 inch is useless on a 2-inch bolt
+or a 1/2-inch bolt.
+It doesn't work on either.
+It only works on the 1-inch bolt, but it really works on the 1-inch bolt.
+So if you want to optimize the performance,
+you need something tailored to it.
+Another example is-- I gave you 1 football analogy.
+Here's another football analogy.
+So how many quarterbacks do you want on the team?
+How many wide receivers?
+How many field goal kickers?
+In fact, if the team was made up of all field goal kickers,
+you know, these skinny kids that would break in 2,
+the other team would run all over you, right?
+In fact, a football team, 11 guys on the field, and every one of them
+is a heterogeneous set.
+You've got 1 quarterback.
+So the specialists.
+That's correct.
+He's a specialist, and he's tuned.
+You know, when we grow a quarterback, we grow them different
+then when we grow an offensive tackle.
+And if you put the two of them side by side,
+it wouldn't be difficult to recognize which is the quarterback
+and which is offensive tackle.
+And that's the thing.
+Any time you want to optimize, you want a special-purpose thing
+that is optimized for that thing.
+So it made sense to me, as I say, 12 years ago that we ought to do that.
+That is, if we have a chip with multiple processors,
+they ought to be tailored to the specific needs.
+Now, the thing I was flying in the face of,
+which now everybody seems to agree with me-- and it's not me.
+I mean, I'm not the only one that thought this way years ago.
+But the prevailing wisdom was, too expensive.
+If you only have one, you can have multiple
+by going boom, boom, boom, boom.
+And it's much cheaper to do that.
+So I've been pushing heterogeneous forever,
+and now pretty much the industry seems to agree
+that heterogeneous is the way to go.
+But it creates a lot of problems, right, because it's easy
+when you have homogeneous cores to determine-- if I have a bunch of tasks,
+I can just put them on any core.
+That is correct.
+So now you've got all of these specialists,
+and I have all of these different tasks.
+So how do I deal with the fact that I have to mix and match?
+You need a great coach.
+The coach would never send in the kicker to be the quarterback.
+And in fact, I've been advocating having on the chip
+some functionality that would determine when you
+need to send this task to which core.
+So in fact, this ACMP that I came up with, what, 6, 7 years ago now,
+has a heavyweight core, that is one that is very powerful,
+and then these very simple cores.
+And the nature of the application determines where that task ought to go.
+And so I need some resource manager.
+And I like to think of it as what we call the runtime system, which
+typically is thought of as part of the operating system, which is way up here.
+Have it right on the chip, getting information
+from the use of the resources on the chip to determine where to go.
+So somebody showed me this.
+So another analogy, they have this-- oh, where was I?
+I can't remember whether it was in Israel or whether it was in Spain.
+There's some GPS system, maybe you know about this,
+where it is so good that as you're driving along,
+they will monitor the traffic patterns on the alternate roads.
+And your route will be determined dynamically.
+So you're sitting in your office, and you say, I got to get to such and such.
+So you get out the map, and you plot the path.
+You get in your car, and you drive there.
+There's an accident halfway.
+So you sit there for 3, hours waiting for them to clear the debris.
+Right?
+Right.
+No, if you know the city, when you see the accident up ahead,
+you go around it.
+So you never have to wait.
+The difference between doing it before you start, which we call statically,
+and doing it as you're doing it, adjusting, we call it dynamically--
+And that's a runtime.
+That's right, a runtime.
+In fact, that's what we call it.
+Compile time is done before you start.
+In fact, that's changing also.
+Runtime is as you're doing it, dynamically.
+So somebody told me that there's now a GPS system--
+you may know all about this, I don't-- where instead of the path being
+determined by somebody at the factory who programmed the thing in the first
+place, there are sensors out there that are sampling-- you know about this?
+Yeah, they'll dynamically route you.
+That's right.
+They're looking at, well, if you go this way,
+you're going to get into a traffic jam.
+Maybe it's an accident.
+Who knows what it is?
+You go this way, there's no cars on the road.
+And it will dynamically adjust accordingly.
+And I think that's the way to do it.
+And so I'd like to take that resource manager thing, put it on the chip.
+It's getting monitoring information from the chip.
+You know, this is busy.
+Don't send it there.
+And have it adjusts to which core gets the work to be done.
+Now, you also talked yesterday about what
+you called MorphCore, which is a core that
+can morph between being a very complicated, superscalar, out-of-order
+machine with very complicated branch prediction.
+And you can dynamically morph this into, say,
+a set of smaller cores, which are simpler.
+And this seems to make a lot of sense because if I
+have 1 thread that I need to get done as fast as possible,
+I can use the big core.
+ILP, I can exploit ILP.
+But if I have multiple threads, and I have TLP, then I can exploit that, too.
+And the third thing is if you have no LP,
+then you can just use one of the Mickey Mouse pieces of it
+and let the rest of it just be powered off and not waste energy.
+Be energy-efficient.
+Right, right.
+But there's this kind of tension, right, with this configurability
+versus efficiency?
+That's absolutely correct.
+Could you talk a little bit about that?
+Sure.
+So the student, he had just finished his PhD last May, I guess it was,
+and he's now taken a job at Apple designing a processor.
+And he wanted to make every core on the chip a MorphCore
+because you never know.
+He says, well, maybe you need all heavyweights.
+So you're absolutely right.
+Any time you put flexibility in, you're going to lose in performance.
+My adjustable wrench thing-- you know, the adjustable wrench is flexible.
+You can use it instead of every one of those wrenches.
+You don't need 10 wrenches.
+One will do.
+But for any given task, the correct 1 of the 10
+is better than the adjustable wrench.
+So any time you introduce flexibility, you
+will not do as well as if you tailor it.
+So why is MorphCore a good idea?
+Because it provides a flexibility.
+What's wrong with it?
+You can't get the optimal performance for the task.
+So for example, if, in fact, you have ILP,
+that is you need a heavyweight core, you don't have as heavyweight a core
+as if you designed it just as a heavyweight core.
+But it may be that you need three or four heavyweight cores at one point.
+How many to design into the chip?
+If you design it into the chip, you've got these 3 or 4 heavyweight cores.
+And if you don't need it, you're wasting a lot of energy using it.
+In fact, our first work with ACMP was one heavyweight core.
+And with one heavyweight core, we discovered
+that, gee, there are times we need 2.
+We didn't have 2.
+We had 1.
+What [? Kabey, ?] my student, would say is,
+see, if we had two MorphCores, then when we needed 2, we could have 2.
+Now, my view of the future is you're not going to have all MorphCores.
+I think he's wrong.
+You're not going to have all heavyweight Mickey Mouse.
+I think that's wrong.
+What you're going to have is some heavyweight, designed as heavyweight,
+so that you can get that ultimate performance.
+Many Mickey Mouse-- so you can get that minimum energy.
+Very simple cores.
+That's right.
+Yeah, I use the word Mickey Mouse, and Mickey Mouse equals simple.
+It's fun, actually, go to a conference now
+and have people who were never trained by me use the word Mickey Mouse.
+And my students sitting in the audience, they laugh.
+They say, wow, so he's has adopted your name for it, which is kind of fun.
+And then several MorphCores, so if you need more heavyweights
+than what you've designed as heavyweight,
+you've got this extra capability.
+And so you like the flexibility, but every time you go with flexibility,
+you're going to lose on either performance, for heavyweight, or energy
+savings, for simple.
+I'll use your term, simple.
+But the key to doing this to have a runtime system, right, that can
+monitor what's going on dynamically?
+It's a dynamic system, where you're monitoring performance, monitoring
+power, monitoring the different applications
+and trying to arrange things in the optimum way.
+That's correct.
+In fact, in my talk yesterday, there was a slide
+where-- in fact, I didn't realize it until I prepared that slide.
+I was looking for examples of when the runtime system makes sense.
+It's amazing that I've been doing this for years
+and had no idea I was doing it.
+But I looked at the dissertations of my last 4 or 5 PhD students,
+and every one of them is doing some variation
+on-- so the latest PhD, the lagging threads, that's monitoring.
+You've got multiple threads that are working concurrently
+on these multiple cores, and one is slower than the rest of them.
+And they can't all go forward until they all get to a certain point.
+So the monitoring says, take the slower one and put it on the heavyweight,
+so it'll get done faster.
+And it's another example of this, of monitoring dynamically
+so as to provide the resources that are needed dynamically to get the job done.
+It's kind of like the airplane is not able to take off
+until the passengers get on board.
+And the passengers came in on a different flight.
+So they have to get from the gate they came in to the gate that they go out.
+And there are a couple of passages that are either old or slow
+or have a bum knee or something or other.
+And if we have to wait for them to get all the way,
+the plane's going to leave 1/2 hour late.
+So what we do is we provide a heavyweight core.
+It's the cart that you put the person on,
+and, boom, he goes to the destination.
+And he gets there in time.
+So you've used the cart.
+The cart is a heavyweight core to take care of this lagging passenger who
+would take too long to get there.
+So this concept of dynamically allowing the usage
+so that the whole job gets done faster is-- we do it every day at airports.
+And this is an example of-- you talked about synchronization, in a way,
+right, because all the people, who could be the threads,
+are waiting for this slow thread.
+So we need to assign it to the fast corridor to--
+It is an example of synchronization.
+Synchronization, in my view, is the single most important concept
+associated with lots of-- so parallelism is
+the fancy buzzword of lots of things being able to be done concurrently,
+at the same time.
+One has to synchronize at points in order to then move forward.
+And, yeah, this is a very good example of synchronization.
+The plane can't take off until the-- in fact, well, you've noticed.
+Somebody will come on and count the passengers in the seats,
+and they better have the right number.
+And if this guy was hobbling on crutches all the way,
+he hasn't gotten there yet.
+So they have to wait for that synchronization point, where everybody
+is onboard, and then they can take off.
+And move forward.
+That's right.
+Right.

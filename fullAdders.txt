@@ -1,0 +1,89 @@
+We're going to start by reviewing binary addition.
+Let's look at an example.
+Here I have 104, and I'm adding minus 16.
+Now if you remember, we start from the right, and we add each position
+and we propagate carries to the next position.
+Now here, I've shown all of the carries.
+I've shown not only the 1 carries, but also when I have a carry of 0
+into the next position.
+And that's going to be important in a minute.
+In this example, I've got 8-bit positions.
+And the carry out of a bit position is the carry-in for the next bit position,
+whether it's a 0 or whether it's a 1.
+Now if you look at this, this is an example
+of modularity, where each bit position is treated the same way.
+So in every bit position, I have the same inputs and the same output.
+And the inputs are the 2 bits that I'm adding,
+and let's call those A and B, as well as the carry-in
+from the previous position.
+And the outputs are the sum, the result in this position,
+as well as the carry-out to the next position, which
+becomes the carry-in to that position.
+Now let's build a full adder circuit.
+A full adder is full because it takes a carry-in, as well
+as producing a carryout.
+And it has three inputs.
+It's a combinational logic circuit with three inputs, A, B, and carry-in.
+And two outputs, the sum S and the carryout, C sub out.
+Here's a truth table.
+It's a combinational logic circuit.
+We can describe it by its truth table.
+We're showing the inputs A, B, and C, and any outputs S and carryout.
+Now we've done enough addition, so far, that you
+should be able to verify for yourself the values for S and C
+out in every position.
+Verify, based on what you know about binary arithmetic,
+that those are the correct values for each of those.
+Now we can build the circuit just like we did before by using inverters,
+by using AND gates, and by using OR gates.
+So here's the circuit.
+I have my three inputs, A, B, and C in.
+I have a number of AND gates, which collect
+all of the 1s in every row for S and for carryout.
+And then I have a number of OR gates.
+And I have four OR gates for each, because for each of S and C out
+I have four 1s in the truth table.
+Now you'll notice, I have this gate in the middle
+here, where I take 111 as the input.
+And that's used for both carryout and for sum.
+Well, if you notice, the last row of the truth table,
+we have 1s in both of those positions, for S and C
+out, so we don't need to generate two different, replicate that AND gate.
+We can just use that one AND gate, and just feed its result to both C
+out and S.
+Now it can be tedious to draw out all of these gates.
+So instead of drawing those out, we can represent a full adder
+by this circuit symbol.
+So this is just a handy symbol that we're going to use.
+So this is, you can think of this as a 1-bit adder.
+I have my two inputs, A and B for the two bits I'm going to add.
+I have the carry-in from the previous position.
+I have the result in this position, S. And then
+I have the carryout to the next position.
+Now we're going to use this adder to build a larger adder of however
+many bits that we need.
+For example, we can build a 4-bit adder.
+Now a 4-bit adder, let's take an example.
+I have 1100 and I'm going to add 0110.
+Now in the rightmost position, we treat a little bit differently,
+because we don't have a carry-in.
+So what we're going to do is we're just going to force a 0 into that position.
+So we're going to make sure the carry-in to that position is set to 0.
+And then we're going to just treat this just like we do normal binary addition.
+We're going to feed the carryout from one position into the next position
+to the left.
+And here's our 4-bit adder.
+So in the rightmost position, I've got my two bits, A0 and B0,
+and I'm producing the sum S0.
+Now notice that the carry-in on the right is set to 0, as it should be.
+And now what I'm doing is I'm connecting the carryout from this adder
+to the next full adder, just like we do with normal binary arithmetic.
+And finally, I just chain this together.
+This is called a ripple carry adder, because you
+can think of the carry rippling through this circuit from right
+to left, until we get the final carryout, C4.
+So we can do this modular type of design,
+where we take one simple circuit, this 1-bit adder that we've created,
+and we can just chain it together in this manner
+in order to create an arbitrarily length of adder.
+We can make a 32-bit adder the same way.

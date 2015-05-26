@@ -1,0 +1,82 @@
+Now that we've seen how to assemble programs,
+we're ready to discuss the format of LC-3 object files,
+how we link multiple of those together to form an executable program,
+and then how we load that program into memory in order to run it.
+An LC-3 object file consists of the starting address
+where the program will be placed in memory, followed
+by the machine instructions.
+So here's an example using our "count character" object file.
+Remember that the very first statement in our program was .ORIG x3000.
+So we put that value x3000-of course in binary-into our program
+as the first part of this program.
+And this is followed by all the instructions
+starting with that AND instruction in our program.
+And then, of course ending with those two .FILL directives.
+Now we need the ability to link multiple object files together
+to create an executable program.
+So in a large program, there are multiple developers
+who are simultaneously writing parts of that program.
+So I might be writing part of it, you might be writing another part of it.
+So we have code blocks which are written by multiple people.
+We also have library routines such as input/output libraries that come
+with the system that we don't write.
+So we don't have to write our own routines
+for reading something from input, or writing something to output.
+So we have the system that provides those.
+So we need to link those potentially into our program as well.
+Now we have a special piece of software called a linker.
+This is a program that combines multiple object files into the executable file
+that can run on our machine.
+Now one of the issues with linking is that we have
+labels that make cross object files.
+So I may have part of my program use something in your program
+that has to jump to a part of your program.
+So we may have a label that's in my program that
+isn't referred elsewhere in my program, but is in your program instead.
+So how do we handle this?
+Well, we have to have some notation, for instance,
+something like .EXTERNAL that tells the assembler that a symbol is defined
+in another module.
+And the linker will search the symbol tables of other modules
+to resolve these symbols and to create the proper offsets when
+it brings all of these different programs together,
+or all these different object files together.
+Now once we've created this executable program
+and stored it in your permanent storage-- that's
+just the flash memory on your smartphone--
+we need a way to load that into memory so that it can run on the processor.
+So if you start texting, for instance, then you're
+texting program needs to get loaded from your flash memory in your smartphone
+into the memory that we've been talking about in this course,
+where we read instructions and where we deal with data.
+So there's a special part of the operating system,
+another piece of software, which is called the loader.
+And this copies this executable file from permanent storage into memory,
+and then starts the program.
+Now the program may not go exactly where you say to put it.
+So in our object file in LC-3, we may say x3000 as the first part of it,
+as part of the .ORIG.
+But the operating system has free license
+to put it where it needs to because multiple programs may
+share the exact same memory.
+So let's take an example of texting.
+You may be say, taking a photo, have your photo program open,
+at the same time you receive a text.
+So both of those programs are sharing memory.
+They both reside in memory at the same time.
+So there's a special part of the operating
+system called the virtual memory management
+system that takes care of this.
+So this makes sure that your program and my program, or in this case
+the texting program and the photo program,
+don't interfere with each other, that they
+get their individual parts of memory, and that they
+don't read each other's memory.
+There's some protection there-- and that they don't interfere with each other,
+that they each get their own piece of memory.
+So that's the part of the operating system that handles that.
+Now in this course, we're only going to deal with a single program.
+The idea of virtual memory management, that
+can be handled in operating systems course,
+for instance, or a more advanced course in computer organization.
+This course, we're only going to deal with a single program.

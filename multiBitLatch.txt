@@ -1,0 +1,28 @@
+Now, we need to be able to capture more than one bit,
+and we can do this with a multi-bit latch.
+A multi-bit latch simultaneously latches multiple bits.
+Now when you hear the term latch, that can refer
+to a one bit latch or a multi-bit one.
+Here's an example of a four bit latch.
+I have four data inputs, D1 through D4, and I have my outputs Q1 through Q4.
+But I have a single write enable that goes to all four of those latches.
+So D1 through D4 are simultaneously captured by WE.
+And so the outputs Q1 through Q4 also change at the same time.
+Now we can do the same thing with flip-flops.
+And that's called a register, which is a collection of flip-flops
+that operates off of a common clock.
+Now a single d flip-flop is referred to as a 1-bit register.
+Here's an example of a 4-bit register.
+I have four D flip-flops.
+Four inputs, D1 through D4 and my outputs Q1 through Q4,
+and I have one clock signal that goes to all the clock
+inputs of my four D flip-flops.
+So when the clock changes from 0 to 1, then all of the flip-flops
+will trigger.
+That means the outputs Q1 through Q4 will change the input values
+D1 through D4 simultaneously.
+Now just like with the d flip-flop, we can have set
+reset capability and load capability.
+In this case, we'll simultaneously set or reset all four flip-flops
+and we'll simultaneously load or hold the values of all four flip-flops
+with one load signal.

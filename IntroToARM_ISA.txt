@@ -1,0 +1,96 @@
+The ARM instruction set architecture is the predominant ISA
+used in our smartphones.
+Now, it's more complex than LC-3 in that it has more types of operations,
+it has some more support for operating systems--
+but it's similar to LC-3 in that it's a load store
+reduced instruction set computing, or RISC, instruction set architecture.
+Now, what does that mean?
+Well, if you notice with LC-3, whenever we're
+doing an arithmetic or a logical operation,
+we're dealing with values from registers.
+So the source operand, as well as the destination operand,
+is a register value.
+And that's the same with ARM.
+You'll see that when we talk about the ARM ISA,
+that it's similar to LC-3 in that respect.
+Now, let's take a particular high-level language sequence,
+which we'll see later on in the course.
+But let's take a simple operation, a equals a plus b.
+Let's say a and b are two variables in memory.
+Well, with LC-3 and with ARM, what we would do is first,
+we'd do two load operations.
+We do two load instructions to get a and b.
+We put those in the registers.
+We do the add instruction, and that would put the result into a register.
+And then we'd do a store instruction.
+So that would take four instructions to do that sequence.
+Now, we could also have an instruction called a memory to memory add, which
+does this in one instruction.
+So we could have one instruction that reads the two values from memory,
+brings them right into the ALU to do the add operation,
+and then immediately stores those back into memory.
+And some instruction set architectures, called CISC instruction set
+architecture, C being complex, have these types of instructions.
+Now, intuitively, you might think that that's
+going to give you better performance, because I only
+have one instruction, rather than four, to do that sequence.
+Well, it turns out that the four instruction sequence
+is probably going to give us higher performance, which
+is a little bit nonintuitive.
+And the reason for that is because that four instruction sequence
+has a series of simpler instructions.
+Now, I have more instructions, but each of those instructions
+will take less time to execute than that one complex instruction, especially
+because, as we'll see later on in the course, memory can be pretty slow.
+It can take us quite a bit of time to get those operands and
+to store the result.
+So that's going to take a long time, that one instruction,
+whereas the simpler instructions will take less time.
+And they'll take less time, in particular,
+because we can pipeline those more efficiently.
+Now, we haven't talked about pipelining yet.
+We're going to talk about that in performance.
+But when we see pipelining, we'll see that we can get parallelism.
+We can get higher performance through pipelining.
+And pipelining is easier to do, and more efficient, when
+you have simpler instructions like those four instructions,
+rather than complex instructions like that single add.
+Now, for years, and this was a few decades ago,
+the argument was that RISC machines like ARM
+were going to predominate and be higher-performance than CISC machines,
+like the Intel x86 architecture.
+So the Intel x86 architecture has these complex instructions.
+But, as it turns out, the difference wasn't so big.
+And some would argue that the difference doesn't exist.
+And the reason is because microarchitects got very clever.
+And what they did is when they encountered
+one of those complex instructions, that one add instruction, then
+inside the hardware, when decoding that instruction,
+it would internally transform that into a series of simpler instructions that
+could be more easily pipelined.
+So the software doesn't even know that this is happening.
+As far as the software is concerned, there's that one complex instruction.
+But the hardware internally is transforming that
+into a series of, say, those four simpler instructions which
+we can more easily pipeline.
+So it turns out that the RISC versus CISC
+debate, RISC supposedly going to be faster than CISC,
+actually didn't pan out that way.
+It turns out that the RISC and CISC machines are pretty much the same
+in terms of their performance.
+And some would argue, and this is a little bit controversial,
+that in terms of power consumption, the CISC machines are just
+as efficient as the RISC machines because
+of this cleverness of transforming these instructions internally.
+So you can go off and you can study CISC machines on your own.
+We're focusing on RISC architectures, because that's the predominant use
+within your smartphone.
+Even though we do have smartphones that have a complex instruction set,
+the Intel instruction set.
+So in this module, we're going to cover a little bit about ARM, because ARM
+is the instruction set that's used in your smartphone, more likely than not.
+And we're not going to get into all the details.
+The manual is thousands of pages.
+But we'll give you an idea of the similarities with LC-3
+as well some of the differences.
+So let's get into it.

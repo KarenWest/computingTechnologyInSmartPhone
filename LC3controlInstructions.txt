@@ -1,0 +1,64 @@
+Now that we've seen the three basic constructs,
+we can discuss how we use LC-3 control instructions to create them.
+Now with the sequential construct, there's
+no control instructions that are needed, because instructions naturally
+flow from one to the next.
+Now, we do need them with conditional and iterative.
+Here, we need to create code that converts a condition into N, Z, or P.
+So for example, we've already seen how we check
+to see whether two values are equal.
+So for instance, how do we check whether R0 equals R1?
+Well, what we did previously is we subtracted R1 from R0.
+Now, if R0 equals R1, then the z bit will be set.
+And then we'll know that those two registered values are the same.
+Then we can use a branch instruction to transfer control to the proper subtask.
+So first, we need code to create the condition.
+And then we need a branch instruction to check for that condition and branch
+if appropriate.
+Let's first cover the LC-3 code for the conditional construct.
+Here's a general flow diagram of a conditional construct.
+First, we test a condition.
+And if that's false, we do subtask 1.
+If it's true, we do subtask 2.
+And in both cases, we move on to the next subtask.
+Here's how that flow diagram translates into a general structure of LC-3 code.
+First, to test a condition, we need to have an instruction that
+generates that condition.
+After we generate the condition, then we have a branch instruction.
+And we can see that this has opcode all zeroes, so this tells us it's a branch.
+Now the values of bits 11 through 9, the N, Z, P bits,
+are going to depend on the condition being tested.
+The value of the offset is going to take us to location C.
+Now, that's the start of subtask 2.
+So this means that our test condition was true.
+So we're skipping subtask 1 and going on to subtask 2.
+If the branch condition is not met, then we'll simply do subtask 1.
+Now, at the completion of subtask 1, we have to make sure
+that we don't do subtask 2.
+So we have a second branch instruction.
+And notice that the N, Z, P bits are all 1.
+That tells us that we always take the branch.
+And the branch offset is going to be location D, which
+allows us to skip subtask 2, since we did subtask 1 instead.
+And that's the first instruction of the next subtask.
+If the first branch is taken, then we skipped subtask 1 and did subtask 2,
+and that's immediately followed by the next subtask.
+The LC-3 code for iterative is similar in that we begin with a test condition.
+If that's false, I do the subtask.
+And I repeatedly do that subtask so long as that test condition is false.
+Once it becomes true, I jump out of the loop and do the next subtask.
+Here's the structure of the LC-3 code for iterative.
+Again, we have a generate condition followed by a branch.
+And again, the values of the N, Z, and P bits
+will depend on the condition being tested.
+And once again, we have a PC offset that skips the subtask
+if the condition is met.
+And that will take us to the first instruction in the next subtask.
+So long as the condition is false, we'll do the subtask, starting at location
+B. At the end of the subtask, again, we have a branch always instruction,
+as indicated by 111 for the N, Z, P bits.
+And that takes us backwards in our program
+to A, to test the generate condition again.
+And we'll repeatedly do the subtask so long as the first branch is false.
+Once the condition is met, then we'll move
+on to location C, the next subtask.

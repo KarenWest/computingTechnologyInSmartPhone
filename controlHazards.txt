@@ -1,0 +1,152 @@
+In addition to problems with data dependencies,
+we also have challenges in our pipeline when it comes to branches.
+Let's look at this example LC-3 code.
+We have an ADD instruction that writes R7.
+We have a branch instruction following that
+that tests the condition code of that result of that write.
+And it's testing to see if the Z bit is set.
+If the Z bit is set, then we're going to skip the next three
+instructions and some others after that and we're going to move to the label X
+where we have a store instruction.
+If the Z bit is not set, then we're going
+to do the ADD instruction, the NOT instruction, and the AND instruction.
+Let's see how this works out in our pipeline.
+So first of all, we have to do the ADD instruction to the extent
+that we know the value of R7.
+We know whether it's 0, positive, or negative.
+So we can set the condition codes.
+Now, we don't know that until after we've done the ALU operation.
+So the soonest that we can check the branch
+condition with some special hardware is in clock cycle four.
+So in clock cycle four, we've got the value of R7.
+We could add some special hardware so that we know at that point
+whether the Z bit is set.
+And then we can test that condition in clock cycle four
+and then change the PC accordingly.
+Now the problem is is in clock cycle four,
+we've already moved the ADD instruction into decode,
+and we've already fetched the NOT instruction.
+So we don't even know whether this branch is taken or not.
+And if it is taken, we've fetched the wrong instructions.
+We shouldn't have fetched the ADD and the NOT.
+Instead, we should've fetched the STR instruction.
+So we have this special hardware where we can check the branch condition,
+but it comes a little bit late in our pipeline-- after the point
+where we've already fetched a couple of instructions.
+Now this is called a control hazard, where we've potentially fetched
+the wrong instructions.
+Now, we can easily throw those away later on in our pipeline,
+prevent them from writing their registers.
+But we've wasted cycles by fetching those instructions rather than
+the correct ones.
+So here is our example.
+We have a branch where we're testing the Z bit,
+and we have a label X. And then we have the ADD
+and the NOT instructions after that.
+So in the ALU stage, we are going to test our branch condition
+and know our branch condition and change our PC.
+But we've already fetched the ADD and the NOT instructions--
+even if the branch was taken.
+So in that case, we would have gotten the wrong instructions.
+So what should happen here is if the branch is not taken,
+the next fetch instruction should be at the incremented PC,
+and that's the ADD instruction.
+If the branch is taken, then the next fetch instruction
+should be at address X-- at that label.
+And that's the STR instruction.
+Now what actually happens is that regardless of the outcome,
+the next two instructions are fetched— the ones at PC+1 and PC+2,
+the ADD and the NOT.
+And if the branch is taken, well, we've fetched the wrong instructions.
+Now this won't necessarily break our pipeline, like in our data hazard case.
+What we can do is we can recognize this case,
+and we can just force the ADD and the NOT instructions to take no action.
+We make sure that they don't update the registers.
+And that's easily done within our pipeline.
+However we've kind of wasted pipeline resources here.
+We could have been fetching good instructions.
+Instead, we have to throw these instructions away.
+So we're adding cycles to our execution time that we'd rather not have to do.
+One way we can avoid those extra cycles is by using branch prediction.
+So when fetching the branch instruction, we're
+actually going to predict the branch outcome-- whether it's taken or not
+taken-- as well as the target address.
+And this is the new PC if the branch turns out to be taken.
+So we're going to have prediction hardware that's in our design
+in order to try to guess what the branch outcome is as well as the target.
+And we're going to then assume that we're right,
+and we're going to fetch instructions from the predicted PC.
+And after we execute the branch, in the EX stage for the branch,
+we will verify-- we'll actually know-- whether we were right or not.
+And if so, then everything is great.
+We've got the right instructions in our pipeline.
+We've wasted no cycles, and we just continue
+fetching from this predicted path.
+If not, then we need to throw away those instructions.
+They were misfetched.
+And then, we need to fetch from the other direction.
+Now, your smartphone has a very sophisticated branch predictor.
+There's been a lot of research, a lot of papers written about how
+to get high-accuracy branch prediction.
+We're going to talk about some general principles which
+apply to that sophisticated predictor that's in your smartphone.
+And the first is to do static branch prediction.
+Here we make a static decision.
+So for instance, we might always assume that the branch is not taken.
+And that's very simple to do in hardware,
+because we're just going to fetch the instructions immediately
+following the branch.
+If we're wrong, we'll just throw them away.
+Now we can get a little more sophisticated,
+and we can look at the branch offset.
+And we can see whether it's positive or negative,
+so look at the direction of the branch.
+So for instance, if I have a loop, I'll have a negative offset.
+And loops-- usually we iterate multiple times through that loop.
+So a good bet is to predict taken if I have a backward branch.
+Now, research has shown that for forward branches,
+it's better to predict not taken.
+So we might-- based on the sign bit of the target--
+if it's negative, if it's a 1, then we will predict taken.
+And if it's a 0, meaning we have a forward branch,
+we'll predict not taken.
+An advantage of this is that the hardware is very simple.
+However, the accuracy is not so good.
+And so your smartphone contains a dynamic branch predictor.
+So when we run our programs, they repeatedly visit the same code.
+So for instance, loops repeat multiple times,
+and functions are called multiple times.
+And so as the program runs, we can dynamically-- in the hardware--
+build a history of the behavior of branches
+and then use this to predict future behavior.
+And these can get very, very sophisticated-- in terms of the history
+that they use, in terms of the prediction mechanism.
+And they can get very, very accurate.
+We can get, easily, accuracies in the 90% and plus-- 95% in many cases.
+Now we're going to talk about a pretty simple dynamic branch predictor,
+but the principles here apply to that sophisticated predictor
+that's in your smartphone.
+So we need to do two things.
+We need to predict the outcome as well as the target address in the case
+that the branch is taken.
+Now what we're going to do is when we execute a particular branch,
+we're going to store the outcome-- and we're
+going to say that 1 means taken and 0 not taken-
+in a special piece of hardware called a Branch History Table or BHT, for short.
+Now, we're going to use that to predict the outcome the next time we
+see this branch.
+We're also going to store the target address in what's
+called a Branch Target Buffer or BTB.
+So the next time we see this branch, if we predict it's taken,
+we'll have the target address already calculated for us.
+Now, let's look at what happens when this branch is encountered again.
+Well, we'll read the predicted outcome from the BHT,
+and we'll read the predicted target address from the BTB.
+And if the prediction is taken, if the BHT bit is a 1,
+then the PC will immediately get loaded with this predicted target address.
+Now if the prediction was not taken, then we're
+just going to leave the incremented PC and not change it.
+Now that we have forwarding hardware to handle data hazards
+and branch prediction to handle control hazards,
+then we have a pipeline that operates correctly and doesn't waste cycles
+by either stalling or throwing away fetched instructions.

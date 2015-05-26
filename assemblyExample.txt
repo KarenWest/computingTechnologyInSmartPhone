@@ -1,0 +1,59 @@
+Now let's take our character count program and act like the assembler.
+So we're going to go through both passes of the assembler for our program.
+Because our .ORIG statement has x3000, then the first instruction
+in our program, the AND instruction, starts at that location in memory.
+Now, you'll notice that we've replaced the assembler directives for the TRAP
+codes with the actual TRAP instructions.
+So for instance, GETC has been replaced by TRAP x23 in line x3002.
+Further down in line x3010, we've replaced OUT with TRAP x21,
+and then the HALT instruction has been replaced with TRAP x25.
+Now, in this first pass, we need to create the symbol table,
+and you'll notice that we've highlighted each
+of the labels for which we need to create an address in the symbol table.
+First of all, though, we need to initialize our location counter.
+So the location counter gets initialized with x3000,
+which is the first instruction in our program.
+And then we walk step-by-step through every instruction, incrementing
+the location counter as we go, until we get to x3005 where
+we encounter our first label TEST.
+Then what we do is we take that label and put into our symbol table as well
+as the associated address, x3005.
+We then continue to increment our location counter until we
+get to our second label at x300B.
+That's the GETCHAR label that we put into the symbol table
+along with the address x300B.
+Further down, at x300E, we get OUTPUT, and we put that into the symbol table.
+And then our last two entries in the symbol table, ASCII and PTR,
+also get put in.
+And that completes our first pass, because then we reach the .END
+directive.
+Now we're ready to move on to our second pass
+where we'll create machine code with the aid of our symbol table
+that we created in the first pass.
+Let's take this group of six instructions
+and create the equivalent machine language program.
+Our first instruction, AND, does not have any label attached,
+so we can simply convert that into the equivalent LC-3 machine code.
+The same holds true for the next four instructions-again,
+which don't have any labels, and for which
+we can simply look up the equivalent machine code instructions.
+With our last instruction of branch we have two labels, TEST and OUTPUT.
+The TEST label is associated with an instruction further down in our code.
+The label that's associated with this branch is the OUTPUT label,
+and that's used to create our branch offset.
+We can look up in our symbol table and see that we
+have an entry for OUTPUT of x300E.
+Then we can calculate the branch offset knowing
+the current value of our location counter, which is x3005,
+and knowing that the PC would have been incremented to x3006 when we fetch
+this branch. So the branch offset is calculated relative to x3006
+and the OUTPUT address of x300E.
+And if you do that calculation, remembering
+that we're dealing with hex now and not with decimal,
+then we end up with an offset of 16.
+Now, you can move through the rest of the program in the same way,
+writing down the equivalent machine code instructions with the aid of the symbol
+table when necessary.
+Now, at the very end of our program, we have two .FILL assembler directives.
+Those are constant values that are used by our program,
+so our program will end with those two 16-bit values embedded in the code.

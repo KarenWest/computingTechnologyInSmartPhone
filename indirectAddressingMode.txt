@@ -1,0 +1,42 @@
+With indirect addressing mode there are several steps
+we need to go through before we can get our memory address.
+First, we get an address that's generated using PC-relative mode.
+Now, that doesn't point to our data but points to a second address
+that's located in memory.
+Now, this is going to be handy later on when we talk about input/output,
+but it's also useful for programming languages that support pointers.
+Now, that second address that we've retrieved from memory
+is used to load or store the desired data.
+Here's the format of an LDI LC-3 instruction.
+The opcode is 1010.
+The first step is to form the address using PC-relative mode.
+We take the value of the PC register, we add the sign-extended
+offset from the instruction.
+And this is the same number of bits that we used for our LD and ST instructions.
+Now, once we have that address and we put it into MAR,
+we use that to go to memory.
+But that holds an address, another address.
+Now we take that address and we put it into MDR.
+Then what we need to do is we need to transfer that address in MDR
+back into the MAR register.
+And that's the address of our data.
+So then we go to that second memory location,
+we get the data there, we put it into MDR,
+and from there we transfer it into the destination register.
+With STI, we use the same procedure to get our final address.
+We first use PC-relative mode to form an address that's put into MAR.
+We then go to memory and get that address, and we put that into MDR.
+We transfer that to MAR.
+Now that's the address of the data that we're going to store into memory.
+So we take the data from the source register, put it into MDR,
+and then, finally, that gets put into the second location in memory.
+Our final data movement instruction, load effective address, or LEA,
+actually doesn't move any data at all.
+What it does is it computes an address using PC-relative mode and stores that
+address into a register.
+Now, note that the address is stored in a register,
+and memory is not accessed.
+Here's the format of an LEA instruction and how it works.
+It has opcode 1110.
+We form the effective address using PC-relative mode.
+And then that value is stored into a destination register.

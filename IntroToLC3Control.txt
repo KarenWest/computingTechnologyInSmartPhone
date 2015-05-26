@@ -1,0 +1,24 @@
+We've come a long way so far.
+We've taken our digital logic design skills
+and applied them to the design of an LC-3 computer system.
+We understand instruction set architecture.
+We know the LC-3 instruction formats, as well as memory addressing modes.
+And we've learned how to design an LC-3 computer from a hardware perspective.
+We've used our digital logic skills to implement the LC-3 instruction set.
+Now, we're missing one very important last piece in this computer
+organization part of the course, and that's
+the design of the control unit, which is an integral part of a Von Neumann
+machine.
+Now, we've alluded to this in our LC-3 diagrams.
+We had that black called the finite state machine control.
+But we need to get into the details of how that's implemented.
+And that's the subject of this module.
+We're going to go through all of the states
+in an LC-3 state diagram that implements the control unit.
+We're first going to start with instruction fetch and instruction
+decode.
+These are states that we handle for every instruction.
+And then we're going to go through some specific instructions--
+an operate instruction, a memory instruction, and a control
+instruction so we understand how those work as well.
+So let's get into it.

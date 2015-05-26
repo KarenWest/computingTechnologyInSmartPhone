@@ -1,0 +1,15 @@
+Now for a load or store in the evaluate address phase,
+we need to add our sign extended offset to the value from the base register,
+and then we need to put that out onto the bus
+and send it to the memory address register.
+Now in the next phase, operand fetch, we're
+going to use different hardware depending on whether we're
+doing a load or an add.
+Let's start with a load.
+With a load instruction we're going to take the address in the MAR,
+send it to the memory, and then that's going
+to put the requested data into the MDR register.
+For an add we're going to read our two source values from our register file
+and send them to the ALU.
+For the execute phase that takes place for an add instruction,
+then we do the addition within the ALU.

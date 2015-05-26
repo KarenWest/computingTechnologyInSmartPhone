@@ -1,0 +1,167 @@
+So another great cross-layer approach to improving energy efficiency
+is specialization.
+And this is a particularly hot topic in the research community right now.
+So the idea here is, if I really want to decode a DVD
+and get the best performance at the least energy,
+the way to do that is to create a specialized piece of hardware whose
+whole job is just to decode DVDs.
+And then I can get much better energy efficiency, much better performance
+than I could running a software DVD decoder on a processor.
+And of course, the problem is, that's specialized for MPEG-2,
+where we're using H.264 now.
+We have a new video standard.
+And that awesome accelerator, which is so energy
+efficient and high performance, can do nothing
+to help me with these new video standards.
+So this tension between flexibility and specialization,
+I personally think is one of the grand challenges in the field.
+It's as if how do we create, how do we navigate
+this tension between general, less efficient architectures
+and specialized, more efficient architectures?
+And it's one thing that I'm looking at in my research.
+But definitely, across the community, many people
+are tackling this in a variety of different ways.
+Now if you have specialization, that implies
+that you have enough room on a chip to put in all of these specialized
+functions that, at any given time, most of them are not being used.
+That's right.
+They're just being wasted.
+That's right.
+And so, specialization makes less sense if area
+is a very, very tight constraint.
+Because then I want to use every single transistor
+for as many purposes as possible.
+But we're kind of in this interesting domain
+right now, where the number of transistors we can put on a chip far
+exceeds how many transistors we can actively use at any given time.
+So we need to think about creative ways to use those transistors.
+And so, like you said, one idea is to use specialization.
+Yes, I've got a piece of my chip which I only use 10% of the time.
+But they couldn't really put anything else
+there anyways, because they don't have enough power
+to be able to keep it operating.
+And so there's this term in the community
+called dark silicon, the idea that if I look at a chip right now,
+a large portion of that chip is essentially "dark,"
+is not being used at any given time.
+And it fundamentally changes the way you build systems.
+All of a sudden, now specialization becomes more attractive.
+It doesn't need to be quite as flexible as it used to be.
+But can it be so specialized I can only use it once every couple days?
+It can be that-- no, it needs to be somewhat flexible.
+And so, navigating that tension is one of the really interesting research
+questions going on right now.
+Now we already have specialization on a system-on-chip in a smartphone, right?
+Because we have a video processor, an audio processor,
+and we have the general purpose apps processor.
+And a very good example of specialization
+is the graphics processing unit or GPU.
+That's right.
+And that's one of the reasons we get such eye-popping graphics out
+of our smartphones.
+So we talk a lot in the course about the organization of the-- well,
+it's called the apps processor, the general purpose processor.
+So how is a GPU different in terms of its organization and how it exploits
+parallelism?
+Does it use instruction level parallelism, thread level parallelism,
+data level parallelism?
+So how does it work?
+So I think in the course, we're going to talk about multicore as well, right?
+So having multiple cores?
+That's right.
+So let's imagine we want to build a house.
+And let's say we have a bunch of carpenters.
+There's a couple different ways we could organize those carpenters.
+So a multicore processor is essentially the idea
+that we get our four contractors together or our builders together
+at the beginning of the day and they collaborate together.
+And they say, oh, I'm going to work a little bit on the roof.
+I'm going to work a little bit on the floor.
+You're going to work a little bit on the walls.
+You're going to do the bathroom.
+And then they go off and they work on their piece of the house.
+And at the end of the day, they come back together and see how they did.
+So that's one way to exploit parallelism.
+And so, this is very much core screen parallelism,
+where each carpenter is doing a very different job.
+You can think of each of those jobs as a thread.
+Exactly.
+So each of those jobs is a thread.
+And they're doing different things on different parts
+of the house at the same time.
+So GPUs exploit a fundamentally different type of parallelism
+called data parallelism.
+And the analogy would be, let's say I have a foreman who
+shows up along with my four carpenters.
+And the foreman's job is to organize these four carpenters.
+And the foreman says, you know what?
+We're not going to do four different things.
+We're just going to focus on the walls.
+I want all four of you to do the same thing on each of the four walls
+together.
+And so the foreman orchestrates the carpenters
+to essentially do similar tasks on a different part of the house
+at the same time.
+Once they finish the walls, then they'll move on to the roof.
+Then they'll move on to the floor.
+One of the benefits of exploiting data parallelism
+is I could add another four carpenters, and they would just
+slip right in lockstep, do what the foreman says,
+and I could potentially complete the house much faster.
+Whereas if I have four carpenters who are all doing their own thing,
+and I give it four more carpenters, and they have to organize, and synchronize,
+and communicate, it's not clear that that's actually
+going to add that much benefit.
+So the key to graphics processors is that they
+exploit data level processing in the sense of they
+have a control processor which is in charge of a lot of engines
+which all operate in lockstep.
+Now the idea of exploiting data parallelism with acceleration
+is a very old idea.
+And some of the original supercomputers were based on this idea.
+It's called vector processing.
+But vector processing had trouble making its way into the mainstream because
+of the stack.
+Because it had a different hardware/software
+interface which was challenging for compilers and programmers
+and applications to take advantage of.
+It required a PhD to make the best use of these high performance vector
+processors.
+Essentially, what I think, personally, one of the key innovations of GPUs
+is that they have hidden that complexity.
+And they expose a different abstraction to software,
+which is easier to manipulate and use, namely
+the notion of many parallel threads.
+And you can write code where you have all those threads doing
+different things.
+It just won't execute very efficiently.
+To get the best performance out of a GPU,
+you really want to orchestrate those threads so they're
+working on doing similar operations.
+And the GPU, the microarchitecture, takes
+care of dynamically aggregating those threads and those workers
+and getting them going in lockstep to get really great performance
+and efficiency.
+So I think that's one thing that makes GPUs different from CPUs.
+Now there are many things that GPUs are good at that CPUs are not good at,
+our apps processors are not good at.
+But there's also many things that apps processors
+are good at that a graphics processor would not
+be good at, which is why modern smartphone and system-on-chip embedded
+systems have both.
+And this creates heterogeneity.
+Now, for a long time, I actually was anti--
+I was very much a proponent of homogeneity,
+because if I have a homogeneous substrate,
+it makes it much easier to reason about, both in terms
+of the hardware and the software.
+But it's becoming increasingly clear that we're not
+going to have a homogeneous future.
+It's going to be heterogeneous.
+And on one hand, this creates tremendous challenges.
+But I also think it creates tremendous opportunities.
+And with challenges, comes opportunities for students
+that are studying in this field in terms of how we manage this heterogeneity,
+whether it be in terms of software, whether it be in terms of hardware,
+or whether it be in terms of the new hardware/software abstractions
+to essentially manage this heterogeneity.

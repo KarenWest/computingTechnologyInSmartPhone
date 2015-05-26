@@ -1,0 +1,54 @@
+Before we get into pipelining, we need to modify the LC-3 design, specifically
+the phases of instruction execution to make it conform to the phases
+that we see in a typical pipeline machine.
+Let's first recall the phases of executing an LC-3 instruction.
+We fetch the instruction, we decode it.
+We evaluate the address for a load or store.
+We fetch the operands, we execute the operation,
+and then for those instructions that write to memory or the register file,
+we store the result.
+Now the first thing that we're going to do
+is we're going to combine the evaluate address
+and fetch operands hardware together into one piece of hardware.
+So let's do that.
+Here's the hardware that we have for the evaluate address phase.
+We have a number of multiplexers, plus we have
+a dedicated adder for that operation.
+Our ALU also does addition, so we don't need to have, necessarily,
+a separate adder for evaluate address.
+We can use the ALU that we use for execution for the same purpose.
+So both during evaluate address and fetch operands,
+we're going to use the same data path and send those all to the ALU.
+And for execute operations, we'll use the ALU for that purpose,
+as we've done before.
+For evaluate address, we're going to use the adder in the ALU
+to do the address calculation.
+Now we're going to combine the decode instruction
+and fetch operands phases of execution.
+At the same time that the finite state machine
+control is decoding the instruction, we can read source operands
+from the register file under the assumption
+that we have an instruction that's going to need those.
+If we have instruction that doesn't need those register values,
+then we simply can not use them.
+This allows us to combine the decode and fetch operands phases into one.
+Here are the phases of instruction processing that we have so far.
+We fetch an instruction, we decode the instruction.
+At the same time that we're decoding, we're reading the source operands.
+We have an execute operation stage.
+For an add or an and, for instance, we're
+doing the actual execution operation.
+But for a memory instruction, like a load or store,
+we're forming the address using the ALU.
+Then we have a store result phase where we write to memory,
+or we write to the register file.
+But we're missing a phase from memory access.
+During the execute phase we're forming the address,
+but then immediately following that, we have a write result phase.
+So we need to insert between those two a phase for memory access,
+for when we have a load or store instruction, and that's shown here.
+Here are the final stages of instruction processing
+that are appropriate for pipelining.
+We have fetch instruction, decode instruction,
+execute operation, memory access-- which we do for loads and stores--
+and then store result.

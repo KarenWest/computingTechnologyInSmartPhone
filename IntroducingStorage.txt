@@ -1,0 +1,20 @@
+Now, combinational logic is great.
+It's allowed us to build an adder and other useful functions such as decoders
+and multiplexers that will be very handy later on when we build our computer.
+But what we're lacking is storage.
+Now when I mean storage, I'm not talking about the storage
+that you have on your smartphone to hold your apps.
+I'm talking about storage to hold intermediate results.
+So think about a long calculation that you might
+do, for instance, on your calculator.
+Now, you need to store intermediate values
+on the way to getting to the final result.
+So we're going to talk about storage elements that
+are used to hold these intermediate values,
+and there are two types we’re going to talk about.
+One is a D latch and another is a D flip-flop.
+Now, a D latch is very handy for building memories, which
+are going to be useful later on to hold our instructions and data when we build
+our computer, and the D flip-flop is useful for building
+a special type of circuit called sequential logic circuits.
+So let's get into it.

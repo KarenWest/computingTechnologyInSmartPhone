@@ -1,0 +1,87 @@
+Now we'll go over some of the constituent parts of a simple C
+program.
+So let's look at this piece of code.
+At the top, we have a couple of preprocessor directives.
+So these are indicated by the pound symbol.
+Then we have a couple of comments, followed by the function main().
+Now, every C program starts with the function main().
+Notice that the main program is encompassed by open and close brackets.
+Now, within main(), after a comment, we have a couple of variable declarations.
+We're declaring two integer values.
+After that, we have a couple of standard library functions
+from the input/output library in C. The first prints a string
+to the standard output, and then the second
+reads a value-- it happens to be an integer value-- from standard input.
+After another comment, we have a loop.
+This is called a for loop, and we'll see this later on.
+This loop iterates so long as the condition in the middle is met
+and uses this printf library function to print the value of counter
+to standard output.
+The close bracket indicates the end of main(), also the end of our program.
+Let's start with comments. These begin with backslash asterisk
+and end with asterisk backslash.
+And as we saw in our example program,
+these can span multiple lines.
+Now, comments are not recognized within a string.
+So, for example, if we had this string, then we
+would print that without recognizing the comment.
+The comment wouldn't be taken away.
+Now, just as we have with assembly language programs,
+we want to use comments to help the reader.
+We want to make sure we don't use these to restate the obvious.
+At the top of our program, we had a couple of preprocessor directives.
+So let's look at those.
+The first was include stdio.h.
+So this tells the preprocessor that before we enter the compilation process,
+we need to copy the contents of the header file stdio.h
+into our source code program.
+Now, these header files typically contain
+descriptions of functions and variables needed by the program.
+So in our program, we're making use of some standard I/O functions,
+so we need to include the header file information in order
+to correctly compile those functions.
+Now, the second preprocessor directive was #define STOP 0.
+What this tells the preprocessor is before we compile again,
+we need to replace all instances of the string STOP with the string 0.
+Now, we call this a macro.
+And this is used for values that aren't going to change during execution.
+And the reason that we use these is it improves program clarity and permits
+constants to be easily changed by the user.
+Now, we have to recompile, though, for this change take effect.
+Every C program has a function called main(),
+which is the starting point for our program.
+The code for the function is contained within brackets, so we have main,
+we have an open bracket, we have the code for main--
+and here we may call other functions in our program--
+and then our program ends with the close bracket for main.
+Let's talk about how we declare variables within our program.
+Variables are used as names for data items.
+And each of these has a type, which tells the compiler how the data is
+to be interpreted-- is this an integer or a character or a floating point
+number?-- and also how much space it needs.
+So, for instance, if I say int counter versus char-- some people say "car"
+or "care"-- letter, then I may need a different amount of space depending
+on the instruction set architecture.
+Now, int is a predefined integer type in C.
+It's supposed to be the natural integer size.
+So in LC-3, that would be 16 bits.
+And the default is a 2s complement signed integer.
+Now, we can use unsigned as a keyword to make this an unsigned number rather
+than a 2s complement number.
+And char is also a predefined integer type in C,
+and that's going to be at least 8 bits.
+And it could be more-- again, depending on the instruction set.
+Literals are constant values that could take a number of different forms.
+Let's talk about a couple of these.
+One is an integer literal, which, by default, is a decimal value.
+So 123 is interpreted as the value 123.
+And, of course, we can have the negative of that as well.
+Now, if we want to represent something as a hexadecimal value,
+we put 0x before it.
+So 0x123 represents the hexadecimal value.
+If we want to represent binary, we can do 0b
+and then put a string of 0s and 1s.
+We also have character literals.
+So, for instance, if we want to create the character code-- so,
+for instance, ASCII-- for the character c, we would put that in single-quotes.
+And we can do special characters such as newline in the same way.

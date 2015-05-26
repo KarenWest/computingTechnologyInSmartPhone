@@ -1,0 +1,21 @@
+Hexadecimal notation, or base 16, is a convenient way for us
+to represent binary numbers.
+Now, if you have a long binary number with lots of 1's and 0's, it can be
+kind of dizzying to look at all those 1's and 0's.
+And you can actually make mistakes.
+You might miss a 0 or miss a 1.
+So it's convenient to write out binary numbers, especially long ones that
+are in base 2, as hexadecimal base 16 numbers.
+This gives us fewer digits, because for every four bits,
+there's a single hex digit.
+And it's less error prone.
+It's easy to misread these long strings of 1's and 0's.
+Here's a table using 4-bit binary numbers, so 16 total values,
+and the equivalent hex value as well as the decimal value.
+Now, you see all the way from 000 to 1001, which is the decimal number 9,
+hex is the exact same as decimal.
+Now, once we get to 10, with decimal we have
+to have two characters to represent that and we just
+want to represent this with one, so with hex what do we do?
+Well, we just start with the alphabet and we use capital letters.
+So 10 is A, 11 is B, all the way up to 15, which is F.

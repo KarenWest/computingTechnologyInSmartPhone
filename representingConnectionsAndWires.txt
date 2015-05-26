@@ -1,0 +1,101 @@
+Now we're going to put these transistors together to form digital circuits.
+But before we do that, we need to talk about how
+we represent connections and wires.
+Now a wire is a piece of metal that connects transistors together.
+And computer chips actually have layers of wiring above them
+in order to make those connections between transistors.
+Let's look at a circuit, that we're going to see a little bit later,
+that does a useful digital function.
+And let's talk here about the wiring and also about the connections.
+So in the circuit I have four transistors,
+and I have two inputs shown to the left.
+And let's just label them a and b.
+We have our two inputs, a and b, and we have one output to the right.
+Let's just call that c.
+So here's our output c.
+Now I have a few places in this diagram where I've drawn a dot.
+So for instance, where you see b coming into the circuit, you see a dot there.
+So right here I have a dot, and this denotes where I have a connection.
+So this shows I have a connection between the vertical
+and the horizontal wires there.
+So this is a connection of b to this wire that's going up and down.
+Now I have a couple of other places here where I've also drawn dots.
+So here where a comes in, it goes to this p type transistor,
+but also it branches off through this vertical wire
+that goes down to this N-type transistor down at the bottom.
+Now I also have this point here where my output comes out of the circuit.
+That also has a dot that also denotes a connection.
+Now there are a couple of places where I haven't drawn a dot that you
+might be wondering about.
+So let's look at this place here, where I actually omitted a dot.
+I really should draw a dot there to denote a connection.
+But here, because there's a t, there's no ambiguity.
+It's pretty clear because I have a t here that there's a connection.
+So I can leave that out.
+And if you see a t like this where there's a dot,
+then you know that there's a connection.
+Also this place down here where I connect the two N-type transistors,
+I've also not drawn a dot but it's pretty
+clear there's no ambiguity that there is a wire that connects
+those two and the connection is made.
+It's pretty clear there.
+Now there's another point here that you might
+be wondering about where it's really not clear whether there's a connection
+or not.
+And that's this point here, where a comes
+into the circuit, this crossover point.
+So I haven't drawn a dot here, so that means there's no connection.
+Now what if I drew the dot and it was a little bit unclear?
+I drew a small dot?
+Well, you might mistake that as having no connection,
+as these wires crossing over each other as they're really
+supposed to in this diagram.
+And so in order to avoid this ambiguity, whenever you see a crossover like this
+it means there's no connection.
+It means that one wire is passing over the other.
+In fact, in these layers in a computer chip,
+these layers of wiring, that's exactly what happens.
+You have one layer that goes in one direction, another layer that
+goes in another.
+They're crossing over each other like one road crossing over another.
+It's very, very similar to that.
+Now if we wanted to draw a connection here,
+if we actually wanted to connect a to those wires-- the input a,
+the wire that has a on it to there-- well in order to avoid ambiguity,
+we would draw it like this.
+We would put a, we would have a wire like this,
+we would have a wire with a dot branching up to the top,
+and then we would put another wire here.
+So this avoids any ambiguity.
+This shows that very clearly because I have two t connections
+now that I'm connecting these wires together.
+Whereas in this other example, I'm not connecting.
+One passes over the other.
+Now a couple of other symbols that we have
+in the circuit that we need to clarify.
+This symbol here is where we have the power supply connection.
+So this is the connection to whatever power we're supplying,
+whatever voltage we're supplying to the circuits.
+And we see the symbol that represents a connection to the voltage.
+And this symbol down here is what we call ground, or 0 volts.
+So this is the connection to ground.
+You might see other symbols for ground.
+For instance, this is a common symbol also that you see for ground.
+And there are others as well, but this makes this symbol here
+that I've drawn here as well as the one I've
+drawn to the right is the symbol for ground, for 0 volts.
+Now, the last thing we need to talk about is when we have multiple wires,
+and how we represent those.
+So it can be very tedious to draw circuits where I have say 8 wires.
+And actually when we create our computer,
+we're actually going to have a lot of places
+where we're passing 16 wires around.
+Now that can be very tedious to draw, and it can be very confusing.
+You have to count the number of wires and it can take up a lot of space.
+So we have a shorthand for doing that.
+So for instance, if I wanted to draw four wires like this,
+instead of drawing those individual wires I can just draw one wire,
+and put a slash through it, and put the number of wires that this represents.
+So this is a handy shorthand for representing multiple wires.
+So now that we have this out of the way we
+can move on to creating useful digital circuits.

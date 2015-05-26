@@ -1,0 +1,36 @@
+The second addressing mode is called PC-relative addressing mode.
+Here instead of using a base register, we use the incremented PC
+as the 16-bit base address.
+Now remember in the Fetch phase, we increment the PC.
+So it's that incremented value that will be used in the Evaluate Address phase.
+Now just like as in base plus offset addressing mode,
+we have a signed offset that's embedded in the instruction.
+We sign extend that, and we add that to, in this case the incremented PC,
+to form the address.
+Here's an LC-3 LD instruction, which is a load instruction that
+uses PC-relative addressing mode.
+Here we take the PC value and we add the sign extended
+offset to form the memory address.
+Now notice that we have more bits in the offset.
+And that's because we don't have a base register value as we had with base plus
+offset mode.
+We take that value, we put it into the memory address register,
+and then the rest of the operation is the same as LDR.
+We get the value at that address, we put it into MDR,
+and then we put that into the destination register.
+With the ST instruction, we form the address in the exact same way.
+And then we transfer the source value to MDR,
+and then we store that into the address indicated by the MAR register.
+To support these two new instructions, we
+need to make some changes to our LC-3 micro architecture.
+At the input of our address adder, we need two new two-to-one multiplexers.
+One of these will take an input from the register
+file-- that's for base plus offset mode--
+or from the PC for PC-relative mode.
+The inputs to the other multiplexer are two sign extended values--
+either the sign extended rightmost 6 bits for base plus offset mode,
+or the sign extended rightmost 9 bits for PC-relative mode.
+And finally, we need two control signals-- the select inputs
+from the finite state machine control, which
+will pick the appropriate multiplexer inputs depending
+on whether we have PC-relative mode or base plus offset mode.

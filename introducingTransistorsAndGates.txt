@@ -1,0 +1,19 @@
+Now that we've seen numbers and the operations that we can perform on them,
+let's build some hardware.
+Now, we're going to leverage this idea of a stack, of a hierarchy,
+and start from the bottom and work our way up.
+And for us, the bottom is the transistor.
+Now, your smartphone contains billions of these tiny switches
+called transistors.
+Now, it acts in a similar way as a light switch.
+So when you flip the switch on, then the current
+can flow between the other two terminals.
+When you flip it off, then that connection
+is broken and no current flows.
+Now, we're going to work from a transistor up to logic gates.
+Now, logic gates perform these logic functions-- these AND, OR, and NOT--
+and we're going to introduce a couple of others called NAND and NOR.
+And after we finish this module and we've introduced these
+and you understand how they work, we're going to move into the next module
+to build up some interesting digital functions from them.
+So let's get into it.

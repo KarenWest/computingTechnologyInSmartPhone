@@ -1,0 +1,101 @@
+Now that we've seen binary numbers, let's
+discuss how we convert between these different number systems.
+Let's start by talking about how we convert from binary--
+and here we're talking about 2's complement-- to decimal.
+The way we do this is we add powers of 2 for all
+of the bit positions that have a 1.
+Now we need to keep in mind that the leftmost bit, the most significant bit,
+has negative weight.
+We're going to do a couple of examples.
+And let's use this table where we have for every n, every value of n,
+what the value of 2 to the n is in decimal.
+Let's take an example where x equals 01101000 in base 2.
+Again, what we do is we look at all the positions where we have a 1.
+Now remember the rightmost position has weight 2 to the 0.
+The next position after that has weight 2 to the 1, and so on and so forth.
+So the leftmost 1 here has weight 2 to the 6.
+So we write down 2 to the 6.
+The next position after that to the right has weight 2 to the fifth,
+so we add that.
+And then the final 1 that we see is in the 2 to the third position,
+so we put down 2 to the third.
+Now this equals 64 plus 32 plus 8, which is 104 in base 10.
+Let's look at now a negative number.
+Now how do we know that it's negative?
+Well, the MSB is a 1, leftmost bit here is a 1.
+So that means we have a negative number.
+Now again this is a 2's complement number,
+so that leftmost bit has negative weight.
+So we write minus 2 to the seventh.
+Then we add the next position, which is positive 2 to the sixth plus 2
+to the fifth plus 2 to the second plus 2 to the first, which is minus 128
+plus 64 plus 32 plus 4 plus 2, or minus 26.
+It's a negative number, as you see.
+Leftmost bit is a 1 so this is minus 26 in base 10.
+Let's now go the other way.
+Let's convert from a decimal number to binary.
+And again, we're talking about 2's complement numbers here.
+There's two methods that we're going to talk about.
+The first method involves division.
+The first thing that we do in both of these methods
+is we change to a positive decimal number.
+So if we have a negative sign there, we just get rid of that negative sign.
+Then we divide by 2.
+And the remainder is the least significant bit.
+And we keep dividing by 2 until the answer is 0.
+And then we record the remainders from right to left to get our number.
+Now we always append a 0 as the MSB.
+And if the original number, original decimal number, was negative,
+then we need to take the 2's complement to get the negative representation.
+Here's an example where x is 104 in base 10.
+So we go through our procedure here, where we divide by 2.
+We take 104, divide by 2, that gives us 52 with a remainder of 0.
+So that means bit 0 is going to be 0.
+And we take that 52.
+Again, we divide by 2.
+That gives us 26.
+Again, a remainder of 0.
+So bit 1 is a 0.
+Continue dividing.
+So we divide 26.
+We get 13.
+We divide 13 by 2.
+Now here we get 6 with a remainder of 1, so that means bit 3 is going to be a 1,
+continually dividing until our result, when we divide 1 by 2, is 0.
+Again, we've got to make sure we keep track of the remainder.
+Remainder is 1.
+That means bit 6 is going to be a 1.
+And then we append a 0 to the leftmost bit.
+So here's our final result, x equals 01101000.
+Here's the second method.
+And you can use either method.
+Both methods work well.
+They give you the right result.
+The second method is to subtract powers of 2.
+So again, just like the first method, we first
+start with a positive decimal number.
+And then we subtract the largest power of 2 that is less than
+or equal to the number.
+I have this handy table that we used before when
+we converted from binary to decimal.
+Now what we do then is we put a 1 in the corresponding bit position
+after we do the step.
+And we keep subtracting these largest powers of 2 until the result is 0.
+Then we do the same thing.
+We append a 0 to the most significant bit.
+If the original was negative, we take the 2's complement.
+Here's our example of 104 base 10.
+The largest power of 2 that we could subtract from that is 64.
+Now that means that bit 6, because 2 to the 6 is 64, bit 6 is going to be a 1
+in our result.
+Then we subtract 64 from 104.
+That gives us 40.
+And we do the same procedure.
+The largest power of 2 now is 32, that's 2 to the 5.
+So bit 5 is going to be a 1 in our result.
+That gives us 8 after we do that subtraction.
+And then the largest power of 2 that we can subtract from that is 8.
+And that's to the third, so bit three's going to be a 1.
+And then we append a 0.
+And here's our result.
+It's exactly the same as what we did in our first method.

@@ -1,0 +1,68 @@
+So what forthcoming trends do you see in the field, and the future challenges
+that are facing computer architects?
+So I think the single biggest challenge facing
+architects, which should be keeping the entire semiconductor
+industry up all night, is essentially the inevitable of Moore's law.
+So Moore's law says that every 18 to 24 months
+the number of transistors per die will double.
+And for a long time the entire field has basically
+ridden this technology scaling.
+Yes, architects make tremendous contributions
+in terms of microarchitecture, in terms of the instruction set design,
+in terms of how to expose this to software.
+But a lot of the benefit really comes from the fact that in two years
+I can put more transistors on a die.
+Those transistors get faster.
+And to first order, the power density doesn't get too much worse.
+So I can get-- and the cost stays about the same too.
+But within the next decade I think it's becoming increasingly clear
+that that technology scaling will either stop or slow tremendously.
+And it just has to do with physics.
+We're getting now to the point where we measure transistors in hundred atoms.
+And we're just going to run out of space.
+And they're not going to look like transistors.
+They're going to look like quantum devices.
+So on one hand this is a very scary situation.
+Because now we have this kind of impending end of this technology
+scaling.
+But on the other hand, it's a tremendous time to be a computer architect.
+Because I imagine in the future architects
+are really going to be the only game in town.
+You're going to have a potpourri of different technologies.
+You're going to have maybe molecular computing, different type
+of semiconductors, maybe a little quantum computing in terms
+of high performance computing, but this potpourri
+of different types of technologies.
+But I don't see anything coming in and replacing silicon CMOS.
+And it's analogous to how right now, if I want to build a new building,
+I am sure I could go to material scientists
+and they could talk to me about exotic polymers that
+have so many benefits compared to steel and concrete.
+Yet what do I use to build a building?
+Steel and concrete.
+Because that's what the infrastructure has developed.
+That's what everybody knows how to use.
+And that's the best materials, broadly.
+I think it'll be the same thing.
+So silicon CMOS technology will be the standard.
+There might be some potpourri of different technologies.
+And so what will really differentiate one system from another system
+is not the technology, but we you do with it.
+And who decides what we do with the technology?
+Architects.
+Architects are the ones that differentiate
+one chip for another chip in its given technology node.
+So architects will become the only game in town.
+And we-- architects will have a much bigger role
+in terms of designing future chips.
+I can almost see a resurgence in terms of chip design start ups
+and basically emphasis on new types of chips
+that basically exploit whether it be applications in specific ways,
+classes of applications, new types of accelerators.
+So I think that makes it a particularly exciting time
+to study the field of computer architecture specifically,
+and more broadly computer engineering.
+Professor Christopher Batten from Cornell University.
+Chris, thanks for joining us.
+It was a pleasure.
+Thank you for having me.

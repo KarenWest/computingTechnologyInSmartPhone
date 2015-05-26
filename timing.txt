@@ -1,0 +1,220 @@
+When we're designing sequential circuits we have to be concerned with timing.
+For instance, we have to determine how the delays of our circuit
+affect how fast we can run it.
+Let's look at this example.
+This is a sequential logic circuit.
+I have a register here of three bits.
+I have a D flip-flop over here.
+And I have some combinational logic in between.
+Now, let's look at a timing diagram of the circuit operation.
+Now, I've drawn the clock here.
+This is our periodic clock signal.
+And I put a little arrow here to indicate
+the triggering edge of the clock.
+This is when the rising edge of the clock, this
+is when these D flip-flops trigger.
+And what I've shown here is my input here to D1 changes
+before the clock from a 0 to a 1.
+Now, that causes a change in the output A, the output of this D flip-flop,
+after the rising edge of the clock.
+But there's going to be some delay here.
+OK?
+Remember, we talked about that circuits aren't perfect.
+These transistors need some time to switch.
+And so there will be some delay after the clock rises
+to when we see the change in A.
+Now, let's look at this combinational logic.
+So before this change in A, when A was a 0, we had a 1 on B,
+and we had C was a 0.
+So A was a 0, so we had a 1 here.
+We had a 1 on B, so we have a 1 at the output of this AND gate.
+We had C being a 0, so we had 1 0.
+So D was a 1, and we see that here.
+D is a 1.
+Now, when A goes from 0 to a 1 after the delay through the circuit,
+and that's shown here, then A is going to go from 0 to 1.
+So this now becomes a 0.
+This changes this output to a 0.
+And I have 0, 0 here, so then D changes from 1 to 0.
+And we see that happening here.
+And again, there is some delay.
+This represents the delay through this combinational logic
+before that can happen.
+And then at the next rising edge of the clock,
+then this output will be reflected by the change in its input D.
+So this output will go in the next rising edge of the clock.
+If you followed this output, you would see a change from a 1 to a 0.
+OK.
+So I've shown these different delays, and I've put some labels over here
+to indicate those.
+So this delay here, between the rising edge of the clock
+and the change in the output A is called tCLKtoQ.
+This is the time between the triggering edge of the clock
+and the change in this output Q. OK?
+So let's label that.
+So here's the clock.
+Here's the change in A. So this is tCLKtoQ.
+Now, we also have this delay through this combinational logic,
+and we call this tCL.
+So let's label that.
+tCL, the change in A to the change in D. Now, I
+picked A for a particular reason.
+If you look at this circuit, you see if you have a change in C,
+then the delay is only one OR gate.
+B is a little bit longer.
+I have an AND gate and an OR gate.
+But A is the longest delay here because I have this inverter, and an AND,
+then an OR.
+So we call this the critical path through the circuit, the longest delay path
+through this combinational logic.
+So that's clearly from A to D in this circuit.
+Now, I've labeled this over here.
+I have this notation over here, tsetup.
+Now, this is the time that the change in D
+has to appear at the input of this flip-flop
+before the rising edge of the clock.
+So that's the specification of this D flip-flop.
+So let's just draw that here.
+So we're saying that D, this change in D, has to be stable, OK,
+has to happen some time tsetup before we see this next rising edge of the clock.
+So that is tsetup.
+Now, I've also said tskew.
+So it turns out when you're designing a chip that you
+can't get the clock distributed.
+You have to send the clock signal to all of these D flip-flops.
+And there's different delays arriving at the D flip-flops.
+You can't get to all of them arrive at the same time.
+So this clock may not arrive here at the same time as here.
+There may be some delay.
+So you have to take that into account when you're doing this.
+But we're going to assume for the sake of simplicity that the clock skew is 0.
+So we're going to ignore that part.
+OK.
+So so long as this delay plus this delay, OK, this change in D,
+so long as this is less than, OK, so long
+as this change happens before or on this point, then
+I can reliably clock in D on the next rising clock edge.
+So I can run this circuit at this clock period
+reliably so long as this change happens no later than this point.
+So this determines the speed in which I can run my clock.
+OK?
+So the clock period, let's call this tperiod,
+equals tCLKtoQ plus tCL plus tsetup.
+And then if we were accounting for clock skew, it would be plus tskew.
+OK?
+So this is the minimum period that I can have in my circuit.
+I can't run my clock any faster than this.
+So you remember, the frequency is 1 over this.
+OK?
+So this indicates also the maximum frequency
+that I can run this circuit at.
+OK?
+Now, what happens if my clock instead I try to speed up the circuit?
+All right?
+I want to run this a little faster.
+Instead I do this.
+OK?
+And then let's assume that tsetup is here.
+So you can see now I've violated the timing for this circuit.
+OK?
+By trying to speed up my circuit, running this clock a little faster,
+getting a little more performance, OK, higher frequency, lower period
+is faster performance, then, actually, I can't reliably
+run this circuit this quickly.
+Now, you may have read on the internet about people
+overclocking their systems.
+They go and they analyze their system.
+And they say, actually, I can run this faster.
+I can run this at a higher frequency.
+Right?
+So they replace their clock with something that's actually faster.
+And so why does that happen?
+Well, that arises because when you're selling smartphones
+and you're manufacturing tens of millions
+of these chips, when they come out of the manufacturing facility
+they don't come out at the same speed.
+So one day you may have fast chips coming out,
+and another day you may have slower chips coming out.
+And you take the really slow ones, and you discard those.
+You throw those away because they don't meet the speed.
+But you have a range of speeds that come out of the manufacturing facility.
+So your smartphone may have a fast chip, and your friend's
+may have a slower chip.
+But the designers of the smartphone have to assume
+that you have a really slow chip.
+And they also have to assume that you're running it at a higher temperature,
+because a higher temperature slows down circuits.
+Or possibly that your voltage is a little bit lower inside your circuit,
+because the voltage may not be perfect.
+And all of those things affect the speed of the circuit.
+So when they're designing these systems, they
+have to assume that you have high temperature, low voltage,
+and a slow chip that came out of the manufacturing facilities.
+And that's how they set your clock.
+So it could be, actually, that you can run your smartphone a little bit
+faster.
+But it could be that you have one of those slow chips, and it's a hot day,
+and your voltage is a little bit low.
+So let's now look at doing the same thing with a finite state machine.
+So let's draw our finite state machine, and we're
+going to draw this at a high level.
+So we have some combinational logic.
+I'll just draw that as CL.
+Let's assume that we have one input and one output.
+And we also have some states.
+So let's assume we have two state bits, so we have two D flip-flops.
+And we have the outputs of the combinational logic coming into these.
+And those, in turn, feed into this combinational logic here.
+And of course, we have our clock signal.
+Now, we have to treat this the same way as we did in this previous example.
+We have to look at the delays associated with this circuit
+to determine how fast we can run our finite state machine.
+Now one delay we need to be concerned with is this input.
+So this input is going to come in from some other place here--
+we haven't specified where that comes in from-- some other place,
+has to propagate to this combinational logic,
+and that's going to potentially affect our next state.
+Now, we're going to ignore this, but it is something
+that we would have to consider when figuring out
+how fast we can run this circuit.
+So we're going to look at just this path here
+between the current and the next state.
+Let's talk about how fast we can run this.
+Well, we do the same type of exercise that we did for this circuit.
+So first of all, we have a clock to Q delay,
+so the rising edge of the clock for both of these flip-flops.
+After that, we'll have some change potentially in these state outputs.
+Then we have the combinational logic delay of those through the circuit.
+And then we also have the setup time with these D flip-flops.
+OK?
+So it turns out that we're talking about the same set of D flip-flops
+for the clock to Q and the setup in this example.
+So this equation still applies.
+Our clock period, this is the minimum clock period,
+is determined by the clock to Q of these flip-flops, the combinational logic.
+So whichever is the longest path, the critical path,
+through this combinational logic circuit.
+And then the setup time as well of these D flip-flops.
+So it could be, for instance, that this is the critical path,
+coming from this D flip-flop, going through this combinational logic,
+perhaps to affect this state bit, and getting clocked into this D flip-flop.
+Or it could be this path.
+It could be this path.
+Or it could be this path.
+Right?
+So you would have to do the analysis of this combinational logic
+just like we did here.
+We determined that this was the critical path.
+You'd have to do the same thing here.
+So after that analysis, you would be able to determine the fastest period
+that you could run this finite state machine when
+considering these D flip-flops.
+Again, though, you can't ignore this input here
+because that comes presumably from a D flip-flop
+and maybe goes through some combinational logic.
+So it may be the critical path.
+If that was the critical path, then that would determine the speed.
+But let's assume that, in this example, that this is actually really, really
+quick, and this determines the speed.
+So we do this analysis, and this would tell us
+how fast we could run our finite state machine.

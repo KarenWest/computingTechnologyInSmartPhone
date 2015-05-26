@@ -1,0 +1,72 @@
+In out-of-order execution the processor hardware
+can execute instructions out of the original program order.
+And it does it all by itself, without any software intervention.
+Now, depending on the type of smartphone that you have,
+the processor inside that may be doing out-of-order execution.
+Let's look at our code sequence and see how the processor automatically
+will reorder these instructions in order to get around these data dependencies.
+So it does at the same way as we just saw it with a smart compiler,
+except it takes the original program in its original order and dynamically
+switches instructions so that it can execute them two by two
+through our superscalar pipeline.
+So in this case, we're switching the AND and the NOT instructions
+automatically in the hardware, even if our program was not
+reordered by the compiler.
+A key component to out-of-order execution
+is what's called an issue queue that tracks
+the availability of source operands.
+Let's see where the issue queue fits into our existing pipeline.
+The issue queue is a hardware structure where instructions wait
+until source operands can be bypassed.
+Now, we put it between ID and EX in our pipeline.
+So we're replacing the pipeline register between ID and EX with an issue queue.
+Let's talk about one way in which we can design an issue queue.
+There are actually several different ways in which architects design these.
+Each entry in the issue queue holds the information for one instruction.
+First of all, we have the register numbers for the two source operands
+for this instruction, SR1 and SR2.
+Then we have the register number for DR, the Destination Register.
+We then have the operation to be performed by the ALU,
+and we have storage for an immediate value if this instruction
+has an immediate operand.
+Finally, we have the values for the two source registers,
+if they were available in the register file,
+or if they can be bypassed this issue queue entry later on.
+Now, this shows the design if we had single issue,
+meaning only one instruction can move into EX at a time.
+With that being the case, we have the destination register
+of the issued instruction being passed back into the issue queue
+to be compared against the source registers of each issue queue entry.
+Now, associated with each source register number
+is a comparator and a ready bit.
+If we were able to read the value from the register file
+and store it into this issue queue entry,
+then the ready bit gets set when we load this issue queue entry.
+If that value is not available because an instruction ahead of us
+is going to bypass that value, then the ready bit
+is not set when this issue queue entry is allocated.
+If the ready bit is not set, then we need
+to wait for the dependent instruction to issue ahead
+of us, to go off to be executed.
+The way we detect that is when an instruction issues,
+its destination register number is passed back through the issue queue
+to compare with each source register in each issue queue entry.
+If there's a match with a source-register number,
+then the ready bit get set, which means that this value is now
+ready to be read.
+When both ready bits are set, this tells the selection logic
+that this issue queue entry is eligible to be sent into execution to be issued.
+Now, because this is single issue, only a single instruction
+from the issue queue can move into EX.
+Now, there may be multiple instructions that are ready to issue.
+The selection logic has to use a priority mechanism to pick only one
+of those instructions among all of those that
+are available to issue to move into EX.
+When an entry is selected, then its associated values
+are then passed into EX.
+That's the destination register, the operation to be performed,
+the immediate value, if this is an immediate instruction, and then
+the values of R1 and R2, if those are stored in this issue queue entry.
+Now, just as we had before, the values of R1 and R2
+may be bypassed by instructions that are later in the pipeline.
+Next, we're going to see how this works for our four instruction example.

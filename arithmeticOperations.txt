@@ -1,0 +1,109 @@
+Operations come in two types, arithmetic and logical.
+Now if you recall, a data type includes both a representation--
+and we've already talked about representations.
+We've talked about signed and unsigned integers.
+We've talked about Ascii representation for characters, and also operations.
+So let's talk a little bit about operations.
+Operations for signed integers, the ones we're going to talk about-- and there's
+many different operations.
+Arithmetic operations, and those can be for instance multiplication, division.
+We're going to talk about addition, subtraction, and the third
+that you probably haven't heard about which is called sign extension.
+Then we're going to talk about logical operations
+because these are also useful.
+In fact, these logical operations are going
+to be the means for which we do things like addition.
+And those come in three main types, those are and, or, and not.
+Now let's start with addition.
+Now if you recall, Two's Complement addition
+is just ordinary binary addition.
+We don't care about the signs of the numbers, we just add them together.
+Now we use a fixed number of bits.
+So a computer doesn't have an unlimited amount of space to hold data,
+to hold results, to hold things that we're going to add.
+So we have a fixed number of bits to deal with.
+And what we do is, because of that fixed number of bits
+we ignore the carry out of the leftmost position.
+Let's just review a couple of examples.
+Here's the number 104 and shown in binary.
+And then minus 16, also shown in binary.
+And if we do the normal procedure, which we've already done,
+you add those together starting from right and going to left,
+and taking carries from the right position to the next position.
+Then we end up with the number 88, which is the correct result.
+Here's another example where we're adding two negative numbers now.
+Here we have minus 10 and minus 9.
+When we add those together, again the same procedure, then we get minus 19.
+Now this is assuming that we have 8-bit Two's Complement numbers.
+That means we have 8 bits in which to store our numbers,
+so we're ignoring the carry out in leftmost position.
+Now let's move on to subtraction.
+With subtraction what we're going to do is we're going to use addition,
+in fact.
+So what we're going to do is we're going to negate the second operand,
+and then we're going to add the two numbers.
+Again, we use exactly the same as we had for addition.
+We have a fixed number of bits and we ignore the carry out.
+Here's an example where I have 104 and I want to subtract the value
+16 shown here in binary.
+And instead of doing subtraction, what we're going to do
+is we're going to form the Two's Complement of the second number.
+We're going to negate that number, that number 16.
+We're going to form minus 16.
+So shown here, I still have 104, and now I've formed the Two's Complement of 16
+to get minus 16.
+And now I add those together.
+So I take 104, and I add minus 16, and I get the correct result of 88.
+Here's another example where I take a negative number
+and I subtract another negative number from that negative number.
+So I have minus 10, and I'm subtracting minus 9.
+I do the same thing as the first example.
+I take minus 9, and I take the Two's Complement to get plus 9,
+because a minus and a minus is a plus.
+And so I end up with minus 10 plus 9.
+And here's the result.
+Remember, all ones-- no matter how many bits we have-- is minus 1.
+So that's the correct result.
+Our last operation is sign extension.
+If we want to add two Two's Complement numbers,
+we have to make sure we represent them with the same number of bits.
+So for instance, if I have a 16-bit value and I want to add a 5-bit value--
+and we'll see why we need to do that a little bit later on-- then
+we've got to make sure that we make that 5-bit value to a 16-bit value
+first before we do the operation.
+Now we can do this in a couple ways.
+The first way you might think about intuitively
+is, well what if I just take that shorter value
+and I just add 0's to the left, however many 0's I need
+to match the other value.
+In this case we're talking about 16.
+Well let's do that with a couple of examples.
+So here's a 4-bit value.
+It's positive, and it's positive 4.
+Now if I do this operation, I just pad with 0's
+to left, well that works just great.
+I still get 4.
+Let's now do this with a negative value.
+Let's take minus 4.
+We'll now you can see if I add 0's to the left-- and we're
+talking about Two's Complement here-- we've
+transformed this now into a positive value rather than a negative value.
+So this is the number 12 and that minus 4.
+So we have to do something different than just pad with 0's on the left.
+So what we do is we replicate the most significant bit,
+the leftmost bit in our short number.
+Let's do this again now with our 4-bit values.
+With 4, the leftmost bit is a 0.
+So we pad 4 0's on the left because we're just extending.
+It's called sign extension.
+We're extending the sign however many bits we want to the left.
+And that still works, we still have 4.
+Now with our negative example we have minus 4.
+Now that has a 1 in the MSB, so I'm going to add four 1's to the left.
+And you can verify for yourself that if I take a number, and I have a 1
+on the left, and I extend it however many bits I want,
+I still get the number.
+I still have here minus 4.
+So the way that we do this is we don't pad with 0's to the left.
+Instead we replicate the MSB however many times
+to get the same result as our smaller value.

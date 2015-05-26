@@ -1,0 +1,93 @@
+Now let's revisit our character count program, which we previously
+did in LC-3 machine code.
+And let's create the assembly language equivalent program.
+Here's a flow diagram for review.
+First, we initialize our count to 0.
+We read the pointer for the first file character.
+We then input the character from the keyboard that we're going to check for.
+And we load our first character from the file.
+Then we enter our main loop, our iterative construct.
+We first check to see whether we've reached the end of the file.
+So long as we haven't, then we check for a match with the character
+that we got from the keyboard.
+If we have a match, then we increment the count.
+If not, we skip that step.
+And then we get the next character from the file,
+and we check to see again whether we've reached the end of the file.
+Once we do reach the end of the file, then we
+need to convert the count to an ASCII character.
+Remember, we do this by adding x30 to our integer value.
+We then print the count to the monitor, and then we halt our program.
+Here's the assembly language version of our character count program.
+At the top we have some comments, so these are very, very important
+to document our program.
+This tells us who the author of the program
+is, the date the program was created, as well as a high-level description
+of what the program does.
+So this allows someone who hasn't written the program
+to understand who is responsible for it, when it was written,
+and generally what the program does.
+The final comment, Initialization, tells us
+what this next section of the program does.
+We first have an assembler directive, .ORIG.
+This tells us that our program starts at memory location x3000.
+Then we have the instructions to do the initialization.
+First we initialize our counter, R2, and again we doing an AND with the value 0
+in order to initialize that to 0, then we load the pointer
+to the beginning of the program into R3.
+Now, here we have a label, PTR, which we'll
+see later on, which has a value that represents
+the address of the start of our file.
+Next, we have the GETC assembler directive.
+This is the TRAP instruction that reads a character from the keyboard,
+and that character gets put into register 0.
+Finally, we use our file pointer in R3 to get the first character
+and put it into R1.
+The next section of the program tests to see whether we've
+reached the end of the file.
+Now, the first instruction has a label TEST
+because this is the beginning of our loop.
+And we're going to later have a branch instruction that gets us back
+to this location.
+The first instruction of the loop subtracts 4 from R1
+to test to see whether we've reached the end of the file.
+We do this by adding the constant minus 4 to R1.
+The next instruction is a branch to test the Z bit.
+If the Z bit is set, that means we've reached the end of our file,
+and we exit this loop.
+The label OUTPUT is the first instruction after the end of our loop.
+The next part of the program tests to see whether we have a match
+and increments the counter if this is the case.
+We do this by subtracting R0 and R1.
+R0 holds the character that we got from the keyboard,
+and R1 is the character that we received from the file.
+To do this, we first form the two's complement of R1
+and then add that to R0.
+Now, if we don't have a match, then we want to skip the increment part.
+So our branch condition tests to see if the N or P bit are set.
+If the condition is met, then we're going
+to go to the label GETCHAR, which skips the increment step.
+If the BRANCH is not taken, then we'll increment our counter R2.
+The next part of the program gets the next character from the file.
+Here we increment our file pointer R3, and then we load the next character
+from that location into R1.
+The last instruction of the loop is a branch always.
+Here the N, Z, and P bits are all set, so this branch will always be taken
+and will move back to the beginning of our loop at label TEST.
+Once we've reached the end of the file, we're going to go to label OUTPUT.
+Here's where we output the count to the monitor.
+Here we're going to load into R0 a constant value that's
+located label ASCII.
+We see at the end of our program, at label ASCII,
+we have a .FILL directive with the value x0030.
+That converts the binary count to ASCII so that it's
+in the form to display to the monitor.
+We display this to the monitor using the OUT assembler
+directive that takes the ASCII code in R0 and sends it to the screen.
+The last instruction is a HALT instruction,
+which tells us to end our program.
+Finally, after our code, we have the two labels ASCII and .PTR and the two .FILL
+directives.
+The first is the value 30 that we use to convert from binary to ASCII,
+and the second is x4000, which is the hex location of the beginning of the file.
+Finally, we have the .END directive, which ends our program.

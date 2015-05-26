@@ -1,0 +1,53 @@
+Here's our program.
+On the left, we have the memory address.
+If you remember, our program starts at address x3000,
+so that's our first instruction.
+And then we have a number of 16-bit binary values.
+These are the actual instructions.
+Remember that our hardware can understand binary,
+and so our instructions are just a bunch of 1s and 0s.
+Now, on the right, I have some comments where I'm showing you
+what is being done by each of these steps.
+Now, the leftmost bits are the opcodes that tell us the type of instruction
+that we have.
+Our first instruction is 1110.
+That's a load effective address instruction.
+The next three bits are 1, which tells us that we're loading register 1.
+And the rightmost 9 bits are our offset.
+Now, remember, our first number is located at x3100.
+And our PC right now is 3001.
+By adding this offset to 3001, we get 3100, which we load into register 1.
+Now we have a pointer to our first number in our list.
+Now, the next instruction will initialize R3, our running total, to 0.
+It's an AND instruction.
+That's an immediate instruction.
+We're ANDing R3 with the immediate value 0.
+So the result is going to be 0, and we're going to store that back into R3.
+The last step in our initialization is to put the value 12 into R2.
+We're going to do this in two steps-- first of all, to initialize R2 to 0,
+and we do that with an AND instruction, just like we
+did in the previous instruction.
+Once we have R2 to be a 0, we can add the constant 12 to it
+in order to get the value 12 into R2.
+The next instruction is the first instruction in our loop.
+This is a branch instruction that tests whether R2 is 0.
+If that's true, then we need to branch out of our loop.
+So our offset is 5, because if we add the incremented PC to 5,
+you see that we'll jump out of our program.
+If the condition is not met, then the first thing that we do
+is we load our next integer value and put it into R4.
+Then we add this to our running total, which is in R3.
+Then we increment our pointer to the next integer in our list,
+and we decrement R2, which tells us whether we've added all of our numbers
+up.
+Then our last instruction is a branch back to the beginning
+of our loop, which is location 3004.
+Now, notice that the N, Z, and P bits are all 1.
+Because one of those bits in the condition code register will be set.
+This is a branch always instruction.
+We will always branch back to that location 3004.
+Our offset is minus 6, because our incremented PC, now,
+is 300A, the instruction after this branch instruction.
+If we add minus 6 to that, then we get 3004, which gets us back
+to the beginning of our loop.
+And we'll continue to execute this loop until R2 becomes 0.

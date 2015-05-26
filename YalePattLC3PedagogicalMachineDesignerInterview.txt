@@ -1,0 +1,59 @@
+Now, you said you have four opcodes?
+Four bits.
+Four bits.
+I'm sorry.
+Four bits for an opcode.
+16 opcodes.
+But one is reserved.
+So people might wonder, why not use all 16?
+Why do you have one opcode that's unused?
+So it turns out I had 16 opcodes.
+So as you pointed out, and I also reiterated,
+it's a rich instruction set even though it's a very small instruction set.
+In that instruction set is a subroutine call return mechanism,
+which you have to do for richness.
+And I had a call instruction-- JSR, Jump to Subroutine.
+And I had a return instruction.
+In fact, curiously-- and I didn't realize this at the time--
+but my call return mechanism is the same as what
+ARM introduced when they introduced the ARM version 1 a long time ago.
+So brilliant minds think alike, as they say.
+The call return mechanism works by the call instruction.
+So when you call a procedure or subroutine, the program is running,
+and now what you do is you want to do this extra piece of work.
+So there is an instruction that says, go there and do this piece of work,
+and when you get done, come back.
+Come back where?
+To the place where you came from.
+So you have to save that location someplace.
+And I save it in register 7.
+I don't know where ARM-- ARM saves it in the register also.
+So the call saying, go do this piece of work
+also has to save that address to come back to.
+You get done, and you want to jump-- that is, come back to here.
+And the instruction that does that is the same as the jump instruction.
+So I'm lecturing to this class of freshmen-- and there's 400 of them
+out there-- and this kid raises his hand, and he says,
+why do you have the return instruction?
+Why don't you just use the standard jump instruction, which
+is another one of your instructions, only
+identify which register in the instruction,
+and now you've got the return, and you don't need the return opcode?
+You've saved yourself an opcode.
+And I'm up there, and I-- wow.
+That's brilliant.
+And of course, I did it.
+Now, there's a side note to this, by the way-- this was like 10 years ago,
+I guess.
+No, more than that, because the book came out in 2004,
+so it was probably 11, 12 years ago.
+Every time that kid has needed a letter of recommendation,
+he has reminded me that he was the freshman--
+He was the one who taught you about your instruction set.
+He's the one the taught me that I didn't need a return instruction.
+So I got 15 now.
+So what do I do with the other opcode?
+And I decided, let me just leave it for future use.
+I'm a good engineer.
+Contingency.
+Leave it for future use.

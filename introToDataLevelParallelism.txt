@@ -1,0 +1,51 @@
+With both instruction and thread-level parallelism,
+we're trying to exploit the parallelism among different instructions.
+We're trying to find independent instructions
+that we can execute at the same time.
+But there's another very important type of parallelism,
+that's prevalent in the media applications
+that we run our smartphones.
+And that's called Data Level Parallelism or DLP for short.
+So let's take an example where we want to increase
+the brightness of our screen.
+Now our screen is represented by a two dimensional array of pixels.
+You can think of that two dimensional array as an x-y coordinate system.
+To increase the brightness, we need to add a constant to each one of those
+millions of pixels that comprise our screen.
+Now if you think about it, we can do all of those operations in parallel,
+they're completely independent.
+And that's an example of Data Level Parallelism.
+In theory, if we had enough hardware, we can do all of those operations
+at the same time, because they're completely independent.
+And you're Graphics Processing Unit, or GPU, exploits DLP on a massive scale.
+Now we're going to focus in this module on how we exploit DLP
+within your smartphone apps processor.
+And this is done using instructions called Single Instruction Multiple
+Data, or SIMD for short.
+Now this is in addition to the instruction set architecture
+of these smartphone processors, which is specifically for exploiting DLP.
+So if you have an ARM processor, for instance, ARM calls this "Neon,"
+this is just the SIMD instructions that are part of the ARM instruction set
+architecture.
+Intel calls theirs SSC.
+In both cases, these are special instructions added to the ISA
+for exploiting Data Level Parallelism.
+Now in addition to these instructions, of course,
+we need to have micro-architecture support.
+So your smartphone has additional hardware in order
+to execute these SIMD instructions.
+Now in this module, we're going to talk about an example C
+loop where we're adding two arrays and storing the result in a third array.
+And what we're going to do is we're going to transform that C
+loop into a SIMD instruction.
+We're going to see how we can use one SIMD
+instruction to execute multiple of those data operations at the same time.
+And then what we're going to see-- the micro-architecture support that we need
+to add to our pipeline, specifically the ALU,
+how we can re-design that a bit in order to be
+a normal ALU, to do a normal operation, but also to do
+these SIMD type of operations.
+So at the conclusion of this module, you'll
+have some idea of how your smartphone uses
+SIMD instructions to exploit Data Level Parallelism for media applications.
+So let's get into it.

@@ -1,0 +1,114 @@
+Now a cross-coupled inverter is used to store a bit in our storage elements.
+And it looks like this.
+So you see how it gets its name because these wires cross.
+Now they're not connected.
+One passes over the other, but you can see that they cross over each other.
+Now we're going to draw it this way because I think
+it's a little bit easier to understand.
+What we have here is we have two inverters.
+And the output of one feeds the input of the other.
+And its output, in turn, feeds the input of the first.
+So let's assume that I have an input of 1 on the first inverter.
+So that gives me an output of 0.
+And that's my output, which I'll call Q. That feeds the second inverter which
+produces an output of 1.
+And we'll call that Q prime or Q bar.
+And you can see that we have this circular structure of storage.
+So so long as I have my circuit powered up, that one will stay on Q prime
+all the time, and 0 will also remain on Q.
+What happens now if I have a 0 on the input of the first inverter?
+Well, I have a 1 for Q. And, in turn, the second inverter takes that 1
+and produces a 0 for Q prime.
+And, again, so long as I have my circuit powered up,
+these values will stay there forever.
+So now I have the concept of storage.
+I have these values, which as long as my circuit is powered,
+will stay there forever.
+Now what are we missing here?
+Well, we want to be able to change the values of Q and Q prime.
+What happens with the circuit is when it powers up,
+it's going to either go into one state where Q equals 0 or the other
+where Q equals 1.
+But we'll never be able to change it.
+We want to be able to store specific values, 0 or 1, into these circuits.
+Now that we have the concept of a cross-coupled inverter,
+let's apply that concept to the design of storage elements.
+And the first one we're going to talk about is called an R-S latch.
+And the R stands for reset, which forces the output to 0.
+When we say we reset a circuit that means the output becomes 0.
+And that's going to happen when R equals 0.
+And S stands for set, which forces the output to 1.
+Again, that's going to happen when S equals 0.
+Here's our R-S latch where you see the difference now
+from what we've seen before is that we've
+replaced those inverters by NAND gates.
+And we also have two inputs, S and R. We still have our outputs Q and Q prime.
+Now I'm going to remove this wire for Q prime just to make it simpler,
+but it's still there in our circuit.
+Let's look first at the case where we have R equals 1 and S equals 1.
+Well, what happens when I have an input of 1 to a NAND gate?
+Well, that means that the other input will affect the output value.
+So, for instance, when I have R equals 1 on this bottom NAND gate,
+then the output of that NAND gate is going to be affected solely
+by the value of Q. And here I have Q equals 0,
+so the output is going to be a 1.
+Again, for the top NAND gate when I have S equals 1,
+then the other input is going to affect the output of that NAND gate.
+And the other input is 1, and so Q equals 0.
+So this acts just like that cross-coupled inverter.
+When R equals 1 and S equals 1, then we just
+maintain the current state of the latch.
+Now you can see that this still occurs when Q equals 1.
+When Q equals 1, then the output of the bottom NAND gate becomes 0.
+And that, in turn, forces the output of Q to be a 1.
+So we're just maintaining the current value when R equals 1, and S equals 1.
+Let's look at the case now where we want to reset this latch.
+We want to force Q to be a 0.
+What we do is we make R equal 0, and S equals 1.
+Let's look at that case.
+So here we have R equals 0.
+Now that's going to force the output of that bottom NAND gate to be a 1.
+And with S equals 1, I have 1, 1 which forces the output of the top NAND gate
+to be 0.
+So now with R equals 0 and S equals 1, we've forced the value of Q to be a 0.
+Now let's set our latch.
+So here to set our latch, we're going to make S equals 0 and R equals 1.
+So now with S equals 0 for the top NAND gate,
+and that's going to force the output of Q to be a 1.
+And now with R equals 1 and Q equals 1, the bottom NAND gate
+is going to have an output of 0.
+So this is forcing now the output of Q to be a 1.
+Now we also need a latch to store an input value.
+And that's done with a D latch.
+A D latch has two inputs-- D, which is the data we want to store,
+and WE or Write Enable, which tells us to capture that data.
+Here's a diagram of a D latch.
+Now on the right, that should be familiar.
+That's an R-S latch that we've just talked about.
+Now on the left, what we have is we have two NAND gates.
+And we also have an inverter as represented by this bubble.
+And both inputs D and WE feed both of these NAND gates.
+Let's look at capturing the input D. So to do that we've forced WE to be a 1.
+And let's assume that D is a 1 as well.
+What happens then is with 1, 1 on the input of the top NAND gate,
+we get an output of a 0.
+And we invert D as the input to the bottom NAND
+gate which forces that to be a 1.
+So what do we have now in our R-S latch?
+We have 0, 1 which is the state that we need to set the output of Q to be a 1.
+So now when D equals 1 and WE equals 1, we've
+captured that input D on the output Q. And you can verify for yourself
+that when D equals 0, and WE equals 1, then Q will be forced to 0--
+will be forced to be reset to 0.
+Now when we change WE to be 0, we capture the value of D. Q
+retains its value.
+So no matter if D changes from 0 to 1 to 1 to 0, Q will not change.
+Let's look at that case.
+With WE equals 0, then the output of both of the NAND gates
+gets forced to 1, and that's the state that
+retains our value in our R-S latch.
+When I have 1, 1 in the inputs of our R-S latch, that keeps the value
+Q as it is.
+So Q will not change when WE equals 0, even if the input D changes.
+Now that we've seen latches, let's move on to another important storage element
+called a flip-flop.

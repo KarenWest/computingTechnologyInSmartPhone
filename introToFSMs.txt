@@ -1,0 +1,37 @@
+Now we have 1 last important topic to cover in this section of the course.
+And that's finite state machines.
+In digital systems, including computers, we
+need an orderly way to pass through a sequence of steps.
+Now let's take an example of designing a candy machine.
+Now a candy machine passes through a pre-defined sequence
+of steps on the way to dispensing the candy for you.
+So when you walk up to the candy machine,
+it's in an initial state where it has no money
+and it's just waiting to receive some money.
+So now when you start putting money into the machine,
+it's progressing from one state, the initial state, to intermediate states,
+on the way to getting to a final state where
+you have enough money for the candy.
+And you press the button where it dispenses
+the candy and then potentially gives you change.
+So we can design this candy machine as a finite state machine, which
+has a series of well-defined states-- we've
+defined those in advance-- as well as transitions from one state to another.
+So for instance, if I walk up to the candy machine
+and I throw in some money, then it will move
+from the initial state of having no money to a state of having some money.
+Now computer systems make wide use of finite state machines.
+So for instance, when we build our computer,
+we need to go through an orderly sequence of steps
+in order to handle every instruction.
+So we're going to receive an instruction in our computer.
+And then we're going to go through a pre-defined series of steps
+in order to complete that instruction.
+And then we'll move on to the next instruction in the program.
+So we're going to do this using a finite state machine.
+Now how are we going to pass from one state to the other?
+Well, we've already introduced the clock.
+We have this periodic signal called the clock.
+And at every tick of the clock, we're going to potentially move
+from one state to the next.
+So let's get into it.

@@ -1,0 +1,171 @@
+Now we're going to take a look inside a smartphone that contains a Snapdragon
+805 chip from Qualcomm Corporation.
+Now, before we do that, let's look at a lot of smartphones that
+have a Snapdragon 800, 801, or 805.
+So if you have this phone, depending on the model,
+you may have one of these Snapdragon chips.
+And so the chip that we're going to go over in this course is very similar
+or maybe the actual chip that you have inside your phone.
+Let's take a look inside a Nexus 6 smartphone,
+which was released by Google and Motorola near the end of 2014.
+Now, if you were able to open it up and you looked inside, what you would see
+is a logic board that looks like this.
+Now, if you opened up your own smartphone,
+you'd see some kind of logic board with electronic components on them that
+are wired together through this board.
+Now, there are a lot of different components on this board.
+We're going to focus on the ones that correspond to the computer system
+part of your smartphone.
+So first we have this component here.
+And actually, this is two components, one stacked on top of the other.
+Now if we were looking underneath this top component,
+you would see the Snapdragon 805 package.
+Now this chip is inside a package to hold that chip,
+and on top of that is a memory chip.
+Now this memory holds the instructions and data for running programs,
+and we'll talk about this later in the course.
+Now here's another chip, which is the flash memory.
+Now this is where your apps are stored.
+So we're going to talk about how this flash
+memory and this memory and this system-on-chip,
+this Snapdragon 805, how they all work together in this course.
+Now let's look closer at the details of the Snapdragon 805.
+We call this a System-on-Chip, or SoC design,
+since this single chip contains pretty much an entire computer
+system, including specialized processing engines for handling tasks
+like graphics and video, all in a silicon chip that's
+about the size of a fingernail.
+Now if we look closer at this SoC, we have a lot of different components,
+and there's a lot of acronyms here.
+Now, don't be intimidated by these acronyms.
+Some of these are product names from Qualcomm.
+Others of these are engineering standard names.
+You're not going to be expected to know all these names.
+But I left them here so that you can go off and look them up on your own
+if you're curious.
+First let's look at what's called the general purpose
+processor, which we're going to call the apps processor in this course.
+Now, this is the processor that runs your apps
+and is the focus of the technical details of this course.
+Now, Qualcomm makes their own processor, which they call Krait.
+And actually, it contains four processing units, which we sometimes
+refer to as Central Processing Units, or CPUs,
+or sometimes you hear these called cores.
+Now, each of these CPUs can run an individual app or different portions
+of the same app, as we'll see later on.
+Now also on this chip are controllers, for instance,
+for getting information to and from that memory
+that's sitting on top of the Snapdragon 805 package.
+Now, this chip also has a number of specialized processors
+for handling specific tasks that you do on your smartphone.
+So first there's the GPU, or the Graphics Processing Unit,
+which handles the processing of screen graphics.
+And then there's the display engine that transfers that graphics information
+to your screen.
+Now, there are also a number of processors for handling media,
+such as playing ultra-high definition video and music.
+In fact, this chip supports 4k video.
+There are also special Image Signal Processors, or ISPs,
+for handling input from the two cameras.
+There are specialized processors for handling sensor inputs.
+There's a GPS to know the location functionality.
+And there's a Universal Serial Bus, or USB controller.
+And this is an engineering standard for doing communication through wires,
+so for instance, to connect your smartphone to your laptop.
+In this corner we have this overlay block.
+This is for the communications, for instance, cellular communications
+to communicate with a cell tower.
+Now, it's overlay because in the 800 and 801 chips,
+these functions are actually on the SoC.
+But in the 805, they decided to put those on a separate chip.
+Now, that seems maybe a little bit non-intuitive
+because an 805 is a newer product.
+But there are different trade-offs for putting this functionality on the chip
+versus off.
+So for instance, you might consider other functions
+that you may want to put on the chip in consideration of cost.
+So for the 805, it better handles 4k in all respects
+than the previous 800 and 801.
+Also, there's evolving communication standards,
+and those may or may not line up with the development
+cycle of making a chip like this.
+So although you may think that every new chip is
+going to have more on it, from an engineering standpoint,
+it may make more sense to leave that functionality off and put it
+on a separate chip.
+Now that we've seen an overview of the 805,
+let's see how it operates when performing
+a complex task like playing a game.
+First there's the Krait Quad Core CPU.
+These are the general-purpose CPUs.
+They orchestrate game play.
+They handle artificial intelligence of non-player characters.
+They handle animation and physics of collisions and particle movement
+and those types of things.
+Then there's the graphics processing unit.
+This provides the lighting, the shadows, the reflections, all of the graphics
+that you see on your screen as you play the game.
+Then there are audio files that need to be processed.
+And there's a special digital signal processor
+on the Krait chip for efficiently handling those types of operations.
+Then there's a special video decoder, which handles
+any video associated with your game.
+Now, you notice that the system memory has a bunch
+of files, a bunch of information.
+And that's that system memory that lies above the Snapdragon
+805 in a separate package.
+And finally, we have the display engine.
+This is a specialized unit on the Snapdragon 805
+that reads the information that's created by the GPU
+and by the video decoder, and then sends that to your display.
+Now there are two big advantages for organizing the SoC in this way.
+Now, the first is performance.
+By having all of these specialized processors for doing
+audio and video and graphics, as well as the general-purpose CPUs working
+at the same time on their tasks to play your game,
+well, that's an example of parallelism, where all of these different tasks
+are being performed at the same time.
+And that's higher performance than if we had just one processor that
+had to perform all of them in sequence.
+Now, another major advantage is energy efficiency.
+It's far more energy efficient to have, say, a specialized video
+decoder to perform video functions than to do those on the general-purpose CPU.
+In fact, studies have shown that you can save over half of the energy
+that you expend on a general-purpose CPU for that task
+by having specialized hardware to do that.
+And so your battery life is going to last
+a lot longer by having all of these specialists, in addition
+to the general-purpose CPUs, on your smartphone SoC.
+Now we'll look inside the details of the Krait CPU,
+and let's explore this from the perspective of the computing technology
+stack.
+First of all, all of this is constructed using digital logic.
+At the lowest level of the stack, we have transistors and wires
+that connect those two.
+Now, your smartphone SoC these days may have billions of transistors
+that are interconnected together.
+Now, these transistors are put together in things called logic gates.
+And we use these logic gates to build useful logic
+functions, things that allow us to, say, select two values or to store numbers.
+We also use these logic gates to construct
+controllers, which allow us to orchestrate the flow of data
+through the computer.
+Now, above digital logic is computer organization.
+Application programs that run on a Krait CPU
+run an instruction set called ARM, which has certain definitions for things
+like the type of instructions that you have, such as add or subtract.
+We also have the hardware design, or the micro-architecture,
+with specific steps for processing each instruction,
+such as instruction fetch, instruction decode, operant fetch, and execution,
+and methods such as pipelining, superscalar, and SIMD that
+make our apps run so fast.
+Now, don't be concerned if you didn't understand much of this material.
+I wanted to give you this information so that you have some context
+for where we're going in the course.
+And in fact, at the end of the course, we're
+going to revisit this same material, and you'll
+have a deep understanding of how a complex CPU like the Krait processor
+works in your smartphone.
+You'll also be able to apply the principles and performance
+techniques of a general-purpose CPU to these other specialized processors that
+are on a smartphone SoC.

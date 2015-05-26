@@ -1,0 +1,32 @@
+Here are our new five phases of instruction processing.
+Let's now go over each of them and how we carry them out
+in our new LC-3 microarchitecture.
+First we have instruction fetch.
+We send the PC over to the memory, the memory reads the instruction,
+and then that instruction gets put into the instruction register.
+Now, we're assuming that this happens in a single clock cycle.
+During that same clock cycle we also increment the PC
+and load that into the PC register.
+During instruction decode the finite state machine decodes the instruction
+and also reads the register file to get the operands that
+may be needed for later on.
+During the execute stage for operate instructions,
+we perform the actual operation.
+For loads and stores, we calculate the address.
+In the memory stage for a load instruction,
+we read the data that we want.
+For a store, we store the result into the memory.
+In the write-back stage we update the register file
+for those seven LC-3 instructions that write to the register file.
+Now let's review the operations that are done within each of our fives phase.
+For instruction fetch we increment and update the PC,
+and we also fetch the instruction from memory and put it into the IR register.
+In instruction decode, we decode the instruction,
+and we also read operands from the register file.
+During execution we perform an ALU operation for operate instructions.
+And for load and store instructions, we output the address from the ALU.
+In the memory stage we perform the memory operation for a load or store.
+For a load, we read the memory.
+For a store, we write the memory.
+And then finally, for write-back we store the result
+into the register file for those seven instructions that do that.

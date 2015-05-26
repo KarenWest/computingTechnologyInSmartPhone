@@ -1,0 +1,29 @@
+This module covers the stored program computer,
+which is the fundamental way in which computers are organized,
+including the one in your smartphone.
+Now, this is also called a Von Neumann machine after John Von Neumann,
+and the stored program computer, like many concepts in computer systems,
+can be attributed to many different people.
+There are many people who can claim credit for this.
+Now, in Von Neumann's case, he joined a group
+of researchers at the University of Pennsylvania,
+specifically two pioneering researchers--
+John Mauchley and Pres Eckert-- who had developed
+a landmark machine called the ENIAC, and were working
+on a new machine called the EDVAC.
+Now, the EDVAC had a lot of different concepts,
+and Von Neumann wrote a draft report on the machine.
+And that report was obtained and circulated widely,
+and so it had a lot of influence.
+And even though Von Neumann wasn't the only person,
+certainly, who came up with this idea of the stored program computer--
+you could say that other people, such as Eckert and Mauchley,
+could claim credit-- he became the person who got the credit for it.
+So that's why we call it the Von Neumann architecture.
+Now, it has some fundamental components that we use today.
+It has a processing unit, it has a memory input output, and a control
+unit.
+We're going to talk about those fundamental components
+and describe their overall operation, and then later on we're
+going to get more into detail on each one of those.
+So let's get into it.

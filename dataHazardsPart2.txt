@@ -1,0 +1,191 @@
+Now that we've seen the overall idea behind forwarding,
+we're ready to make the modifications to our pipeline diagram.
+So here's a general diagram of our LC-3 pipeline.
+And let's just review all the different stages.
+So first we have instruction fetch, where we read an instruction
+from the instruction memory.
+And then we have a set of flip-flops here.
+We have a register.
+It's a pipeline register, which is clocked on the a rising edge of the clock.
+So in the next tick of the clock, that instruction moves to decode.
+And in decode we read the source registers.
+Next tick of the clock we move into the execute stage, where for an operate
+instruction, we do the operation, for load or store, we calculate the address.
+Next tick of the clock, we get to the MEM stage.
+And here for load or store, we actually do the memory operation.
+And for other instructions, we just bypass this stage.
+And then finally, on the last tick of the clock
+here, is the write-back stage.
+Now, what I've drawn here is I've actually drawn the connection back
+to the register file.
+So in our pipeline diagrams we've had this other register over here,
+register file picture, but of course we only have one register file.
+So I'm actually showing the real connection back
+to the one register file to do the write of the destination register.
+Now what I have here is I have our instruction sequence that we just saw.
+So let's just go over that again.
+So the first instruction in our sequence--
+and we're assuming that this is in the MEM stage-- is an ADD instruction.
+And that ADD writes to register 1.
+Right behind it is a NOT instruction that reads register 1.
+Now, it read this value of register 1 back here at ID.
+So it has the old value of register 1.
+It doesn't have this value.
+And this is our data hazard.
+This is our problem.
+Also in the ID stage we have this AND instruction,
+where we've also read R1 here.
+And again, this is an old value.
+This isn't the value that we want.
+This is the one that we want.
+And then back here in the instruction fetch stage,
+we've just read this LDR instruction.
+Now it also is going to read R1 in the decode stage
+in the next tick of the clock.
+OK.
+So you can see our problem, where we're about to do this NOT
+operation with an old value of R1, where we need to do this NOT
+operation with this value of R1.
+So we talked about forwarding, how we can pass the value from the MEM stage
+to the execute stage.
+And so we're going to draw a connection back here, backwards, in order
+to forward this value to this NOT instruction.
+So what we need is we need a multiplexer in order to do that.
+So we read R1 from here.
+This is the first source register.
+This is where we read the first source register.
+So we're going to substitute this value for this value that's
+sitting here in the MEM stage.
+So in order to do that, we can just put a multiplexer.
+So we're going to add a multiplexer here.
+We still have this value, because we may need it for other situations.
+And now we're going to take this value of R1 that we have here--
+so here we have the result of the ADD, we have it right here--
+and we're going to tap off that here, and we're
+going to feed that back here to this multiplexer.
+So now we also need a select signal.
+And this will be part of our control now.
+This is an additional part of our control
+is to pick the proper one of these two, depending
+on whether there are dependences among the instructions in a pipeline.
+And so now we have the capability of taking this value of R1.
+And at this tick of the clock, we're going to pass it back here
+and replace it for the value that just got
+loaded into this flip-flop, this set of flip-flops.
+And so we use the select signal to pass this value to the ALU.
+And so now the NOT can be performed properly.
+It will get the correct value of R1.
+OK.
+Now let's see what happens when we advance one cycle forward.
+Let's move this one cycle forward.
+I'm just going to draw these like this.
+ADD R1, R2, R3 has now moved into write-back.
+The NOT is here.
+We have NOT R4, R1.
+The AND has moved here.
+We have an AND R5, R2, R1.
+And our LDR now has moved into the decode stage.
+We have LDR, R6, R1, 0.
+So one tick of the clock later, this is the situation that we have.
+Now, the NOT is all set, because in the previous cycle
+we forwarded the correct value of R1, we've inverted that.
+And now that's sitting right here.
+So the NOT has been properly executed.
+But now we have the same problem with this AND.
+This AND has read an old value of R1 in the previous cycle.
+It's about to use that to do this ALU operation.
+And so what we need to do is we need to forward the value that's
+in the write-back stage of R1.
+We need to forward that back here.
+So now R1 is the second source operand.
+It was read down here.
+So we need to substitute this value of R1 that's
+being written to the register file for this value of R1
+that we're about to use for the ALU operation.
+So we need to add another multiplexer right here in order to accomplish that.
+So let's add that multiplexer.
+So what we're going to do is we're going to take this value of R1 which
+is being written to the register file, and we're
+going to substitute that like this.
+Again, we need another select signal.
+So now when this AND instruction moves into this Execute stage,
+we're going to set this multiplexer so that the value that's
+being written back to the register file, R1, is going to pass through the mux
+and be used for this AND operation.
+And now this AND will operate correctly.
+So now we've got the NOT all set, we've got the AND all set.
+Well, what about this LDR?
+This LDR has just read the old value of R1.
+Again, this is the value that we want to use in order
+to form the effective address.
+So we have a problem here, because our last chance-- We've just read R1,
+and we're about to write now R1 to the register file.
+So this is kind of our last chance to substitute this value of R1
+for this LDR.
+So we need to do that in this stage, in this ID stage.
+We need to replace now this value of R1.
+So we need to put another multiplexer here.
+Again, we've read the old value of R1 here, for this LDR.
+And we're going to, again, substitute the value
+that's being written back to the register file for that value
+that we just read from the register.
+So now when the LDR moves into this stage to do the address calculation,
+it has the up-to-date R1 from the ADD instruction.
+So now all of these three instructions are going to operate properly.
+The NOT will have been forwarded, gotten its R1 value forwarded here,
+when it was in the execute stage and the ADD was in the memory stage.
+And then when the ADD moved to the write-back stage
+it forwards the correct value to this AND instruction through this bottom mux
+and also to this LDR through this mux here.
+So now all of these are going to operate properly.
+Now, we may also need to forward from here
+back to this value, rather than here.
+So we need to also forward, in addition to here, we also want to add some forwarding to this lower
+input, because it could have been that we had an instruction that was here
+writing R1, and then this instruction here
+read the second source value as R1.
+So in that case, we need to forward R1 to the bottom input of the ALU.
+And similarly for this forwarding path, where we only
+come here to the bottom input of the ALU, well we might want to also--
+and I'm just going to modify this slightly
+so it's consistent-- we also may want to forward
+that value to the top input of the ALU.
+So we need to have also this value here coming to this bottom input as well
+as this top input.
+So now we can forward from here to either the first or second source
+operand, and the same for write-back.
+We can go to the top or we can go to the bottom.
+And then we might want to do the same thing here.
+There may be an instruction here, such as it could be this AND instruction.
+Let's say if it was over here, then we need the substitute down here.
+So we can make this multiplexer.
+You can add an additional multiplexer here, I should say,
+so that we can forward from the write-back
+stage to either source one value that we just read from the register file,
+or for source 2.
+So now we have all of the data path that we need in order
+to do forwarding of this situation where I
+have an ALU instruction, such as this ADD, where
+we need to forward the values back to the other instructions.
+Now, it gets a little trickier when we have LDR instructions that
+need to be forwarded.
+And we need additional hardware for that.
+And so you can expand this diagram to also handle load and store operations.
+But also, you need to keep in mind that there's all of these control signals.
+So there's a number of control signals here,
+where now our control, which we do in this pipeline,
+has to be able to detect these dependences dynamically.
+So as instructions move through the pipeline,
+we're doing comparisons of destination registers,
+like R1, with source register numbers that are behind this instruction.
+So there has to be some comparators in these multiplexer controls
+to make sure that the proper value gets input
+to each of these multiplexers dynamically
+as instructions move through the pipeline.
+So once you have this data path and you have all that control,
+then now you can avoid the problem where you get the wrong value,
+like we would without this kind of support,
+or where you just had to stop the pipeline and wait for the register
+file to be updated, in which case you lose performance.
+So here we get both correct operation as well as high performance
+with this forwarding hardware.

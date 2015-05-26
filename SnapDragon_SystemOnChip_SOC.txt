@@ -1,0 +1,178 @@
+Now we're in a position to go into more of the details of the Snapdragon 805
+SoC that we introduced at the beginning of the course.
+If you recall, here's how the chip is generally organized.
+We have a lot of specialized processors, we
+have a controller for connecting the memory,
+and then we have the Krait general purpose CPUs.
+And they all work in parallel and coordinate with each other
+in order to perform a complex task, such as playing a game.
+Now let's look at the details of the quad-core Krait processor.
+Now, this is a pipeline diagram that flows
+from top to bottom rather than left to right,
+as we've seen in most of our diagrams.
+The high performance techniques that we've
+studied in the course, that are embedded in the Krait CPU,
+include pipelining, superscalar execution, out-of-order execution,
+SIMD processing, caches, and multicore.
+We're going to talk about caches and multicore a little bit later.
+Let's focus first on the pipeline design.
+At the beginning we have instruction, fetch, and decode,
+which comprises three pipeline stages.
+Now, the Krait pipeline can fetch and decode three instructions at a time.
+Also in these three stages is a branch predictor that predicts the outcome
+as well as the target of a branch instruction.
+Decoded instructions are placed into an issue
+queue, where they wait before they get sent to the different pipelines.
+After the issue queue, we've got a lot of different pipelines.
+There's a lot of parallelism going on in this processor.
+Let's first focus on the left-hand side, which is devoted to processing integer
+instructions.
+From the issue queue, four instructions can go
+to four different places in parallel.
+The first pipeline stage in each of those four is called Expand.
+Now, we talked about in the course how some complex instruction
+sets will create simpler instructions from a complex instruction.
+Well, it turns out that the Krait CPU does this even with ARM instructions.
+So for instance, some ARM instructions combine a shift operation
+with an ADD in one instruction.
+And if there's a complex shift, something
+more than say shifting one, two, or three,
+then that will be separated into two instructions, a shift
+instruction and an ADD instruction.
+And these are called micro-operations, where
+we break a complex instruction into smaller internal within the hardware,
+simpler instructions.
+The next stage, the RACC stage, is where we access the register file.
+After reading the registers, instructions
+are placed into reservation stations.
+Now, these are like the issue queues that we
+talked about for out-of-order execution, where instructions and their associated
+source operands are placed in the queue where
+they wait for values from dependent instructions to be bypassed.
+Now, you notice that there's a line between the in-order part
+of the pipeline and the out-of-order part.
+Up until the reservation stations, instructions
+are handled in the order of the program.
+But just as we talked about with out-of-order execution,
+instructions can come out of the register file
+and go to the execution units out of the original program order.
+Notice that we have seven separate integer pipelines.
+So we can have up to seven instructions sent
+from the reservation stations in parallel in a single clock cycle.
+Now let's talk about the function of those seven execution pipelines
+for processing integer instructions.
+The Y and Z pipelines handle simple integer instructions,
+such as addition and subtraction.
+The X pipeline can handle more complex integer instructions,
+while the M pipeline is dedicated to integer multiplies.
+The LD and ST pipelines are dedicated to load and store instructions,
+including the calculation of the address.
+Finally, there's the B pipeline, which handles branch instructions.
+So depending on the mix of instructions, we
+can have seven integer instructions flowing
+through their associated pipelines at the same time.
+So that's how the Krait can exploit a lot of instruction-level parallelism
+within integer instructions.
+Now let's move on to discussing VeNum, which stands for Vector Numerics.
+That's shown here on the right-hand side of the diagram.
+The first stage of the VeNum pipeline grabs up
+to four instructions from the issue queue.
+Those are then placed in the VUQ, which is the VeNum unit instruction
+queue, where instructions wait until their source operands become available.
+Notice now, that's where the out-of-order -of- execution
+part of the VeNum pipeline starts.
+Instructions issue from the VUQ into three different pipelines.
+And each of these handles 128-bit wide operands.
+The VX pipeline handles arithmetic operations.
+Now, this includes Single Instruction Multiple Data or SIMD integer
+operations on 128 bits of data.
+So for instance, if we were doing operations on 16 bits,
+you can do 8 of those in parallel with one SIMD instruction.
+The VL and the VS pipelines are for handling load and store instructions.
+Again, those are also dealing with 128-bit wide data.
+The Expand stage handles micro-op expansion,
+similar to what we saw with the integer pipeline.
+Now an example is the ARM table lookup instruction,
+which requires a lot of operands to be fetched, more than we typically
+want to have the ability to fetch from the register file.
+So that's broken up into multiple simpler instructions,
+so that we don't complicate the register file too much.
+After that, we have the Evaluate stage.
+And this determines hazards between different instructions.
+And those are resolved in the Resolve stage.
+In the RACC stage we read source operands from the VeNum register file.
+And that's followed by a number of additional VX stages
+for performing computation.
+There's also a Perm block.
+And this is for doing permutations of data,
+which are part of the ARM instruction set architecture.
+Now, if we go back to look at the entire picture,
+we see that we have up to 10 instructions that
+can be executed in parallel, seven on the integer side
+and three on the VeNum side.
+That's a lot of support for exploiting instruction-level parallelism
+within a single program.
+Now that we've seen the details of the Krait CPU, let's move
+on to the multicore design and the cache hierarchy.
+Now, within each of the Krait CPUs you see that we have four different caches.
+We have a level 0 cash on both the instruction and data side,
+and that's also connected to a level 1 cache for both instructions and data.
+Now, the idea here of a level 0 cache is to have a very small, simple cash
+they can be accessed very quickly.
+Now both of these are only four kilobytes
+in size, which is pretty small for a cache.
+And they're also direct mapped.
+Now if you remember, we talked about direct mapped caches
+are very, very quick to access.
+And that's their advantage, and that's why they're used here.
+So for example, to get an instruction from the L0 instruction cache,
+it only takes a single clock cycle, whereas larger, more associative caches
+may take multiple clock cycles to access.
+The L0 data cache requires three cycles to access, and both of these caches
+have a 64-byte block size.
+Now, for instructions not found in the L0 cache,
+it might be found in the L1 cache.
+Now, this is bigger and more associative, so it's slower.
+Each of the L1 caches is 16 kilobytes in size, four times the size of the L0.
+And they're also four-way set associative.
+So they take a longer to access.
+So for instance, the L1 instruction cache
+requires four cycles, compared to the one for L0.
+However, because they're bigger, then the hit rate is going to be higher.
+So we're more likely to find something in the L1i cache than the L0 cache.
+The L1 data cache is the same size as the L1 instruction cache,
+but it requires six cycles to access.
+So long as we find the instructions or data in our L0 caches,
+then our pipeline can progress without delay.
+If not, then we look in the L1 cache and we pay in additional small delay.
+Now, behind the L1 caches is a shared L2 cache.
+Now, this may be one megabyte in size, much larger than the L0 and L1 caches.
+It also has a larger block size, 120 bytes, and it's more associative.
+It's eight-way set associative.
+Now, it's organized this way so that we'll have a high hit rate, so that we
+don't have to go off to the slower main memory if we miss in the L2 cache,
+and we don't have to do that too often.
+Now, what's interesting about the L2 cache is
+it operates asynchronously with respect to the L0 and L1 caches.
+It runs off its own independent clock.
+Now, it takes about 10 cycles typically, 10 processor cycles,
+to access the L2 cache.
+But that's going to depend on how fast we run the L1 caches, and each of those
+is individually controlled.
+And the reason that we do this individual control
+is for power consumption reasons.
+So here's a diagram of three Krait CPUs that each have their own clock
+and their own voltage.
+Now, we talked with some of our guests about this means
+for saving power consumption, where we can change the clock
+and we can change the voltage when the task that we're running
+doesn't demand that we have the highest frequency.
+So we can set the frequency of each of these CPUs
+to the speed that's needed to carry out their given task.
+Now, in order to have this independent operation of each of the CPUs,
+we allow the L2 to run off its own clock and its own voltage.
+So now when we have an L1 cache miss, the number of cycles to access the L2
+will depend on the speed that the processor is running at.
+And again, we arrange the chip in this way in order
+to minimize the amount of energy that we use in our SoC,
+so that our batteries will last longer.

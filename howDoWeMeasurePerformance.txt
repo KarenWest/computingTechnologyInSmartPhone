@@ -1,0 +1,171 @@
+We'll begin by discussing how we measure performance in our computer.
+One way to do that is to measure what's called execution time.
+And this is the time between the start and completion of a task.
+And this is sometimes called response time.
+So this is like taking a stopwatch, and starting the stopwatch when
+your program begins executing, and stopping it when
+it's done with the last instruction.
+Another way is throughput, or bandwidth.
+Here we measure the total amount of work done in a given time.
+And this can be a very important measure in things like data centers,
+where it's important to get a lot of transactions done at the same time.
+For instance, a lot of searches at a Google data center,
+getting those done, a lot of those at the same time, is very, very important.
+That gives you high throughput, high work per given time.
+So what does it mean with these two definitions to improve performance?
+Well, we either reduce execution time-- that task completes
+in a shorter amount of time-- or we increase
+throughput-- we get more work done in a given amount of time.
+We're going to use CPU execution time as our measure of performance,
+where CPU stands for Central Processing Unit.
+You could think of this as just another name for our processor.
+Now this is the amount of time that the CPU takes to run a program.
+And here's an equation for it.
+CPU execution time equals clock cycles-- this is the number of clock cycles
+to run our program-- times the clock cycle
+time-- that's the length of each clock, which is 1 over the frequency.
+Now we can take the number of clock cycles,
+and we can further break that down like this.
+That's the number of instructions times cycles per instructions.
+Now cycles per instruction is an average.
+It's an average amount of cycles required
+to execute each of our instructions.
+Now we can put this together, and look back at our CPU execution time
+equation, and break it down like this.
+So it's IC-- and this is the number of instructions
+in the program-- times CPI-- this is the average number of cycles
+per instruction-- times the clock cycle time, which is 1 over the frequency.
+So now the question becomes, given this equation, well,
+how do we make our computer faster?
+In order to answer this question, we need
+to understand what impacts CPU execution time.
+Well, first there's the compiler.
+The compiler is the software that translates your high level language
+program to machine code.
+And so it can make decisions in terms of how it implements high level constructs
+as machine code instructions.
+In fact, you can tell your compiler I'm willing to wait
+more time to get my program, my machine code, if you make it faster.
+So there are compiler flags that you can use to make your compiler make a faster
+program.
+So it has a big impact on CPU execution time,
+as does the instruction set architecture.
+So let's take an example, a high level language multiply.
+Well, the compiler can choose a multiply instruction,
+if that's in the instruction set.
+But if we have the LC-3, where we don't have a multiply,
+then the compiler has to create the code using add instructions
+and using a loop, in order to create that multiply.
+So the ISA can have another big impact on CPU execution time.
+Now the microarchitecture also has a big impact.
+So take that multiply instruction.
+Does it take me 4 cycles, or 10 cycles, or 20 cycles to execute it?
+Well, that's what the microarchitecture does.
+It's the hardware implementation of that multiply instruction.
+Now circuit design also has a big impact.
+If I can design faster circuits, then for instance
+I can have a smaller cycle time, which will impact my CPU execution time.
+And in the same way, the process technology,
+which is the technology that creates our transistors,
+well, we can make potentially faster transistors,
+and also impact CPU execution time.
+Example again is cycle time could be impacted.
+Let's go one by one through instruction count, cycle time, and CPI,
+and discuss what primarily impacts each one of them.
+Now instruction count is the total number of instructions in the program.
+So what primarily impacts IC?
+Well, first there's the instruction set architecture.
+If we take that multiply example again, if I have a multiply instruction
+I can do that in one instruction.
+If I don't, then I have to construct a loop, which
+is going to have more instructions than just that single multiply.
+Now also there's the instructions chosen by the compiler.
+Given a high level language construct, the compiler
+can choose to do multiple things, in terms of what instructions
+it chooses in the ISA.
+So for example, let's take a multiply where my two operands are in memory,
+and my result I want to store into memory.
+Well, with an ISA like the LC-3, then what we can do
+is first we can do two loads to get our operands and our registers.
+We can do a multiply, and put the result into a register,
+and then we can do a store, so there will be four instructions.
+Now some instruction sets have one instruction
+that can do that whole thing.
+I can read two operands from memory with one instruction,
+multiply them, and store the result.
+So the compiler would have a choice to make in this example.
+Now you might say, why not pick the second one,
+where I only have one instruction that does the whole thing?
+Well as it turns out, when we design a pipeline machine like we're
+going to do later in the course, that using those four instructions
+can actually make for a faster computer.
+So we'll get a lower CPI, at the expense of a higher IC.
+So there's a trade off to be made here between IC and CPI,
+and sometimes cycle time.
+So the compiler has to make these choices when considering all of those
+together.
+And so it may actually choose a sequence that has a higher IC,
+rather than a smaller IC.
+Let's talk about what impacts cycle time, or CT, which is our clock period,
+or 1 over the frequency.
+Well, the process technology certainly impacts it.
+How fast we can make our transistors will have an impact on our frequency,
+as will the circuit design.
+If I can make faster gates, then I can have a faster frequency, as well.
+Now the microarchitecture also has a big impact.
+Let's go back to our example of a multiply.
+So our multiply is a more complex operation
+than doing, say, a simple add.
+Now I can choose in the microarchitecture
+to make each one of those to be a one cycle operation.
+But that's going to mean that the add is just way too slow than it needs to be.
+So my clock frequency is going to be slower,
+because it's going to be set by the slow multiply instruction.
+Now what I may choose to do instead is to make an add be one cycle,
+but a multiply be four cycles.
+And we see this very commonly in our smartphone processors.
+So we don't make them all take the same number of cycles,
+and that gives us a faster cycle time.
+Now that increases our CPI, because now our multiply, instead of being
+one cycle, is going to be four cycles.
+So our CPI goes up, but we get a faster cycle time.
+And again, this is another example of trade offs
+that we need to make between these three components.
+Finally, we have cycles per instruction, or CPI.
+This is the average number of cycles required to execute each instruction.
+Now different instructions may have a different CPI.
+So for instance an add or an and may have a CPI of 1,
+and a multiply may have 4.
+And a load may be even longer, because we have to get data from memory.
+But this is the average CPI, over all of the instructions
+that we execute in our program.
+Now what primarily impacts CPI?
+Well, the instruction set architecture certainly does.
+Let's take that example of a multiply again.
+Let's assume that the only way we can do a multiply in our ISA
+is to get two operands from memory, and do the multiply
+and then write the result to memory.
+So the compiler will have to choose that instruction,
+and that's going to be a high CPI instruction.
+Because we have to get two operands from memory
+we have to do that multiply operation, which may take several cycles,
+and then it’s going to take us multiple cycles to do a store.
+So that's going to be a very high CPI instruction,
+and if the compiler doesn't have alternatives,
+it's going to have to pick this high CPI instruction.
+Now generally, though, the compiler may have alternatives.
+So in that example earlier of doing a multiply in this way, where I just
+have one instruction, versus two loads and multiplying a store, well,
+this is a decision that the compiler can make, and that's going to impact CPI.
+And again, the compiler may make this decision
+in order to trade off CPI with IC.
+Now the other thing that the compiler can do
+is potentially reorder instructions.
+And we'll see this later in the course, when
+we talk about data dependences between instructions.
+So the compiler can make some choices there, to make our CPI be lower.
+And then finally there's the microarchitecture.
+So the microarchitecture will impact the CPI.
+So this multiply instruction, whether it takes me
+2 cycles or 4 cycles, or 10 cycles, well,
+that's going to impact my overall CPI.

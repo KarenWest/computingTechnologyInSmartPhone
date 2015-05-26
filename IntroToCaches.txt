@@ -1,0 +1,87 @@
+Now that we've introduced pipelining, and superscalar,
+and out-of-order execution, and perhaps simultaneous multithreading, then
+we have the potential for a very fast processor.
+Now I say potential because our design is
+going to be limited by the speed of our memory.
+Now, the memory inside our smartphones is Dynamic Random-Access Memory,
+or DRAM.
+And DRAM has a couple of advantages.
+One is it's relatively inexpensive, which is important
+when we're designing smartphones.
+But also, it's relatively dense.
+We can pack a lot of bits on a chip with DRAM.
+And that's important, because we have a very small form
+factor with our smartphones.
+We can't afford to put a lot of these chips inside a smartphone.
+Now, the disadvantage of DRAM is that it's pretty slow relative
+to our processor.
+So it may take tens of cycles, or even 100 cycles
+to access an instruction or data from DRAM memory.
+And so although we have these very fast performance techniques,
+when we do instruction fetch, we're going
+to have to just wait, say, 100 cycles to get however
+many instructions we're fetching.
+And then we have a load instruction, we're going to wait,
+again, 100 cycles in order to get the data that we want.
+So this memory is going to slow down our pipeline.
+Our pipeline's going to come to a crawl if we
+use this DRAM, this particular type of memory.
+Now, we don't want to dispense with DRAM.
+We want to keep it because of those advantages I talked about.
+What we're going to do to solve this problem is we're
+going to introduce what's called a memory hierarchy,
+a hierarchy of memories.
+So we'll still have our DRAM, and that's where
+we'll hold most of our instructions and data,
+but we're also going to introduce-- integrate into our pipelines-- what
+are called caches.
+Now, a cache is a small memory.
+It's very fast.
+It's using a different technology.
+And it's small, so it's also fast compared to DRAM.
+So we're going to introduce caches, which are a different type of technology
+and a different size, so that indeed when we go and fetch instructions,
+when we fetch them from the cache, then it's going to be very, very quick.
+We'll be able to keep up with our pipeline.
+And when we do that load instruction and we access the cache,
+again, we'll be able to get that data very, very quickly.
+Now, the problem with caches is that we can't
+make them to be as large as our DRAM.
+So we can’t have, say, gigabytes like we might have in our DRAM.
+Our caches are going to be pretty small.
+In fact, they're going to be several orders of magnitude,
+say four orders of magnitude, smaller than our DRAM.
+They might be, say, 16 kilobytes or 32 kilobytes each, where
+our DRAM may be a gigabyte or more.
+So we're only going to hold a small subset of our instructions and data
+in our caches.
+And yet what we're going to find is that we can get very high hit rates.
+And what that means is when we look for something
+in the cache, then a lot of the time, in fact over 90% of the time,
+even over 95% of the time in some cases, we're
+going to find what we want, the instruction or the data, in the cache
+itself.
+And then only when we can't find it, that 10% or 5% of the time,
+then we'll have to go off the slower main memory.
+So because most of the time we hit in the cache, most of
+the time we find what we want, but then our pipeline
+is going to run at that fast speed.
+It's only when we miss that we have to go out to the slower memory.
+Now, this works.
+We have this orders of magnitude difference in size.
+Now, this works because of properties of our programs.
+Our programs have what's called locality.
+So if you think about a loop, when I fetch an instruction in a loop,
+well, if I iterate on that loop, I'm going to fetch that instruction again.
+So once I bring that instruction into the instruction cache,
+then on the next loop iterations I'm going to hit in the cache.
+So I'm only going to miss initially, and then if I iterate 1,000 times
+in that loop, then the next 999 iterations
+I'm going to find what I want in the cache,
+and I'm going to proceed very, very quickly.
+So we're going to talk about these principles of our program,
+this principle of locality.
+We're going to talk about how caches exploit these principles.
+And then we're going to talk about different engineering
+trade-offs in cache design.
+So let's get into it.

@@ -1,0 +1,34 @@
+Now we're going to design some variations on the D flip-flop.
+We're going to add some additional useful capability.
+The first thing we're going to do is we're
+going to provide the ability to change the output to force it to be reset to 0
+or to be set to 1.
+So we've already seen an R-S latch, which allows us to do this for a latch.
+We're going to have the capability of doing this for our D flip-flop.
+So we're going to add two additional inputs, R and S,
+and let's assume that when R equals a 1, then on the next rising
+edge of the clock then the output will be forced to a 0.
+And when S equals a 1, then on the rising edge of the clock
+the output will be forced to be a 1.
+And this capability is going to be very, very useful to us when we design
+our computer later on in the course.
+Now, another useful variation on a D flip-flop is to have load capability.
+If you remember with a D latch, we had the ability to capture the input value.
+We want to do the same with a D flip-flop,
+but we want to capture it only when we have the triggering edge of the clock.
+The way we're going to do this is we're going
+to add a 2-to-1 multiplexer before our D flip-flop.
+So here's a 2-to-1 multiplexer with one input being our D input to our circuit
+and the other input is the Q output from the D flip-flop.
+We're also going to have a select input, which we're going to call load.
+And the output of our multiplexer feeds into the D input of our D flip-flop.
+Now, when load equals a 1, then the input, D,
+passes through the multiplexer and can get clocked in to our flip-flop.
+Now, when the load input is a 0, then the Q output of the flip-flop
+passes through the multiplexer and gets clocked in again.
+So we retain the current value of Q when load equals 0,
+and we load a new value, the input D, when load equals 1.
+Now, we can combine these two new capabilities, this reset/set capability
+and this load capability, into one D flip-flop design.
+And here's a symbol for that.
+And this can be very useful later on when we design our computer.

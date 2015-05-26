@@ -1,0 +1,55 @@
+Now that we have a very fast processor core,
+including caches, we're going to design what's
+called a multi-core chip, where we have multiple of those processor
+cores on one smartphone chip.
+Now multi-core is a multiprocessor on a chip.
+And multiprocessing has been around for decades in higher end machines.
+And a multiprocessor is simply a computer
+that has multiple processors in it.
+Now for years, we designed consumer devices, such as smartphones,
+using a single processor core.
+And we would use the techniques we've already
+talked about to get higher performance.
+And another way that we got high performance
+was by increasing clock frequency.
+Now we increased frequency through technological advances,
+but also by making very deep processor pipelines.
+So instead of five pipeline stages, we could design our processor
+with, say, 15 or 20 stages.
+And because the amount of logic now within those stages is reduced,
+we can increase our frequency.
+Now the problem with this approach is power consumption.
+As we increase frequency and we add more registers in our pipeline,
+then power consumption can increase dramatically.
+And in devices such as smartphones, we've
+really reached a limit in that design about a decade ago.
+And at that point we turned to multi-core design,
+where we take a modestly designed processor, one
+that's trying not to be too aggressive in terms of its frequency
+or its pipeline depth or these other techniques,
+and we put multiple of those on a chip in order
+to exploit thread-level parallelism.
+Now multi-core is now throughout our smartphones.
+If you buy a smartphone today, you'll have a multi-core chip.
+And just like as with high performance techniques,
+it's really not as simple as just putting down
+a bunch of cores on a chip.
+There are a number of different challenges
+associated with multi-core design.
+And we're going to see one of those challenges in this module.
+And that's called cache coherence.
+So now that I have multiple cores with multiple caches,
+well I may have different versions of a particular cache
+block in those different caches.
+And that creates incoherence between those different blocks.
+And what we're going to see in this particular module is
+a particular design, a particular approach,
+that's widely used in smartphone chips, called the MESI protocol.
+And we're going to go through the details of that protocol
+and see how this solves this cache coherence problem.
+So at the end of this module, you'll have
+a general idea of the organization of the multi-core chip that's
+in your smartphone.
+And then we'll see a solution to this common cache coherence problem
+and how we solve this problem in hardware.
+So let's get into it.

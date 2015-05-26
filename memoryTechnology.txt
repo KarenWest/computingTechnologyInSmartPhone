@@ -1,0 +1,62 @@
+Now, we need very fast memory in our pipeline.
+So we have two memories in our pipeline.
+In Instruction Fetch, we have the instruction memory.
+And then in the MEM stage, we have the data memory for loads and stores.
+Now, those could be one memory.
+We've drawn them as two here.
+Now, if you buy a smartphone, then your processor
+may run at a few gigahertz of a frequency.
+Now, what that means is every tick of the clock
+is a few hundred trillionths of a second.
+So our memories, if they're going to operate in one clock cycle,
+have to operate at that speed.
+Let's compare our processor's cycle time, the speed of our clock,
+to the memory technology that's available to us.
+Our processor cycle time will range somewhere between, say,
+250 picoseconds to 2 nanoseconds.
+So that's a 4 gigahertz frequency at the high end
+to, say, down to 500 megahertz.
+And this will vary depending on what smartphone you have.
+Now, let's look at the typical memory technology that we have in CMOS.
+Well, the first type is called DRAM, for Dynamic Random Access Memory.
+Now, Random Access Memory is a memory where,
+if I access any location, any random location, it takes about the same time
+to get that data.
+Now, this is different than, say, a hard disk, where the time
+to get the data from a hard disk can vary a lot, depending
+on where that data is located.
+Now, these memories are pretty slow.
+It can take tens of nanoseconds for read or write,
+compared to these 250 picoseconds to 2 nanoseconds that our processor runs at.
+Now, the advantage here is that we have a very small storage cell in a DRAM.
+So it's a one transistor-- typically we have one transistor and a capacitor.
+So a capacitor is where we store the charge.
+So if we have charge, that might be a one.
+If we have no charge, that might be a 0.
+And they're very dense as a result.
+So we can put about, say, an order of a gigabyte of data on a single chip.
+And the other advantage is they're relatively cheap.
+So in US dollars, that translates into roughly $0.10 per megabyte of memory.
+So because of this capability, because of this small storage
+cell and this relatively small cost, then we use these for main memory.
+So in our main memory diagram and in our LC-3 diagram,
+you could think of that as DRAM storage.
+Now, SRAM is another type.
+This is called the Static Random Access Memory.
+And this is more like the memory that we introduce in digital design.
+If you remember, we had a latch as a storage cell,
+for SRAM it's much more like that, rather than a capacitor
+as you have in DRAM.
+Now, these are relatively fast.
+So you could have hundreds of picoseconds
+to a few nanoseconds for read or write.
+And you can see that this corresponds very closely
+to our processor cycle time.
+Now, the storage cell, though, is relatively large.
+So we have six transistors compared to the one
+transistor and a capacitor for DRAM.
+So it takes more area-- it's larger.
+And it's more expensive.
+You can think of this as roughly one US dollar per megabyte compared to $0.10
+for DRAM.
+Now, we use this SRAM for what are called caches.

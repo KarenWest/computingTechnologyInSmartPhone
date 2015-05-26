@@ -1,0 +1,276 @@
+So your research group recently collaborated with researchers at IBM
+to create a chip that you guys call TrueNorth,
+and that the press has been calling "the brain chip," because it's
+inspired by the structure of the brain.
+So I guess if students want to go find this project,
+they can probably Google "brain chip" and they'll find it.
+Now, this is not a Von Neumann architecture,
+like we're teaching in the course.
+Can you describe this chip in terms of how
+it differs from a Von Neumann architecture,
+and how it tries to mimic the brain?
+Sure.
+So I'm not sure I want to get into some Von Neumann versus not Von Neumann,
+because different people interpret that in different ways.
+But I'll talk about what's the difference between that
+and sort of a traditional CPU, and explain why we designed it that way.
+So it's sort of that traditional CPUs today,
+there's a big bottleneck, which is to get data
+from the memory to the processor and back.
+So everybody calls that the Von Neumann bottleneck, because originally, that
+was the idea of the stored program computer on your computer--
+you put everything into memory, and then you operate on it.
+Of course, if you look at a CPU today, we've
+gotten well beyond that, with lots of power cords and so on and so forth.
+But that's the basic idea.
+Now, the problem is the cost, in terms of both energy and performance,
+a lot of the costs we're paying today has
+to do with moving data around, then storing it in this memory,
+and moving it from the memory, getting it to the CPU
+to start doing the operations, and then moving back.
+I mean, the computation itself has become essentially free
+relative to the communication costs.
+That's where we are today.
+And when you say cost in terms of, for instance, energy.
+Energy.
+Energy has got the metric I normally-- when I say cost right now,
+I'll pretty much be referring to energy, primarily,
+because energy has become sort of the first order of emitter of the system.
+So moving data back and forth is very expensive from an energy standpoint.
+So before I say anything, I'll tell you that no one really
+knows how the brain computes, right?
+However, neuroscientists have various hypotheses.
+And so the way I like to think about the chip we built, is we basically
+implemented something that corresponds roughly
+to what a lot of computational neuroscientists think
+is happening in the brain.
+So what does that look like?
+So what it looks like is, our brains have neurons and synapses that
+are connected in very complicated ways.
+And the other power of this is that the way things-- so a neuron,
+depending on who you ask, can be viewed as a very simple device.
+One way to think about a neuron is it's got a bunch of inputs.
+Those inputs, the inputs that arrive on all the--
+the inputs that arrive sort of update the internal state,
+normally sort of adding or subtracting from a value that's stored locally.
+And then, once that state exceeds a threshold, it produces an output.
+Right?
+And that's referred to as a spike, normally.
+And the spike is then sent to a number of other neurons.
+And then the similar sort of operations keep going.
+So that's how the computation proceeds.
+So what's interesting about this model is all the neurons are parallel, right?
+So everything is inherently parallel, right?
+There's no explicit memory, like the Von Neumann model.
+But its implicit state, every neuron has a little bit of local memory,
+if you want to think of it that way.
+So there's an implicit local state, and it's all parallel.
+Everybody's accessing a local state.
+And the only way state information is exchanged
+is through these spikes, which you can think of as messages from one
+part of the system to the other.
+So that's essentially how the whole system works.
+Everything is very naturally parallel.
+Everything is running at actually a very low frequency, right?
+So the time scales that people care about
+are typically in the millisecond regime rather than the nano or picosecond
+regime.
+And so things are slow.
+But there's a massive amount of concurrency.
+That's sort of what the system looks like.
+And so that's why it's very, very different
+from this notion of Von Neumann architecture,
+where you have this one little CPU, or collection
+of CPUs, which are really, really fast, chunking on data,
+and then a lot of the data is moved back and forth from a big memory.
+Right?
+That's sort of what happens in the Von Neumann.
+So that's why it's so different.
+And so what ended up building in TrueNorth, essentially,
+is something that can execute this sort of very parallel collection of neurons
+and synapses and connections.
+So there's this very low frequency.
+I mean, each of these are not clocked by a global clock, right?
+There's this kind of very low frequency, 1 kilohertz clock that runs.
+And then in between these very long cycles,
+everything is event driven and asynchronous.
+Exactly.
+So it uses your asynchronous design techniques.
+In fact, actually one of the nice things about-- funny things about this project
+is we actually used the design tools I wrote to design the chip.
+So you can imagine how hard it was to convince a major company to do that.
+But anyway, that's a long story.
+But at the end of the day, yeah, that's how it essentially works.
+So the way TrueNorth works is there's this 1 kilohertz of tick.
+That's sort of a biological timescale of a millisecond, right?
+And the reason we have this tick is-- there are a number of reasons.
+One of them is it actually makes it very,
+very easy for us to ensure consistency between the chip and the software model
+for the chip.
+Which means that we could have people start mapping applications of the chip
+before the chip was designed.
+So that is nice.
+The other thing is, when a spike goes from a neuron to another neuron,
+it goes through these axons, and then it writes as
+synapses and so on and so forth.
+And there's a delay.
+There's a latency.
+And for certain applications, the latency really matters.
+It's used for computation.
+And so, TrueNorth actually allows you to have a programmable delay
+in a communication link.
+And that programmable delay is also controlled by this tick.
+Right?
+So you could have 1 millisecond delivery, 2 milliseconds delivery,
+3 milliseconds delivery, so on and so forth.
+That’s the granularity at which the delays are supported.
+So that's the other reason for that tick.
+But between ticks, everything is asynchronous.
+The spikes are communicating across the chip asynchronously.
+The neuron updates are also sort of asynchronous.
+Everything is happening asynchronously until the next tick.
+So essentially, tick shows up.
+Spikes get delivered at that time.
+Spikes for that tick get delivered to the neurons on the chip.
+And then every other neurons update their states-
+and, you know, send messages if they need to, and so on and so forth.
+All of that's asynchronous until the next set of spikes get delivered.
+Right?
+So normally, if you look at the way TrueNorth runs,
+there's usually a burst of activity, and then a lot of
+waiting for the next tick.
+Now, from the numbers I've seen from your paper--
+so the chip can achieve several orders of magnitude, better power efficiency,
+than a conventional design for certain applications.
+Right.
+So what are the particular applications that this chip is really good at?
+Right.
+So the main thing that this chip is good at, I would say,
+is just the general task of classification.
+So classification is actually a pretty broad problem.
+So what do I mean by classification?
+So for example, you're looking at a movie,
+and you want to know is there a car in this movie,
+in the video I'm just watching.
+Is there a car?
+Where is it?
+Is there a person walking in the street?
+Where are they in this image?
+Right?
+So that's the sort of tasks that we sort of designed TrueNorth for.
+Part of that is because our visual system does this very, very well.
+We still don't know how we do what we do.
+And doing that, we’re sort of like a conventional sort of computer vision
+algorithm is very computationally expensive.
+In fact, when you take a picture of something on your smartphone,
+and you do image processing on it, there
+are many cases where that actually does get sent to the cloud for processing,
+because there isn't enough battery on your smartphone or compute capability
+to do it in a reasonable amount of time.
+And so the idea was, we would pick domains
+where we know that traditional compute has challenges.
+And this was probably-- this was a domain that we picked for TrueNorth.
+In the future, looking forward, if you develop these systems further,
+where do you expect to see them appear?
+Where do we expect that-- will we find them in the cloud
+to do certain types of problems?
+Or do we expect them in image recognition systems,
+or where would we see these chips in the future?
+I think there are a lot of places where-- well, first of all,
+I should say that this is like the first step.
+I mean, there's a lot more you could do in this domain
+and do a better job than what we did with even the TrueNorth.
+Even though the numbers look really good, a lot of that
+is coming from architecture, the overall system organization.
+And we can do even better.
+So there could be improvements on that before it ends up
+being commercially successful.
+But on the commercial front, I can imagine a number of different domains.
+I mean, smart phones are a great example.
+There are plenty of things where you take a photograph,
+and it sort of tells you various things about the image you've taken.
+You know, those aren't that efficient, because now they
+do that actually on your smartphone.
+And maybe that's not that important in, let's say, the US,
+because we’ve been spoiled, and we have high bandwidth
+connectivity almost at all times.
+But imagine you're in a part of the world where you don't
+have broadband where you are, right?
+Right now, none of these applications are accessible to them,
+but they would be if we had this on the phone itself.
+And then, another way to look at this is, if I look at some data centers,
+for example-- I mean, a lot of the processing of images and things
+like that is done in the cloud today.
+But the data centers actually use a huge amount of energy.
+Right?
+I mean, the data centers are like a small city.
+So that's sort of the statistic everybody likes to use.
+But there's an opportunity here.
+So today, there are data centers that have
+GPUs built into them for acceleration of certain kinds of operations,
+because people are getting very, very good at using GPUs to speed up
+a number of different applications.
+You could imagine these being similar.
+You could have sort of the neuromorphic or TrueNorth
+brain-inspired architecture sitting as coprocessors,
+just like GPUs are sitting in a data center, even.
+And when you upload a picture of Instagram or a favorite photo sharing
+application, when you upload it to the cloud,
+the processing could be done with that for much, much less energy.
+The motivation there isn’t really performance.
+You can throw as many CPUs as you want, but your power, though,
+might be significantly lower if you used these sorts of chips
+than just generic CPUs.
+So that's an application where you do it for power,
+not because you don't know how to do the-- you
+can sort of solve the problem.
+It's just it will be more efficient.
+Right.
+You need a lot more resources to do this conventionally, and like you say,
+power is very, very important, very, very high cost in a data center.
+So that you could do this much more efficiently.
+[INTERPOSING VOICES]
+Most of the cost of the data center now is your power bill, I believe, right?
+But invariably, one of the funny things about
+TrueNorth-- and somebody asked me about this when I was giving a talk about it—
+is that like so where is your cooling for this chip,
+because everybody sees GPUs and CPUs with these big heat sinks and fins,
+right?
+But that's because GPUs are displaying 200 watts or 100 something watts,
+depending on which one you look at.
+And TrueNorth dissipates 70 milliwatts.
+So you don't need a heat sink.
+But it's funny, because people are so used to image processing,
+you're going to need lots of CPU and lots of computing, lots of heat's
+going to get generated.
+But actually, it doesn't have to be that way.
+Right.
+So this would actually make it-- because of that low power,
+you could integrate within a smartphone within that form factor,
+not worry about the heat dissipation.
+Exactly.
+Battery life, because of lower energy.
+Exactly.
+That's the idea.
+And you know, in fact, today I would argue that cameras
+have become the new sensor, right?
+We all have one on our phones.
+And because of that, they're incredibly cheap and very high quality, actually.
+And so anything I can see, in principle, I
+should be able to extract from an image.
+Right?
+You know, I was having this conversation with somebody who
+was interested in smart parking, right?
+Do you want to know how many cars are parked in the parking garage?
+And everybody's trying to-- you can build these nice sensors,
+so when the car goes over it, it knows that car has entered a parking space,
+and so on and so forth.
+But it's just cheaper if you could take the video feed from the security camera
+and count the cars.
+They're already there, the cameras.
+So there's some very interesting things where
+there's a much simpler solution to counting cars,
+but it's special purpose, whereas the camera is already there.
+And anything you can see, you can do with it, then you’d be in a very different place.
+So that's another reason why I think these chips are interesting,
+because cameras are just ubiquitous now.

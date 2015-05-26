@@ -1,0 +1,96 @@
+First of all, let's put our processing unit, part of our processing unit,
+together piece by piece.
+So first of all, we have a register file.
+We have eight registers and we have an ALU, so let's draw those two
+and let's make the connections between them.
+Now remember from our register file, we have eight registers,
+so we need to have 3 bits for each of our source registers,
+so let's draw that.
+And then we need also 3 bits for our destination register,
+so let's put that in too.
+Now, we also need a control signal.
+Let's call that LD.REG.
+That's a load control signal.
+That tells us to write to the register file
+because remember not every instruction is going to update the register file.
+So the control unit, which we'll see soon,
+needs to assert that signal only when we have say an LDR or an ADD instruction,
+but not for a store instruction, which only writes memory.
+Now, let's add our memory.
+So here's our memory with an MDR and an MAR register.
+That's the memory data register.
+That's for data that we're going to load and store.
+And the memory address register, that's the address, the location
+that we're loading or storing.
+Now, we need a way to connect up these different components.
+We're going to use what's called a tri-state driver,
+so here's a tri-state driver from the output of the ALU,
+and here's a tri-state driver from the output of the MDR,
+and we're going to connect these by a bus.
+Now, a bus is a group of wires that we're
+going to run throughout our circuit.
+And a tri-state driver is similar to a multiplexer
+in that only one of the drivers is allowed
+to connect to the bus at a time.
+So it's the same thing as allowing the ALU to pass its result to the bus
+or to allow the MDR to pass this result to the bus, similar to a multiplexer.
+Now, let's add the instruction fetch hardware.
+So we need a PC, and here's a PC, and we need to increment
+that so we add an incrementer, so this plus 1 is always incrementing the PC.
+And we're going to pass that then, the incremented value, to the PC register.
+Now, we need to connect the PC to our memory address register,
+so let's connect our PC to our bus.
+And again, we're going use a tri-state driver, again,
+it's going to perform the same function as a multiplexer.
+We need a tri-state driver to connect to our bus
+so that our PC is allowed to control that bus
+and send the result to the MAR.
+The other piece of instruction fetch is an instruction register.
+So let's put an instruction register down and let's connect that to our bus.
+Now, we need to sign extend our 6-bit offset.
+Remember, with digital logic, we talked about how
+sign extension takes a small value and makes it into equivalent two's
+complement larger value.
+In this case, we need to take the leftmost bit of our 6-bit value,
+the most significant bit, and duplicate it 10 times
+to make it into an equivalent 16-bit value
+so that we can add that to our 16-bit base register.
+For the LDR instruction, we need the hardware
+for the evaluate address phase.
+So remember, we're going to get a value from the offset from the instruction
+register and we're going to add that to a base register.
+So let's add an adder to our diagram with one input from the instruction
+register, so this is the rightmost 6 bits,
+and then we have the other input coming from our register file.
+Now, we need to connect that to the bus as well because we
+need to send that address down to the memory
+to get the data that we want to load.
+So let's connect that also to our bus through another tri-state driver.
+For control instructions, we need a condition code register.
+Now, that has three pieces to it, N, Z, and P.
+This tells whether our result is negative, zero, or positive.
+So let's put that down and we need to have some logic to set those bits
+depending on our result.
+Let's put that logic in and we're going to design that later in the course.
+And let's connect that up to our bus so that we
+can monitor the result that's put into the register file
+and set the N, Z, and P bits accordingly.
+Our final piece is a control unit.
+That's going to be a finite state machine, so let's put that down.
+Now, that's going to orchestrate the phases of instruction processing.
+So we have a number of outputs out of this control unit,
+and one of them, for instance, is the ALU function, so let's put that down.
+And we also have a number of registers that need to be loaded.
+Now, we already had a load signal for the register file.
+We need to add one to the PC because we're going to update our PC only
+at specific times.
+We also need one for our instruction register
+because, again, we're only going to load that when we're doing the decode phase.
+We also need one for our MAR and our MDR registers.
+Now, our finite state machine also controls each of our tri-state drivers.
+What it does is make sure the only one of those drivers
+is driving the bus at one time, and again, that's
+the same thing as a multiplexer function.
+Here we see our LC-3 computer starting to come together.
+Now we're going to move on to see how we carry out the phases of instruction
+processing using our design.

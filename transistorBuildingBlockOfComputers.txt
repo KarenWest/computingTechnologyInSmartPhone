@@ -1,0 +1,24 @@
+The transistor is the building block of computers.
+Microprocessors, which are the computer chips
+that power our smartphones, our laptops, servers in the cloud,
+contain billions of transistors.
+Your smartphone, for instance, the little computer chip,
+the microprocessor in that, may contain a few billion transistors.
+Servers in the cloud may have over 5 billion transistors
+in their microprocessors.
+Now, each of these transistors acts like a tiny little switch,
+and we can combine these transistors to create logic functions-- we've already
+talked about AND, OR, and NOT we're going
+to create the hardware to do those operations using transistors.
+Then we're going to take those logic functions-- those
+AND, OR, NOT and we're going to build more useful things, such as adders,
+such as things called multiplexers, decoders,
+registers, which we use to store values.
+And then we're going to use those as the building blocks to build a processor,
+and we're going to build a processor called the LC-3.
+Now, this gets back to the idea of hierarchy
+where we have a transistor as a building block, and we go one level up
+and we can use that to create these logic functions.
+One level above that is we use these to create things like adders,
+and then another level above that is we use these adders and other things
+to build this processor, which we're calling the LC-3.

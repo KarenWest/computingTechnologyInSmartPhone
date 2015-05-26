@@ -1,0 +1,43 @@
+The processor inside your smartphone does not understand Java, or Python,
+or C++, or Fortran, or any high level language.
+What it understands is the instructions, and operating modes,
+and addressing modes, and all of the details
+specified by the instruction set architecture.
+Now your smartphone probably runs either an ARM instruction set
+or an Intel instruction set.
+Now those instruction sets are designed by the engineers at those companies.
+So those companies define the instructions, and the operating modes,
+and the addressing modes, and a lot of other things
+that the hardware needs to do in order to be an Intel, or ARM,
+or whatever instruction set compliant hardware machine.
+Now we like to write programs though in these high level languages.
+It's much more productive to do it that way
+than to use the instructions in the instruction set architecture.
+And you're going to see this for yourself in the course.
+So how do we make this link between what the hardware understands
+and the high level language?
+Well, we have a compiler or interpreter.
+Compiler or interpreter is a piece of software that's written that comes with
+the system that translates Java, or Python, or C++,
+or whatever high level language you program in into the instructions
+and addressing modes and all those things that are specified
+by the instruction set architecture.
+So the instruction set architecture brings the hardware and software
+together.
+The hardware is designed to support the instruction set.
+And the compiler or interpreter is designed
+to translate from high level language to the instruction set.
+So it's the contract between the hardware and software.
+Now the ARM and Intel instruction sets are really too complicated
+to cover in a course like this.
+So we have an instruction set which we've already
+mentioned called the LC-3.
+Now the LC-3 has a small number of instructions and operating modes,
+but it's very, very powerful in that it's simple to understand,
+but you can do a lot with it.
+So in this module, we're going to fill out the details of the LC-3.
+We're going to go back and forth between the instruction set
+architecture of the LC-3 and the LC-3 microarchitecture.
+So as we add new LC-3 instructions, we're
+going to also add the necessary support in our microarchitecture design.
+So let's get into it.

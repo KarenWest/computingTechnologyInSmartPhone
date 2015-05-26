@@ -1,0 +1,36 @@
+The way we interact with a computer, like our smartphone,
+is through input and output.
+Now, our permanent storage is also an input/output device.
+So this could be like a keyboard or a mouse or a monitor or a printer,
+or it could be the flash memory in your smartphone.
+Now, these are devices that put data into and get data out
+of computer memory.
+So the input/output devices interact with the computer memory.
+Now, each device has its own interface, just like memory has interface.
+Now, for LC-3, we have two input/output devices.
+For input, we use the keyboard, and for output, we use the monitor.
+The keyboard has a data register, called the KBDR, and a status register,
+or the KBSR.
+And the monitor has a data register, called
+the DDR for the display data register, and a status register, called the DSR.
+Now, we're going to cover these later on in the course.
+Now, some devices provide both input and output.
+So your network provides both input and output.
+Your flash memory provides both input and output in your smartphone.
+And there's a special piece of software that controls access to a device.
+And that's called a driver.
+The final piece of our von Neumann machine is the control unit.
+So this orchestrates the execution of the program.
+And it has two main components-- one, the instruction register,
+which holds the current instruction-- this is the instruction that we're
+operating on right now-- and also the program counter or PC, which
+holds the memory address of the next instruction that we're going to execute
+after this current one.
+Now, the control unit reads an instruction from the memory.
+And the address is in the PC.
+And it interprets that instruction.
+It determines what type of instruction it is, such as an add versus a load,
+for instance.
+And it generates all of the signals, all of the control that's
+needed to tell the other components what to do in order to carry out
+the execution of this instruction.
